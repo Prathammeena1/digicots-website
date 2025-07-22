@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useLogo } from "../context/LogoContext";
 
 const HomeHeroSection = () => {
@@ -11,9 +11,43 @@ const HomeHeroSection = () => {
   const heroTextRef = useRef();
   const logoSvgRef = useRef();
   const mainSvgLogoRef = useRef();
+  const videoRef = useRef();
+  const [videoMuted, setVideoMuted] = useState(true);
 
   // Get logo context
   const { navigationLogoRef } = useLogo();
+
+  // Handle video mute toggle with performance optimization
+  const toggleVideoMute = () => {
+    if (videoRef.current) {
+      const video = videoRef.current;
+      const newMutedState = !videoMuted;
+      
+      // Use requestAnimationFrame for smooth state updates
+      requestAnimationFrame(() => {
+        setVideoMuted(newMutedState);
+        video.muted = newMutedState;
+        
+        // Ensure video continues playing with better error handling
+        if (!newMutedState) {
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                console.log("Video unmuted and playing");
+              })
+              .catch(err => {
+                console.log("Video play failed:", err);
+                // If unmuted playback fails, revert to muted
+                setVideoMuted(true);
+                video.muted = true;
+                video.play().catch(e => console.log("Fallback play failed:", e));
+              });
+          }
+        }
+      });
+    }
+  };
 
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
@@ -22,9 +56,8 @@ const HomeHeroSection = () => {
       scrollTrigger: {
         trigger: homeRef.current,
         start: "top 0",
-        end: "top -300%",
+        end: "top -500%",
         scrub: 1.2,
-        pin: true,
         anticipatePin: 1,
         refreshPriority: -1,
         invalidateOnRefresh: true,
@@ -37,33 +70,32 @@ const HomeHeroSection = () => {
     gsap.set(heroTextRef.current, { opacity: 1 });
 
     // Animation sequence
-    tl
-      .to(
-        sec1.current,
-        {
-          y: "0%",
-          duration: 1.5,
-          ease: "power3.out",
-        },
-        0.2
-      )
+    tl.to(
+      sec1.current,
+      {
+        y: "0%",
+        duration: 3.1,
+        ease: "power3.out",
+      },
+      0.2
+    )
       .to(
         sec1.current,
         {
           opacity: 0,
-          duration: 0.3,
+          duration: 0.5,
           ease: "power2.inOut",
         },
-        1.5
+        3.5
       )
       .to(
         sec2.current,
         {
           y: "0%",
-          duration: 1.5,
+          duration: 3.1,
           ease: "power3.out",
         },
-        1.7
+        4.2
       )
       .to(
         logoSvgRef.current,
@@ -126,23 +158,99 @@ const HomeHeroSection = () => {
 
   return (
     <>
+      {/* Mute Toggle Button */}
+      <button
+        onClick={toggleVideoMute}
+        className="fixed top-5 right-6 z-[100000] bg-black/20 backdrop-blur-sm border border-white/20 rounded-full p-3 hover:bg-black/40 transition-all duration-300 group"
+        aria-label={videoMuted ? "Unmute video" : "Mute video"}
+      >
+        {videoMuted ? (
+          // Muted icon
+          <svg 
+            className="w-5 h-5 text-white group-hover:scale-110 transition-transform" 
+            fill="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+          </svg>
+        ) : (
+          // Unmuted icon
+          <svg 
+            className="w-5 h-5 text-white group-hover:scale-110 transition-transform" 
+            fill="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+          </svg>
+        )}
+      </button>
+
       <img
         ref={mainSvgLogoRef}
         src="/images/logo-1.svg"
         alt="Logo"
         className="fixed left-[51%] top-1/2 -translate-1/2 w-30 h-auto z-[99999] pointer-events-none select-none opacity-0"
       />
-      <div className="h-[300vh] w-full relative">
-        <div ref={homeRef} className="h-screen w-full relative overflow-hidden">
-          <div className="hero-page-section-1 h-full w-full">
-            {/* Gradient Background */}
-            <div className="absolute h-screen w-full">
+      <div className="h-[600vh] w-full relative">
+        <div ref={homeRef} className="h-screen w-full sticky top-0 overflow-hidden">
+          <div className="hero-page-section-1 top-0 h-full w-full relative">
+            {/* Optimized Video Background Container */}
+            <div 
+              className="absolute inset-0 h-screen w-full bg-black"
+              style={{
+                contain: 'layout style paint',
+                willChange: 'transform',
+                transform: 'translateZ(0)'
+              }}
+            >
               <video
+                ref={videoRef}
                 src="/videos/showreel.mp4"
                 className="object-cover w-full h-full brightness-[.9]"
                 autoPlay
                 loop
-                muted
+                muted={videoMuted}
+                playsInline
+                preload="auto"
+                poster="/images/video-poster.jpg"
+                style={{
+                  willChange: 'transform',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'translateZ(0)',
+                  WebkitTransform: 'translateZ(0)'
+                }}
+                onLoadedData={() => {
+                  // Ensure video plays when loaded
+                  if (videoRef.current) {
+                    // Set playback rate for better performance if needed
+                    videoRef.current.playbackRate = 1;
+                    videoRef.current.play().catch(err => console.log("Autoplay prevented:", err));
+                  }
+                }}
+                onLoadStart={() => {
+                  // Optimize video settings
+                  if (videoRef.current) {
+                    videoRef.current.defaultPlaybackRate = 1;
+                  }
+                }}
+                onCanPlay={() => {
+                  // Video is ready to play
+                  if (videoRef.current) {
+                    videoRef.current.play().catch(err => console.log("Play failed:", err));
+                  }
+                }}
+                onWaiting={() => {
+                  // Video is buffering - you could show a loading indicator here
+                  console.log("Video buffering...");
+                }}
+                onPlaying={() => {
+                  // Video started playing smoothly
+                  console.log("Video playing smoothly");
+                }}
+                onError={(e) => {
+                  console.error("Video error:", e);
+                }}
               />
             </div>
             {/* Bottom decoration */}
@@ -219,7 +327,7 @@ const HomeHeroSection = () => {
               >
                 <defs>
                   <mask id="text-mask-2">
-                    <rect width="100%" height="100%" fill="white" />
+                    <rect width="100%" height="110%" fill="white" />
                     <text
                       x="960"
                       y="420"
