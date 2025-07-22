@@ -1,51 +1,42 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
+import { initControlledScroll } from '../utils/scrollUtils'
 
 export const useLenis = () => {
   useEffect(() => {
-    // Create Lenis instance with controlled low-intensity scroll settings
+    // Create Lenis instance with optimized settings for smooth controlled scrolling
     const lenis = new Lenis({
-      duration: 1.5,          // Longer duration for slower, more controlled scroll
-      easing: (t) => 1 - Math.pow(1 - t, 4), // Smoother, more controlled easing
-      direction: 'vertical',   // Scroll direction
+      duration: 1.4,          // Matched with controlled scroll duration
+      easing: (t) => {
+        // Smoother easing that matches controlled scroll
+        return t < 0.5 
+          ? 2 * t * t 
+          : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      },
+      direction: 'vertical',   
       gestureDirection: 'vertical',
-      smooth: true,           // Enable smooth scrolling
-      mouseMultiplier: 0.3,   // Reduced mouse wheel sensitivity (was 1)
-      smoothTouch: false,     // Disable smooth scroll on touch devices (better performance)
-      touchMultiplier: 0.5,   // Reduced touch gesture sensitivity (was 2)
-      infinite: false,        // Disable infinite scroll
-      autoResize: true,       // Auto resize observer
-      syncTouch: false,       // Sync touch with scroll
-      syncTouchLerp: 0.05,    // Reduced touch lerp for slower response (was 0.075)
-      touchInertiaMultiplier: 15, // Reduced touch inertia (was 35)
-      wheelMultiplier: 0.2,   // Much lower wheel scroll multiplier (was 1)
-      normalizeWheel: true,   // Normalize wheel delta
-      lerp: 0.05,            // Lower lerp value for slower interpolation
+      smooth: true,           
+      mouseMultiplier: 0,     // Disable default mouse wheel (we handle it)
+      smoothTouch: true,      // Enable smooth touch for mobile
+      touchMultiplier: 1.5,   // Normal touch sensitivity
+      infinite: false,        
+      autoResize: true,       
+      syncTouch: true,        // Better touch sync
+      syncTouchLerp: 0.1,     
+      touchInertiaMultiplier: 25, 
+      wheelMultiplier: 0,     // Disable default wheel handling
+      normalizeWheel: false,  // We handle normalization
+      lerp: 0.1,             // Smooth interpolation for touch
     })
 
     // Make Lenis instance globally accessible
     window.lenis = lenis
 
-    // Custom scroll velocity limiter to cap at 1vh max
-    let lastScrollY = 0;
-    let scrollVelocity = 0;
-    const maxScrollSpeed = window.innerHeight * 0.01; // 1vh in pixels
+    // Initialize controlled scrolling
+    const cleanupControlledScroll = initControlledScroll()
 
-    // Animation frame loop with velocity control
+    // Animation frame loop
     function raf(time) {
-      // Calculate scroll velocity
-      const currentScrollY = window.scrollY || 0;
-      scrollVelocity = Math.abs(currentScrollY - lastScrollY);
-      
-      // If velocity exceeds max, temporarily reduce lerp
-      if (scrollVelocity > maxScrollSpeed) {
-        lenis.options.lerp = 0.02; // Even slower when scrolling fast
-      } else {
-        lenis.options.lerp = 0.05; // Normal slow speed
-      }
-      
-      lastScrollY = currentScrollY;
-      
       lenis.raf(time)
       requestAnimationFrame(raf)
     }
@@ -54,8 +45,7 @@ export const useLenis = () => {
 
     // Add scroll event listener for additional effects
     lenis.on('scroll', (e) => {
-      // You can add custom scroll effects here
-      // console.log(e)
+      // Custom scroll effects can be added here
     })
 
     // Add Lenis class to html for CSS targeting
@@ -64,6 +54,7 @@ export const useLenis = () => {
     // Cleanup function
     return () => {
       document.documentElement.classList.remove('lenis')
+      cleanupControlledScroll() // Cleanup controlled scroll event listeners
       window.lenis = null
       lenis.destroy()
     }

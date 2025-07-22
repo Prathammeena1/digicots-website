@@ -34,10 +34,10 @@ const App = () => {
       />
 
       {/* Main App Content */}
-      <div className={`h-screen transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+      <div className={`h-full transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
         <Navigation />
 
-        <div className="h-screen w-full overflow-hidden fixed top-0 left-0">
+        <div className="h-full w-full overflow-hidden fixed top-0 left-0">
           <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-black" />}>
               <FluidCanvas />
