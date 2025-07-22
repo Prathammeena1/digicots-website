@@ -1,13 +1,12 @@
-import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useLogo } from '../context/LogoContext'
 
 const Navigation = () => {
   const location = useLocation()
-  const navRef = useGSAP()
+  const navRef = useRef()
   
   // Get the shared logo ref from context
   const { navigationLogoRef } = useLogo()
@@ -43,7 +42,7 @@ const Navigation = () => {
           {/* Center logo */}
           <div ref={navigationLogoRef} className="flex items-center opacity-0">
             <Link to="/" className="logo-container">
-              <img src="/images/logo-2.svg" className='h-[60px]' alt="" />
+              <img src="/images/logo-1.svg" className='w-30' alt="" />
             </Link>
           </div>
           

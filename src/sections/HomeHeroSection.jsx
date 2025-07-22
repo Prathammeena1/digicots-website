@@ -1,16 +1,16 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React from "react";
+import React, { useRef } from "react";
 import { useLogo } from "../context/LogoContext";
 
 const HomeHeroSection = () => {
-  const sec1 = useGSAP();
-  const sec2 = useGSAP();
-  const homeRef = useGSAP();
-  const heroTextRef = useGSAP();
-  const logoSvgRef = useGSAP();
-  const mainSvgLogoRef = useGSAP();
+  const sec1 = useRef();
+  const sec2 = useRef();
+  const homeRef = useRef();
+  const heroTextRef = useRef();
+  const logoSvgRef = useRef();
+  const mainSvgLogoRef = useRef();
 
   // Get logo context
   const { navigationLogoRef } = useLogo();
@@ -37,20 +37,12 @@ const HomeHeroSection = () => {
     gsap.set(heroTextRef.current, { opacity: 1 });
 
     // Animation sequence
-    tl.to(
-      heroTextRef.current,
-      {
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.inOut",
-      },
-      0
-    )
+    tl
       .to(
         sec1.current,
         {
           y: "0%",
-          duration: 0.8,
+          duration: 1.5,
           ease: "power3.out",
         },
         0.2
@@ -68,22 +60,26 @@ const HomeHeroSection = () => {
         sec2.current,
         {
           y: "0%",
-          duration: 0.8,
+          duration: 1.5,
           ease: "power3.out",
         },
         1.7
       )
-      .to(logoSvgRef.current, {
-        scale: 1,
-        ease: "linear",
-        duration: 5,
-      },"+=0.3")
+      .to(
+        logoSvgRef.current,
+        {
+          scale: 1,
+          ease: "linear",
+          duration: 5,
+        },
+        "+=0.3"
+      )
       .to(
         logoSvgRef.current,
         {
           opacity: 0,
           ease: "power3.out",
-          duration: 0.3,
+          duration: 0.7,
         },
         "+=0.3"
       )
@@ -92,12 +88,12 @@ const HomeHeroSection = () => {
         {
           opacity: 1,
           ease: "power3.out",
-          duration: 0.3,
+          duration: 0.7,
         },
         "<"
       )
       .to(mainSvgLogoRef.current, {
-        top: "5%",
+        top: "5.5%",
         duration: 1.2,
         ease: "power2.inOut",
       })
@@ -132,9 +128,9 @@ const HomeHeroSection = () => {
     <>
       <img
         ref={mainSvgLogoRef}
-        src="/images/logo-2.svg"
+        src="/images/logo-1.svg"
         alt="Logo"
-        className="fixed left-[51%] top-1/2 -translate-1/2 w-14 h-auto z-[99999] pointer-events-none select-none opacity-0"
+        className="fixed left-[51%] top-1/2 -translate-1/2 w-30 h-auto z-[99999] pointer-events-none select-none opacity-0"
       />
       <div className="h-[300vh] w-full relative">
         <div ref={homeRef} className="h-screen w-full relative overflow-hidden">
@@ -266,7 +262,7 @@ const HomeHeroSection = () => {
 
           <svg
             ref={logoSvgRef}
-            className="absolute top-0 left-0 pointer-events-none h-screen w-screen z-[40] scale-[2000]"
+            className="absolute top-0 left-0 pointer-events-none h-screen w-screen z-[40] scale-[250]"
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
@@ -274,11 +270,11 @@ const HomeHeroSection = () => {
                 <rect width="100%" height="100%" fill="white" />
 
                 <image
-                  href="/images/logo-2.svg"
-                  x="40%"
-                  y="40%"
-                  width="20%"
-                  height="20%"
+                  href="/images/logo-1.svg"
+                  x="42.5%"
+                  y="42.5%"
+                  width="15%"
+                  height="15%"
                   preserveAspectRatio="xMidYMid meet"
                   style={{ filter: "invert(1)" }}
                 />

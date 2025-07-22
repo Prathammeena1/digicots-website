@@ -3,7 +3,7 @@
 export const scrollTo = (target, options = {}) => {
   if (window.lenis) {
     window.lenis.scrollTo(target, {
-      duration: 1.2,
+      duration: 1.6,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       ...options
     })
