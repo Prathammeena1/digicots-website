@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+/* Font Face Declarations */
+@font-face {
+  font-family: 'Palette';
+  src: url('./assets/fonts/Palette-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Palette';
+  src: url('./assets/fonts/Palette-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Palette';
+  src: url('./assets/fonts/Palette-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Global Font Setup - Gilroy as default */
+* {
+  font-family: 'Gilroy', sans-serif;
+}
+
+/* Font Utility Classes */
+.font-palette {
+  font-family: 'Palette', sans-serif;
+}
+
+.font-palette-regular {
+  font-family: 'Palette', sans-serif;
+  font-weight: 400;
+}
+
+.font-palette-bold {
+  font-family: 'Palette', sans-serif;
+  font-weight: 700;
+}
+
+.font-palette-black {
+  font-family: 'Palette', sans-serif;
+  font-weight: 900;
+}
+
+.font-gilroy {
+  font-family: 'Gilroy', sans-serif;
+}
+
+.font-gilroy-light {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 300;
+}
+
+.font-gilroy-regular {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 400;
+}
+
+.font-gilroy-semibold {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 600;
+}
+
+.font-gilroy-bold {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 700;
+}
+
+/* Custom styles for Digicots website */
+
+/* Lenis Smooth Scroll Optimizations */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* Performance optimizations for smooth scrolling */
+* {
+  will-change: auto;
+}
+
+/* Optimize scrolling performance */
+body {
+  overscroll-behavior: none;
+  overflow-x: hidden;
+}
+
+/* Improve text rendering during scroll */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Optimize animations for scrolling */
+.main-text-line-1,
+.main-text-line-2, 
+.main-text-line-3 {
+  transform: translateZ(0); /* Enable hardware acceleration */
+  backface-visibility: hidden;
+}
+
+/* Hardware acceleration for smooth elements */
+.character-container,
+.circle-element,
+.circle-element-2,
+.navigation-item,
+.logo-container {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Radial gradient utility */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Animation-ready classes */
+.navigation-item {
+  transition: all 0.3s ease;
+}
+
+.logo-container {
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+/* Outline text effects */
+.outline-text {
+  -webkit-text-stroke: 2px #00FFD0;
+}
+
+/* Enhanced outline effect with multiple shadows for better visibility */
+@media (max-width: 768px) {
+  .outline-text-1,
+  .outline-text-2,
+  .outline-text-3 {
+    -webkit-text-stroke: 2px;
+  }
+}
+
+.main-text-line-1,
+.main-text-line-2, 
+.main-text-line-3 {
+  animation-fill-mode: both;
+  transform-origin: center;
+  /* filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1)); */
+}
+
+.character-container {
+  animation-fill-mode: both;
+  transform-origin: center;
+}
+
+.circle-element,
+.circle-element-2 {
+  animation-fill-mode: both;
+}
+
+.wolf-silhouette {
+  transition: all 0.5s ease;
+}
+
+/* Custom font weights for the main heading */
+.font-black {
+  font-weight: 900;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom letter spacing for better visual impact */
+.tracking-tight {
+  letter-spacing: -0.05em;
+}
+
+/* Additional responsive typography */
+@media (max-width: 768px) {
+  .main-text-line-1,
+  .main-text-line-2, 
+  .main-text-line-3 {
+    font-size: 4rem;
+    line-height: 0.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-text-line-1,
+  .main-text-line-2, 
+  .main-text-line-3 {
+    font-size: 3rem;
+    line-height: 0.8;
+  }
+}
+
+/* Text Mask Effect - Background visible through text */
+.masked-background {
+  /* Mix blend mode to create the cutout effect */
+  mix-blend-mode: multiply;
+}
+
+/* Text creates a window to see background */
+.text-window {
+  mix-blend-mode: screen;
+  color: white;
+  isolation: isolate;
+}
+
+/* Responsive text mask */
+@media (max-width: 768px) {
+  .text-mask-text {
+    font-size: 4rem;
+    line-height: 0.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-mask-text {
+    font-size: 3rem;
+    line-height: 0.8;
+  }
+}
