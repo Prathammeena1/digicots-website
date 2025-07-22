@@ -417,7 +417,7 @@ const HomeHeroSection = () => {
                 <rect
                   width="100%"
                   height="100%"
-                  fill="white"
+                  fill="black"
                   mask="url(#text-mask)"
                 />
               </svg>
@@ -477,7 +477,7 @@ const HomeHeroSection = () => {
                 <rect
                   width="100%"
                   height="100%"
-                  fill="black"
+                  fill="white"
                   mask="url(#text-mask-2)"
                 />
               </svg>
@@ -497,7 +497,7 @@ const HomeHeroSection = () => {
                 preserveAspectRatio="xMidYMid slice"
               >
                 <defs>
-                  <mask id="text-mask-2">
+                  <mask id="text-mask-3">
                     <rect width="100%" height="110%" fill="white" />
                     <text
                       x="960"
@@ -537,7 +537,7 @@ const HomeHeroSection = () => {
                   width="100%"
                   height="100%"
                   fill="black"
-                  mask="url(#text-mask-2)"
+                  mask="url(#text-mask-3)"
                 />
               </svg>
             </div>
