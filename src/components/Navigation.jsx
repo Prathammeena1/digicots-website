@@ -2,7 +2,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import React, { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { useLogo } from '../context/LogoContext'
+import { useLogo } from '../context/LogoContext.jsx'
 
 const Navigation = () => {
   const location = useLocation()

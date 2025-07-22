@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
-import { initControlledScroll } from '../utils/scrollUtils'
+import { initControlledScroll } from '../utils/scrollUtils.js'
 
 export const useLenis = () => {
   useEffect(() => {

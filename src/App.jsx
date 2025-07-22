@@ -1,18 +1,18 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
-import ErrorBoundary from "./components/ErrorBoundary";
-import LoadingScreen from "./components/LoadingScreen";
-import { useLenis } from "./hooks/useLenis";
-import { useLoading } from "./context/LoadingContext";
+import Navigation from "./components/Navigation.jsx";
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Services from "./pages/Services.jsx";
+import Contact from "./pages/Contact.jsx";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import LoadingScreen from "./components/LoadingScreen.jsx";
+import { useLenis } from "./hooks/useLenis.js";
+import { useLoading } from "./context/LoadingContext.jsx";
 
 // Lazy load heavy components
-const FluidCanvas = React.lazy(() => import("./components/FluidCanvas"));
-const WolfMaskSVG = React.lazy(() => import("./components/WolfMaskSVG"));
+const FluidCanvas = React.lazy(() => import("./components/FluidCanvas.jsx"));
+const WolfMaskSVG = React.lazy(() => import("./components/WolfMaskSVG.jsx"));
 
 const App = () => {
   // Initialize Lenis smooth scroll

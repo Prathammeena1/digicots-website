@@ -1,6 +1,6 @@
 import React from "react";
-import HomeHeroSection from "../sections/HomeHeroSection";
-import HomeSecondSection from "../sections/HomeSecondSection";
+import HomeHeroSection from "../sections/HomeHeroSection.jsx";
+import HomeSecondSection from "../sections/HomeSecondSection.jsx";
 
 const Home = () => {
   return (

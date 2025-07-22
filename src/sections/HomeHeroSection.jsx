@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef, useState, useEffect } from "react";
-import { useLogo } from "../context/LogoContext";
+import { useLogo } from "../context/LogoContext.jsx";
 
 const HomeHeroSection = () => {
   const sec1 = useRef();
