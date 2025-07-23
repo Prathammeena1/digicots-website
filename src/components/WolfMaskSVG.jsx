@@ -2,7 +2,7 @@ import React from "react";
 
 const WolfMaskSVG = React.memo(() => (
   <svg
-    className="absolute top-0 left-0 pointer-events-none h-full w-full"
+    className="absolute top-0 left-0 pointer-events-none h-full w-full scale-[1.3]"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid slice"
@@ -13,7 +13,7 @@ const WolfMaskSVG = React.memo(() => (
         <image
           href="/images/wolf.svg"
           x="0"
-          y="0"
+          y="20"
           width="100%"
           height="100%"
           preserveAspectRatio="xMidYMid slice"
