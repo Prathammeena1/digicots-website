@@ -1,53 +1,42 @@
-// Utility functions for Lenis smooth scroll with controlled scroll distances
+// Utility functions for Lenis smooth scroll with fixed viewport sections
 
 let lastScrollTime = 0;
-let scrollAccumulator = 0;
 let isScrolling = false;
-const SCROLL_DEBOUNCE = 100; // Reduced debounce for better responsiveness
-const MIN_SCROLL_DISTANCE = window.innerHeight * 0.5; // 50vh
-const MAX_SCROLL_DISTANCE = window.innerHeight * 1.0; // 100vh
+let currentSection = 0; // Track current viewport section
+const SCROLL_DEBOUNCE = 50; // Short debounce to prevent multiple triggers
+const SECTION_HEIGHT = window.innerHeight; // Each section is 100vh
 
-// Controlled scroll handler with improved smoothness
+// Fixed section scroll handler - always scrolls to next/previous 100vh section
 export const handleControlledScroll = (deltaY) => {
   const currentTime = Date.now();
   
   // Prevent new scroll while animating
   if (isScrolling) return;
   
-  // Accumulate scroll delta during debounce period
+  // Simple debounce to prevent rapid firing
   if (currentTime - lastScrollTime < SCROLL_DEBOUNCE) {
-    scrollAccumulator += Math.abs(deltaY);
     return;
   }
   
-  // Calculate scroll distance based on accumulated delta
-  const totalDelta = scrollAccumulator + Math.abs(deltaY);
-  let scrollDistance;
-  
-  // Improved mapping for smoother transitions
-  if (totalDelta < 50) {
-    scrollDistance = MIN_SCROLL_DISTANCE;
-  } else {
-    // Smooth curve interpolation for better feel
-    const intensity = Math.min(totalDelta / 300, 1); // Adjusted threshold
-    const curve = 1 - Math.pow(1 - intensity, 2); // Ease-out curve
-    scrollDistance = MIN_SCROLL_DISTANCE + (curve * (MAX_SCROLL_DISTANCE - MIN_SCROLL_DISTANCE));
-  }
-  
-  // Determine scroll direction
+  // Determine scroll direction and calculate target section
   const direction = deltaY > 0 ? 1 : -1;
-  const currentScroll = window.lenis?.scroll || window.pageYOffset || 0;
-  const targetScroll = currentScroll + (scrollDistance * direction);
+  const targetSection = Math.max(0, currentSection + direction);
+  
+  // Calculate exact target scroll position (section * 100vh)
+  const targetScroll = targetSection * SECTION_HEIGHT;
+  
+  // Update current section
+  currentSection = targetSection;
   
   // Set scrolling flag
   isScrolling = true;
   
-  // Execute controlled scroll with optimized settings
+  // Execute scroll to exact section position
   if (window.lenis) {
     window.lenis.scrollTo(targetScroll, {
-      duration: 1.4, // Reduced duration for smoother feel
+      duration: 1.2, // Consistent duration for section jumps
       easing: (t) => {
-        // Smoother cubic bezier easing
+        // Smooth easing for consistent feel
         return t < 0.5 
           ? 2 * t * t 
           : 1 - Math.pow(-2 * t + 2, 2) / 2;
@@ -60,18 +49,26 @@ export const handleControlledScroll = (deltaY) => {
     // Fallback reset in case onComplete doesn't fire
     setTimeout(() => {
       isScrolling = false;
-    }, 1400);
+    }, 1200);
   }
   
-  // Reset accumulator and update time
-  scrollAccumulator = 0;
+  // Update time
   lastScrollTime = currentTime;
 };
 
-// Initialize controlled scrolling with better event handling
+// Initialize current section based on scroll position
+export const initCurrentSection = () => {
+  const currentScroll = window.lenis?.scroll || window.pageYOffset || 0;
+  currentSection = Math.round(currentScroll / SECTION_HEIGHT);
+};
+
+// Initialize controlled scrolling with section-based handling
 export const initControlledScroll = () => {
+  // Initialize current section on setup
+  initCurrentSection();
+  
   const handleWheel = (e) => {
-    // Only prevent default, don't block the handler
+    // Prevent default scroll behavior
     e.preventDefault();
     handleControlledScroll(e.deltaY);
   };
@@ -79,9 +76,21 @@ export const initControlledScroll = () => {
   // Add wheel event listener with passive false for preventDefault
   window.addEventListener('wheel', handleWheel, { passive: false });
   
+  // Update current section when page loads or resizes
+  const updateSection = () => {
+    if (!isScrolling) {
+      initCurrentSection();
+    }
+  };
+  
+  window.addEventListener('resize', updateSection);
+  window.addEventListener('load', updateSection);
+  
   // Cleanup function
   return () => {
     window.removeEventListener('wheel', handleWheel);
+    window.removeEventListener('resize', updateSection);
+    window.removeEventListener('load', updateSection);
   };
 };
 

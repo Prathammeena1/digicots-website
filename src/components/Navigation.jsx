@@ -40,7 +40,7 @@ const Navigation = () => {
           </div>
           
           {/* Center logo */}
-          <div ref={navigationLogoRef} className="flex items-center opacity-0">
+          <div ref={navigationLogoRef} className="flex items-center">
             <Link to="/" className="logo-container">
               <img src="/images/logo-1.svg" className='w-30' alt="" />
             </Link>

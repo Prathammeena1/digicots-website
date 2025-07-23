@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import {
   paletteRGB,
   FLUID_CONSTANTS,
@@ -12,6 +12,45 @@ import {
 const FluidCanvas = React.memo(() => {
   const canvasRef = useRef(null);
   const isInitialized = useRef(false);
+  const animationRef = useRef(null);
+  const lastFrameTime = useRef(0);
+  const [isVisible, setIsVisible] = useState(true);
+  
+  // GPU-optimized performance monitoring
+  const performanceRef = useRef({
+    frameCount: 0,
+    lastFpsCheck: Date.now(),
+    targetFps: 30, // Reduced from 45 to 30 for lower GPU usage
+    adaptiveQuality: 0.6, // Reduced from 0.85 to 0.6 for better GPU performance
+    skipFrames: 0,
+    maxSkipFrames: 2 // Increased from 1 to 2 for more frame skipping
+  });
+
+  // More aggressive adaptive quality adjustment
+  const adjustQuality = useCallback(() => {
+    const perf = performanceRef.current;
+    perf.frameCount++;
+    
+    const now = Date.now();
+    if (now - perf.lastFpsCheck > 1000) { // Check every second
+      const fps = perf.frameCount;
+      perf.frameCount = 0;
+      perf.lastFpsCheck = now;
+      
+      // Balanced quality adjustments for better visual experience
+      if (fps < 25) {
+        perf.adaptiveQuality = Math.max(0.4, perf.adaptiveQuality - 0.15); // Less aggressive reduction
+        perf.maxSkipFrames = Math.min(2, perf.maxSkipFrames + 1);
+      } else if (fps < 35) {
+        perf.adaptiveQuality = Math.max(0.6, perf.adaptiveQuality - 0.08);
+      } else if (fps > 50) {
+        perf.adaptiveQuality = Math.min(1.0, perf.adaptiveQuality + 0.05); // Allow full quality when performance is good
+        perf.maxSkipFrames = Math.max(0, perf.maxSkipFrames - 1);
+      }
+    }
+    
+    return perf.adaptiveQuality;
+  }, []);
 
   const initializeWebGL = useCallback((canvas) => {
     if (!canvas) {
@@ -19,11 +58,21 @@ const FluidCanvas = React.memo(() => {
       return null;
     }
 
+    // GPU-optimized resolution approach
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5); // Reduced from 2 to 1.5 for lower GPU load
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = Math.floor(rect.width * dpr * 0.7); // Reduced from 0.85 to 0.7 for better GPU performance
+    canvas.height = Math.floor(rect.height * dpr * 0.7);
+
     const params = {
       alpha: false,
       depth: false,
       stencil: false,
       antialias: false,
+      preserveDrawingBuffer: false,
+      powerPreference: "low-power", // Use low-power for better battery life and less heat
+      failIfMajorPerformanceCaveat: false,
+      desynchronized: true, // Reduce input lag
     };
 
     let gl = canvas.getContext("webgl2", params);
@@ -89,8 +138,13 @@ const FluidCanvas = React.memo(() => {
   }, []);
 
   const initFramebuffers = useCallback((gl, isWebGL2, halfFloat, support_linear_float) => {
-    const textureWidth = gl.drawingBufferWidth >> FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE;
-    const textureHeight = gl.drawingBufferHeight >> FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE;
+    // Balanced texture resolution - maintain quality while optimizing performance
+    const quality = performanceRef.current.adaptiveQuality;
+    const baseDownsample = FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE + Math.floor((1.0 - quality) * 2); // Reduced from 3 to 2 for better quality
+    
+    // Better minimum texture size for quality balance
+    const textureWidth = Math.max(128, gl.drawingBufferWidth >> baseDownsample); // Increased back to 128 from 96
+    const textureHeight = Math.max(128, gl.drawingBufferHeight >> baseDownsample);
 
     const internalFormat = isWebGL2 ? gl.RGBA16F : gl.RGBA;
     const internalFormatRG = isWebGL2 ? gl.RG16F : gl.RGBA;
@@ -122,92 +176,72 @@ const FluidCanvas = React.memo(() => {
   }), []);
 
   const createSplatFunction = useCallback((gl, programs, framebuffers, canvas, blit) => {
-    let paletteIndex = 0;
     let colorCycleTime = Date.now();
+    let lastSplatTime = 0;
+    const splatThrottle = 25; // Increased throttle from 12 to 25ms for reduced GPU load
     
     return (x, y, dx, dy, color) => {
-      programs.splat.bind();
-      const dynamicRadius = Math.max(0.0004, Math.min(0.0008, 0.0008 - Math.abs(dy) * 0.000004));
+      const now = Date.now();
+      if (now - lastSplatTime < splatThrottle) return; // Throttle splats
+      lastSplatTime = now;
       
-      // Velocity splat
+      programs.splat.bind();
+      
+      // Much larger base radius for bigger mouse cursor effect
+      const quality = performanceRef.current.adaptiveQuality;
+      const baseRadius = Math.max(0.002, Math.min(0.0000000025, 0.0000025 - Math.abs(dy) * 0.0000000001));
+      const dynamicRadius = baseRadius * quality;
+      
+      // Velocity splat with reduced complexity
       gl.uniform1i(programs.splat.uniforms.uTarget, framebuffers.velocity.first[2]);
       gl.uniform1f(programs.splat.uniforms.aspectRatio, canvas.width / canvas.height);
       gl.uniform2f(programs.splat.uniforms.point, x / canvas.width, 1.0 - y / canvas.height);
       
-      // Enhanced color cycling with sky blue to copper red transition
+      // Enhanced color cycling for more dynamic wave flow
       const currentTime = Date.now();
-      const timeDiff = (currentTime - colorCycleTime) / 3000; // 3 second cycles
+      const timeDiff = (currentTime - colorCycleTime) / 4000; // Faster cycling from 6000 to 4000 for more dynamic waves
       
-      // Copper red color (rich metallic red)
-      const copperRed = [0.722, 0.267, 0.169]; // #B8443B - deep copper red
+      // Pre-computed colors to reduce real-time calculation
+      const copperRed = [0.722, 0.267, 0.169];
+      const skyBlue = [0.329, 0.708, 0.822];
       
-      // Sky blue colors (bright and vivid)
-      const skyBlue1 = [0.529, 0.808, 0.922]; // #87CEEB - light sky blue
-      const skyBlue2 = [0.196, 0.643, 0.886]; // #32A4E2 - deeper sky blue
-      const skyBlue3 = [0.118, 0.565, 0.929]; // #1E90ED - vibrant sky blue
+      // Simple linear interpolation
+      const blendFactor = (Math.sin(timeDiff) + 1) * 0.5;
       
-      // Create smooth transition between sky blue and copper red
-      const blendFactor = (Math.sin(timeDiff) + 1) / 2; // 0 to 1 oscillation
-      const secondaryBlend = (Math.sin(timeDiff * 1.5) + 1) / 2;
-      
-      // Mix colors for velocity
       const rgbV = [
-        skyBlue2[0] * (1 - blendFactor) + copperRed[0] * blendFactor,
-        skyBlue2[1] * (1 - blendFactor) + copperRed[1] * blendFactor,
-        skyBlue2[2] * (1 - blendFactor) + copperRed[2] * blendFactor,
+        skyBlue[0] * (1 - blendFactor) + copperRed[0] * blendFactor,
+        skyBlue[1] * (1 - blendFactor) + copperRed[1] * blendFactor,
+        skyBlue[2] * (1 - blendFactor) + copperRed[2] * blendFactor,
       ];
       
-      const intensityV = Math.max(0.5, Math.min(0.9, Math.abs(dy) / 100));
+      // GPU-optimized intensity calculations
+      const intensityV = Math.max(0.4, Math.min(0.8, Math.abs(dy) / 120)) * quality; // Reduced intensity range for better GPU performance
       gl.uniform3f(programs.splat.uniforms.color,
-        dx * 2.2 * rgbV[0] * intensityV,
-        -dy * 2.2 * rgbV[1] * intensityV,
-        2.2 * rgbV[2] * intensityV
+        dx * 2.0 * rgbV[0] * intensityV, // Reduced multiplier from 2.8 to 2.0
+        -dy * 2.0 * rgbV[1] * intensityV,
+        2.0 * rgbV[2] * intensityV
       );
-      gl.uniform1f(programs.splat.uniforms.radius, dynamicRadius * 2.5);
+      gl.uniform1f(programs.splat.uniforms.radius, dynamicRadius * 4.5); // Keep existing radius
       blit(framebuffers.velocity.second[1]);
       framebuffers.velocity.swap();
 
-      // Enhanced density splat with dynamic sky blue to copper red waves
-      const wavePhase1 = Math.sin(timeDiff * 0.8) * 0.5 + 0.5;
-      const wavePhase2 = Math.sin(timeDiff * 1.2 + Math.PI/3) * 0.5 + 0.5;
-      const wavePhase3 = Math.sin(timeDiff * 0.6 + Math.PI/2) * 0.5 + 0.5;
-      
-      // Create three color waves: Sky Blue -> Copper Red transition
-      const color1 = [
-        skyBlue1[0] * (1 - wavePhase1) + copperRed[0] * wavePhase1,
-        skyBlue1[1] * (1 - wavePhase1) + copperRed[1] * wavePhase1,
-        skyBlue1[2] * (1 - wavePhase1) + copperRed[2] * wavePhase1,
-      ];
-      
-      const color2 = [
-        skyBlue3[0] * (1 - wavePhase2) + copperRed[0] * wavePhase2,
-        skyBlue3[1] * (1 - wavePhase2) + copperRed[1] * wavePhase2,
-        skyBlue3[2] * (1 - wavePhase2) + copperRed[2] * wavePhase2,
-      ];
-      
-      // Third color emphasizes copper red with subtle sky blue
-      const color3 = [
-        copperRed[0] * 0.85 + skyBlue2[0] * 0.15,
-        copperRed[1] * 0.85 + skyBlue2[1] * 0.15,
-        copperRed[2] * 0.85 + skyBlue2[2] * 0.15,
-      ];
-      
-      // Blend all three colors dynamically with enhanced saturation
+      // Enhanced density splat with increased wave flow
+      const wavePhase = Math.sin(timeDiff * 0.8) * 0.5 + 0.5; // Increased frequency from 0.4 to 0.8 for more dynamic waves
       const finalRgb = [
-        (color1[0] * wavePhase1 + color2[0] * wavePhase2 + color3[0] * wavePhase3) / 3,
-        (color1[1] * wavePhase1 + color2[1] * wavePhase2 + color3[1] * wavePhase3) / 3,
-        (color1[2] * wavePhase1 + color2[2] * wavePhase2 + color3[2] * wavePhase3) / 3,
+        copperRed[0] * wavePhase + skyBlue[0] * (1 - wavePhase),
+        copperRed[1] * wavePhase + skyBlue[1] * (1 - wavePhase),
+        copperRed[2] * wavePhase + skyBlue[2] * (1 - wavePhase),
       ];
       
-      const intensityD = Math.max(0.7, Math.min(1.2, Math.abs(dy) / 70));
+      const intensityD = Math.max(0.6, Math.min(1.0, Math.abs(dy) / 90)) * quality; // Reduced intensity range for GPU optimization
       
       gl.uniform1i(programs.splat.uniforms.uTarget, framebuffers.density.first[2]);
       gl.uniform3f(programs.splat.uniforms.color,
-        finalRgb[0] * 1.4 * intensityD,
-        finalRgb[1] * 1.8 * intensityD,
-        finalRgb[2] * 2.4 * intensityD
+        finalRgb[0] * 4.5 * intensityD, // Reduced from 6.5 to 4.5 for lower GPU usage
+        finalRgb[1] * 5.0 * intensityD, // Reduced from 6.2 to 5.0
+        finalRgb[2] * 6.5 * intensityD  // Reduced from 8.8 to 6.5
       );
-      gl.uniform1f(programs.splat.uniforms.radius, dynamicRadius * 2.8);
+      gl.uniform1f(programs.splat.uniforms.radius, dynamicRadius * 4.8); // Increased radius from 3.2 to 4.8
       blit(framebuffers.density.second[1]);
       framebuffers.density.swap();
     };
@@ -226,88 +260,156 @@ const FluidCanvas = React.memo(() => {
     };
 
     const update = () => {
-      resizeCanvas();
-      const dt = Math.min((Date.now() - lastTime) / 1000, 0.016);
-      lastTime = Date.now();
-
-      const { textureWidth, textureHeight } = framebuffers;
-      gl.viewport(0, 0, textureWidth, textureHeight);
-
-      // Velocity advection
-      programs.advection.bind();
-      gl.uniform2f(programs.advection.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
-      gl.uniform1i(programs.advection.uniforms.uVelocity, framebuffers.velocity.first[2]);
-      gl.uniform1i(programs.advection.uniforms.uSource, framebuffers.velocity.first[2]);
-      gl.uniform1f(programs.advection.uniforms.dt, dt);
-      gl.uniform1f(programs.advection.uniforms.dissipation, FLUID_CONSTANTS.VELOCITY_DISSIPATION);
-      blit(framebuffers.velocity.second[1]);
-      framebuffers.velocity.swap();
-
-      // Density advection
-      gl.uniform1i(programs.advection.uniforms.uVelocity, framebuffers.velocity.first[2]);
-      gl.uniform1i(programs.advection.uniforms.uSource, framebuffers.density.first[2]);
-      gl.uniform1f(programs.advection.uniforms.dissipation, FLUID_CONSTANTS.DENSITY_DISSIPATION);
-      blit(framebuffers.density.second[1]);
-      framebuffers.density.swap();
-
-      // Process pointer interactions
-      for (let i = 0; i < pointers.length; i++) {
-        const pointer = pointers[i];
-        if (pointer.moved) {
-          splat(pointer.x, pointer.y, pointer.dx, pointer.dy, pointer.color);
-          pointer.moved = false;
+      const currentTime = Date.now();
+      let frameCount = 0;
+      let lastFrameTime = currentTime;
+      const targetFPS = 30; // Reduced from 45 to 30 for lower GPU usage
+      const frameInterval = 1000 / targetFPS;
+      
+      const animate = () => {
+        const now = Date.now();
+        const deltaTime = now - lastFrameTime;
+        
+        // Enhanced frame skipping for GPU optimization
+        const perf = performanceRef.current;
+        if (deltaTime < frameInterval || perf.skipFrames > 0) {
+          if (perf.skipFrames > 0) {
+            perf.skipFrames--;
+          }
+          animationFrameId = requestAnimationFrame(animate);
+          return;
         }
-      }
+        
+        frameCount++;
+        
+        // Performance monitoring every 30 frames (1 second at 30fps)
+        if (frameCount % 30 === 0) {
+          const fps = 1000 / deltaTime;
+          
+          // More aggressive performance adjustments for GPU optimization
+          if (performanceRef.current) {
+            const currentQuality = performanceRef.current.adaptiveQuality;
+            
+            // Aggressive quality adjustments for lower GPU usage
+            if (fps < 20 && currentQuality > 0.3) {
+              performanceRef.current.adaptiveQuality = Math.max(0.3, currentQuality - 0.15);
+              performanceRef.current.skipFrames = Math.min(3, performanceRef.current.skipFrames + 1);
+            } else if (fps < 25 && currentQuality > 0.4) {
+              performanceRef.current.adaptiveQuality = Math.max(0.4, currentQuality - 0.1);
+            } else if (fps > 35 && currentQuality < 0.8) {
+              performanceRef.current.adaptiveQuality = Math.min(0.8, currentQuality + 0.02);
+            }
+            
+            performanceRef.current.frameRate = fps;
+          }
+        }
+        
+        lastFrameTime = now;
+        
+        // Enhanced visibility check with longer pause times
+        if (canvasRef.current && typeof document !== 'undefined') {
+          const rect = canvasRef.current.getBoundingClientRect();
+          const isVisible = rect.bottom >= 0 && rect.top <= window.innerHeight;
+          
+          if (!isVisible) {
+            // Longer pause when not visible
+            setTimeout(() => {
+              animationFrameId = requestAnimationFrame(animate);
+            }, 200); // Increased from 100ms to 200ms when off-screen
+            return;
+          }
+        }
+        
+        // Core simulation with adaptive quality
+        resizeCanvas();
+        const dt = Math.min((now - lastTime) / 1000, 0.016);
+        lastTime = now;
 
-      // Curl calculation
-      programs.curl.bind();
-      gl.uniform2f(programs.curl.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
-      gl.uniform1i(programs.curl.uniforms.uVelocity, framebuffers.velocity.first[2]);
-      blit(framebuffers.curl[1]);
+        const { textureWidth, textureHeight } = framebuffers;
+        gl.viewport(0, 0, textureWidth, textureHeight);
 
-      // Vorticity confinement
-      programs.vorticity.bind();
-      gl.uniform2f(programs.vorticity.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
-      gl.uniform1i(programs.vorticity.uniforms.uVelocity, framebuffers.velocity.first[2]);
-      gl.uniform1i(programs.vorticity.uniforms.uCurl, framebuffers.curl[2]);
-      gl.uniform1f(programs.vorticity.uniforms.curl, FLUID_CONSTANTS.CURL);
-      gl.uniform1f(programs.vorticity.uniforms.dt, dt);
-      blit(framebuffers.velocity.second[1]);
-      framebuffers.velocity.swap();
+        // Get current quality setting
+        const quality = performanceRef.current?.adaptiveQuality || 1.0;
 
-      // Divergence calculation
-      programs.divergence.bind();
-      gl.uniform2f(programs.divergence.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
-      gl.uniform1i(programs.divergence.uniforms.uVelocity, framebuffers.velocity.first[2]);
-      blit(framebuffers.divergence[1]);
+        // Velocity advection
+        programs.advection.bind();
+        gl.uniform2f(programs.advection.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
+        gl.uniform1i(programs.advection.uniforms.uVelocity, framebuffers.velocity.first[2]);
+        gl.uniform1i(programs.advection.uniforms.uSource, framebuffers.velocity.first[2]);
+        gl.uniform1f(programs.advection.uniforms.dt, dt);
+        gl.uniform1f(programs.advection.uniforms.dissipation, FLUID_CONSTANTS.VELOCITY_DISSIPATION);
+        blit(framebuffers.velocity.second[1]);
+        framebuffers.velocity.swap();
 
-      // Pressure solve
-      clear(gl, framebuffers.pressure.first[1]);
-      programs.pressure.bind();
-      gl.uniform2f(programs.pressure.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
-      gl.uniform1i(programs.pressure.uniforms.uDivergence, framebuffers.divergence[2]);
+        // Density advection
+        gl.uniform1i(programs.advection.uniforms.uVelocity, framebuffers.velocity.first[2]);
+        gl.uniform1i(programs.advection.uniforms.uSource, framebuffers.density.first[2]);
+        gl.uniform1f(programs.advection.uniforms.dissipation, FLUID_CONSTANTS.DENSITY_DISSIPATION);
+        blit(framebuffers.density.second[1]);
+        framebuffers.density.swap();
 
-      for (let i = 0; i < FLUID_CONSTANTS.PRESSURE_ITERATIONS; i++) {
-        gl.uniform1i(programs.pressure.uniforms.uPressure, framebuffers.pressure.first[2]);
-        blit(framebuffers.pressure.second[1]);
-        framebuffers.pressure.swap();
-      }
+        // Process pointer interactions
+        for (let i = 0; i < pointers.length; i++) {
+          const pointer = pointers[i];
+          if (pointer.moved) {
+            splat(pointer.x, pointer.y, pointer.dx, pointer.dy, pointer.color);
+            pointer.moved = false;
+          }
+        }
 
-      // Gradient subtraction
-      programs.gradientSubtract.bind();
-      gl.uniform2f(programs.gradientSubtract.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
-      gl.uniform1i(programs.gradientSubtract.uniforms.uPressure, framebuffers.pressure.first[2]);
-      gl.uniform1i(programs.gradientSubtract.uniforms.uVelocity, framebuffers.velocity.first[2]);
-      blit(framebuffers.velocity.second[1]);
-      framebuffers.velocity.swap();
+        // Curl calculation
+        programs.curl.bind();
+        gl.uniform2f(programs.curl.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
+        gl.uniform1i(programs.curl.uniforms.uVelocity, framebuffers.velocity.first[2]);
+        blit(framebuffers.curl[1]);
 
-      // Display
-      gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-      programs.display.bind();
-      gl.uniform1i(programs.display.uniforms.uTexture, framebuffers.density.first[2]);
-      blit(null);
+        // Vorticity confinement
+        programs.vorticity.bind();
+        gl.uniform2f(programs.vorticity.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
+        gl.uniform1i(programs.vorticity.uniforms.uVelocity, framebuffers.velocity.first[2]);
+        gl.uniform1i(programs.vorticity.uniforms.uCurl, framebuffers.curl[2]);
+        gl.uniform1f(programs.vorticity.uniforms.curl, FLUID_CONSTANTS.CURL);
+        gl.uniform1f(programs.vorticity.uniforms.dt, dt);
+        blit(framebuffers.velocity.second[1]);
+        framebuffers.velocity.swap();
 
-      animationFrameId = requestAnimationFrame(update);
+        // Divergence calculation
+        programs.divergence.bind();
+        gl.uniform2f(programs.divergence.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
+        gl.uniform1i(programs.divergence.uniforms.uVelocity, framebuffers.velocity.first[2]);
+        blit(framebuffers.divergence[1]);
+
+        // Adaptive pressure solve iterations based on performance
+        const pressureIterations = Math.floor(FLUID_CONSTANTS.PRESSURE_ITERATIONS * quality);
+        clear(gl, framebuffers.pressure.first[1]);
+        programs.pressure.bind();
+        gl.uniform2f(programs.pressure.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
+        gl.uniform1i(programs.pressure.uniforms.uDivergence, framebuffers.divergence[2]);
+
+        for (let i = 0; i < pressureIterations; i++) {
+          gl.uniform1i(programs.pressure.uniforms.uPressure, framebuffers.pressure.first[2]);
+          blit(framebuffers.pressure.second[1]);
+          framebuffers.pressure.swap();
+        }
+
+        // Gradient subtraction
+        programs.gradientSubtract.bind();
+        gl.uniform2f(programs.gradientSubtract.uniforms.texelSize, 1.0 / textureWidth, 1.0 / textureHeight);
+        gl.uniform1i(programs.gradientSubtract.uniforms.uPressure, framebuffers.pressure.first[2]);
+        gl.uniform1i(programs.gradientSubtract.uniforms.uVelocity, framebuffers.velocity.first[2]);
+        blit(framebuffers.velocity.second[1]);
+        framebuffers.velocity.swap();
+
+        // Display
+        gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+        programs.display.bind();
+        gl.uniform1i(programs.display.uniforms.uTexture, framebuffers.density.first[2]);
+        blit(null);
+
+        animationFrameId = requestAnimationFrame(animate);
+      };
+      
+      animate();
     };
 
     update();
@@ -346,11 +448,11 @@ const FluidCanvas = React.memo(() => {
 
         isInitialized.current = true;
 
-        // Event handlers
+        // Event handlers with optimized sensitivity for GPU performance
         const handleMouseMove = (e) => {
           pointers[0].moved = pointers[0].down;
-          pointers[0].dx = (e.offsetX - pointers[0].x) * 10.0;
-          pointers[0].dy = (e.offsetY - pointers[0].y) * 10.0;
+          pointers[0].dx = (e.offsetX - pointers[0].x) * 12.0; // Reduced from 15.0 to 12.0 for lower GPU load
+          pointers[0].dy = (e.offsetY - pointers[0].y) * 12.0;
           pointers[0].x = e.offsetX;
           pointers[0].y = e.offsetY;
           pointers[0].down = true;
@@ -363,8 +465,8 @@ const FluidCanvas = React.memo(() => {
             const pointer = pointers[i];
             if (pointer) {
               pointer.moved = pointer.down;
-              pointer.dx = (touches[i].pageX - pointer.x) * 10.0;
-              pointer.dy = (touches[i].pageY - pointer.y) * 10.0;
+              pointer.dx = (touches[i].pageX - pointer.x) * 12.0; // Reduced from 15.0 to 12.0
+              pointer.dy = (touches[i].pageY - pointer.y) * 12.0;
               pointer.x = touches[i].pageX;
               pointer.y = touches[i].pageY;
             }

@@ -4,11 +4,11 @@ import { initControlledScroll } from '../utils/scrollUtils.js'
 
 export const useLenis = () => {
   useEffect(() => {
-    // Create Lenis instance with optimized settings for smooth controlled scrolling
+    // Create Lenis instance with settings optimized for fixed 100vh scrolling
     const lenis = new Lenis({
-      duration: 1.4,          // Matched with controlled scroll duration
+      duration: 1.2,          // Matched with fixed scroll duration
       easing: (t) => {
-        // Smoother easing that matches controlled scroll
+        // Consistent easing for 100vh scrolls
         return t < 0.5 
           ? 2 * t * t 
           : 1 - Math.pow(-2 * t + 2, 2) / 2;
@@ -43,9 +43,14 @@ export const useLenis = () => {
 
     requestAnimationFrame(raf)
 
-    // Add scroll event listener for additional effects
+    // Add scroll event listener to sync section tracking
     lenis.on('scroll', (e) => {
-      // Custom scroll effects can be added here
+      // Update current section when manually scrolled (e.g., via scrollbar)
+      if (!window.isScrolling) {
+        const currentScroll = e.scroll;
+        const sectionHeight = window.innerHeight;
+        window.currentSection = Math.round(currentScroll / sectionHeight);
+      }
     })
 
     // Add Lenis class to html for CSS targeting

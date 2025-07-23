@@ -134,7 +134,7 @@ const HomeHeroSection = () => {
           duration: 0.5,
           ease: "power2.inOut",
         },
-        3.5
+        3.7
       )
       .to(
         sec2.current,
@@ -163,55 +163,55 @@ const HomeHeroSection = () => {
         },
         "+=0.1"
       )
-      .to(
-        logoSvgRef.current,
-        {
-          scale: 1,
-          ease: "linear",
-          duration: 5,
-        },
-        "+=0.3"
-      )
-      .to(
-        logoSvgRef.current,
-        {
-          opacity: 0,
-          ease: "power3.out",
-          duration: 0.7,
-        },
-        "+=0.3"
-      )
-      .to(
-        mainSvgLogoRef.current,
-        {
-          opacity: 1,
-          ease: "power3.out",
-          duration: 0.7,
-        },
-        "<"
-      )
-      .to(mainSvgLogoRef.current, {
-        top: "5.5%",
-        duration: 1.2,
-        ease: "power2.inOut",
-      })
-      .to(
-        mainSvgLogoRef.current,
-        {
-          opacity: 0,
-          duration: 0.4,
-        },
-        "+=0.2"
-      )
-      .to(
-        navigationLogoRef.current,
-        {
-          opacity: 1,
-          ease: "power3.out",
-          duration: 0.5,
-        },
-        "<"
-      );
+      // .to(
+      //   logoSvgRef.current,
+      //   {
+      //     scale: 1,
+      //     ease: "linear",
+      //     duration: 5,
+      //   },
+      //   "+=0.3"
+      // )
+      // .to(
+      //   logoSvgRef.current,
+      //   {
+      //     opacity: 0,
+      //     ease: "power3.out",
+      //     duration: 0.7,
+      //   },
+      //   "+=0.3"
+      // )
+      // .to(
+      //   mainSvgLogoRef.current,
+      //   {
+      //     opacity: 1,
+      //     ease: "power3.out",
+      //     duration: 0.7,
+      //   },
+      //   "<"
+      // )
+      // .to(mainSvgLogoRef.current, {
+      //   top: "5.5%",
+      //   duration: 1.2,
+      //   ease: "power2.inOut",
+      // })
+      // .to(
+      //   mainSvgLogoRef.current,
+      //   {
+      //     opacity: 0,
+      //     duration: 0.4,
+      //   },
+      //   "+=0.2"
+      // )
+      // .to(
+      //   navigationLogoRef.current,
+      //   {
+      //     opacity: 1,
+      //     ease: "power3.out",
+      //     duration: 0.5,
+      //   },
+      //   "<"
+      // );
   }, [
     sec1.current,
     sec2.current,
