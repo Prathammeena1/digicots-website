@@ -7,10 +7,10 @@ import HomeFourthSection from "../sections/HomeFourthSection.jsx";
 const Home = () => {
   return (
     <div className="h-screen w-full bg-transparent">
-      {/* <HomeHeroSection />
+      <HomeHeroSection />
       <HomeSecondSection />
 
-      <HomeThirdSection /> */}
+      <HomeThirdSection />
 
       <HomeFourthSection />
     </div>

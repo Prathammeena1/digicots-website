@@ -280,6 +280,7 @@ const HomeHeroSection = () => {
                 muted={videoMuted}
                 playsInline
                 preload="metadata"
+                fetchPriority="high"
                 loading="lazy"
                 disablePictureInPicture
                 disableRemotePlayback

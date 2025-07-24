@@ -16,35 +16,68 @@ const HomeFourthSection = () => {
     if (!canvasRef.current) return;
 
     
-    const multiplier = 150
+    const multiplier = 250
     const nbCol = 1 * multiplier; // Number of columns
     const nbRows = 1.118 * multiplier; // Number of rows
 
 
     // Scene setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0a0a);
+    scene.background = new THREE.Color("black");
     sceneRef.current = scene;
 
-    // Camera setup
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      canvasRef.current.clientWidth / canvasRef.current.clientHeight,
-      0.1,
-      1000
-    );
-    camera.position.set(0, 0, 130);
+    // Camera setup (orthographic for perfect scaling)
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 1000);
+    camera.position.set(0, 0, 100);
     camera.lookAt(0, 0, 0);
+
+    // Function to update camera for responsiveness
+    const updateCamera = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      const aspect = width / height;
+      
+      // Calculate the viewing area based on the wolf dimensions
+      const wolfAspect = nbCol / nbRows; // ~0.895
+      
+      let viewWidth, viewHeight;
+      
+      if (aspect > wolfAspect) {
+        // Screen is wider than wolf - fit to height
+        viewHeight = nbRows / 2;
+        viewWidth = viewHeight * aspect;
+      } else {
+        // Screen is taller than wolf - fit to width  
+        viewWidth = nbCol / 2;
+        viewHeight = viewWidth / aspect;
+      }
+      
+      camera.left = -viewWidth;
+      camera.right = viewWidth;
+      camera.top = viewHeight;
+      camera.bottom = -viewHeight;
+      camera.updateProjectionMatrix();
+    };
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
       antialias: true,
     });
-    renderer.setSize(
-      canvasRef.current.clientWidth,
-      canvasRef.current.clientHeight
-    );
+    
+    // Set initial canvas and renderer size
+    const initialWidth = canvasRef.current.clientWidth;
+    const initialHeight = canvasRef.current.clientHeight;
+    
+    canvasRef.current.width = initialWidth;
+    canvasRef.current.height = initialHeight;
+    canvasRef.current.style.width = initialWidth + 'px';
+    canvasRef.current.style.height = initialHeight + 'px';
+    
+    renderer.setSize(initialWidth, initialHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     rendererRef.current = renderer;
 
@@ -89,7 +122,7 @@ const HomeFourthSection = () => {
         uNbLines: { value: nbRows },
         uMouse: { value: new THREE.Vector2(999999, 999999) },
         uTime: { value: 0 },
-        uWaveStrength: { value: 2.5 },
+        uWaveStrength: { value: 5.5 },
         uWaveRadius: { value: 150 },
         uMouseInfluence: { value: 0 }
       },
@@ -183,22 +216,27 @@ const HomeFourthSection = () => {
     const handleResize = () => {
       const canvas = canvasRef.current;
       if (!canvas || !renderer || !camera) return;
-
-      // Get the actual canvas container dimensions
+      
       const container = canvas.parentElement;
       const width = container.clientWidth;
       const height = container.clientHeight;
-
-      // Update camera aspect ratio
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-
+      
+      // Set canvas size explicitly
+      canvas.width = width;
+      canvas.height = height;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      
       // Update renderer size
       renderer.setSize(width, height, false);
-
-      // Update pixel ratio (cap at 2 for performance)
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      
+      // Update camera for responsiveness
+      updateCamera();
     };
+
+    // Initial camera setup
+    updateCamera();
 
     // Initial resize to ensure proper sizing
     handleResize();
@@ -232,30 +270,14 @@ const HomeFourthSection = () => {
   }, []);
 
   return (
-    <div className="h-screen w-full relative overflow-hidden">
+    <div className="h-screen w-full relative overflow-hidden bg-black">
       <canvas
         ref={canvasRef}
-        className="w-full h-full block"
+        className="w-full h-full block bg-black"
         style={{ display: "block" }}
       />
 
-      {/* UI Controls Info */}
-      <div className="absolute top-4 left-4 text-white/80 bg-black/20 p-4 rounded-lg backdrop-blur-sm">
-        <h3 className="text-lg font-semibold mb-2">Three.js Scene</h3>
-        <div className="text-sm space-y-1">
-          <p>• Mouse: Rotate camera</p>
-          <p>• Scroll: Zoom in/out</p>
-          <p>• Right click + drag: Pan</p>
-        </div>
-      </div>
 
-      {/* Scene Info */}
-      <div className="absolute bottom-4 right-4 text-white/60 text-xs font-mono bg-black/20 p-3 rounded-lg backdrop-blur-sm">
-        <div>BufferGeometry Plane</div>
-        <div>Material: MeshBasicMaterial</div>
-        <div>Color: Red (0xff0000)</div>
-        <div>OrbitControls: Enabled</div>
-      </div>
     </div>
   );
 };

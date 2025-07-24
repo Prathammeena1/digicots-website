@@ -28,9 +28,9 @@ void main() {
     
     vec4 textureColor = texture2D(uTexture, uv);
     
-    // Add copper red color to the white texture
-    vec3 copperRed = vec3(0.8, 0.4, 0.5); // Copper red color
-    vec3 finalColor = textureColor.rgb * copperRed;
+    // Add bright red color (#FF004D)
+    vec3 brightRed = vec3(1.0, 0.0, 0.302); // #FF004D converted to RGB
+    vec3 finalColor = textureColor.rgb * brightRed;
     
     gl_FragColor = vec4(finalColor, textureColor.a);
     
