@@ -96,14 +96,15 @@ const HomeFourthSection = () => {
       fragmentShader,
       vertexShader,
       uniforms: {
-        uPointSize: { value: 4 },
+        uPointSize: { value: 3 },
         uTexture: { value: texture },
         uNbColumns: { value: nbCol },
         uNbLines: { value: nbRows },
-        uMouse: { value: new THREE.Vector2(0, 0) },
+        uMouse: { value: new THREE.Vector2(999999, 999999) },
         uTime: { value: 0 },
-        uWaveStrength: { value: 100 },
-        uWaveRadius: { value: 80 }
+        uWaveStrength: { value: 4 },
+        uWaveRadius: { value: 150 },
+        uMouseInfluence: { value: 0 }
       },
       transparent: true,
       alphaTest: 0.5,
@@ -141,21 +142,23 @@ const HomeFourthSection = () => {
       
       mouseRef.current = { x: worldX, y: worldY };
       materialRef.current.uniforms.uMouse.value.set(worldX, worldY);
+    };
 
-      if (materialRef.current) {
-        materialRef.current.uniforms.uTime.value += 0.016; // ~60fps
-      }
+    const handleMouseEnter = () => {
+      if (!materialRef.current) return;
+      // Smooth transition in
+      materialRef.current.uniforms.uMouseInfluence.needsUpdate = true;
     };
 
     const handleMouseLeave = () => {
       if (!materialRef.current) return;
-      // Reset mouse position to far away so particles return to original position
-      materialRef.current.uniforms.uMouse.value.set(999999, 999999);
+      // Smooth transition out
+      materialRef.current.uniforms.uMouseInfluence.needsUpdate = true;
     };
-     
 
     // Add mouse event listeners
     canvasRef.current.addEventListener('mousemove', handleMouseMove);
+    canvasRef.current.addEventListener('mouseenter', handleMouseEnter);
     canvasRef.current.addEventListener('mouseleave', handleMouseLeave);
 
     // Animation loop
@@ -163,7 +166,24 @@ const HomeFourthSection = () => {
       animationRef.current = requestAnimationFrame(animate);
 
       // Update time uniform for wave animation
-     
+      if (materialRef.current) {
+        materialRef.current.uniforms.uTime.value += 0.1; // Slightly faster for more dynamic effect
+        
+        // Smooth mouse influence transition
+        const canvas = canvasRef.current;
+        if (canvas) {
+          const isHovering = canvas.matches(':hover');
+          const currentInfluence = materialRef.current.uniforms.uMouseInfluence.value;
+          const targetInfluence = isHovering ? 1.0 : 0.0;
+          const lerpSpeed = 0.05; // Slower transition for more organic feel
+          
+          materialRef.current.uniforms.uMouseInfluence.value = THREE.MathUtils.lerp(
+            currentInfluence, 
+            targetInfluence, 
+            lerpSpeed
+          );
+        }
+      }
 
       // Update controls
       controls.update();
@@ -212,6 +232,7 @@ const HomeFourthSection = () => {
       // Remove mouse event listeners
       if (canvasRef.current) {
         canvasRef.current.removeEventListener('mousemove', handleMouseMove);
+        canvasRef.current.removeEventListener('mouseenter', handleMouseEnter);
         canvasRef.current.removeEventListener('mouseleave', handleMouseLeave);
       }
 
