@@ -199,7 +199,7 @@ const FluidCanvas = React.memo(() => {
       
       // Enhanced color cycling for more dynamic wave flow
       const currentTime = Date.now();
-      const timeDiff = (currentTime - colorCycleTime) / 4000; // Faster cycling from 6000 to 4000 for more dynamic waves
+      const timeDiff = (currentTime - colorCycleTime) / 20; // Much faster cycling from 4000 to 1200 for rapid color transitions
       
       // Pre-computed colors to reduce real-time calculation
       const copperRed = [0.722, 0.267, 0.169];
@@ -226,7 +226,7 @@ const FluidCanvas = React.memo(() => {
       framebuffers.velocity.swap();
 
       // Enhanced density splat with increased wave flow
-      const wavePhase = Math.sin(timeDiff * 0.8) * 0.5 + 0.5; // Increased frequency from 0.4 to 0.8 for more dynamic waves
+      const wavePhase = Math.sin(timeDiff * 0.8) * 0.5 + 0.5; // Much faster frequency from 0.8 to 2.0 for rapid color changes
       const finalRgb = [
         copperRed[0] * wavePhase + skyBlue[0] * (1 - wavePhase),
         copperRed[1] * wavePhase + skyBlue[1] * (1 - wavePhase),

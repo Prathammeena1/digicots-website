@@ -48,9 +48,9 @@ export const LoadingProvider = ({ children }) => {
         })
       ]).then(() => {
         // Add a minimum loading time for better UX
-        setTimeout(() => {
+        // setTimeout(() => {
           setIsLoading(false);
-        }, 2000);
+        // }, 200);
       });
     };
 
