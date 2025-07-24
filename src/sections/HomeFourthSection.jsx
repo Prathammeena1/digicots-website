@@ -102,7 +102,7 @@ const HomeFourthSection = () => {
         uNbLines: { value: nbRows },
         uMouse: { value: new THREE.Vector2(999999, 999999) },
         uTime: { value: 0 },
-        uWaveStrength: { value: 4 },
+        uWaveStrength: { value: 4.5 },
         uWaveRadius: { value: 150 },
         uMouseInfluence: { value: 0 }
       },

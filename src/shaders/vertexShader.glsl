@@ -21,40 +21,54 @@ void main() {
 	float distanceToMouse = distance(vec2(pos.x, pos.y), uMouse);
 	
 	// Create spreading effect based on distance to mouse
-	float influence = smoothstep(uWaveRadius, 0.0, distanceToMouse) * uMouseInfluence;
+	float mouseInfluence = smoothstep(uWaveRadius, 0.0, distanceToMouse) * uMouseInfluence;
 	
 	// Generate random values for each particle based on its position
 	float randomX = random(vec2(pos.x * 0.01, pos.y * 0.01));
 	float randomY = random(vec2(pos.y * 0.01, pos.x * 0.01 + 17.0));
 	float randomTime = random(vec2(pos.x * 0.02, pos.y * 0.02 + 31.0));
 	
-	// Create floating/falling motion like leaves or petals
+	// Create continuous animation even without mouse hover
 	float timeOffset = randomTime * 6.28; // Random phase offset
+	float animationCycle = sin(uTime * 0.5 + timeOffset); // Slow infinite cycle
+	
+	// Base animation influence (always active)
+	float baseInfluence = (animationCycle + 1.0) * 0.3; // 0.0 to 0.6 range
+	
+	// Combine mouse influence with base animation
+	float totalInfluence = max(mouseInfluence, baseInfluence);
+	
+	// Create floating/falling motion like leaves or petals
 	float fallSpeed = 0.3 + randomY * 0.7; // Different fall speeds
 	
 	// Gentle swaying motion in X axis (like wind)
-	float swayX = sin(uTime * fallSpeed + timeOffset) * influence * uWaveStrength * 0.5;
+	float swayX = sin(uTime * fallSpeed + timeOffset) * totalInfluence * uWaveStrength * 0.4;
 	
 	// Floating motion in Y axis (like gentle falling)
-	float floatY = sin(uTime * fallSpeed * 0.7 + timeOffset + 1.57) * influence * uWaveStrength * 0.3;
+	float floatY = sin(uTime * fallSpeed * 0.7 + timeOffset + 1.57) * totalInfluence * uWaveStrength * 0.3;
 	
 	// Random spreading direction
 	float spreadAngle = randomX * 6.28; // Random angle for each particle
-	float spreadDistance = influence * uWaveStrength;
+	float spreadDistance = totalInfluence * uWaveStrength;
 	
 	// Apply random spreading like scattered petals
 	pos.x += cos(spreadAngle) * spreadDistance + swayX;
 	pos.y += sin(spreadAngle) * spreadDistance + floatY;
 	
-	// Add gentle rotation effect
-	float rotationInfluence = influence * sin(uTime * 2.0 + timeOffset) * 0.2;
+	// Add gentle rotation effect with continuous animation
+	float rotationInfluence = totalInfluence * sin(uTime * 1.5 + timeOffset) * 0.2;
 	pos.x += rotationInfluence * (randomX - 0.5) * uWaveStrength * 0.3;
 	pos.y += rotationInfluence * (randomY - 0.5) * uWaveStrength * 0.3;
+	
+	// Particle appearance/disappearance effect
+	float appearanceCycle = sin(uTime * 0.3 + randomTime * 6.28);
+	float visibility = smoothstep(-0.8, 0.8, appearanceCycle);
 	
 	#include <begin_vertex>
 	// Use our modified position
 	transformed = pos;
 	#include <project_vertex>
 	
-	gl_PointSize = uPointSize;
+	// Vary point size based on visibility for appear/disappear effect
+	gl_PointSize = uPointSize * (0.3 + visibility * 0.7);
 }

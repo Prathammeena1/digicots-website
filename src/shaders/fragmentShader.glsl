@@ -28,7 +28,11 @@ void main() {
     
     vec4 textureColor = texture2D(uTexture, uv);
     
-    gl_FragColor = textureColor;
+    // Add copper red color to the white texture
+    vec3 copperRed = vec3(0.8, 0.4, 0.5); // Copper red color
+    vec3 finalColor = textureColor.rgb * copperRed;
+    
+    gl_FragColor = vec4(finalColor, textureColor.a);
     
     gl_FragColor.a *= circle(gl_PointCoord, 0.2);
 }
