@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vertexShader from "../shaders/vertexShader.glsl?raw";
 import fragmentShader from "../shaders/fragmentShader.glsl?raw";
 
@@ -10,7 +9,6 @@ const HomeFourthSection = () => {
   const sceneRef = useRef(null);
   const rendererRef = useRef(null);
   const animationRef = useRef(null);
-  const controlsRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
   const materialRef = useRef(null);
 
@@ -18,7 +16,7 @@ const HomeFourthSection = () => {
     if (!canvasRef.current) return;
 
     
-    const multiplier = 200
+    const multiplier = 150
     const nbCol = 1 * multiplier; // Number of columns
     const nbRows = 1.118 * multiplier; // Number of rows
 
@@ -35,7 +33,7 @@ const HomeFourthSection = () => {
       0.1,
       1000
     );
-    camera.position.set(0, 0, 250);
+    camera.position.set(0, 0, 130);
     camera.lookAt(0, 0, 0);
 
     // Renderer setup
@@ -49,17 +47,6 @@ const HomeFourthSection = () => {
     );
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     rendererRef.current = renderer;
-
-    // Orbit Controls
-    const controls = new OrbitControls(camera, canvasRef.current);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
-    controls.enableZoom = true;
-    controls.enablePan = true;
-    controls.enableRotate = true;
-    controls.autoRotate = false;
-    controls.target.set(0, 0, 0);
-    controlsRef.current = controls;
 
     // Create BufferGeometry for plane
     const geometry = new THREE.BufferGeometry();
@@ -102,7 +89,7 @@ const HomeFourthSection = () => {
         uNbLines: { value: nbRows },
         uMouse: { value: new THREE.Vector2(999999, 999999) },
         uTime: { value: 0 },
-        uWaveStrength: { value: 4.5 },
+        uWaveStrength: { value: 2.5 },
         uWaveRadius: { value: 150 },
         uMouseInfluence: { value: 0 }
       },
@@ -167,7 +154,7 @@ const HomeFourthSection = () => {
 
       // Update time uniform for wave animation
       if (materialRef.current) {
-        materialRef.current.uniforms.uTime.value += 0.1; // Slightly faster for more dynamic effect
+        materialRef.current.uniforms.uTime.value += 0.07; // Slightly faster for more dynamic effect
         
         // Smooth mouse influence transition
         const canvas = canvasRef.current;
@@ -186,7 +173,7 @@ const HomeFourthSection = () => {
       }
 
       // Update controls
-      controls.update();
+      // controls.update(); // Removed orbit controls
 
       // Render
       renderer.render(scene, camera);
@@ -240,9 +227,7 @@ const HomeFourthSection = () => {
       geometry.dispose();
       material.dispose();
       renderer.dispose();
-      if (controlsRef.current) {
-        controlsRef.current.dispose();
-      }
+      // Removed orbit controls cleanup
     };
   }, []);
 

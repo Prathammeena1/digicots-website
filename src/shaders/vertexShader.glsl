@@ -64,11 +64,14 @@ void main() {
 	float appearanceCycle = sin(uTime * 0.3 + randomTime * 6.28);
 	float visibility = smoothstep(-0.8, 0.8, appearanceCycle);
 	
+	// Random point size between 2.5 and 3.5
+	float randomSize = 1.5 + randomX * 5.0; // 2.5 to 3.5 range
+	
 	#include <begin_vertex>
 	// Use our modified position
 	transformed = pos;
 	#include <project_vertex>
 	
-	// Vary point size based on visibility for appear/disappear effect
-	gl_PointSize = uPointSize * (0.3 + visibility * 0.7);
+	// Vary point size based on visibility and random size
+	gl_PointSize = randomSize * (0.3 + visibility * 0.7);
 }
