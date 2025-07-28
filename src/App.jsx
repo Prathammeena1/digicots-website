@@ -9,6 +9,7 @@ import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LoadingScreen from "./components/LoadingScreen.jsx";
 import { useLenis } from "./hooks/useLenis.js";
 import { useLoading } from "./context/LoadingContext.jsx";
+import Approach from "./pages/Approach.jsx";
 
 // Lazy load heavy components
 const FluidCanvas = React.lazy(() => import("./components/FluidCanvas.jsx"));
@@ -49,6 +50,7 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/approach/:id" element={<Approach />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
