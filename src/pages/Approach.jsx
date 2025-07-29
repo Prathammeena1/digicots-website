@@ -106,7 +106,7 @@ const Approach = () => {
   // }, []);
 
   return (
-    <div className="">
+    <div className="h-screen w-full">
       <ApproachFirstSection step={step} />
       <ApproachSecondSection step={step} />
       <ApproachThirdSection step={step} />

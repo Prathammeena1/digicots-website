@@ -59,14 +59,14 @@ const HomeSixthSection = () => {
       screen1Ref.current,
       {
         top: "-50%",
-        duration: .8,
-        ease: "power2.inOut",
+        duration: 0.8,
+        ease: "power3.inOut",
         delay: 0.2,
       },
       {
         top: "0%",
-        duration: .8,
-        ease: "power2.inOut",
+        duration: 0.8,
+        ease: "power3.inOut",
         delay: 0.2,
       }
     );
@@ -74,29 +74,29 @@ const HomeSixthSection = () => {
       screen2Ref.current,
       {
         top: "100%",
-        duration: .8,
-        ease: "power2.inOut",
+        duration: 0.8,
+        ease: "power3.inOut",
         delay: 0.2,
       },
       {
         top: "50%",
-        duration: .8,
-        ease: "power2.inOut",
+        duration: 0.8,
+        ease: "power3.inOut",
         delay: 0.2,
         onComplete: () => {
           navigate(`/approach/${step}`);
-          gsap.to(screen1Ref.current, {
-            top: "100%",
-            duration: 1.6,
-            ease: "power2.inOut",
-            delay: 0.2,
-          });
-          gsap.to(screen2Ref.current, {
-            top: "-50%",
-            duration: 1.6,
-            ease: "power2.inOut",
-            delay: 0.2,
-          });
+          //   gsap.to(screen1Ref.current, {
+          //     top: "100%",
+          //     duration: 1.6,
+          //     ease: "power3.inOut",
+          //     delay: 0.2,
+          //   });
+          //   gsap.to(screen2Ref.current, {
+          //     top: "100%",
+          //     duration: 1.6,
+          //     ease: "power3.inOut",
+          //     delay: 0.2,
+          //   });
         },
       }
     );
@@ -104,6 +104,16 @@ const HomeSixthSection = () => {
 
   return (
     <div className="bg-transparent min-h-screen py-10 px-8 relative overflow-hidden pointer-events-none">
+      <div className="fixed z-20">
+        <div
+          ref={screen1Ref}
+          className="screen1 top-[-50%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
+        ></div>
+        <div
+          ref={screen2Ref}
+          className="screen2 top-[100%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
+        ></div>
+      </div>
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Main heading */}
         <div className="text-center my-10">

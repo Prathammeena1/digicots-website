@@ -26,26 +26,33 @@ const App = () => {
   // Get loading state
   const { isLoading, setIsLoading } = useLoading();
 
-  // Get screen refs from context
-  const { screen1Ref, screen2Ref } = useApproachAnimation();
-
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
 
   // Scroll to top when route changes
   useEffect(() => {
-    // Scroll to top instantly when route changes
+    // Reset Lenis scroll position first (if available)
+    if (window.lenisReset) {
+      window.lenisReset();
+    }
+
+    // Also reset native scroll position as fallback
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'auto' // Use 'auto' for instant scroll, 'smooth' for animated
     });
 
-    // Also reset Lenis scroll position if available
-    if (window.lenis) {
-      window.lenis.scrollTo(0, { immediate: true });
-    }
+    // Additional Lenis scroll reset with delay to ensure it's initialized
+    const timeoutId = setTimeout(() => {
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { immediate: true });
+        window.lenis.resize(); // Recalculate scroll bounds
+      }
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, [location.pathname]); // Trigger when pathname changes
 
 
@@ -67,24 +74,15 @@ const App = () => {
         <Navigation />
 
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-black">
-          <ErrorBoundary>
+          {/* <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-black" />}>
               <FluidCanvas />
               <WolfMaskSVG />
             </Suspense>
-          </ErrorBoundary>
+          </ErrorBoundary> */}
         </div>
 
-        <div className="fixed z-20">
-          <div
-            ref={screen1Ref}
-            className="screen1 top-[-50%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
-          ></div>
-          <div
-            ref={screen2Ref}
-            className="screen2 top-[100%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
-          ></div>
-        </div>
+       
 
         <main>
           <Routes>

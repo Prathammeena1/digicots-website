@@ -53,6 +53,16 @@ export const useLenis = () => {
       }
     })
 
+    // Reset scroll position function
+    const resetScrollPosition = () => {
+      lenis.scrollTo(0, { immediate: true })
+      window.currentSection = 0
+      window.isScrolling = false
+    }
+
+    // Make reset function globally accessible for route changes
+    window.lenisReset = resetScrollPosition
+
     // Add Lenis class to html for CSS targeting
     document.documentElement.classList.add('lenis')
 
@@ -61,6 +71,7 @@ export const useLenis = () => {
       document.documentElement.classList.remove('lenis')
       cleanupControlledScroll() // Cleanup controlled scroll event listeners
       window.lenis = null
+      window.lenisReset = null
       lenis.destroy()
     }
   }, [])
