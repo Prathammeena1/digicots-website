@@ -9,7 +9,6 @@ import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LoadingScreen from "./components/LoadingScreen.jsx";
 import { useLenis } from "./hooks/useLenis.js";
 import { useLoading } from "./context/LoadingContext.jsx";
-import { useApproachAnimation } from "./context/ApprachAnimationContext.jsx";
 import Approach from "./pages/Approach.jsx";
 
 // Lazy load heavy components

@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useApproachAnimation } from "../context/ApprachAnimationContext";
 
 const HomeSixthSection = () => {
   // State variable containing all approach data
@@ -39,9 +38,9 @@ const HomeSixthSection = () => {
     },
   ];
   // Refs for the screens
-  const { screen1Ref, screen2Ref } = useApproachAnimation();
-
-  console.log(screen1Ref.current, screen2Ref.current);
+  const screen1Ref = React.useRef(null);
+  const screen2Ref = React.useRef(null);
+  
 
   const navigate = useNavigate();
 
