@@ -57,16 +57,15 @@ const ApproachFirstSection = ({ step }) => {
             className="w-full h-full bg-black absolute top-0 z-20 "
           ></div>
           {/* Content */}
-          <div className="relative z-10 text-center px-8 max-w-6xl mx-auto">
+          <div className="relative z-10 text-center px-8 mx-auto">
             <div className="overflow-hidden">
-              <h1 ref={textRef1} className="text-white text-5xl md:text-7xl lg:text-8xl font-bold leading-[.8] mb-6">
-                Innovative &<br />
-                Creativity
+              <h1 ref={textRef1} className="text-white text-5xl md:text-7xl lg:text-[11vw] font-bold leading-[.8] tracking-widest mb-6 font-palette-black">
+                {step.title.split(" ")[0]}
               </h1>
             </div>
 
             <p ref={textRef2} className="text-white text-lg md:text-xl font-medium tracking-wide opacity-90">
-              Innovation is our territory - and we don't share it
+              {/* Innovation is our territory - and we don't share it */}
             </p>
           </div>
         </div>
