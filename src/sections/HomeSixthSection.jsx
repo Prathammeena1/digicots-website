@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useApproachAnimation } from "../context/ApprachAnimationContext";
 
 const HomeSixthSection = () => {
   // State variable containing all approach data
@@ -38,8 +39,10 @@ const HomeSixthSection = () => {
     },
   ];
   // Refs for the screens
-  const screen1Ref = React.useRef(null);
-  const screen2Ref = React.useRef(null);
+  const { screen1Ref, screen2Ref } = useApproachAnimation();
+
+  console.log(screen1Ref.current, screen2Ref.current);
+
   const navigate = useNavigate();
 
   // Function to handle image error and set fallback
@@ -52,25 +55,55 @@ const HomeSixthSection = () => {
   };
 
   const handleClick = (step) => {
-    gsap.to(screen1Ref.current, {
-      top: "0%",
-      duration: 1.2,
-      ease: "power2.inOut",
-      delay:.2,
-    });
-    gsap.to(screen2Ref.current, {
-      top: "50%",
-      duration: 1.2,
-      ease: "power2.inOut",
-      delay:.2,
-      onComplete: () => {
-        navigate(`/approach/${step}`);
+    gsap.fromTo(
+      screen1Ref.current,
+      {
+        top: "-50%",
+        duration: .8,
+        ease: "power2.inOut",
+        delay: 0.2,
       },
-    });
+      {
+        top: "0%",
+        duration: .8,
+        ease: "power2.inOut",
+        delay: 0.2,
+      }
+    );
+    gsap.fromTo(
+      screen2Ref.current,
+      {
+        top: "100%",
+        duration: .8,
+        ease: "power2.inOut",
+        delay: 0.2,
+      },
+      {
+        top: "50%",
+        duration: .8,
+        ease: "power2.inOut",
+        delay: 0.2,
+        onComplete: () => {
+          navigate(`/approach/${step}`);
+          gsap.to(screen1Ref.current, {
+            top: "100%",
+            duration: 1.6,
+            ease: "power2.inOut",
+            delay: 0.2,
+          });
+          gsap.to(screen2Ref.current, {
+            top: "-50%",
+            duration: 1.6,
+            ease: "power2.inOut",
+            delay: 0.2,
+          });
+        },
+      }
+    );
   };
 
   return (
-    <div className="bg-transparent min-h-screen py-10 px-8 relative overflow-hidden">
+    <div className="bg-transparent min-h-screen py-10 px-8 relative overflow-hidden pointer-events-none">
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Main heading */}
         <div className="text-center my-10">
@@ -78,15 +111,6 @@ const HomeSixthSection = () => {
             APPROACH
           </h2>
         </div>
-
-        <div
-          ref={screen1Ref}
-          className="screen1 top-[-50%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
-        ></div>
-        <div
-          ref={screen2Ref}
-          className="screen2 top-[100%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
-        ></div>
 
         {/* Dynamic steps grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -118,7 +142,7 @@ const HomeSixthSection = () => {
 
               <button
                 onClick={() => handleClick(step.id)}
-                className="border text-sm cursor-pointer border-gray-500 text-gray-400 px-8 py-3 rounded-full hover:bg-gray-500 hover:text-white transition-colors duration-300 font-medium w-full"
+                className="border text-sm cursor-pointer pointer-events-auto border-gray-500 text-gray-400 px-8 py-3 rounded-full hover:bg-gray-500 hover:text-white transition-colors duration-300 font-medium w-full"
               >
                 SEE HOW
               </button>
