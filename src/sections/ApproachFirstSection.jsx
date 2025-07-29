@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useEffect } from "react";
 
-const ApproachFirstSection = () => {
+const ApproachFirstSection = ({ step }) => {
   // const screen1Ref = React.useRef(null);
   // const screen2Ref = React.useRef(null);
 
@@ -25,14 +25,14 @@ const ApproachFirstSection = () => {
 
 
   useEffect(()=>{
-    
+
   })
 
 
 
 
   return (
-    <div className="relative h-[100vh] flex items-center justify-center overflow-hidden pt-28">
+    <div className="relative h-[100vh] flex items-center justify-center overflow-hidden bg-black px-8">
       {/* <div
         ref={screen1Ref}
         className="screen1 top-[100vh] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
@@ -43,11 +43,11 @@ const ApproachFirstSection = () => {
       ></div> */}
 
       {/* Background Image/Character */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pt-24 px-8">
         <div
           className="w-full h-[60vh] flex items-center justify-center bg-gradient-to-r from-orange-400 via-orange-500 to-amber-600"
           style={{
-            backgroundImage: `url('/images/approach1.png')`,
+            backgroundImage: `url('${step.image}')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

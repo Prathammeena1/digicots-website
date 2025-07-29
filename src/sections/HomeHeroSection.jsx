@@ -251,12 +251,12 @@ const HomeHeroSection = () => {
         )}
       </button>
 
-      <img
+      {/* <img
         ref={mainSvgLogoRef}
         src="/images/logo-1.svg"
         alt="Logo"
         className="fixed left-[51%] top-1/2 -translate-1/2 w-30 h-auto z-[99999] pointer-events-none select-none opacity-0"
-      />
+      /> */}
       <div className="h-[400vh] w-full relative">
         <div
           ref={homeRef}
@@ -544,7 +544,7 @@ const HomeHeroSection = () => {
             </div>
           </div>
 
-          <svg
+          {/* <svg
             ref={logoSvgRef}
             className="absolute top-0 left-0 pointer-events-none h-screen w-screen z-[40] scale-[250]"
             xmlns="http://www.w3.org/2000/svg"
@@ -571,7 +571,7 @@ const HomeHeroSection = () => {
               fill="white"
               mask="url(#logo-mask)"
             />
-          </svg>
+          </svg> */}
         </div>
       </div>
     </>

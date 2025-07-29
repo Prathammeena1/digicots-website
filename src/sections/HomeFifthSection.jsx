@@ -132,7 +132,7 @@ const HomeFifthSection = () => {
   }, [sec1Ref.current, parentRef.current]);
 
   return (
-    <div ref={parentRef} className="relative">
+    <div ref={parentRef} className="relative bg-black">
       {/* Main service card */}
       <div className="sticky top-0 w-full h-screen z-10">
         {/* Main content */}

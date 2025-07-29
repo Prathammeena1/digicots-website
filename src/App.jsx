@@ -1,5 +1,5 @@
-import React, { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { Suspense, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
@@ -20,6 +20,9 @@ const App = () => {
   // Initialize Lenis smooth scroll
   useLenis();
 
+  // Get current location for route changes
+  const location = useLocation();
+
   // Get loading state
   const { isLoading, setIsLoading } = useLoading();
 
@@ -29,6 +32,21 @@ const App = () => {
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    // Scroll to top instantly when route changes
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto' // Use 'auto' for instant scroll, 'smooth' for animated
+    });
+
+    // Also reset Lenis scroll position if available
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    }
+  }, [location.pathname]); // Trigger when pathname changes
 
 
 
@@ -49,12 +67,12 @@ const App = () => {
         <Navigation />
 
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-black">
-          {/* <ErrorBoundary>
+          <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-black" />}>
               <FluidCanvas />
               <WolfMaskSVG />
             </Suspense>
-          </ErrorBoundary> */}
+          </ErrorBoundary>
         </div>
 
         <div className="fixed z-20">
