@@ -23,16 +23,15 @@ const App = () => {
   const location = useLocation();
 
   // Get loading state
-  const { isLoading, setIsLoading } = useLoading();
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
+  const { isLoading } = useLoading();
 
   // Scroll to top when route changes
   useEffect(() => {
-    // Reset Lenis scroll position first (if available)
-    if (window.lenisReset) {
+    // Use enhanced route reset function if available
+    if (window.lenisRouteReset) {
+      window.lenisRouteReset();
+    } else if (window.lenisReset) {
+      // Fallback to regular reset
       window.lenisReset();
     }
 
@@ -40,16 +39,20 @@ const App = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'auto' // Use 'auto' for instant scroll, 'smooth' for animated
+      behavior: 'auto' // Use 'auto' for instant scroll
     });
 
-    // Additional Lenis scroll reset with delay to ensure it's initialized
+    // Additional safety reset with delay
     const timeoutId = setTimeout(() => {
       if (window.lenis) {
-        window.lenis.scrollTo(0, { immediate: true });
+        window.lenis.scrollTo(0, { immediate: true, force: true });
         window.lenis.resize(); // Recalculate scroll bounds
       }
-    }, 100);
+      
+      // Reset any remaining scroll state
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }, 150);
 
     return () => clearTimeout(timeoutId);
   }, [location.pathname]); // Trigger when pathname changes
@@ -59,10 +62,7 @@ const App = () => {
   return (
     <>
       {/* Loading Screen */}
-      <LoadingScreen
-        isLoading={isLoading}
-        onLoadingComplete={handleLoadingComplete}
-      />
+      <LoadingScreen isLoading={isLoading} />
 
       {/* Main App Content */}
       <div
@@ -73,12 +73,12 @@ const App = () => {
         <Navigation />
 
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-black">
-          {/* <ErrorBoundary>
+          <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-black" />}>
               <FluidCanvas />
               <WolfMaskSVG />
             </Suspense>
-          </ErrorBoundary> */}
+          </ErrorBoundary>
         </div>
 
        

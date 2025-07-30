@@ -20,16 +20,16 @@ const ApproachSecondSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-8 max-w-5xl mx-auto">
-        <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
+      <div className="relative z-10 text-center px-8 max-w-5xl mx-auto mt-[25%]">
+        <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
           Born to Hunt Bold Ideas
         </h1>
 
-        <div className="space-y-4 text-gray-300 text-base md:text-lg leading-[1.2] max-w-3xl mx-auto ">
+        <div className="text-gray-300 text-base md:text-lg leading-[1.7] max-w-3xl mx-auto ">
           Our ideas don't follow trends — they set them. <br />
           Whether it's a disruptive campaign, a bold design system, or a
           striking narrative, <br />
-          ead with creativity and sharpen it with innovation. <br />
+          we lead with creativity and sharpen it with innovation. <br />
           We design with purpose, prototype with courage, and deliver with
           precision. <br />
         </div>

@@ -5,6 +5,7 @@ import { LogoProvider } from './context/LogoContext'
 import { LoadingProvider } from './context/LoadingContext'
 import './index.css'
 import App from './App.jsx'
+import HomeThirdSection from './sections/HomeThirdSection.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,4 +17,5 @@ createRoot(document.getElementById('root')).render(
       </LoadingProvider>
     </BrowserRouter>
   </StrictMode>
+  // <HomeThirdSection />
 )

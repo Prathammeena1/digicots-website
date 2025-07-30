@@ -3,6 +3,27 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef, useState, useEffect } from "react";
 import { useLogo } from "../context/LogoContext.jsx";
+import ReactPlayer from 'react-player';
+
+/**
+ * PRODUCTION VIDEO SETUP:
+ * 
+ * For optimal production performance, replace VIDEO_URL with:
+ * 
+ * 1. VIMEO PRO (Recommended):
+ *    const VIDEO_URL = "https://vimeo.com/your-video-id";
+ * 
+ * 2. CLOUDINARY:
+ *    const VIDEO_URL = "https://res.cloudinary.com/your-cloud/video/upload/your-video.mp4";
+ * 
+ * 3. AWS CLOUDFRONT:
+ *    const VIDEO_URL = "https://your-cloudfront-domain.com/showreel.mp4";
+ * 
+ * 4. YOUTUBE (Public videos):
+ *    const VIDEO_URL = "https://www.youtube.com/watch?v=your-video-id";
+ * 
+ * Current setup supports all these platforms with automatic optimization.
+ */
 
 const HomeHeroSection = () => {
   const sec1 = useRef();
@@ -12,89 +33,84 @@ const HomeHeroSection = () => {
   const heroTextRef = useRef();
   const logoSvgRef = useRef();
   const mainSvgLogoRef = useRef();
-  const videoRef = useRef();
+  const playerRef = useRef();
   const [videoMuted, setVideoMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [videoReady, setVideoReady] = useState(false);
+
+  // Production video URL - Replace with your actual video URL
+  const VIDEO_URL = "https://ik.imagekit.io/x5xessyka/digicots/showreel.webm/ik-video.mp4?tr=orig"; // Change this to your cloud video URL
 
   // Get logo context
   const { navigationLogoRef } = useLogo();
 
-  // Video health monitoring and auto-recovery
+  // Video health monitoring and performance optimization
   useEffect(() => {
     let healthCheckInterval;
     
     const checkVideoHealth = () => {
-      if (videoRef.current) {
-        const video = videoRef.current;
-        
-        // Check if video should be playing but is paused
-        if (video.paused && !video.ended && video.readyState >= 2) {
-          console.log("Video health check: resuming paused video");
-          video.play().catch(err => {
-            console.log("Health check resume failed:", err);
-          });
-        }
-        
-        // Check for network stalls
-        if (video.networkState === video.NETWORK_LOADING && video.readyState < 3) {
-          const currentTime = video.currentTime;
-          if (currentTime > 0 && currentTime === video.currentTime) {
-            console.log("Video health check: detected stall, reloading");
-            video.load();
-            video.currentTime = currentTime;
-            video.play().catch(err => {
-              console.log("Health check reload failed:", err);
-            });
+      if (playerRef.current) {
+        try {
+          const player = playerRef.current;
+          
+          // Check if getInternalPlayer method exists
+          if (typeof player.getInternalPlayer === 'function') {
+            const internalPlayer = player.getInternalPlayer();
+            
+            if (internalPlayer && internalPlayer.readyState >= 2) {
+              // Video is ready
+              if (!videoReady) {
+                setVideoReady(true);
+              }
+              
+              // Check if video should be playing but is paused
+              if (internalPlayer.paused && !internalPlayer.ended && isPlaying) {
+                console.log("Video health check: resuming paused video");
+                internalPlayer.play().catch(console.error);
+              }
+            }
+          } else {
+            // Fallback: just set video as ready after a delay
+            if (!videoReady) {
+              setTimeout(() => setVideoReady(true), 2000);
+            }
+          }
+        } catch (error) {
+          console.log("Video health check error:", error);
+          // Fallback: set video as ready
+          if (!videoReady) {
+            setVideoReady(true);
           }
         }
       }
     };
 
-    // Start health monitoring after component mounts
-    const startHealthCheck = () => {
-      healthCheckInterval = setInterval(checkVideoHealth, 3000); // Check every 3 seconds
-    };
-
-    // Delay health check to allow video to load
-    setTimeout(startHealthCheck, 2000);
+    // Start health monitoring
+    healthCheckInterval = setInterval(checkVideoHealth, 2000);
 
     return () => {
       if (healthCheckInterval) {
         clearInterval(healthCheckInterval);
       }
     };
-  }, []);
+  }, [videoReady, isPlaying]);
 
-  // Handle video mute toggle with performance optimization and smooth playback
+  // Handle video mute toggle with performance optimization
   const toggleVideoMute = () => {
-    if (videoRef.current) {
-      const video = videoRef.current;
-      const newMutedState = !videoMuted;
+    const newMutedState = !videoMuted;
+    
+    // Use requestAnimationFrame for smooth state updates
+    requestAnimationFrame(() => {
+      setVideoMuted(newMutedState);
       
-      // Use requestAnimationFrame for smooth state updates
-      requestAnimationFrame(() => {
-        setVideoMuted(newMutedState);
-        video.muted = newMutedState;
-        video.volume = newMutedState ? 0 : 1;
-        
-        // Ensure video continues playing smoothly
-        if (video.paused) {
-          const playPromise = video.play();
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                console.log("Video playing after mute toggle");
-              })
-              .catch(err => {
-                console.log("Video play failed after mute toggle:", err);
-                // If playback fails, ensure video is in correct state
-                video.muted = true;
-                setVideoMuted(true);
-                video.play().catch(e => console.log("Fallback play failed:", e));
-              });
-          }
+      // Ensure video continues playing smoothly
+      if (playerRef.current && videoReady) {
+        const player = playerRef.current;
+        if (!isPlaying) {
+          setIsPlaying(true);
         }
-      });
-    }
+      }
+    });
   };
 
   gsap.registerPlugin(ScrollTrigger);
@@ -263,7 +279,7 @@ const HomeHeroSection = () => {
           className="h-screen w-full sticky top-0 overflow-hidden"
         >
           <div className="hero-page-section-1 top-0 h-full w-full relative">
-            {/* Optimized Video Background Container */}
+            {/* Production-Level Video Background Container */}
             <div
               className="absolute inset-0 h-screen w-full bg-black"
               style={{
@@ -272,93 +288,70 @@ const HomeHeroSection = () => {
                 transform: "translate3d(0, 0, 0)",
               }}
             >
-              <video
-                ref={videoRef}
-                className="object-cover w-full h-full brightness-[.9]"
-                autoPlay
-                loop
+              <ReactPlayer
+                className="h-full w-full object-cover"
+                ref={playerRef}
+                url={VIDEO_URL}
+                src={VIDEO_URL}
+                playing={isPlaying}
+                loop={true}
                 muted={videoMuted}
-                playsInline
-                preload="metadata"
-                fetchPriority="high"
-                loading="lazy"
-                disablePictureInPicture
-                disableRemotePlayback
-                x-webkit-airplay="deny"
+                width="100%"
+                height="100%"
                 style={{
-                  willChange: "auto",
-                  backfaceVisibility: "hidden",
-                  WebkitBackfaceVisibility: "hidden",
-                  transform: "translate3d(0, 0, 0)",
-                  WebkitTransform: "translate3d(0, 0, 0)",
-                  imageRendering: "optimizeSpeed",
-                  WebkitImageRendering: "optimizeSpeed",
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
                 }}
-                // All event handlers remain the same
-                onLoadedMetadata={() => {
-                  if (videoRef.current) {
-                    const video = videoRef.current;
-                    video.playbackRate = 1;
-                    video.currentTime = 0;
-                    video.style.transform = "translate3d(0, 0, 0)";
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                      playPromise.catch(err => {
-                        console.log("Autoplay prevented:", err);
-                      });
+                config={{
+                  file: {
+                    attributes: {
+                      preload: 'metadata',
+                      'webkit-playsinline': true,
+                      playsinline: true,
+                      disablePictureInPicture: true,
+                      disableRemotePlayback: true,
+                      'x-webkit-airplay': 'deny',
+                      style: {
+                        objectFit: 'cover',
+                        filter: 'brightness(0.9)',
+                        willChange: 'auto',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'translate3d(0, 0, 0)',
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                        imageRendering: 'optimizeSpeed',
+                        WebkitImageRendering: 'optimizeSpeed',
+                      }
+                    },
+                    forceVideo: true,
+                    forceHLS: false,
+                    forceDASH: false,
+                  },
+                  // For Vimeo (when you switch to cloud hosting)
+                  vimeo: {
+                    playerOptions: {
+                      background: true,
+                      autoplay: true,
+                      loop: true,
+                      muted: videoMuted,
+                      quality: 'auto',
+                      responsive: true
+                    }
+                  },
+                  // For YouTube (if needed)
+                  youtube: {
+                    playerVars: {
+                      autoplay: 1,
+                      controls: 0,
+                      rel: 0,
+                      showinfo: 0,
+                      mute: videoMuted ? 1 : 0,
+                      loop: 1,
+                      playlist: '', // Add video ID here for loop
                     }
                   }
                 }}
-                onCanPlayThrough={() => {
-                  if (videoRef.current && videoRef.current.paused) {
-                    videoRef.current.play().catch(err => {
-                      console.log("Play failed:", err);
-                    });
-                  }
-                }}
-                onStalled={() => {
-                  console.log("Video stalled, attempting to resume");
-                  if (videoRef.current) {
-                    const currentTime = videoRef.current.currentTime;
-                    videoRef.current.load();
-                    videoRef.current.currentTime = currentTime;
-                    videoRef.current.play().catch(err => {
-                      console.log("Resume failed:", err);
-                    });
-                  }
-                }}
-                onWaiting={() => {
-                  console.log("Video buffering...");
-                }}
-                onPlaying={() => {
-                  console.log("Video playing smoothly");
-                }}
-                onPause={() => {
-                  if (videoRef.current && !videoRef.current.ended) {
-                    setTimeout(() => {
-                      if (videoRef.current && videoRef.current.paused) {
-                        videoRef.current.play().catch(err => {
-                          console.log("Auto-resume failed:", err);
-                        });
-                      }
-                    }, 100);
-                  }
-                }}
-                onError={(e) => {
-                  console.error("Video error:", e);
-                  if (videoRef.current) {
-                    setTimeout(() => {
-                      videoRef.current.load();
-                    }, 1000);
-                  }
-                }}
-                onLoadStart={() => {
-                  if (videoRef.current) {
-                    videoRef.current.defaultPlaybackRate = 1;
-                    videoRef.current.volume = videoMuted ? 0 : 1;
-                  }
-                }}
-                src="/videos/showreel.webm"
               />
             </div>
             {/* Bottom decoration */}
