@@ -1,0 +1,41 @@
+/* Custom Swiper Styles for Centered Carousel */
+.mySwiper {
+  padding: 0 50px;
+  overflow: visible;
+}
+
+.mySwiper .swiper-slide {
+  transition: all 0.4s ease;
+  transform: scale(0.7) translateX(0);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.mySwiper .swiper-slide-active {
+  transform: scale(1.2,1.1) translateX(0);
+  opacity: 1;
+  z-index: 10;
+}
+
+.mySwiper .swiper-slide-prev {
+  transform: scale(0.75) translateX(50px);
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.mySwiper .swiper-slide-next {
+  transform: scale(0.75) translateX(-50px);
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.slide-content {
+  transition: all 0.4s ease;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mySwiper .swiper-slide-active .slide-content {
+  max-width: 700px;
+}

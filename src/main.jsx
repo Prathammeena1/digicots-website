@@ -6,16 +6,19 @@ import { LoadingProvider } from './context/LoadingContext'
 import './index.css'
 import App from './App.jsx'
 import HomeThirdSection from './sections/HomeThirdSection.jsx'
+import HomeEighthSection from './sections/HomeEighthSection.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <LoadingProvider>
         <LogoProvider>
-            <App />
+          <App />
         </LogoProvider>
       </LoadingProvider>
     </BrowserRouter>
   </StrictMode>
   // <HomeThirdSection />
+      // <HomeEighthSection />
+
 )

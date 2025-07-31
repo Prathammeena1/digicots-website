@@ -73,12 +73,12 @@ const App = () => {
         <Navigation />
 
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-black">
-          <ErrorBoundary>
+          {/* <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-black" />}>
               <FluidCanvas />
               <WolfMaskSVG />
             </Suspense>
-          </ErrorBoundary>
+          </ErrorBoundary> */}
         </div>
 
        

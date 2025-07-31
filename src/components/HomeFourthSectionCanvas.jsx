@@ -3,7 +3,6 @@ import * as THREE from "three";
 import vertexShader from "../shaders/vertexShader.glsl?raw";
 import fragmentShader from "../shaders/fragmentShader.glsl?raw";
 
-
 const HomeFourthSectionCanvas = () => {
   const canvasRef = useRef(null);
   const sceneRef = useRef(null);
@@ -15,11 +14,10 @@ const HomeFourthSectionCanvas = () => {
   useEffect(() => {
     if (!canvasRef.current) return;
 
-    
-    const multiplier = 250
+    // const multiplier = 250;
+    const multiplier = 220;
     const nbCol = 1 * multiplier; // Number of columns
     const nbRows = 1.118 * multiplier; // Number of rows
-
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -35,26 +33,26 @@ const HomeFourthSectionCanvas = () => {
     const updateCamera = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      
+
       const width = canvas.clientWidth;
       const height = canvas.clientHeight;
       const aspect = width / height;
-      
+
       // Calculate the viewing area based on the wolf dimensions
       const wolfAspect = nbCol / nbRows; // ~0.895
-      
+
       let viewWidth, viewHeight;
-      
+
       if (aspect > wolfAspect) {
         // Screen is wider than wolf - fit to height
         viewHeight = nbRows / 2;
         viewWidth = viewHeight * aspect;
       } else {
-        // Screen is taller than wolf - fit to width  
+        // Screen is taller than wolf - fit to width
         viewWidth = nbCol / 2;
         viewHeight = viewWidth / aspect;
       }
-      
+
       camera.left = -viewWidth;
       camera.right = viewWidth;
       camera.top = viewHeight;
@@ -67,16 +65,16 @@ const HomeFourthSectionCanvas = () => {
       canvas: canvasRef.current,
       antialias: true,
     });
-    
+
     // Set initial canvas and renderer size
     const initialWidth = canvasRef.current.clientWidth;
     const initialHeight = canvasRef.current.clientHeight;
-    
+
     canvasRef.current.width = initialWidth;
     canvasRef.current.height = initialHeight;
-    canvasRef.current.style.width = initialWidth + 'px';
-    canvasRef.current.style.height = initialHeight + 'px';
-    
+    canvasRef.current.style.width = initialWidth + "px";
+    canvasRef.current.style.height = initialHeight + "px";
+
     renderer.setSize(initialWidth, initialHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     rendererRef.current = renderer;
@@ -86,15 +84,20 @@ const HomeFourthSectionCanvas = () => {
 
     // Load SVG texture
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('/images/wolf.svg', (loadedTexture) => {
-      console.log('Texture loaded successfully');
-      loadedTexture.minFilter = THREE.LinearFilter;
-      loadedTexture.magFilter = THREE.LinearFilter;
-      loadedTexture.wrapS = THREE.ClampToEdgeWrapping;
-      loadedTexture.wrapT = THREE.ClampToEdgeWrapping;
-    }, undefined, (error) => {
-      console.error('Error loading texture:', error);
-    });
+    const texture = textureLoader.load(
+      "/images/wolf.svg",
+      (loadedTexture) => {
+        console.log("Texture loaded successfully");
+        loadedTexture.minFilter = THREE.LinearFilter;
+        loadedTexture.magFilter = THREE.LinearFilter;
+        loadedTexture.wrapS = THREE.ClampToEdgeWrapping;
+        loadedTexture.wrapT = THREE.ClampToEdgeWrapping;
+      },
+      undefined,
+      (error) => {
+        console.error("Error loading texture:", error);
+      }
+    );
 
     const vertices = [];
 
@@ -110,7 +113,7 @@ const HomeFourthSectionCanvas = () => {
 
     // Set attributes
     geometry.setAttribute("position", new THREE.BufferAttribute(vertices32, 3));
-    
+
     // Create material with texture
     const material = new THREE.ShaderMaterial({
       fragmentShader,
@@ -124,14 +127,14 @@ const HomeFourthSectionCanvas = () => {
         uTime: { value: 0 },
         uWaveStrength: { value: 5.5 },
         uWaveRadius: { value: 150 },
-        uMouseInfluence: { value: 0 }
+        uMouseInfluence: { value: 0 },
       },
       transparent: true,
       alphaTest: 0.5,
       depthTest: false,
-      depthWrite: false
+      depthWrite: false,
     });
-    
+
     materialRef.current = material;
 
     // Create mesh
@@ -151,15 +154,15 @@ const HomeFourthSectionCanvas = () => {
     const handleMouseMove = (event) => {
       const canvas = canvasRef.current;
       if (!canvas || !materialRef.current) return;
-      
+
       const rect = canvas.getBoundingClientRect();
       const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-      
+
       // Convert normalized coordinates to world coordinates
       const worldX = x * (nbCol / 2);
       const worldY = y * (nbRows / 2);
-      
+
       mouseRef.current = { x: worldX, y: worldY };
       materialRef.current.uniforms.uMouse.value.set(worldX, worldY);
     };
@@ -177,9 +180,9 @@ const HomeFourthSectionCanvas = () => {
     };
 
     // Add mouse event listeners
-    canvasRef.current.addEventListener('mousemove', handleMouseMove);
-    canvasRef.current.addEventListener('mouseenter', handleMouseEnter);
-    canvasRef.current.addEventListener('mouseleave', handleMouseLeave);
+    canvasRef.current.addEventListener("mousemove", handleMouseMove);
+    canvasRef.current.addEventListener("mouseenter", handleMouseEnter);
+    canvasRef.current.addEventListener("mouseleave", handleMouseLeave);
 
     // Animation loop
     const animate = () => {
@@ -188,20 +191,18 @@ const HomeFourthSectionCanvas = () => {
       // Update time uniform for wave animation
       if (materialRef.current) {
         materialRef.current.uniforms.uTime.value += 0.07; // Slightly faster for more dynamic effect
-        
+
         // Smooth mouse influence transition
         const canvas = canvasRef.current;
         if (canvas) {
-          const isHovering = canvas.matches(':hover');
-          const currentInfluence = materialRef.current.uniforms.uMouseInfluence.value;
+          const isHovering = canvas.matches(":hover");
+          const currentInfluence =
+            materialRef.current.uniforms.uMouseInfluence.value;
           const targetInfluence = isHovering ? 1.0 : 0.0;
           const lerpSpeed = 0.05; // Slower transition for more organic feel
-          
-          materialRef.current.uniforms.uMouseInfluence.value = THREE.MathUtils.lerp(
-            currentInfluence, 
-            targetInfluence, 
-            lerpSpeed
-          );
+
+          materialRef.current.uniforms.uMouseInfluence.value =
+            THREE.MathUtils.lerp(currentInfluence, targetInfluence, lerpSpeed);
         }
       }
 
@@ -216,21 +217,21 @@ const HomeFourthSectionCanvas = () => {
     const handleResize = () => {
       const canvas = canvasRef.current;
       if (!canvas || !renderer || !camera) return;
-      
+
       const container = canvas.parentElement;
       const width = container.clientWidth;
       const height = container.clientHeight;
-      
+
       // Set canvas size explicitly
       canvas.width = width;
       canvas.height = height;
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
-      
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+
       // Update renderer size
       renderer.setSize(width, height, false);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      
+
       // Update camera for responsiveness
       updateCamera();
     };
@@ -253,12 +254,12 @@ const HomeFourthSectionCanvas = () => {
       }
 
       window.removeEventListener("resize", handleResize);
-      
+
       // Remove mouse event listeners
       if (canvasRef.current) {
-        canvasRef.current.removeEventListener('mousemove', handleMouseMove);
-        canvasRef.current.removeEventListener('mouseenter', handleMouseEnter);
-        canvasRef.current.removeEventListener('mouseleave', handleMouseLeave);
+        canvasRef.current.removeEventListener("mousemove", handleMouseMove);
+        canvasRef.current.removeEventListener("mouseenter", handleMouseEnter);
+        canvasRef.current.removeEventListener("mouseleave", handleMouseLeave);
       }
 
       // Dispose of Three.js resources
@@ -270,14 +271,12 @@ const HomeFourthSectionCanvas = () => {
   }, []);
 
   return (
-    <div className="h-screen w-[30vw] overflow-hidden bg-black absolute left-1/2 top-1/2 -translate-1/2">
+    <div className="h-screen w-[25vw] overflow-hidden bg-black absolute left-1/2 top-1/2 -translate-1/2">
       <canvas
         ref={canvasRef}
-        className="w-[30vw] h-full block bg-black"
+        className="w-[25vw] h-full block bg-black"
         style={{ display: "block" }}
       />
-
-
     </div>
   );
 };

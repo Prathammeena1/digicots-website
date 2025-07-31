@@ -5,6 +5,9 @@ import HomeThirdSection from "../sections/HomeThirdSection.jsx";
 import HomeFourthSection from "../sections/HomeFourthSection.jsx";
 import HomeFifthSection from "../sections/HomeFifthSection";
 import HomeSixthSection from "../sections/HomeSixthSection.jsx";
+import HomeSeventhSection from "../sections/HomeSeventhSection.jsx";
+import HomeEighthSection from "../sections/HomeEighthSection.jsx";
+import HomeNinthSection from "../sections/HomeNinthSection.jsx";
 
 const Home = () => {
   return (
@@ -12,13 +15,21 @@ const Home = () => {
       <HomeHeroSection />
       <HomeSecondSection />
 
-      {/* <HomeThirdSection /> */}
+      <HomeThirdSection />
 
       <HomeFourthSection />
 
-      <HomeFifthSection/>
+      <HomeFifthSection />
 
       <HomeSixthSection />
+
+      <HomeSeventhSection />
+
+      <HomeEighthSection />
+
+      <HomeNinthSection />
+
+
     </div>
   );
 };
