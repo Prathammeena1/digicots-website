@@ -30,9 +30,9 @@ const HomeNinthSection = () => {
       {/* Content */}
       <div className="relative z-10 h-full px-16">
         {/* Heading */}
-        <h1 className="text-white text-5xl font-bold text-center mt-20">
+           <h2 className="text-zinc-200 text-6xl md:text-7xl text-center font-bold tracking-wide my-10 py-10">
           Customer Feedback
-        </h1>
+          </h2>
 
         {/* Card */}
         <MySwiper />

@@ -119,7 +119,7 @@ function TwistedText({ text }) {
         anchorY="middle"
         color="white"
         position={[0, 0, 0]}
-        scale={[.27, 1.8, 1]}
+        scale={[.28, 1.8, 1]}
         visible={true}
         whiteSpace="nowrap"
         overflowWrap="normal"
@@ -143,9 +143,9 @@ function TwistedText({ text }) {
 
 const TwistedTextEffect = () => {
   return (
-    <div className="bg-black h-screen w-full relative ">
+    <div className=" h-screen w-full relative  pointer-events-none overflow-hidden">
       <Canvas
-        className="w-full h-full absolute top-24 left-0 z-10"
+        className="w-full h-full absolute top-24 left-0 z-10 pointer-events-none"
         camera={{ position: [0, 0, 80], fov: 45 }}
       >
         <ambientLight intensity={0.5} />

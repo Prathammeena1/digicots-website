@@ -16,7 +16,7 @@ export const useLenis = () => {
       direction: 'vertical',   
       gestureDirection: 'vertical',
       smooth: true,           
-      mouseMultiplier: 1.9,     // Disable default mouse wheel (we handle it)
+      mouseMultiplier: 0,     // Disable default mouse wheel (we handle it)
       smoothTouch: true,      // Enable smooth touch for mobile
       touchMultiplier: 1.5,   // Normal touch sensitivity
       infinite: false,        
@@ -24,7 +24,7 @@ export const useLenis = () => {
       syncTouch: true,        // Better touch sync
       syncTouchLerp: 0.1,     
       touchInertiaMultiplier: 25, 
-      wheelMultiplier: 1.9,     // Disable default wheel handling
+      wheelMultiplier: 0,     // Disable default wheel handling
       normalizeWheel: false,  // We handle normalization
       lerp: 0.1,             // Smooth interpolation for touch
     })
@@ -33,7 +33,7 @@ export const useLenis = () => {
     window.lenis = lenis
 
     // Initialize controlled scrolling
-    // const cleanupControlledScroll = initControlledScroll()
+    const cleanupControlledScroll = initControlledScroll()
 
     // Animation frame loop
     function raf(time) {
@@ -46,11 +46,11 @@ export const useLenis = () => {
     // Add scroll event listener to sync section tracking
     lenis.on('scroll', (e) => {
       // Update current section when manually scrolled (e.g., via scrollbar)
-      // if (!window.isScrolling) {
-      //   const currentScroll = e.scroll;
-      //   const sectionHeight = window.innerHeight;
-      //   window.currentSection = Math.round(currentScroll / sectionHeight);
-      // }
+      if (!window.isScrolling) {
+        const currentScroll = e.scroll;
+        const sectionHeight = window.innerHeight;
+        window.currentSection = Math.round(currentScroll / sectionHeight);
+      }
     })
 
     // Reset scroll position function
@@ -69,7 +69,7 @@ export const useLenis = () => {
     // Cleanup function
     return () => {
       document.documentElement.classList.remove('lenis')
-      // cleanupControlledScroll() // Cleanup controlled scroll event listeners
+      cleanupControlledScroll() // Cleanup controlled scroll event listeners
       window.lenis = null
       window.lenisReset = null
       lenis.destroy()

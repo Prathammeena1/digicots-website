@@ -47,7 +47,7 @@ const KineticGrid = () => {
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top bottom",
-              end: "bottom top",
+              end: "top -200%",
               scrub: true,
               onUpdate: (self) => {
                 // Add phase offset for kinetic effect
@@ -68,11 +68,12 @@ const KineticGrid = () => {
   }, []);
 
   return (
-    <div className="w-full h-[200vh]">
+    <div className="w-full h-[267vh]">
       <div
         ref={containerRef}
         className="w-full h-screen sticky top-0 bg-black flex items-center justify-center overflow-hidden"
       >
+        
         <div className="h-[30vh] w-full absolute top-0 bg-gradient-to-b from-black to-transparent z-10"></div>
         {/* <div className="h-[30vh] w-full absolute top-0 bg-gradient-to-b from-black to-transparent z-10"></div> */}
         {/* <div className="h-[30vh] w-full absolute bottom-0 bg-gradient-to-t from-black to-transparent z-10"></div> */}

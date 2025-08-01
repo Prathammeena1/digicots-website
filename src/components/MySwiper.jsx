@@ -25,7 +25,7 @@ const MySwiper = () => {
   };
 
   return (
-    <div className="relative mt-[23vh]">
+    <div className="relative mt-[15vh]">
       <Swiper
         modules={[Navigation, Pagination]}
         onSwiper={setSwiperRef}

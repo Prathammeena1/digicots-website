@@ -179,55 +179,6 @@ const HomeHeroSection = () => {
         },
         "+=0.1"
       )
-      // .to(
-      //   logoSvgRef.current,
-      //   {
-      //     scale: 1,
-      //     ease: "linear",
-      //     duration: 5,
-      //   },
-      //   "+=0.3"
-      // )
-      // .to(
-      //   logoSvgRef.current,
-      //   {
-      //     opacity: 0,
-      //     ease: "power3.out",
-      //     duration: 0.7,
-      //   },
-      //   "+=0.3"
-      // )
-      // .to(
-      //   mainSvgLogoRef.current,
-      //   {
-      //     opacity: 1,
-      //     ease: "power3.out",
-      //     duration: 0.7,
-      //   },
-      //   "<"
-      // )
-      // .to(mainSvgLogoRef.current, {
-      //   top: "5.5%",
-      //   duration: 1.2,
-      //   ease: "power2.inOut",
-      // })
-      // .to(
-      //   mainSvgLogoRef.current,
-      //   {
-      //     opacity: 0,
-      //     duration: 0.4,
-      //   },
-      //   "+=0.2"
-      // )
-      // .to(
-      //   navigationLogoRef.current,
-      //   {
-      //     opacity: 1,
-      //     ease: "power3.out",
-      //     duration: 0.5,
-      //   },
-      //   "<"
-      // );
   }, [
     sec1.current,
     sec2.current,
@@ -273,12 +224,12 @@ const HomeHeroSection = () => {
         alt="Logo"
         className="fixed left-[51%] top-1/2 -translate-1/2 w-30 h-auto z-[99999] pointer-events-none select-none opacity-0"
       /> */}
-      <div className="h-[400vh] w-full relative">
+      <div className="section h-[400vh] w-full relative">
         <div
           ref={homeRef}
           className="h-screen w-full sticky top-0 overflow-hidden"
         >
-          <div className="hero-page-section-1 top-0 h-full w-full relative">
+          <div className="top-0 h-full w-full relative">
             {/* Production-Level Video Background Container */}
             <div
               className="absolute inset-0 h-screen w-full bg-black"
@@ -360,7 +311,7 @@ const HomeHeroSection = () => {
 
           <div
             ref={sec1}
-            className="h-screen w-full absolute top-0 left-0 right-0 z-20"
+            className="section h-screen w-full absolute top-0 left-0 right-0 z-20"
           >
             {/* SVG Text Mask Implementation */}
             <div className="relative w-full h-full">
@@ -382,7 +333,7 @@ const HomeHeroSection = () => {
                       fill="black"
                       stroke="black"
                       strokeWidth="10"
-                      fontSize="200"
+                      fontSize="260"
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
@@ -391,13 +342,13 @@ const HomeHeroSection = () => {
                     </text>
                     <text
                       x="960"
-                      y="600"
+                      y="645"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fill="black"
                       stroke="black"
                       strokeWidth="10"
-                      fontSize="200"
+                      fontSize="260"
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
@@ -419,7 +370,7 @@ const HomeHeroSection = () => {
           </div>
           <div
             ref={sec2}
-            className="h-screen w-full absolute top-0 left-0 right-0 z-30"
+            className="section h-screen w-full absolute top-0 left-0 right-0 z-30"
           >
             {/* SVG Text Mask Implementation */}
             <div className="relative w-full h-full">
@@ -441,7 +392,7 @@ const HomeHeroSection = () => {
                       fill="black"
                       stroke="black"
                       strokeWidth="8"
-                      fontSize="200"
+                      fontSize="260"
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
@@ -451,13 +402,13 @@ const HomeHeroSection = () => {
 
                     <text
                       x="960"
-                      y="600"
+                      y="645"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fill="black"
                       stroke="black"
                       strokeWidth="8"
-                      fontSize="200"
+                      fontSize="260"
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
@@ -479,7 +430,7 @@ const HomeHeroSection = () => {
           </div>
           <div
             ref={sec3}
-            className="h-screen w-full absolute top-0 left-0 right-0 z-30"
+            className="section h-screen w-full absolute top-0 left-0 right-0 z-30"
           >
             {/* SVG Text Mask Implementation */}
             <div className="relative w-full h-full">
@@ -501,7 +452,7 @@ const HomeHeroSection = () => {
                       fill="black"
                       stroke="black"
                       strokeWidth="8"
-                      fontSize="200"
+                      fontSize="260"
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
@@ -510,13 +461,13 @@ const HomeHeroSection = () => {
                     </text>
                     <text
                       x="960"
-                      y="600"
+                      y="645"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fill="black"
                       stroke="black"
                       strokeWidth="8"
-                      fontSize="200"
+                      fontSize="260"
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
@@ -536,35 +487,6 @@ const HomeHeroSection = () => {
               </svg>
             </div>
           </div>
-
-          {/* <svg
-            ref={logoSvgRef}
-            className="absolute top-0 left-0 pointer-events-none h-screen w-screen z-[40] scale-[250]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <mask id="logo-mask" maskUnits="userSpaceOnUse">
-                <rect width="100%" height="100%" fill="white" />
-
-                <image
-                  href="/images/logo-1.svg"
-                  x="42.5%"
-                  y="42.5%"
-                  width="15%"
-                  height="15%"
-                  preserveAspectRatio="xMidYMid meet"
-                  style={{ filter: "invert(1)" }}
-                />
-              </mask>
-            </defs>
-
-            <rect
-              width="100%"
-              height="100%"
-              fill="white"
-              mask="url(#logo-mask)"
-            />
-          </svg> */}
         </div>
       </div>
     </>
