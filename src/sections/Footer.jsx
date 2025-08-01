@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import ThankyouPopUp from "./ThankyouPopup";
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 // Animation variants for sections
 const sectionVariants = {
@@ -53,19 +53,6 @@ export default function Footer({ popActive, setPopActive }) {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(location.search);
-  //   const isSuccess = params.get("success") === "true";
-  //   const validPaths = ["/", "/about", "/insights", "/case-study", "/things-we-do"];
-
-  //   if (isSuccess && validPaths.includes(location.pathname)) {
-  //     setPopActive(true);
-  //     // Clean the URL without reloading
-  //     const cleanedURL = location.pathname;
-  //     window.history.replaceState({}, "", cleanedURL);
-  //   }
-  // }, [location]);
-
   const validateForm = () => {
     const requiredFields = [
       "Full_Name",
@@ -90,25 +77,8 @@ export default function Footer({ popActive, setPopActive }) {
       return "❌ Please enter a valid email address.";
     }
 
-    // const phone = formData.contactNumber?.trim();
-    // // const phoneRegex = /^\d{10}$/;
-    // const phoneRegex = /^(?:\+91|0)?[6-9]\d{9}$/;
-
-    // if (!phoneRegex.test(phone)) {
-    //   return "❌ Contact number must be exactly 10 digits.";
-    // }
-
     return null;
   };
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     [name]: value,
-  //   }));
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
@@ -152,7 +122,7 @@ export default function Footer({ popActive, setPopActive }) {
   return (
     <footer
       ref={footerRef}
-      className="bg-black backdrop-blur-xl text-white py-16 px-6 relative z-[999] overflow-hidden"
+      className=" pointer-events-none text-white py-16 px-6 relative z-10 overflow-hidden"
     >
       <div className="container mx-auto max-w-[1600px]">
         {/* Top Section - Join the Pack */}
@@ -167,10 +137,6 @@ export default function Footer({ popActive, setPopActive }) {
             <h2 className="text-5xl sm:text-8xl font-inter font-bold leading-tight text-white audiowide-regular">
               Join the Pack
             </h2>
-            {/* <p className="text-gray-400 mt-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore.
-            </p> */}
           </motion.div>
 
           {/* Right - Form */}
@@ -196,7 +162,7 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="text"
                 placeholder="Full Name"
-                className="bg-[#3A3A3A]  p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white raleway"
+                className="bg-[#3A3A3A]  p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white raleway pointer-events-auto"
                 name="Full_Name"
                 variants={childVariants}
               />
@@ -210,7 +176,7 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="text"
                 placeholder="Company Name"
-                className="bg-[#3A3A3A] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white raleway"
+                className="bg-[#3A3A3A] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white raleway pointer-events-auto"
                 name="Company_Name"
                 variants={childVariants}
               />
@@ -221,19 +187,11 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="email"
                 placeholder="Email Address"
-                className="bg-[#3A3A3A] text-white p-4 sm:p-5 rounded-[14px] w-full focus:outline-none raleway"
+                className="bg-[#3A3A3A] text-white p-4 sm:p-5 rounded-[14px] w-full focus:outline-none raleway pointer-events-auto"
                 name="email"
                 variants={childVariants}
               />
               <motion.div className="flex" variants={childVariants}>
-                {/* <select
-                  onChange={handleChange}
-                  className="bg-[#3A3A3A] text-[#737373] p-4 sm:p-5 rounded-l-[14px] focus:outline-none"
-                >
-                  <option value="+1">+1</option>
-                  <option value="+91">+91</option>
-                  <option value="+44">+44</option>
-                </select> */}
                 <input
                   type="text"
                   value={formData.Contact_Number}
@@ -244,12 +202,12 @@ export default function Footer({ popActive, setPopActive }) {
                     }))
                   }
                   placeholder="Contact Number"
-                  className="bg-[#3A3A3A] text-white p-4 sm:p-5 w-full rounded-[14px] focus:outline-none raleway"
+                  className="bg-[#3A3A3A] text-white p-4 sm:p-5 w-full rounded-[14px] focus:outline-none raleway pointer-events-auto"
                   name="Contact_Number"
                 />
               </motion.div>
               <motion.button
-                className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full flex px-5 py-2 cursor-pointer raleway"
+                className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full flex px-5 py-2 cursor-pointer raleway pointer-events-auto"
                 variants={childVariants}
               >
                 <div className="relative z-[11]">
@@ -281,15 +239,11 @@ export default function Footer({ popActive, setPopActive }) {
           {/* Branding */}
           <div className="flex flex-col items-center md:items-start col-span-2 md:col-span-1">
             <motion.h3
-              className="text-4xl font-bold text-[#ED510C]"
+              className="font-bold text-[#ED510C]"
               variants={childVariants}
             >
               <Link to={"/"}>
-                <img
-                  src="https://digicots.com/images/logo.png"
-                  className="max-w-[200px]"
-                  alt=""
-                />
+                <img src="/images/logo-1.svg" className="w-[400px]" alt="" />
               </Link>
             </motion.h3>
             <motion.div
@@ -300,27 +254,21 @@ export default function Footer({ popActive, setPopActive }) {
                 {
                   title: "instagram",
                   link: "https://www.instagram.com/digicots_/",
+                  icon: <FaInstagram />,
                 },
                 {
                   title: "linkedin-in",
                   link: "https://www.linkedin.com/company/digicots-interactive-private-limited/",
+                  icon: <FaLinkedinIn />,
                 },
-                // {
-                //   title: "facebook-f",
-                //   link: "insights",
-                // },
-                // {
-                //   title: "twitter",
-                //   link: "contact",
-                // },
-              ].map((icon,i) => (
+              ].map((socialIcon, i) => (
                 <motion.div
                   key={i}
-                  className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center"
+                  className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center pointer-events-auto"
                   variants={socialIconVariants}
                 >
-                  <a href={icon.link} target="_blank">
-                    <i className={`fab fa-${icon.title}`}></i>
+                  <a href={socialIcon.link} target="_blank">
+                    {socialIcon.icon}
                   </a>
                 </motion.div>
               ))}
@@ -418,7 +366,7 @@ export default function Footer({ popActive, setPopActive }) {
                     },
                   ].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
-                      <Link to={`discover?i=${i}`} className="hover:text-white">
+                      <Link to={`discover?i=${i}`} className="hover:text-white pointer-events-auto">
                         {link.title}
                       </Link>
                     </motion.li>
@@ -433,7 +381,7 @@ export default function Footer({ popActive, setPopActive }) {
                   {header}
                 </motion.h4>
                 <motion.ul
-                  className="text-gray-400 mt-2 space-y-1"
+                  className="text-gray-400 mt-2 space-y-1  pointer-events-auto"
                   variants={containerVariants}
                 >
                   {[
@@ -488,7 +436,9 @@ export default function Footer({ popActive, setPopActive }) {
                 Team Digicots
               </a>
             </p>
-            <p className="mt-1 text-center sm:text-start raleway">Created Proudly in India</p>
+            <p className="mt-1 text-center sm:text-start raleway">
+              Created Proudly in India
+            </p>
           </div>
           <div className="text-center sm:text-end raleway">
             <p className="mt-1">

@@ -12,16 +12,16 @@ import HomeNinthSection from "../sections/HomeNinthSection.jsx";
 const Home = () => {
   return (
     <div className="h-full w-full bg-transparent">
-      {/* <HomeHeroSection />
+      <HomeHeroSection />
       <HomeSecondSection />
 
       <HomeThirdSection />
 
       <HomeFourthSection />
 
-      <HomeFifthSection /> */}
+      <HomeFifthSection /> 
 
-      {/* <HomeSixthSection /> */}
+      <HomeSixthSection />
 
       <HomeSeventhSection />
 

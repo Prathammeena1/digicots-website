@@ -18,7 +18,7 @@ const HomeSeventhSection = () => {
                 // Create infinite marquee animation that moves exactly 50% (half the content)
                 gsap.to(line, {
                     x: index % 2 === 0 ? "-30%" : "30%",
-                    duration: 15,
+                    duration: 25,
                     ease: "none",
                     repeat: -1,
                     yoyo:true,

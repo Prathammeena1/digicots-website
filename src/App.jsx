@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation.jsx";
 import Home from "./pages/Home.jsx";
@@ -11,6 +11,7 @@ import { useLenis } from "./hooks/useLenis.js";
 import { useLoading } from "./context/LoadingContext.jsx";
 import Approach from "./pages/Approach.jsx";
 import Footer from "./sections/Footer.jsx";
+import ThankyouPopUp from "./sections/ThankyouPopup.jsx";
 
 // Lazy load heavy components
 const FluidCanvas = React.lazy(() => import("./components/FluidCanvas.jsx"));
@@ -26,6 +27,8 @@ const App = () => {
   // Get loading state
   const { isLoading } = useLoading();
 
+  const [popActive, setPopActive] = useState(false);
+
   // Scroll to top when route changes
   useEffect(() => {
     // Use enhanced route reset function if available
@@ -40,7 +43,7 @@ const App = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'auto' // Use 'auto' for instant scroll
+      behavior: "auto", // Use 'auto' for instant scroll
     });
 
     // Additional safety reset with delay
@@ -49,7 +52,7 @@ const App = () => {
         window.lenis.scrollTo(0, { immediate: true, force: true });
         window.lenis.resize(); // Recalculate scroll bounds
       }
-      
+
       // Reset any remaining scroll state
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
@@ -57,8 +60,6 @@ const App = () => {
 
     return () => clearTimeout(timeoutId);
   }, [location.pathname]); // Trigger when pathname changes
-
-
 
   return (
     <>
@@ -81,8 +82,6 @@ const App = () => {
             </Suspense>
           </ErrorBoundary>
         </div>
-
-       
 
         <main>
           <Routes>
@@ -140,10 +139,14 @@ const App = () => {
               }
             />
           </Routes>
+          <Footer setPopActive={setPopActive} />
+
+          {/* your main content here */}
+          <ThankyouPopUp
+            popActive={popActive}
+            onClose={() => setPopActive(false)}
+          />
         </main>
-
-              <Footer/>
-
       </div>
     </>
   );

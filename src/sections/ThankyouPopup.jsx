@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export default function ThankyouPopUp({ popActive, onClose }) {
   return (
@@ -31,7 +32,7 @@ export default function ThankyouPopUp({ popActive, onClose }) {
             <h1 className="text-4xl md:text-6xl font-extrabold bg-clip-text bg-gradient-to-r flex items-center text-[#ED510C] mb-6 justify-center">
               THANK Y
               <img
-                src="thankyou.gif"
+                src="/images/thankyou.gif"
                 className="bg-no-repeat bg-center bg-contain w-[35px] md:w-[50px] h-[35px] md:h-[50px] align-middle mx-1"
                 alt=""
               />
@@ -49,13 +50,13 @@ export default function ThankyouPopUp({ popActive, onClose }) {
               <p className="text-[#ED510C] font-semibold mb-4">Follow us on:</p>
               <div className="flex justify-center space-x-4 text-xl">
                 <a href="#" className="hover:text-[#ED510C]">
-                  <i className="fab fa-instagram"></i>
+                  <FaInstagram />
                 </a>
                 <a href="#" className="hover:text-[#ED510C]">
-                  <i className="fab fa-facebook"></i>
+                  <FaFacebook />
                 </a>
                 <a href="#" className="hover:text-[#ED510C]">
-                  <i className="fab fa-linkedin"></i>
+                  <FaLinkedin />
                 </a>
               </div>
             </div>
