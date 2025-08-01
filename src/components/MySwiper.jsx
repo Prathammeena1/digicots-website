@@ -104,7 +104,7 @@ const MySwiper = () => {
       {/* Previous button */}
       <button
         onClick={prevSlide}
-        className="text-white/70 hover:text-white transition-colors"
+        className="text-white/70 hover:text-white transition-colors cursor-pointer"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
@@ -119,7 +119,7 @@ const MySwiper = () => {
       {/* Next button */}
       <button
         onClick={nextSlide}
-        className="text-white/70 hover:text-white transition-colors"
+        className="text-white/70 hover:text-white transition-colors cursor-pointer"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
           <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
