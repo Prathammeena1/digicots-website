@@ -143,10 +143,18 @@ function TwistedText({ text }) {
 
 const TwistedTextEffect = () => {
   return (
-    <div className=" h-screen w-full relative  pointer-events-none overflow-hidden">
+    <div className="h-screen w-full relative pointer-events-none overflow-hidden">
       <Canvas
         className="w-full h-full absolute top-24 left-0 z-10 pointer-events-none"
         camera={{ position: [0, 0, 80], fov: 45 }}
+        style={{ pointerEvents: 'none' }}
+        onPointerOver={undefined}
+        onPointerOut={undefined}
+        onPointerDown={undefined}
+        onPointerUp={undefined}
+        onPointerMove={undefined}
+        onWheel={undefined}
+        onClick={undefined}
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
