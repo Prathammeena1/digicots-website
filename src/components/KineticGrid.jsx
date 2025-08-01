@@ -10,7 +10,7 @@ const images = [
 ];
 
 const NUM_COLS = 3;
-const NUM_ROWS = 6;
+const NUM_ROWS = 10;
 
 // Create a 2D array of images for the grid
 const getGrid = () => {
@@ -38,7 +38,7 @@ const KineticGrid = () => {
       const phase = (c / NUM_COLS) * Math.PI * 2;
       const col = colRefs.current[c];
       if (col) {
-        const distance = NUM_ROWS * 120; // px to scroll
+        const distance = NUM_ROWS * 220; // px to scroll
         const direction = c % 2 === 0 ? -1 : 1; // Reverse direction for odd columns
         triggers.push(
           gsap.to(col, {
@@ -47,7 +47,7 @@ const KineticGrid = () => {
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top bottom",
-              end: "top -200%",
+              end: "top -400%",
               scrub: true,
               onUpdate: (self) => {
                 // Add phase offset for kinetic effect
@@ -68,7 +68,7 @@ const KineticGrid = () => {
   }, []);
 
   return (
-    <div className="w-full h-[267vh]">
+    <div className="w-full h-[467vh]">
       <div
         ref={containerRef}
         className="w-full h-screen sticky top-0 bg-black flex items-center justify-center overflow-hidden"
@@ -96,14 +96,18 @@ const KineticGrid = () => {
                   <img
                     src={img}
                     alt="grid"
-                    className="w-full h-[55vh] object-cover"
+                    className="w-full h-[60vh] object-cover rounded"
                     style={{
                       background: "#222",
                       minHeight: "100%",
                       minWidth: "100%",
                     }}
                   />
-                  <h1 className=" text-zinc-200 text-3xl">Cap & Caps</h1>
+                  <div className="flex items-start justify-between text-md ">
+                  <h1 className=" text-zinc-200 text-3xl font-semibold">Cap & Caps</h1>
+
+<h6 className="text-zinc-400">2021</h6>
+                  </div>
                 </div>
               ))}
             </div>

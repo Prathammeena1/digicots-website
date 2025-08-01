@@ -128,7 +128,7 @@ function TwistedText({ text }) {
       </Text>
       {/* Twisted box geometry with text texture */}
       <mesh ref={meshRef}>
-        <boxGeometry args={[160, 18, 10, 128, 128, 64]} />
+        <boxGeometry args={[160, 18, 18, 168, 168, 64]} scale={[4.5,1,1]} />
         <shaderMaterial
           ref={materialRef}
           vertexShader={boxVertex}
