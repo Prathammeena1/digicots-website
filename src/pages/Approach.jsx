@@ -44,7 +44,7 @@ const Approach = () => {
 
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-full w-full relative pointer-events-none">
       <ApproachFirstSection step={step} />
       <ApproachSecondSection step={step} />
       <ApproachThirdSection step={step} />
