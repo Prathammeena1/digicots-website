@@ -3,6 +3,7 @@ import AboutFirstSection from "../sections/AboutFirstSection";
 import AboutSecondSection from "../sections/AboutSecondSection";
 import AboutThirdSection from "../sections/AboutThirdSection";
 import AboutFourthSection from "../sections/AboutFourthSection";
+import AboutFifthSection from "../sections/AboutFifthSection";
 
 
 //  <AboutFirstSection />
@@ -16,6 +17,7 @@ const About = () => {
       <AboutSecondSection />
       <AboutThirdSection />
       <AboutFourthSection />
+      <AboutFifthSection />
     </div>
   );
 };

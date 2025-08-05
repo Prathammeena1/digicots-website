@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
 
 const AboutFourthSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
+  // Mouse follower refs
+  const followerRef = useRef(null);
+  const sliderContainerRef = useRef(null);
   const intervalRef = useRef(null);
   const progressIntervalRef = useRef(null);
   const sliderRef = useRef(null);
@@ -186,6 +190,56 @@ const AboutFourthSection = () => {
     resetAutoplayTimer();
   };
 
+  // GSAP mouse follower handlers
+  const handleMouseEnterSlider = () => {
+    if (followerRef.current) {
+      gsap.to(followerRef.current, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+      });
+    }
+  };
+
+  const handleMouseLeaveSlider = () => {
+    if (followerRef.current) {
+      gsap.to(followerRef.current, {
+        scale: 0,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+    }
+  };
+
+  const handleMouseMoveSlider = (e) => {
+    if (followerRef.current && sliderContainerRef.current) {
+      const rect = sliderContainerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      gsap.to(followerRef.current, {
+        x: x,
+        y: y,
+        duration: 0.8,
+        ease: "power3.out"
+      });
+    }
+  };
+
+  // Initialize mouse follower GSAP animation
+  useEffect(() => {
+    if (followerRef.current) {
+      // Set initial state - hidden and scaled down
+      gsap.set(followerRef.current, {
+        scale: 0,
+        opacity: 0,
+        transformOrigin: 'center center'
+      });
+    }
+  }, []);
+
   // Initialize autoplay and progress bar
   useEffect(() => {
     resetAutoplayTimer();
@@ -211,7 +265,7 @@ const AboutFourthSection = () => {
   }, [currentSlide]);
 
   return (
-    <div className='section min-h-screen w-full bg-[#1a1a1a] text-white pt-16'>
+    <div className='section min-h-screen w-full text-white pt-16'>
       <div className='w-full mx-auto'>
         {/* Title */}
         <h2 className='text-7xl font-semibold mb-6 px-30'>
@@ -219,17 +273,67 @@ const AboutFourthSection = () => {
         </h2>
 
         {/* Slider Container */}
-        <div className='relative'>
+        <div
+          className='relative group'
+          ref={sliderContainerRef}
+          onMouseEnter={handleMouseEnterSlider}
+          onMouseLeave={handleMouseLeaveSlider}
+          onMouseMove={handleMouseMoveSlider}
+          style={{ cursor: 'none' }}
+        >
           {/* Slides */}
           <div 
             ref={sliderRef}
-            className='flex overflow-x-hidden cursor-grab active:cursor-grabbing gap-10 px-30'
+            className='flex overflow-x-hidden cursor-none gap-10 px-30'
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             style={{ scrollBehavior: isDragging.current ? 'auto' : 'smooth' }}
           >
+          {/* Mouse Follower */}
+          <div
+            ref={followerRef}
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              pointerEvents: 'none',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 50
+            }}
+          >
+              <div style={{
+                width: 120,
+                height: 120,
+                borderRadius: '50%',
+                border: '2px solid #fff',
+                background: 'rgba(100,100,100,0.25)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                boxShadow: '0 0 0 1px rgba(255,255,255,0.08)'
+              }}>
+                {/* Center dot */}
+                <div style={{
+                  width: 16,
+                  height: 16,
+                  borderRadius: '50%',
+                  background: '#e5e5e5',
+                  position: 'absolute',
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 2
+                }} />
+                {/* Left arrow */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{position:'absolute',left:8,top:'50%',transform:'translateY(-50%)'}}><polygon points="16,6 8,12 16,18" fill="#fff"/></svg>
+                {/* Right arrow */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{position:'absolute',right:8,top:'50%',transform:'translateY(-50%)'}}><polygon points="8,6 16,12 8,18" fill="#fff"/></svg>
+              </div>
+            </div>
+
             {slides.map((slide) => (
               <div 
                 key={slide.id}
@@ -256,6 +360,7 @@ const AboutFourthSection = () => {
             ))}
           </div>
 
+        </div>
           {/* Navigation Dots with Progress */}
           <div className='flex justify-center items-center mt-8 gap-3'>
             {slides.map((_, index) => (
@@ -274,12 +379,11 @@ const AboutFourthSection = () => {
                   </div>
                 ) : (
                   // Inactive dots
-                  <div className='w-3 h-3 bg-gray-600 rounded-full group-hover:bg-gray-400 transition-colors duration-200'></div>
+                  <div className='w-3 h-3 cursor-pointer bg-gray-600 rounded-full group-hover:bg-gray-400 transition-colors duration-200'></div>
                 )}
               </button>
             ))}
           </div>
-        </div>
       </div>
     </div>
   )
