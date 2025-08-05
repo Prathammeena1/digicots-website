@@ -15,7 +15,8 @@ const Navigation = () => {
     { path: '/branding', label: 'Branding' },
     { path: '/marketing', label: 'Marketing' },
     { path: '/web-digital', label: 'Web & Digital' },
-    { path: '/graphics', label: 'Graphics' },
+    // { path: '/graphics', label: 'Graphics' },
+    { path: '/about', label: 'About' },
     { path: '/content', label: 'Content' },
     { path: '/production', label: 'Production' }
   ]

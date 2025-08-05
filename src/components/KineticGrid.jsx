@@ -73,7 +73,6 @@ const KineticGrid = () => {
         ref={containerRef}
         className="w-full h-screen sticky top-0 bg-black flex items-center justify-center overflow-hidden"
       >
-        
         <div className="h-[30vh] w-full absolute top-0 bg-gradient-to-b from-black to-transparent z-10"></div>
         {/* <div className="h-[30vh] w-full absolute top-0 bg-gradient-to-b from-black to-transparent z-10"></div> */}
         {/* <div className="h-[30vh] w-full absolute bottom-0 bg-gradient-to-t from-black to-transparent z-10"></div> */}
@@ -104,9 +103,11 @@ const KineticGrid = () => {
                     }}
                   />
                   <div className="flex items-start justify-between text-md ">
-                  <h1 className=" text-zinc-200 text-3xl font-semibold">Cap & Caps</h1>
+                    <h1 className=" text-zinc-200 text-3xl font-semibold">
+                      Cap & Caps
+                    </h1>
 
-<h6 className="text-zinc-400">2021</h6>
+                    <h6 className="text-zinc-400">2021</h6>
                   </div>
                 </div>
               ))}

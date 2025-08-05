@@ -34,6 +34,29 @@ body::-webkit-scrollbar {
   scrollbar-width: none;
 } */
 
+
+/* Disable text selection globally */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Disable drag and drop for images */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+/* Disable context menu */
+* {
+  -webkit-touch-callout: none;
+}
+
 /* Video performance optimizations */
 video {
   transform: translateZ(0);
