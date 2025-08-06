@@ -13,9 +13,9 @@ import AboutFifthSection from "../sections/AboutFifthSection";
 const About = () => {
   return (
     <div className="min-h-screen  w-full relative z-10 text-zinc-200 bg-[#282929]">
-      <AboutFirstSection />
-      <AboutSecondSection />
-      <AboutThirdSection />
+      {/* <AboutFirstSection /> */}
+      {/* <AboutSecondSection /> */}
+      {/* <AboutThirdSection /> */}
       <AboutFourthSection />
       <AboutFifthSection />
     </div>
