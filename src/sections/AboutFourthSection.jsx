@@ -5,6 +5,7 @@ const AboutFourthSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [hoveredSlide, setHoveredSlide] = useState(null);
   // Mouse follower refs
   const followerRef = useRef(null);
   const sliderContainerRef = useRef(null);
@@ -19,26 +20,26 @@ const AboutFourthSection = () => {
     {
       id: 1,
       image: '/images/service1.png', // Replace with actual image paths
-      title: 'Project One',
-      description: 'First project showcase'
+      title: 'Digital Innovation',
+      description: 'The force della knowledge, the impact della creativity, the pervasiveness della technology. With the consulting of marketing and communication of Quamm, the value del your business grows in the tempo.'
     },
     {
       id: 2,
       image: '/images/service2.png',
-      title: 'Project Two', 
-      description: 'Second project showcase'
+      title: 'Creative Solutions', 
+      description: 'The force della knowledge, the impact della creativity, the pervasiveness della technology. With the consulting of marketing and communication of Quamm, the value del your business grows in the tempo.'
     },
     {
       id: 3,
       image: '/images/service3.png',
-      title: 'Project Three',
-      description: 'Third project showcase'
+      title: 'Technology Excellence',
+      description: 'The force della knowledge, the impact della creativity, the pervasiveness della technology. With the consulting of marketing and communication of Quamm, the value del your business grows in the tempo.'
     },
     {
       id: 4,
       image: '/images/service4.png',
-      title: 'Project Four',
-      description: 'Fourth project showcase'
+      title: 'Business Growth',
+      description: 'The force della knowledge, the impact della creativity, the pervasiveness della technology. With the consulting of marketing and communication of Quamm, the value del your business grows in the tempo.'
     }
   ];
 
@@ -284,7 +285,7 @@ const AboutFourthSection = () => {
           {/* Slides */}
           <div 
             ref={sliderRef}
-            className='flex overflow-x-hidden cursor-none gap-10 px-30'
+            className='flex overflow-x-hidden cursor-none gap-10 px-30 pointer-events-auto'
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -334,24 +335,36 @@ const AboutFourthSection = () => {
               </div>
             </div>
 
-            {slides.map((slide) => (
+            {slides.map((slide, index) => (
               <div 
                 key={slide.id}
-                className='slide-item flex-shrink-0 w-full flex items-center justify-center gap-8'
+                className='slide-item flex-shrink-0 w-full flex items-center justify-center gap-8 relative'
                 style={{ maxWidth: '120vh' }}
+                onMouseEnter={() => setHoveredSlide(index)}
+                onMouseLeave={() => setHoveredSlide(null)}
               >
                 {/* Left Image - Laptop */}
                 <div className='relative w-full h-[70vh]'>
-                  <div className='rounded-lg h-full flex items-center justify-center transform  shadow-2xl'>
+                  <div className='rounded-lg h-full flex items-center justify-center transform shadow-2xl relative overflow-hidden'>
                     <div className='rounded-lg w-full h-full flex items-center justify-center overflow-hidden'>
                       <img 
                         src={slide.image} 
                         alt={slide.title}
-                        className='w-full h-full object-cover rounded-lg'
+                        className={`w-full h-full object-cover rounded-lg transition-transform duration-500 ${hoveredSlide === index ? 'scale-105' : 'scale-100'}`}
                         onError={(e) => {
-                          e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5Qcm9qZWN0ICN7aW5kZXggKyAxfTwvdGV4dD48L3N2Zz4=';
+                          e.target.src = `data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5Qcm9qZWN0ICR7aW5kZXggKyAxfTwvdGV4dD48L3N2Zz4=`;
                         }}
                       />
+                    </div>
+                    
+                    {/* Hover Text Overlay - Only show for hovered slide */}
+                    <div className={`absolute h-fit w-[40vw] rounded-2xl inset-0 bg-white/10 backdrop-blur-2xl transition-opacity duration-500 ease-in-out flex items-end justify-start p-6 my-6 mx-6 ${hoveredSlide === index ? 'opacity-100' : 'opacity-0'}`}>
+                      <div className={`text-white transform transition-transform duration-500 w-full ease-out ${hoveredSlide === index ? 'translate-y-0' : 'translate-y-4'}`}>
+
+                        <p className='text-base leading-relaxed opacity-90 w-full'>
+                          {slide.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -362,7 +375,7 @@ const AboutFourthSection = () => {
 
         </div>
           {/* Navigation Dots with Progress */}
-          <div className='flex justify-center items-center mt-8 gap-3'>
+          <div className='flex justify-center items-center mt-8 gap-3 pointer-events-auto'>
             {slides.map((_, index) => (
               <button
                 key={index}

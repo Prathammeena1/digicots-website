@@ -4,7 +4,8 @@ import AboutSecondSection from "../sections/AboutSecondSection";
 import AboutThirdSection from "../sections/AboutThirdSection";
 import AboutFourthSection from "../sections/AboutFourthSection";
 import AboutFifthSection from "../sections/AboutFifthSection";
-
+import AboutSixthSection from "../sections/AboutSixthSection";
+import AboutSeventhSection from "../sections/AboutSeventhSection";
 
 //  <AboutFirstSection />
 //       <AboutSecondSection />
@@ -12,12 +13,14 @@ import AboutFifthSection from "../sections/AboutFifthSection";
 //       <AboutFourthSection />
 const About = () => {
   return (
-    <div className="min-h-screen  w-full relative z-10 text-zinc-200 bg-[#282929]">
-      {/* <AboutFirstSection /> */}
+    <div className="min-h-screen  w-full relative z-10 text-zinc-200 pointer-events-none ">
+      <AboutFirstSection />
       {/* <AboutSecondSection /> */}
-      {/* <AboutThirdSection /> */}
+      <AboutThirdSection />
       <AboutFourthSection />
       <AboutFifthSection />
+      <AboutSixthSection />
+      <AboutSeventhSection />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LoadingScreen from "./components/LoadingScreen.jsx";
 import { useLenis } from "./hooks/useLenis.js";
 import { useLoading } from "./context/LoadingContext.jsx";
+import { resetScrollState } from "./utils/scrollUtils.js";
 import Approach from "./pages/Approach.jsx";
 import Footer from "./sections/Footer.jsx";
 import ThankyouPopUp from "./sections/ThankyouPopup.jsx";
@@ -61,6 +62,42 @@ const App = () => {
     return () => clearTimeout(timeoutId);
   }, [location.pathname]); // Trigger when pathname changes
 
+  // Handle scroll to top with proper reset
+  const handleScrollToTop = () => {
+    // Reset scroll state to ensure we're at section 0
+
+    // Use Lenis smooth scroll to top if available
+    if (window.lenis) {
+      window.lenis.scrollTo(0, {
+        immediate: false,
+        duration: 1.8, // Increased duration for smoother effect
+        easing: (t) => {
+          // Enhanced easing for ultra-smooth scroll
+          return 1 - Math.pow(1 - t, 3); // Cubic ease-out
+        },
+        force: true, // Ensure scroll happens even if already at top
+        onComplete: () => {
+          resetScrollState();
+
+          // Ensure we're truly at the top
+          if (window.lenis) {
+            window.lenis.resize();
+          }
+        },
+      });
+    } else {
+      // Enhanced fallback with smoother native scroll
+      document.documentElement.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <>
       {/* Loading Screen */}
@@ -75,12 +112,19 @@ const App = () => {
         <Navigation />
 
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-black">
-          {/* <ErrorBoundary>
+          <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-black" />}>
               <FluidCanvas />
               <WolfMaskSVG />
             </Suspense>
-          </ErrorBoundary> */}
+          </ErrorBoundary>
+        </div>
+
+        <div
+          onClick={handleScrollToTop}
+          className="fixed z-30 scroll-to-top bg-amber-50 h-[70px] w-[70px] right-10 bottom-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-amber-100 transition-colors duration-300"
+        >
+          <button className="text-2xl font-semibold text-zinc-600">↑</button>
         </div>
 
         <main>

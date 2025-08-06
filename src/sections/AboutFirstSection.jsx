@@ -46,7 +46,7 @@ const AboutFirstSection = () => {
   }, []);
 
   return (
-    <div className="section min-h-screen flex items-center justify-start px-12 py-16 overflow-hidden relative">
+    <div className="section min-h-screen flex items-center justify-start px-12 py-16 overflow-hidden relative pointer-events-none">
       <div className="h-[60vh] w-full relative z-10">
         {/* Content for the first section of the About page */}
         <div
