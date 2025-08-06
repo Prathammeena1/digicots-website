@@ -15,7 +15,7 @@ const HomeFourthSectionCanvas = () => {
     if (!canvasRef.current) return;
 
     // const multiplier = 250;
-    const multiplier = 140;
+    const multiplier = 120;
     const nbCol = 1 * multiplier; // Number of columns
     const nbRows = 1.0347 * multiplier; // Number of rows
 
@@ -200,8 +200,8 @@ const HomeFourthSectionCanvas = () => {
           const isHovering = canvas.matches(":hover");
           const currentInfluence =
             materialRef.current.uniforms.uMouseInfluence.value;
-          const targetInfluence = isHovering ? 1.5 : 0.0;
-          const lerpSpeed = 0.1; // Slower transition for more organic feel
+          const targetInfluence = isHovering ? 1.0 : 0.0;
+          const lerpSpeed = 0.05; // Slower transition for more organic feel
 
           materialRef.current.uniforms.uMouseInfluence.value =
             THREE.MathUtils.lerp(currentInfluence, targetInfluence, lerpSpeed);

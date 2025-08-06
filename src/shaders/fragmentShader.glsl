@@ -28,8 +28,8 @@ void main() {
     
     vec4 textureColor = texture2D(uTexture, uv);
     
-    // Exact #FE3560 color - use blend instead of multiply to preserve color accuracy
-    vec3 exactColor = vec3(0.996078, 0.207843, 0.376471); // #FE3560 precise RGB conversion
+    // Exact #ff008a color - use blend instead of multiply to preserve color accuracy
+    vec3 exactColor = vec3(1.0, 0.0, 0.541176); // #ff008a precise RGB conversion
     vec3 finalColor = mix(textureColor.rgb, exactColor, 0.8); // Blend 80% target color with texture
     
     gl_FragColor = vec4(finalColor, textureColor.a);

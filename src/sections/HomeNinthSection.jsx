@@ -21,11 +21,11 @@ const HomeNinthSection = () => {
     <div className="w-full h-screen relative overflow-hidden">
       {/* Image container with blue border */}
       <div className="w-full  h-[75vh] bg-transparent flex items-center justify-center mb-8 absolute top-[22vh] px-16 ">
-        <img
+        {/* <img
           src="/images/service6.png"
           className="object-cover w-full h-full brightness-50"
           alt=""
-        />
+        /> */}
       </div>
       {/* Content */}
       <div className="relative z-10 h-full px-16">

@@ -33,7 +33,7 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-white font-gilroy-semibold text-sm tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
+                className="text-white font-gilroy-semibold text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
               >
                 {item.label}
               </Link>
@@ -53,7 +53,7 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-white font-gilroy-semibold text-sm tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
+                className="text-white font-gilroy-semibold text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
               >
                 {item.label}
               </Link>

@@ -4,7 +4,7 @@ import TextAnimation from "../components/TextAnimation.jsx";
 const HomeSecondSection = () => {
   return (
     <div className="h-screen w-full relative pointer-events-none pt-30">
-      <TextAnimation scrub={true} animeStart="70%" animeEnd="30%" duration="2" stagger={10} className="text-zinc-200 text-center font-[600] text-2xl ">
+      <TextAnimation scrub={true} animeStart="70%" animeEnd="30%" duration="2" stagger={10} className="text-zinc-200 text-center font-bold text-3xl ">
         Driven by instinct, powered by strategy <br /> we’re the ALPHA of digital
         marketing and lead generation.
       </TextAnimation>
