@@ -102,63 +102,63 @@ const CurvedSlider = ({
 
   const cards = generateCards()
 
-  return (
+return (
     <div className="w-full min-h-screen flex items-center justify-center overflow-hidden absolute top-0 left-0 right-0 bottom-0">
-      <div 
-        ref={containerRef}
-        className="relative mt-[420vh] scale-[2.3]"
-      >
-        
-
-        {/* Circular cards */}
-        {cards.map((card) => (
-          <div
-            key={card.id}
-            className="absolute rounded-lg overflow-hidden flex items-center justify-center font-medium shadow-lg hover:shadow-xl transition-all duration-300 pointer-events-none"
-            style={{
-              width: responsiveCardSize * 1.8, // Width is 1.8x height
-              height: responsiveCardSize,
-              left: card.x - (responsiveCardSize * 1.8) / 2, // Adjust positioning for new width
-              top: card.y - responsiveCardSize / 2,
-              transformOrigin: 'center',
-              transform: `rotate(${card.angle + 90}deg)`, // Rotate card to face outward from center
-            }}
-          >
-            <img className='h-full w-full object-cover' src={card.image} alt={card.title} />
-          </div>
-        ))}
-
-        {/* Connection lines (optional visual enhancement) */}
-        {/* <svg 
-          className="absolute pointer-events-none opacity-20"
-          style={{
-            width: responsiveRadius * 2,
-            height: responsiveRadius * 2,
-            left: -responsiveRadius,
-            top: -responsiveRadius,
-          }}
+        <div 
+            ref={containerRef}
+            className={windowSize.width > 1536 
+                ? "relative mt-[300vh] scale-[2.3]" 
+                : "relative mt-[420vh] scale-[2.3]"
+            }
         >
-          {cards.map((card, index) => {
-            const nextCard = cards[(index + 1) % cards.length]
-            return (
-              <line
-                key={`line-${index}`}
-                x1={card.x + responsiveRadius}
-                y1={card.y + responsiveRadius}
-                x2={nextCard.x + responsiveRadius}
-                y2={nextCard.y + responsiveRadius}
-                stroke="rgb(75, 85, 99)"
-                strokeWidth="1"
-                strokeDasharray="5,5"
-              />
-            )
-          })}
-        </svg> */}
-      </div>
+            
+            {/* Circular cards */}
+            {cards.map((card) => (
+                <div
+                    key={card.id}
+                    className="absolute rounded-lg overflow-hidden flex items-center justify-center font-medium shadow-lg hover:shadow-xl transition-all duration-300 pointer-events-none"
+                    style={{
+                        width: responsiveCardSize * 1.8, // Width is 1.8x height
+                        height: responsiveCardSize,
+                        left: card.x - (responsiveCardSize * 1.8) / 2, // Adjust positioning for new width
+                        top: card.y - responsiveCardSize / 2,
+                        transformOrigin: 'center',
+                        transform: `rotate(${card.angle + 90}deg)`, // Rotate card to face outward from center
+                    }}
+                >
+                    <img className='h-full w-full object-cover' src={card.image} alt={card.title} />
+                </div>
+            ))}
 
-     
+            {/* Connection lines (optional visual enhancement) */}
+            {/* <svg 
+                className="absolute pointer-events-none opacity-20"
+                style={{
+                    width: responsiveRadius * 2,
+                    height: responsiveRadius * 2,
+                    left: -responsiveRadius,
+                    top: -responsiveRadius,
+                }}
+            >
+                {cards.map((card, index) => {
+                    const nextCard = cards[(index + 1) % cards.length]
+                    return (
+                        <line
+                            key={`line-${index}`}
+                            x1={card.x + responsiveRadius}
+                            y1={card.y + responsiveRadius}
+                            x2={nextCard.x + responsiveRadius}
+                            y2={nextCard.y + responsiveRadius}
+                            stroke="rgb(75, 85, 99)"
+                            strokeWidth="1"
+                            strokeDasharray="5,5"
+                        />
+                    )
+                })}
+            </svg> */}
+        </div>
     </div>
-  )
+)
 }
 
 export default CurvedSlider

@@ -98,6 +98,8 @@ const App = () => {
     }
   };
 
+  console.log(window.innerWidth)
+
   return (
     <>
       {/* Loading Screen */}

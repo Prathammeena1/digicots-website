@@ -15,9 +15,9 @@ const HomeFourthSectionCanvas = () => {
     if (!canvasRef.current) return;
 
     // const multiplier = 250;
-    const multiplier = 220;
+    const multiplier = 140;
     const nbCol = 1 * multiplier; // Number of columns
-    const nbRows = 1.118 * multiplier; // Number of rows
+    const nbRows = 1.0347 * multiplier; // Number of rows
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -85,7 +85,9 @@ const HomeFourthSectionCanvas = () => {
     // Load SVG texture
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(
-      "/images/wolf.svg",
+      // "/images/wolf-new.svg",
+      // "/images/tommy.jpg",
+      "/images/sample2.png",
       (loadedTexture) => {
         console.log("Texture loaded successfully");
         loadedTexture.minFilter = THREE.LinearFilter;
@@ -190,16 +192,16 @@ const HomeFourthSectionCanvas = () => {
 
       // Update time uniform for wave animation
       if (materialRef.current) {
-        materialRef.current.uniforms.uTime.value += 0.07; // Slightly faster for more dynamic effect
-
+        
         // Smooth mouse influence transition
         const canvas = canvasRef.current;
         if (canvas) {
+          materialRef.current.uniforms.uTime.value += 0.07; // Slightly faster for more dynamic effect
           const isHovering = canvas.matches(":hover");
           const currentInfluence =
             materialRef.current.uniforms.uMouseInfluence.value;
-          const targetInfluence = isHovering ? 1.0 : 0.0;
-          const lerpSpeed = 0.05; // Slower transition for more organic feel
+          const targetInfluence = isHovering ? 1.5 : 0.0;
+          const lerpSpeed = 0.1; // Slower transition for more organic feel
 
           materialRef.current.uniforms.uMouseInfluence.value =
             THREE.MathUtils.lerp(currentInfluence, targetInfluence, lerpSpeed);
@@ -271,10 +273,10 @@ const HomeFourthSectionCanvas = () => {
   }, []);
 
   return (
-    <div className="h-screen w-[25vw] overflow-hidden bg-black absolute left-1/2 top-1/2 -translate-1/2">
+    <div className="h-screen w-[25vw] overflow-hidden scale-[1.3] bg-black absolute left-1/2 top-1/2 -translate-1/2">
       <canvas
         ref={canvasRef}
-        className="w-[25vw] h-full block bg-black"
+        className="w-[25vw] h-full block bg-black "
         style={{ display: "block" }}
       />
     </div>

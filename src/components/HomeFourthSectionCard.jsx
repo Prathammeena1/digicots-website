@@ -9,7 +9,7 @@ const alignment ={
 const HomeFourthSectionCard = ({align,content}) => {
 
   return (
-    <div className={`text-white p-8 rounded-lg max-h-[94vh] flex flex-col justify-between min-h-[400px] ${alignment[align]}`}>
+    <div className={`text-white p-8 rounded-lg max-h-[100vh] flex flex-col justify-between min-h-[400px] mt-12 ${alignment[align]}`}>
       {/* Top section with Pro-Development */}
       <div className="mb-6">
         <h3 className="text-lg font-medium text-gray-300">

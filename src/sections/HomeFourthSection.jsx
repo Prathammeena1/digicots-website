@@ -5,14 +5,14 @@ import HomeFourthSectionCanvas from '../components/HomeFourthSectionCanvas'
 const content = [
   {
     title:"Pro-Strategist ",
-    imgSrc:"/images/Infographics 1_1.mp4.gif",
+    imgSrc:"/images/img1.png",
     h2:"DEVELOPMENT",
     dHead:"Strategies that are tailored to your goals.",
     dParagraph:"We craft data-driven strategies aligned with your goals to drive growth and keep you competitive in a changing market."   
   },
   {
     title:"Pro-Strategist ",
-    imgSrc:"/images/Infographics 1_1.mp4.gif",
+    imgSrc:"/images/img2.png",
     h2:"DEVELOPMENT",
     dHead:"Strategies that are tailored to your goals.",
     dParagraph:"We craft data-driven strategies aligned with your goals to drive growth and keep you competitive in a changing market."   
@@ -21,7 +21,7 @@ const content = [
 
 const HomeFourthSection = () => {
   return (
-    <div className='h-screen w-full bg-black relative overflow-hidden flex items-end justify-center gap-[40vw] px-16 '>
+    <div className='h-screen w-full bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-16 '>
       <HomeFourthSectionCanvas />
 
       {

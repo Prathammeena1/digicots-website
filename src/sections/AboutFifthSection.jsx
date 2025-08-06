@@ -109,7 +109,7 @@ const AboutFifthSection = () => {
 
   return (
     <div className="h-[200vh] w-full relative text-white pt-16" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+      <div className="w-full mx-auto px-4 lg:px-8 md:max-w-7xl 2xl:max-w-[1700px]">
         {/* Content Container */}
         <div className="">
           {/* Top Side - Text Content */}

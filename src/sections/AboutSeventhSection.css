@@ -85,7 +85,7 @@
   left: 0px;
   right: 0px;
   height: 120px;
-  transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+  transition: 0.3s cubic-bezier(0.05, 0.61, 0.41, 0.95);
 }
 
 .label {
@@ -93,7 +93,7 @@
   position: absolute;
   right: 0px;
   height: 40px;
-  transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+  transition: 0.3s cubic-bezier(0.05, 0.61, 0.41, 0.95);
 }
 
 .icon {
@@ -121,7 +121,7 @@
 
 .info > div {
   position: relative;
-  transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95), opacity 0.5s ease-out;
+  transition: 0.3s cubic-bezier(0.05, 0.61, 0.41, 0.95), opacity 0.3s ease-out;
 }
 
 .main {
@@ -130,7 +130,7 @@
 }
 
 .sub {
-  transition-delay: 0.1s;
+  transition-delay: 0.05s;
   font-size: 0.9rem;
   opacity: 0.9;
 }
@@ -185,5 +185,63 @@
   }
   .option.active {
     margin: 0px;
+  }
+}
+
+/* Progress Indicators */
+.progress-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.progress-dot:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.progress-dot.active {
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 40px;
+  border-radius: 6px;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: white;
+  border-radius: 6px;
+  transition: width 0.05s linear;
+}
+
+/* Responsive adjustments for progress indicators */
+@media screen and (max-width: 768px) {
+  .progress-indicators {
+    margin-top: 20px;
+    gap: 8px;
+  }
+  
+  .progress-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .progress-dot.active {
+    width: 30px;
   }
 }
