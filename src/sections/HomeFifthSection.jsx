@@ -19,7 +19,7 @@ const HomeFifthSection = () => {
       scrollTrigger: {
         trigger: parentRef.current,
         start: "top 0%",
-        end: "top -700%",
+        end: "top -600%",
         scrub: 1,
       },
     });
@@ -32,19 +32,13 @@ const HomeFifthSection = () => {
     });
     
     gsap.set(sec1Ref.current, {
-      top: "30%",
+      top: "0%",
     //   opacity: 0,
       scale: 1
     });
 
     // Section 1 entrance (0vh to 100vh)
-    tl.to(sec1Ref.current, {
-      top: "0%",
-      opacity: 1,
-      duration: 1,
-      ease: "power2.inOut"
-    })
-    
+    tl    
     // Section 1 scale + Section 2 entrance (100vh to 200vh)
     .to(sec1Ref.current, {
       scale: 0.75,
@@ -136,14 +130,14 @@ const HomeFifthSection = () => {
       {/* Main service card */}
       <div className="sticky top-0 w-full h-screen z-10">
         {/* Main content */}
-        <div className="relative z-0 max-w-7xl mx-auto py-20">
           {/* Header */}
+        {/* <div className="relative z-0 max-w-7xl mx-auto py-20">
           <div className="text-center ">
             <h2 className=" text-zinc-200 text-5xl md:text-6xl font-bold tracking-wide">
               OUR SERVICES
             </h2>
           </div>
-        </div>
+        </div> */}
 
         {/* Futuristic card container */}
         <div
@@ -153,7 +147,7 @@ const HomeFifthSection = () => {
             backgroundPosition: "center",
           }}
           ref={sec1Ref}
-          className="h-screen w-full absolute z-10 flex items-end"
+          className="h-screen w-full absolute top-0 z-10 flex items-end"
         >
           <div className="h-[90%] w-full bg-gradient-to-b from-transparent to-black"></div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center absolute bottom-20 left-40">
@@ -161,7 +155,7 @@ const HomeFifthSection = () => {
             <div className="text-white w-[80vw] flex items-end justify-between">
               <div className="">
                 <div className="mb-2">
-                  <span className="text-zinc-300 text-sm  tracking-wider">
+                  <span className="text-zinc-300 text-sm tracking-wider">
                     Solutions/Services
                   </span>
                 </div>
@@ -359,7 +353,7 @@ const HomeFifthSection = () => {
       </div>
 
       {/* This div creates the scroll height for the sticky effect */}
-      <div className="h-[700vh]"></div>
+      <div className="h-[600vh]"></div>
     </div>
   );
 };

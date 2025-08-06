@@ -311,16 +311,17 @@ const HomeHeroSection = () => {
 
           <div
             ref={sec1}
-            className="section h-screen w-full absolute top-0 left-0 right-0 z-20"
+            className="section h-screen w-full absolute top-0 left-0 right-0 z-20 bg-white/[.1] backdrop-blur"
           >
             {/* SVG Text Mask Implementation */}
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full">  
               {/* SVG Text Mask */}
               <svg
                 className="absolute top-0 left-0 pointer-events-none h-screen w-screen"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1920 1080"
                 preserveAspectRatio="xMidYMid slice"
+                
               >
                 <defs>
                   <mask id="text-mask">
@@ -337,6 +338,8 @@ const HomeHeroSection = () => {
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
+                      
+
                     >
                       BRIEF
                     </text>
@@ -352,6 +355,7 @@ const HomeHeroSection = () => {
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
+                      
                     >
                       TO BELIEF.
                     </text>
@@ -370,7 +374,7 @@ const HomeHeroSection = () => {
           </div>
           <div
             ref={sec2}
-            className="section h-screen w-full absolute top-0 left-0 right-0 z-30"
+            className="section h-screen w-full absolute top-0 left-0 right-0 z-30 bg-white/[.1] backdrop-blur"
           >
             {/* SVG Text Mask Implementation */}
             <div className="relative w-full h-full">
@@ -430,7 +434,7 @@ const HomeHeroSection = () => {
           </div>
           <div
             ref={sec3}
-            className="section h-screen w-full absolute top-0 left-0 right-0 z-30"
+            className="section h-screen w-full absolute top-0 left-0 right-0 z-30 bg-white/[.1] backdrop-blur"
           >
             {/* SVG Text Mask Implementation */}
             <div className="relative w-full h-full">
