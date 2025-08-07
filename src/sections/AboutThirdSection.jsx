@@ -42,7 +42,7 @@ return (
                         </div>
                     </div>
                     <div className='relative'>
-                        <p className='text-lg leading-relaxed text-gray-300 mb-8 indent-16'>
+                        <p className='text-lg leading-relaxed text-gray-300 mb-8'>
                              The force della knowledge, the impact della creativity, the pervasiveness della technology. With the consulting of
                             marketing and communication of Quamm, the value del your business grows in the tempo. The force della knowledge,
                             the impact della creativity, the pervasiveness della technology. With the consulting of marketing and communication of 

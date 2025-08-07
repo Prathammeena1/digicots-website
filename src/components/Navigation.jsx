@@ -17,7 +17,7 @@ const Navigation = () => {
     { path: '/web-digital', label: 'Web & Digital' },
     // { path: '/graphics', label: 'Graphics' },
     { path: '/about', label: 'About' },
-    { path: '/content', label: 'Content' },
+    { path: '/services', label: 'Services' },
     { path: '/production', label: 'Production' }
   ]
 
