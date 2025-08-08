@@ -401,58 +401,117 @@ const ServiceLanding = () => {
             <div className="w-full h-px bg-zinc-600 mb-12"></div>
 
             {/* Categories Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
-              <div className="text-center">
-                <h3 className="text-zinc-400 text-lg md:text-xl font-medium tracking-wider uppercase">
-                  Development
-                </h3>
-              </div>
+                  <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(2, 1fr)', 
+                    gap: '2rem' 
+                  }}
+                  className="md:grid-cols-4 md:gap-16">
+                    <div style={{ textAlign: 'center' }}>
+                    <h3 style={{ 
+                      color: 'rgb(161, 161, 170)', 
+                      fontSize: '1.125rem', 
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }} className="md:text-xl">
+                      Development
+                    </h3>
+                    </div>
 
-              <div className="text-center">
-                <h3 className="text-zinc-400 text-lg md:text-xl font-medium tracking-wider uppercase">
-                  Design
-                </h3>
-              </div>
+                    <div style={{ textAlign: 'center' }}>
+                    <h3 style={{ 
+                      color: 'rgb(161, 161, 170)', 
+                      fontSize: '1.125rem', 
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }} className="md:text-xl">
+                      Design
+                    </h3>
+                    </div>
 
-              <div className="text-center">
-                <h3 className="text-zinc-400 text-lg md:text-xl font-medium tracking-wider uppercase">
-                  Graphics
-                </h3>
-              </div>
+                    <div style={{ textAlign: 'center' }}>
+                    <h3 style={{ 
+                      color: 'rgb(161, 161, 170)', 
+                      fontSize: '1.125rem', 
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }} className="md:text-xl">
+                      Graphics
+                    </h3>
+                    </div>
 
-              <div className="text-center">
-                <h3 className="text-zinc-400 text-lg md:text-xl font-medium tracking-wider uppercase">
-                  Content
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          ref={section2Ref}
-          className="section-2 h-screen w-[100vw] flex  relative "
-        >
-          {serviceImagesConfig.map((imageConfig, index) => (
-            <div
-              key={index}
-              ref={(el) => (servicesRef.current[index] = el)}
-              className={`flex items-center justify-center h-full w-[${imageConfig.width}] ${imageConfig.hasBackground ? 'bg-zinc-900' : ''}`}
-            >
-              <div className={`h-[100%] ${imageConfig.containerWidth}`}>
-                <img
-                  src={imageConfig.src}
-                  className="object-cover h-full w-full"
-                  alt=""
-                />
-                
-              </div>
-            </div>
-          ))}
-          <div
-            ref={contentRef}
-            className="content h-[100vh] w-[40vw] absolute top-0 right-[-40vw] flex flex-col  px-12 pt-18 "
-          >
-            {/* Services Title */}
+                    <div style={{ textAlign: 'center' }}>
+                    <h3 style={{ 
+                      color: 'rgb(161, 161, 170)', 
+                      fontSize: '1.125rem', 
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }} className="md:text-xl">
+                      Content
+                    </h3>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                <div
+                  ref={section2Ref}
+                  style={{ 
+                  height: '100vh', 
+                  width: '100vw', 
+                  display: 'flex', 
+                  position: 'relative' 
+                  }}
+                >
+                  {serviceImagesConfig.map((imageConfig, index) => (
+                  <div
+                    key={index}
+                    ref={(el) => (servicesRef.current[index] = el)}
+                    style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    height: '100%',
+                    width: imageConfig.width,
+                    backgroundColor: imageConfig.hasBackground ? 'rgb(24, 24, 27)' : 'transparent'
+                    }}
+                  >
+                    <div style={{ 
+                    height: '100%', 
+                    width: imageConfig.containerWidth === 'w-full' ? '100%' : 'auto'
+                    }}>
+                    <img
+                      src={imageConfig.src}
+                      style={{ 
+                      objectFit: 'cover', 
+                      height: '100%', 
+                      width: '100%' 
+                      }}
+                      alt=""
+                    />
+                    
+                    </div>
+                  </div>
+                  ))}
+                  <div
+                  ref={contentRef}
+                  style={{ 
+                    height: '100vh', 
+                    width: '40vw', 
+                    position: 'absolute', 
+                    top: 0, 
+                    right: '-40vw', 
+                    display: 'flex', 
+                    flexDirection: 'column',
+                    paddingLeft: '3rem',
+                    paddingRight: '3rem',
+                    paddingTop: '4.5rem'
+                  }}
+                  >
+                  {/* Services Title */}
             <div className="">
               <h1 className="text-white text-6xl md:text-7xl font-bold tracking-wide">
                 Services
