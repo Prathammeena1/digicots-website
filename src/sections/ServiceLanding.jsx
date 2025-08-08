@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
+import { HiArrowLongRight } from "react-icons/hi2";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,38 +52,50 @@ const serviceImagesConfig = [
     src: "/images/service1.png",
     width: "25vw",
     hasBackground: false,
-    containerWidth: "w-full"
+    containerWidth: "w-full",
+    title: "Web & Digital",
+    tags:["web", "digital", "branding", "marketing", "graphics"]
   },
   {
     src: "/images/service2.png",
     width: "15vw",
     hasBackground: false,
-    containerWidth: ""
+    containerWidth: "",
+    title: "Web & Digital",
+    tags:["web", "digital", "branding", "marketing", "graphics"]
   },
   {
     src: "/images/service3.png",
     width: "10vw",
     hasBackground: true,
-    containerWidth: ""
+    containerWidth: "",
+    title: "Web & Digital",
+    tags:["web", "digital", "branding", "marketing", "graphics"]
   },
   {
     src: "/images/service4.png",
-    width: "10vw",
+    width: "0vw",
     hasBackground: true,
-    containerWidth: ""
+    containerWidth: "",
+    title: "Web & Digital",
+    tags:["web", "digital", "branding", "marketing", "graphics"]
   },
   {
     src: "/images/service5.png",
-    width: "5vw",
+    width: "0vw",
     hasBackground: true,
-    containerWidth: ""
+    containerWidth: "",
+    title: "Web & Digital",
+    tags:["web", "digital", "branding", "marketing", "graphics"]
   },
   {
     src: "/images/service6.png",
-    width: "5vw",
+    width: "0vw",
     hasBackground: true,
-    containerWidth: "w-full"
-  }
+    containerWidth: "w-full",
+    title: "Web & Digital",
+    tags:["web", "digital", "branding", "marketing", "graphics"]
+  },
 ];
 
 const ServiceLanding = () => {
@@ -116,7 +129,14 @@ const ServiceLanding = () => {
       .to(
         servicesRef.current[0],
         {
-          width: "50vw",
+          width: "60vw",
+        },
+        "a"
+      )
+      .to(
+        servicesRef.current[0].querySelector('.service-content'),
+        {
+          opacity:1,
         },
         "a"
       )
@@ -130,7 +150,7 @@ const ServiceLanding = () => {
       .to(
         servicesRef.current[2],
         {
-          width: "20vw",
+          width: "10vw",
         },
         "a"
       )
@@ -145,7 +165,14 @@ const ServiceLanding = () => {
       .to(
         servicesRef.current[1],
         {
-          width: "50vw",
+          width: "60vw",
+        },
+        "b"
+      )
+       .to(
+        servicesRef.current[1].querySelector('.service-content'),
+        {
+          opacity:1,
         },
         "b"
       )
@@ -159,14 +186,14 @@ const ServiceLanding = () => {
       .to(
         servicesRef.current[3],
         {
-          width: "20vw",
+          width: "10vw",
         },
         "b"
       )
       .to(
         servicesRef.current[4],
         {
-          width: "15vw",
+          // width: "15vw",
         },
         "b"
       )
@@ -185,6 +212,13 @@ const ServiceLanding = () => {
         },
         "c"
       )
+       .to(
+        servicesRef.current[2].querySelector('.service-content'),
+        {
+          opacity:1,
+        },
+        "c"
+      )
       .to(
         servicesRef.current[3],
         {
@@ -195,14 +229,14 @@ const ServiceLanding = () => {
       .to(
         servicesRef.current[4],
         {
-          width: "20vw",
+          width: "10vw",
         },
         "c"
       )
       .to(
         servicesRef.current[5],
         {
-          width: "15vw",
+          // width: "15vw",
         },
         "c"
       )
@@ -221,6 +255,13 @@ const ServiceLanding = () => {
         },
         "d"
       )
+       .to(
+        servicesRef.current[3].querySelector('.service-content'),
+        {
+          opacity:1,
+        },
+        "d"
+      )
       .to(
         servicesRef.current[4],
         {
@@ -231,7 +272,7 @@ const ServiceLanding = () => {
       .to(
         servicesRef.current[5],
         {
-          width: "20vw",
+          width: "10vw",
         },
         "d"
       )
@@ -247,6 +288,13 @@ const ServiceLanding = () => {
         servicesRef.current[4],
         {
           width: "60vw",
+        },
+        "e"
+      )
+       .to(
+        servicesRef.current[4].querySelector('.service-content'),
+        {
+          opacity:1,
         },
         "e"
       )
@@ -277,6 +325,13 @@ const ServiceLanding = () => {
         servicesRef.current[5],
         {
           width: "60vw",
+        },
+        "f"
+      )
+       .to(
+        servicesRef.current[5].querySelector('.service-content'),
+        {
+          opacity:1,
         },
         "f"
       )
@@ -401,117 +456,160 @@ const ServiceLanding = () => {
             <div className="w-full h-px bg-zinc-600 mb-12"></div>
 
             {/* Categories Grid */}
-                  <div style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: 'repeat(2, 1fr)', 
-                    gap: '2rem' 
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: "2rem",
+              }}
+              className="md:grid-cols-4 md:gap-16"
+            >
+              <div style={{ textAlign: "center" }}>
+                <h3
+                  style={{
+                    color: "rgb(161, 161, 170)",
+                    fontSize: "1.125rem",
+                    fontWeight: "500",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
                   }}
-                  className="md:grid-cols-4 md:gap-16">
-                    <div style={{ textAlign: 'center' }}>
-                    <h3 style={{ 
-                      color: 'rgb(161, 161, 170)', 
-                      fontSize: '1.125rem', 
-                      fontWeight: '500',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
-                    }} className="md:text-xl">
-                      Development
-                    </h3>
-                    </div>
+                  className="md:text-xl"
+                >
+                  Development
+                </h3>
+              </div>
 
-                    <div style={{ textAlign: 'center' }}>
-                    <h3 style={{ 
-                      color: 'rgb(161, 161, 170)', 
-                      fontSize: '1.125rem', 
-                      fontWeight: '500',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
-                    }} className="md:text-xl">
-                      Design
-                    </h3>
-                    </div>
+              <div style={{ textAlign: "center" }}>
+                <h3
+                  style={{
+                    color: "rgb(161, 161, 170)",
+                    fontSize: "1.125rem",
+                    fontWeight: "500",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                  }}
+                  className="md:text-xl"
+                >
+                  Design
+                </h3>
+              </div>
 
-                    <div style={{ textAlign: 'center' }}>
-                    <h3 style={{ 
-                      color: 'rgb(161, 161, 170)', 
-                      fontSize: '1.125rem', 
-                      fontWeight: '500',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
-                    }} className="md:text-xl">
-                      Graphics
-                    </h3>
-                    </div>
+              <div style={{ textAlign: "center" }}>
+                <h3
+                  style={{
+                    color: "rgb(161, 161, 170)",
+                    fontSize: "1.125rem",
+                    fontWeight: "500",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                  }}
+                  className="md:text-xl"
+                >
+                  Graphics
+                </h3>
+              </div>
 
-                    <div style={{ textAlign: 'center' }}>
-                    <h3 style={{ 
-                      color: 'rgb(161, 161, 170)', 
-                      fontSize: '1.125rem', 
-                      fontWeight: '500',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
-                    }} className="md:text-xl">
-                      Content
-                    </h3>
-                    </div>
+              <div style={{ textAlign: "center" }}>
+                <h3
+                  style={{
+                    color: "rgb(161, 161, 170)",
+                    fontSize: "1.125rem",
+                    fontWeight: "500",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                  }}
+                  className="md:text-xl"
+                >
+                  Content
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          ref={section2Ref}
+          style={{
+            height: "100vh",
+            width: "100vw",
+            display: "flex",
+            position: "relative",
+          }}
+        >
+          {serviceImagesConfig.map((imageConfig, index) => (
+            <div
+              key={index}
+              ref={(el) => (servicesRef.current[index] = el)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                width: imageConfig.width,
+                backgroundColor: imageConfig.hasBackground
+                  ? "rgb(24, 24, 27)"
+                  : "transparent",
+                  overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  height: "100%",
+                  width:
+                    imageConfig.containerWidth === "w-full" ? "100%" : "auto",
+                }}
+                className="relative"
+              >
+                <img
+                  src={imageConfig.src}
+                  style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    width: "100%",
+                  }}
+                  alt=""
+                />
+                <div className="service-content absolute z-20 bottom-0 bg-gradient-to-t from-black to-transparent w-full h-[50vh] pt-[22vh] opacity-0">
+                  <div className="tags flex w-full justify-between items-center px-14">
+                    {imageConfig.tags.map((tag, tagIndex) => (
+                      <div
+                        key={tagIndex}
+                        className="text-white text-md font-medium px-4 py-2 border border-zinc-300 rounded-full bg-black/[.1]"
+                      >
+                        {tag}
+                      </div>
+                    ))}
                   </div>
+
+                  <div className="title">
+                    <h2 className="text-white text-3xl font-bold mt-8 text-center">
+                      {imageConfig.title}
+                    </h2>
+                  </div>
+
+                  <div className="navigation w-full px-14  py-5 flex items-center justify-between">
+                    <div className="page-no">{index + 1}</div>
+                    <div className="arrow text-2xl"><HiArrowLongRight /></div>
                   </div>
                 </div>
-                <div
-                  ref={section2Ref}
-                  style={{ 
-                  height: '100vh', 
-                  width: '100vw', 
-                  display: 'flex', 
-                  position: 'relative' 
-                  }}
-                >
-                  {serviceImagesConfig.map((imageConfig, index) => (
-                  <div
-                    key={index}
-                    ref={(el) => (servicesRef.current[index] = el)}
-                    style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    height: '100%',
-                    width: imageConfig.width,
-                    backgroundColor: imageConfig.hasBackground ? 'rgb(24, 24, 27)' : 'transparent'
-                    }}
-                  >
-                    <div style={{ 
-                    height: '100%', 
-                    width: imageConfig.containerWidth === 'w-full' ? '100%' : 'auto'
-                    }}>
-                    <img
-                      src={imageConfig.src}
-                      style={{ 
-                      objectFit: 'cover', 
-                      height: '100%', 
-                      width: '100%' 
-                      }}
-                      alt=""
-                    />
-                    
-                    </div>
-                  </div>
-                  ))}
-                  <div
-                  ref={contentRef}
-                  style={{ 
-                    height: '100vh', 
-                    width: '40vw', 
-                    position: 'absolute', 
-                    top: 0, 
-                    right: '-40vw', 
-                    display: 'flex', 
-                    flexDirection: 'column',
-                    paddingLeft: '3rem',
-                    paddingRight: '3rem',
-                    paddingTop: '4.5rem'
-                  }}
-                  >
-                  {/* Services Title */}
+              </div>
+            </div>
+          ))}
+          <div
+            ref={contentRef}
+            style={{
+              height: "100vh",
+              width: "40vw",
+              position: "absolute",
+              top: 0,
+              right: "-40vw",
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "3rem",
+              paddingRight: "3rem",
+              paddingTop: "4.5rem",
+            }}
+          >
+            {/* Services Title */}
             <div className="">
               <h1 className="text-white text-6xl md:text-7xl font-bold tracking-wide">
                 Services
