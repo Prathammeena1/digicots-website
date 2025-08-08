@@ -13,6 +13,7 @@ import { resetScrollState } from "./utils/scrollUtils.js";
 import Approach from "./pages/Approach.jsx";
 import Footer from "./sections/Footer.jsx";
 import ThankyouPopUp from "./sections/ThankyouPopup.jsx";
+import ServicesDetail from "./pages/ServicesDetail.jsx";
 
 // Lazy load heavy components
 const FluidCanvas = React.lazy(() => import("./components/FluidCanvas.jsx"));
@@ -135,6 +136,7 @@ const App = () => {
             <Route path="/approach/:id" element={<Approach />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/:id" element={<ServicesDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route
               path="/branding"
