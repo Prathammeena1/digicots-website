@@ -655,23 +655,31 @@ const ServicesDetailLanding = ({ servicesData }) => {
                   className="fixed top-0 left-0 z-50 pointer-events-none"
                   style={{ transform: "translate(50%, 50%)" }}
                 >
-                  {/* Circular Button */}
-                  <div className="relative">
-                    {/* Outer Circle */}
-                    <div
-                      ref={exploreRef}
-                      className="w-38 h-38 rounded-full border bg-gradient-to-t from-transparent via-gray-400/50 to-gray-400 flex items-center justify-center relative"
-                    >
-                      <div className="w-[calc(100%-4px)] h-[calc(100%-4px)] rounded-full bg-black absolute"></div>
-                      <div className="w-26 h-26 rounded-full flex items-center justify-center relative bg-gradient-to-r from-transparent via-gray-400/50 to-gray-400">
-                        <div className="w-[calc(100%-4px)] h-[calc(100%-4px)] rounded-full bg-black absolute"></div>
-                      </div>
-                    </div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
-                      <div className="text-[11px] font-medium">Explore The</div>
-                      <div className="text-[11px] font-medium">Case Study</div>
-                    </div>
-                  </div>
+                  <div style={{
+                width: 120,
+                height: 120,
+                borderRadius: '50%',
+                border: '2px solid #fff',
+                background: 'rgba(100,100,100,0.25)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                boxShadow: '0 0 0 1px rgba(255,255,255,0.08)'
+              }}>
+                {/* Left arrow */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{position:'absolute',left:8,top:'50%',transform:'translateY(-50%)'}}><polygon points="16,6 8,12 16,18" fill="#fff"/></svg>
+                {/* Right arrow */}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{position:'absolute',right:8,top:'50%',transform:'translateY(-50%)'}}><polygon points="8,6 16,12 8,18" fill="#fff"/></svg>
+                {/* Center dot */}
+                <div style={{
+                  width: 16,
+                  height: 16,
+                  borderRadius: '50%',
+                  background: '#e5e5e5',
+                  zIndex: 2
+                }} />
+              </div>
                 </div>
 
                 {/* Navigation Progress Dots */}

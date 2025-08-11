@@ -39,8 +39,9 @@ const HomeHeroSection = () => {
   const [videoReady, setVideoReady] = useState(false);
 
   // Production video URL - Replace with your actual video URL
-  const VIDEO_URL = "https://ik.imagekit.io/x5xessyka/digicots/showreel.webm/ik-video.mp4?tr=orig"; // Change this to your cloud video URL
-
+  
+  // const VIDEO_URL = "https://ik.imagekit.io/x5xessyka/digicots/showreel.webm/ik-video.mp4?tr=orig"; // Change this to your cloud video URL
+  const VIDEO_URL = "/videos/showreel.webm"; // Change this to your cloud video URL
   // Get logo context
   const { navigationLogoRef } = useLogo();
 

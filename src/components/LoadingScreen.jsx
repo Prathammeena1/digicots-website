@@ -2,47 +2,68 @@ import React, { useEffect, useState } from 'react';
 
 const LoadingScreen = ({ isLoading, onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  // Optimize initial render
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (isLoading) {
-      // Very fast progress animation
-      const progressInterval = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 100) {
-            clearInterval(progressInterval);
-            // Immediate completion
+    if (isLoading && mounted) {
+      // Use requestAnimationFrame for smoother animation with less CPU usage
+      let start = null;
+      let rafId = null;
+      
+      const animateProgress = (timestamp) => {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+        
+        // Complete in 800ms max (faster than typical perceived loading time)
+        const newProgress = Math.min(100, (elapsed / 800) * 100);
+        setProgress(newProgress);
+        
+        if (newProgress < 100) {
+          rafId = requestAnimationFrame(animateProgress);
+        } else {
+          // Callback with slight delay to ensure UI renders
+          setTimeout(() => {
             onLoadingComplete?.();
-            return 100;
-          }
-          return prev + Math.random() * 25;
-        });
-      }, 50);
-
+          }, 50);
+        }
+      };
+      
+      rafId = requestAnimationFrame(animateProgress);
+      
       return () => {
-        clearInterval(progressInterval);
+        if (rafId) cancelAnimationFrame(rafId);
       };
     }
-  }, [isLoading, onLoadingComplete]);
+  }, [isLoading, onLoadingComplete, mounted]);
 
-  if (!isLoading) return null;
+  // Exit early if not loading or not mounted yet
+  if (!isLoading || !mounted) return null;
 
   return (
-    <div className="fixed inset-0 z-[999999] bg-black flex items-center justify-center">
-      {/* Main loading content */}
+    <div className="fixed inset-0 z-[999999] bg-black flex items-center justify-center will-change-auto">
+      {/* Main loading content - simplified for performance */}
       <div className="text-center">
-        {/* Simple text logo */}
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-white tracking-wider" style={{ fontFamily: 'system-ui, sans-serif' }}>
+        {/* Simple text logo - no images to load */}
+        <div className="mb-4">
+          <h1 className="text-2xl font-bold text-white tracking-wider" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
             DIGICOTS
           </h1>
         </div>
 
-        {/* Simple progress bar */}
-        <div className="w-48 mx-auto">
-          <div className="bg-gray-700 h-1 rounded-full">
+        {/* Optimized progress bar with hardware acceleration */}
+        <div className="w-32 mx-auto">
+          <div className="bg-gray-800 h-px">
             <div 
-              className="h-full bg-white transition-all duration-100"
-              style={{ width: `${Math.min(progress, 100)}%` }}
+              className="h-full bg-white"
+              style={{ 
+                width: `${Math.min(progress, 100)}%`,
+                transform: 'translateZ(0)' // Hardware acceleration
+              }}
             />
           </div>
         </div>
