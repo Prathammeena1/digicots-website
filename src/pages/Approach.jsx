@@ -48,6 +48,7 @@ const Approach = () => {
       <ApproachFirstSection step={step} />
       <ApproachSecondSection step={step} />
       <ApproachThirdSection step={step} />
+      
     </div>
   );
 };

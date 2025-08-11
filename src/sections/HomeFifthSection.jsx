@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
 import { HiArrowLongRight } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 // Services data array
 const servicesData = [
@@ -13,46 +14,52 @@ const servicesData = [
     title: "Web & Digital",
     description:
       "Website Design | Website Development | UI/UX Design | Ecommerce Sol...",
-  },
-  {
-    id: 2,
-    image: "/images/WebnDigital_2.webp",
-    category: "Solutions/Services",
-    title: "Branding",
-    description:
+      href: "/services/1"
+    },
+    {
+      id: 2,
+      image: "/images/WebnDigital_2.webp",
+      category: "Solutions/Services",
+      title: "Branding",
+      description:
       "Logo Design  |  Brand Strategy  |  Visual Identity  |  Brand Guidelines  |  Na...",
-  },
-  {
-    id: 3,
-    image: "/images/service3.png",
-    category: "Solutions/Services",
-    title: "Digital Marketing",
-    description:
+      href: "/services/2"
+    },
+    {
+      id: 3,
+      image: "/images/service3.png",
+      category: "Solutions/Services",
+      title: "Digital Marketing",
+      description:
       "Logo Design | Brand Identity | Marketing Materials | Brand Strategy...",
-  },
-  {
-    id: 4,
-    image: "/images/service4.png",
-    category: "Solutions/Services",
-    title: "Content Generation",
-    description:
+      href: "/services/3"
+    },
+    {
+      id: 4,
+      image: "/images/service4.png",
+      category: "Solutions/Services",
+      title: "Content Generation",
+      description:
       "3D Modelling  |  Content Strategy  |  Copywriting  |  Photography   |  Anim...",
-  },
-  {
-    id: 5,
-    image: "/images/service5.png",
-    category: "Solutions/Services",
+      href: "/services/4"
+    },
+    {
+      id: 5,
+      image: "/images/service5.png",
+      category: "Solutions/Services",
     title: "Production (Pre-Post)",
     description:
       "Creative Direction & Storyboarding  |  Scriptwriting & Copywriting  |  Cam...",
-  },
-  {
-    id: 6,
-    image: "/images/service6.png",
-    category: "Solutions/Services",
-    title: "Creatives & Graphics",
-    description:
+      href: "/services/5"
+    },
+    {
+      id: 6,
+      image: "/images/service6.png",
+      category: "Solutions/Services",
+      title: "Creatives & Graphics",
+      description:
       "Creatives Solutions  |  Motion Design  |  Illustration Design  |  Print...",
+      href: "/services/6"
   },
 ];
 
@@ -164,9 +171,9 @@ const HomeFifthSection = () => {
                     {service.description}
                   </div>
                 </div>
-                <div className="">
+                <Link to={service.href} className="">
                   <HiArrowLongRight className="text-4xl" />
-                </div>
+                </Link>
               </div>
             </div>
           </div>
