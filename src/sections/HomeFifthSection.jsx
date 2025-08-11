@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const servicesData = [
   {
     id: 1,
-    image: "/final-images/WebnDigital.webp",
+    image: "/final-images/home-services/WebnDigital.webp",
     category: "Solutions/Services",
     title: "Web & Digital",
     description:
@@ -18,7 +18,7 @@ const servicesData = [
     },
     {
       id: 2,
-      image: "/final-images/Branding.webp",
+      image: "/final-images/home-services/Branding.webp",
       category: "Solutions/Services",
       title: "Branding",
       description:
@@ -27,7 +27,7 @@ const servicesData = [
     },
     {
       id: 3,
-      image: "/final-images/DIgitalM.webp",
+      image: "/final-images/home-services/DIgitalM.webp",
       category: "Solutions/Services",
       title: "Digital Marketing",
       description:
@@ -36,7 +36,7 @@ const servicesData = [
     },
     {
       id: 4,
-      image: "/final-images/Content.webp",
+      image: "/final-images/home-services/Content.webp",
       category: "Solutions/Services",
       title: "Content Generation",
       description:
@@ -45,7 +45,7 @@ const servicesData = [
     },
     {
       id: 5,
-      image: "/final-images/Production.webp",
+      image: "/final-images/home-services/Production.webp",
       category: "Solutions/Services",
     title: "Production (Pre-Post)",
     description:
@@ -54,7 +54,7 @@ const servicesData = [
     },
     {
       id: 6,
-      image: "/final-images/Graphic.webp",
+      image: "/final-images/home-services/Graphic.webp",
       category: "Solutions/Services",
       title: "Creatives & Graphics",
       description:

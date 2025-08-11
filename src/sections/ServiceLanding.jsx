@@ -14,7 +14,7 @@ const servicesData = [
     title: "Web & Digital",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-        src: "/images/WebnDigital.webp",
+        src: "/final-images/services/Web.webp",
 
     width: "25vw",
     hasBackground: false,
@@ -27,7 +27,7 @@ const servicesData = [
     title: "Branding",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-        src: "/images/WebnDigital_2.webp",
+        src: "/final-images/services/Branding.webp",
 
     width: "15vw",
     hasBackground: false,
@@ -40,7 +40,7 @@ const servicesData = [
     title: "Digital Marketing",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service3.png",
+    src: "/final-images/services/Digital.webp",
     width: "10vw",
     hasBackground: true,
     containerWidth: "",
@@ -52,7 +52,7 @@ const servicesData = [
     title: "Content Generation",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service4.png",
+    src: "/final-images/services/Content.webp",
     width: "0vw",
     hasBackground: true,
     containerWidth: "",
@@ -64,7 +64,7 @@ const servicesData = [
     title: "Production (Pre-Post)",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service5.png",
+    src: "/final-images/services/Production.webp",
     width: "0vw",
     hasBackground: true,
     containerWidth: "",
@@ -76,7 +76,7 @@ const servicesData = [
     title: "Creative & Graphics",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service6.png",
+    src: "/final-images/services/Graphic.webp",
     width: "0vw",
     hasBackground: true,
     containerWidth: "w-full",

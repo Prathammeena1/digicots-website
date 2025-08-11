@@ -40,13 +40,16 @@ const Navigation = () => {
             ))}
           </div>
           
+          {/* Preload logo for optimization */}
+          <link rel="preload" as="image" href="/images/logo-1.svg" />
+
           {/* Center logo */}
           <div ref={navigationLogoRef} className="flex items-center">
             <Link to="/" className="logo-container">
               <img src="/images/logo-1.svg" className='w-30' alt="" />
             </Link>
           </div>
-          
+
           {/* Right side navigation */}
           <div className="flex items-center space-x-18">
             {navItems.slice(3).map((item) => (
