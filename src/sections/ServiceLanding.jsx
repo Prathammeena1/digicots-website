@@ -11,11 +11,12 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
   {
     id: "01",
-    title: "Web & Digital",
+    title: "Creative & Graphics",
+    src: "/final-images/services/Content.webp",
+    
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-        src: "/images/WebnDigital.webp",
-
+    "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+    
     width: "25vw",
     hasBackground: false,
     containerWidth: "w-full",
@@ -24,11 +25,11 @@ const servicesData = [
   },
   {
     id: "02",
-    title: "Branding",
+    title: "Creative & Graphics",
+    src: "/final-images/services/Graphic.webp",
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-        src: "/images/WebnDigital_2.webp",
-
+    "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+    
     width: "15vw",
     hasBackground: false,
     containerWidth: "",
@@ -37,10 +38,10 @@ const servicesData = [
   },
   {
     id: "03",
-    title: "Digital Marketing",
+    title: "Production (Pre-Post)",
+    src: "/final-images/services/Production.webp",
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service3.png",
+    "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     width: "10vw",
     hasBackground: true,
     containerWidth: "",
@@ -49,10 +50,10 @@ const servicesData = [
   },
   {
     id: "04",
-    title: "Content Generation",
+    title: "Branding",
+    src: "/final-images/services/Branding.webp",
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service4.png",
+    "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     width: "0vw",
     hasBackground: true,
     containerWidth: "",
@@ -61,10 +62,10 @@ const servicesData = [
   },
   {
     id: "05",
-    title: "Production (Pre-Post)",
+    title: "Web & Digital",
+    src: "/final-images/services/Web.webp",
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service5.png",
+    "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     width: "0vw",
     hasBackground: true,
     containerWidth: "",
@@ -73,10 +74,10 @@ const servicesData = [
   },
   {
     id: "06",
-    title: "Creative & Graphics",
+    title: "Digital Marketing",
+    src: "/final-images/services/Digital.webp",
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service6.png",
+    "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     width: "0vw",
     hasBackground: true,
     containerWidth: "w-full",
