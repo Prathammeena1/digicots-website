@@ -8,7 +8,7 @@ import { HiArrowLongRight } from "react-icons/hi2";
 const servicesData = [
   {
     id: 1,
-    image: "/images/service1.png",
+    image: "/images/WebnDigital.webp",
     category: "Solutions/Services",
     title: "Web & Digital",
     description:
@@ -16,7 +16,7 @@ const servicesData = [
   },
   {
     id: 2,
-    image: "/images/service2.png",
+    image: "/images/WebnDigital_2.webp",
     category: "Solutions/Services",
     title: "Branding",
     description:

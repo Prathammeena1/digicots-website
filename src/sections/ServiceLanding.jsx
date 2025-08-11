@@ -14,7 +14,8 @@ const servicesData = [
     title: "Web & Digital",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service1.png",
+        src: "/images/WebnDigital.webp",
+
     width: "25vw",
     hasBackground: false,
     containerWidth: "w-full",
@@ -26,7 +27,8 @@ const servicesData = [
     title: "Branding",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-    src: "/images/service2.png",
+        src: "/images/WebnDigital_2.webp",
+
     width: "15vw",
     hasBackground: false,
     containerWidth: "",
