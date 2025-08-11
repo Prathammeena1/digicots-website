@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef } from "react";
 import { HiArrowLongRight } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,7 +55,8 @@ const serviceImagesConfig = [
     hasBackground: false,
     containerWidth: "w-full",
     title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"]
+    tags:["web", "digital", "branding", "marketing", "graphics"],
+    href:"/services/1"
   },
   {
     src: "/images/service2.png",
@@ -62,7 +64,8 @@ const serviceImagesConfig = [
     hasBackground: false,
     containerWidth: "",
     title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"]
+    tags:["web", "digital", "branding", "marketing", "graphics"],
+    href:"/services/2"
   },
   {
     src: "/images/service3.png",
@@ -70,7 +73,8 @@ const serviceImagesConfig = [
     hasBackground: true,
     containerWidth: "",
     title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"]
+    tags:["web", "digital", "branding", "marketing", "graphics"],
+    href:"/services/3"
   },
   {
     src: "/images/service4.png",
@@ -78,7 +82,8 @@ const serviceImagesConfig = [
     hasBackground: true,
     containerWidth: "",
     title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"]
+    tags:["web", "digital", "branding", "marketing", "graphics"],
+    href:"/services/4"
   },
   {
     src: "/images/service5.png",
@@ -86,7 +91,8 @@ const serviceImagesConfig = [
     hasBackground: true,
     containerWidth: "",
     title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"]
+    tags:["web", "digital", "branding", "marketing", "graphics"],
+    href:"/services/5"
   },
   {
     src: "/images/service6.png",
@@ -94,7 +100,8 @@ const serviceImagesConfig = [
     hasBackground: true,
     containerWidth: "w-full",
     title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"]
+    tags:["web", "digital", "branding", "marketing", "graphics"],
+    href:"/services/6"
   },
 ];
 
@@ -588,7 +595,7 @@ const ServiceLanding = () => {
 
                   <div className="navigation w-full px-14  py-5 flex items-center justify-between">
                     <div className="page-no">{index + 1}</div>
-                    <div className="arrow text-2xl"><HiArrowLongRight /></div>
+                    <Link to={imageConfig.href} className="arrow text-2xl pointer-events-auto" ><HiArrowLongRight /></Link>
                   </div>
                 </div>
               </div>

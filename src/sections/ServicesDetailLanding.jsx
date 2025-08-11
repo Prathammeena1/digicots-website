@@ -14,7 +14,7 @@ const data = [
   },
 ];
 
-const ServicesDetailLanding = () => {
+const ServicesDetailLanding = ({ imageConfig }) => {
   const linesRef = React.useRef([]);
   const parentRef = React.useRef(null);
   const section1Ref = React.useRef(null);
@@ -103,45 +103,95 @@ const ServicesDetailLanding = () => {
       }
     };
 
+    // Create ScrollTrigger markers to track section boundaries
+    const sections = [
+      {
+        id: "section1",
+        start: "top -100%",
+        end: "top -166.67%", // One-third of our total scroll area
+        onEnter: () => setActiveSection(0),
+      },
+      {
+        id: "section2",
+        start: "top -166.67%",
+        end: "top -233.34%", // Second third of our total scroll area
+        onEnter: () => setActiveSection(1),
+      },
+      {
+        id: "section3",
+        start: "top -233.34%",
+        end: "top -300%", // Last third of our total scroll area
+        onEnter: () => setActiveSection(2),
+      },
+    ];
 
+    // Create section markers for accurate navigation
+    sections.forEach((section) => {
+      ScrollTrigger.create({
+        trigger: parentRef.current,
+        start: section.start,
+        end: section.end,
+        onEnter: section.onEnter,
+        onEnterBack: section.onEnter, // Also set active section when scrolling back up
+        // markers: true, // Uncomment for debugging
+      });
+    });
+
+    // First animation timeline (section 1 to 2)
     const masterT2 = gsap.timeline({
       scrollTrigger: {
         trigger: parentRef.current,
-        start: "top -100%", // Start tracking immediately when section begins
-        end: "top -200%", // End when we finish all transitions
+        start: "top -100%", // Start at section 1
+        end: "top -200%", // End at section 2
         scrub: true,
         onUpdate: (self) => {
-          // Map the entire scroll range (0% to 100%) to our progress
-          // First half (0% to 50%) = hero transition, no progress fill
-          // Second half (50% to 100%) = section transition with progress fill
+          // Update the progress circle for the active section
+          setOverallProgress(self.progress);
+        },
+      },
+    });
 
-          if (self.progress <= 0.5) {
-            // During hero transition - no progress yet
-            setOverallProgress(0);
-            setActiveSection(0);
-          } else {
-            // During section transition - map 50%-100% to 0%-100% progress
-            const sectionProgress = (self.progress - 0.5) * 2; // Convert 0.5-1.0 to 0-1.0
-            setOverallProgress(sectionProgress);
-            setScrollProgress(sectionProgress);
-
-            // Switch sections at 75% overall progress (50% of section transition)
-            if (sectionProgress < 0.5) {
-              setActiveSection(0);
-            } else {
-              setActiveSection(1);
-            }
-          }
+    // Second animation timeline (section 2 to 3)
+    const masterT3 = gsap.timeline({
+      scrollTrigger: {
+        trigger: parentRef.current,
+        start: "top -200%", // Start at section 2
+        end: "top -300%", // End at section 3
+        scrub: true,
+        onUpdate: (self) => {
+          // Update the progress circle for the active section
+          setOverallProgress(self.progress);
         },
       },
     });
 
     masterT2
-    .fromTo(section2SubSectionsRef.current[0],{y:"0"},{y:"-100%"},"a")
-    .fromTo(section2SubSectionsRef.current[1],{y:"0"},{y:"-100%"},"a")
+      .fromTo(
+        section2SubSectionsRef.current[0],
+        { y: "0" },
+        { y: "-100%" },
+        "a"
+      )
+      .fromTo(
+        section2SubSectionsRef.current[1],
+        { y: "0" },
+        { y: "-100%" },
+        "a"
+      );
 
-
-
+    masterT3
+      .to(
+        section2SubSectionsRef.current[1],
+        // { y: "-100%" },
+        { y: "-200%" },
+        "b"
+      )
+      .fromTo(
+        section2SubSectionsRef.current[2],
+        { y: "-100%" },
+        { y: "-200%" },
+        "b"
+      );
 
     // Add mouse move listener
     window.addEventListener("mousemove", handleMouseMove);
@@ -150,6 +200,8 @@ const ServicesDetailLanding = () => {
     return () => {
       masterTl.kill();
       tl1.kill();
+      masterT2.kill();
+      masterT3.kill();
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [
@@ -167,7 +219,19 @@ const ServicesDetailLanding = () => {
         ref={parentRef}
         className="h-[400vh] w-full bg-transparent relative z-10 pointer-events-none"
       >
-        <div className="h-screen w-full bg-transparent sticky top-0 z-10 pointer-events-none">
+        <div className="fixed z-50 top-20 left-1/2 transform -translate-x-1/2">
+          <nav className="flex items-center space-x-2 text-sm text-gray-300">
+            <span className="uppercase tracking-wider">SERVICES</span>
+            <span className="text-white">•</span>
+            <span className="text-white uppercase tracking-wider font-medium">
+              {imageConfig.title}
+            </span>
+          </nav>
+        </div>
+
+        <div className="h-screen w-full bg-transparent sticky top-0 z-30 pointer-events-none">
+          {/* Breadcrumb Navigation */}
+
           <div
             ref={section1Ref}
             className="relative h-screen w-full overflow-hidden"
@@ -176,8 +240,7 @@ const ServicesDetailLanding = () => {
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80')",
+                backgroundImage: `url('${imageConfig.src}')`,
               }}
             >
               {/* Dark Gradient Overlay */}
@@ -186,22 +249,11 @@ const ServicesDetailLanding = () => {
 
             {/* Content Container */}
             <div className="relative z-10 h-full flex flex-col justify-center items-center text-white px-8">
-              {/* Breadcrumb Navigation */}
-              <div className="absolute top-20 left-1/2 transform -translate-x-1/2">
-                <nav className="flex items-center space-x-2 text-sm text-gray-300">
-                  <span className="uppercase tracking-wider">SERVICES</span>
-                  <span className="text-white">•</span>
-                  <span className="text-white uppercase tracking-wider font-medium">
-                    DIGITAL MARKETING
-                  </span>
-                </nav>
-              </div>
-
               {/* Main Content */}
               <div className="text-center max-w-4xl mx-auto">
                 {/* Main Title */}
                 <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide mb-8">
-                  Digital Marketing
+                  {imageConfig.title}
                 </h1>
 
                 {/* Description Text */}
@@ -230,17 +282,21 @@ const ServicesDetailLanding = () => {
             <div className="flex items-center justify-between h-screen px-16 lg:px-24">
               {/* Left Content */}
               <div className="w-3/4 text-white h-full  overflow-hidden ">
-                <div ref={(el) => (section2SubSectionsRef.current[0] = el)} className="w-[480px] h-[100%] pt-50">
+                <div
+                  ref={(el) => (section2SubSectionsRef.current[0] = el)}
+                  className="w-[480px] h-[100%] pt-50"
+                >
                   <h2 className="text-6xl font-black leading-[1.4]">
                     {data[0].title}
                   </h2>
-                  <p className="text-md mt-20 ">
-                    {data[0].description}
-                  </p>
+                  <p className="text-md mt-20 ">{data[0].description}</p>
                 </div>
 
                 {/* Slider Container */}
-                <div ref={(el) => (section2SubSectionsRef.current[1] = el)} className="h-[100%] w-full relative overflow-hidden pointer-events-auto py-30">
+                <div
+                  ref={(el) => (section2SubSectionsRef.current[1] = el)}
+                  className="h-[100%] w-full relative overflow-hidden pointer-events-auto py-30"
+                >
                   {/* Slides Wrapper */}
                   <div
                     ref={sliderRef}
@@ -378,7 +434,11 @@ const ServicesDetailLanding = () => {
                     }}
                   >
                     {/* Slide 1 */}
-                    <div className="h-full w-[80%] flex shrink-0 items-center justify-between text-white overflow-hidden gap-4 px-8">
+                    <div
+                      className={`h-full w-[80%] flex shrink-0 items-center justify-between text-white overflow-hidden gap-4 px-8 transition-opacity duration-300 ${
+                        activeSlide === 0 ? "opacity-100" : "opacity-20"
+                      }`}
+                    >
                       {/* Left Section */}
                       <div className="w-1/2 h-full flex flex-col justify-between">
                         <div className="flex flex-col gap-4">
@@ -425,7 +485,11 @@ const ServicesDetailLanding = () => {
                     </div>
 
                     {/* Slide 2 */}
-                    <div className="h-full w-[80%] flex shrink-0 items-center justify-between text-white overflow-hidden gap-4 px-8">
+                    <div
+                      className={`h-full w-[80%] flex shrink-0 items-center justify-between text-white overflow-hidden gap-4 px-8 transition-opacity duration-300 ${
+                        activeSlide === 1 ? "opacity-100" : "opacity-20"
+                      }`}
+                    >
                       {/* Left Section */}
                       <div className="w-1/2 h-full flex flex-col justify-between">
                         <div className="flex flex-col gap-4">
@@ -472,7 +536,11 @@ const ServicesDetailLanding = () => {
                     </div>
 
                     {/* Slide 3 */}
-                    <div className="h-full w-[80%] flex shrink-0 items-center justify-between text-white overflow-hidden gap-4 px-8">
+                    <div
+                      className={`h-full w-[80%] flex shrink-0 items-center justify-between text-white overflow-hidden gap-4 px-8 transition-opacity duration-300 ${
+                        activeSlide === 2 ? "opacity-100" : "opacity-30"
+                      }`}
+                    >
                       {/* Left Section */}
                       <div className="w-1/2 h-full flex flex-col justify-between">
                         <div className="flex flex-col gap-4">
@@ -518,6 +586,67 @@ const ServicesDetailLanding = () => {
                     </div>
                   </div>
                 </div>
+
+                <div
+                  ref={(el) => (section2SubSectionsRef.current[2] = el)}
+                  className="h-[100%] w-[80%] relative overflow-hidden"
+                >
+                  <div className="h-[80%] w-full pt-30">
+                    {/* Background Image - Futuristic Portrait */}
+                    <div className="w-full h-[80%] relative">
+                      <img
+                        src="https://images.unsplash.com/photo-1635003913011-95971abba560"
+                        alt="Futuristic portrait of person with tech elements"
+                        className="object-cover w-full h-full object-top"
+                      />
+                      {/* Case Study Button - Top Right */}
+                      <div className="absolute top-5 right-5">
+                        <button className="border border-white/20 rounded-full px-6 py-2 text-white/90 text-sm hover:bg-white/10 transition-all duration-300">
+                          Case Study
+                        </button>
+                      </div>
+                      {/* <div className="absolute inset-0 bg-gradient-to-b from-[#2d1e30]/50 to-[#2d1e30]/90"></div> */}
+                    </div>
+
+                    {/* Content Container */}
+                    <div className=" inset-0 flex flex-col py-10 justify-end pointer-events-auto">
+                      {/* Bottom Content */}
+
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex flex-col w-[80%]">
+                          {/* Title Area */}
+                          <div className="flex items-end mb-6">
+                            <h2 className="text-3xl font-bold text-white mr-4">
+                              The Varallo Group
+                            </h2>
+                            <span className="text-zinc-200 text-lg">|</span>
+                            <span className="text-zinc-200 text-lg ml-4">
+                              Immersive, 3D
+                            </span>
+                          </div>
+                          {/* Description */}
+                          <p className="text-gray-300 text-sm w-fit">
+                            The force della knowledge, the impact della
+                            creativity, the technology. With the consulting of
+                            marketing and commu of Quamm, the value del your
+                            business grows in the tempo.
+                          </p>
+                        </div>
+
+                        {/* View Project Button */}
+                        <div className="w-18 h-18">
+                          {/* <button className="group flex items-center space-x-2 text-white hover:text-white/80 transition-colors"> */}
+                          <img
+                            src="/images/arrow.png"
+                            className="h-full w-full object-contain"
+                            alt=""
+                          />
+                          {/* </button> */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="w-1/4 flex flex-col items-center justify-center relative">
                 {/* Mouse Follower Circular Button */}
@@ -545,34 +674,30 @@ const ServicesDetailLanding = () => {
                   </div>
                 </div>
 
-                {/* DELLA KNOWLEDGE Navigation Dots */}
-                {data.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`absolute right-8 flex items-center space-x-4 transition-all duration-500 ease-in-out ${
-                      index === 0 ? "top-8" : "top-24"
-                    } ${
-                      activeSection === index ? "opacity-100" : "opacity-70"
-                    }`}
-                  >
+                {/* Navigation Progress Dots */}
+                <div className="absolute top-0 right-0 flex flex-col space-y-8 items-center">
+                  {/* Section 1 Dot */}
+                  <div className="flex items-center space-x-4 transition-all duration-500 ease-in-out">
                     <span
                       className={`text-gray-400 text-sm font-medium tracking-wider transition-all duration-300 ease-in-out transform ${
-                        activeSection === index
+                        activeSection === 0
                           ? "opacity-100 translate-x-0"
                           : "opacity-0 translate-x-4"
                       }`}
                     >
-                      {item.navTitle}
+                      Section 1
                     </span>
                     <div
                       className={`w-6 h-6 rounded-full border flex items-center justify-center transition-all duration-300 ease-in-out transform relative ${
-                        activeSection === index
-                          ? "border-gray-500 bg-transparent scale-110"
+                        activeSection === 0
+                          ? "border-white bg-transparent scale-110"
+                          : activeSection > 0
+                          ? "border-white scale-100 opacity-55"
                           : "border-gray-600 scale-100"
                       }`}
                     >
-                      {/* Circular Progress Border - Only for first section */}
-                      {index === 0 && (
+                      {/* Progress Circle - Only for active section */}
+                      {activeSection === 0 && (
                         <svg
                           className="absolute inset-0 w-6 h-6 -rotate-90"
                           viewBox="0 0 24 24"
@@ -593,18 +718,129 @@ const ServicesDetailLanding = () => {
                           />
                         </svg>
                       )}
-
                       {/* Inner dot */}
                       <div
                         className={`w-2 h-2 rounded-full transition-all duration-300 ease-in-out relative z-10 ${
-                          activeSection === index
+                          activeSection === 0
                             ? "bg-white scale-110"
+                            : activeSection > 0
+                            ? "bg-transparent scale-0"
                             : "bg-gray-500 scale-90"
                         }`}
                       ></div>
                     </div>
                   </div>
-                ))}
+
+                  {/* Section 2 Dot */}
+                  <div className="flex items-center space-x-4 transition-all duration-500 ease-in-out">
+                    <span
+                      className={`text-gray-400 text-sm font-medium tracking-wider transition-all duration-300 ease-in-out transform ${
+                        activeSection === 1
+                          ? "opacity-100 translate-x-0"
+                          : "opacity-0 translate-x-4"
+                      }`}
+                    >
+                      Section 2
+                    </span>
+                    <div
+                      className={`w-6 h-6 rounded-full border flex items-center justify-center transition-all duration-300 ease-in-out transform relative ${
+                        activeSection === 1
+                          ? "border-white bg-transparent scale-110"
+                          : activeSection > 1
+                          ? "border-white scale-100 opacity-55"
+                          : "border-gray-600 scale-100"
+                      }`}
+                    >
+                      {/* Progress Circle - Only for active section */}
+                      {activeSection === 1 && (
+                        <svg
+                          className="absolute inset-0 w-6 h-6 -rotate-90"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="11"
+                            fill="none"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeDasharray={`${2 * Math.PI * 11}`}
+                            strokeDashoffset={`${
+                              2 * Math.PI * 11 * (1 - overallProgress)
+                            }`}
+                            className="transition-all duration-100 ease-out"
+                          />
+                        </svg>
+                      )}
+                      {/* Inner dot */}
+                      <div
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ease-in-out relative z-10 ${
+                          activeSection === 1
+                            ? "bg-white scale-110"
+                            : activeSection > 1
+                            ? "bg-transparent scale-0"
+                            : "bg-gray-500 scale-90"
+                        }`}
+                      ></div>
+                    </div>
+                  </div>
+
+                  {/* Section 3 Dot */}
+                  <div className="flex items-center space-x-4 transition-all duration-500 ease-in-out">
+                    <span
+                      className={`text-gray-400 text-sm font-medium tracking-wider transition-all duration-300 ease-in-out transform ${
+                        activeSection === 2
+                          ? "opacity-100 translate-x-0"
+                          : "opacity-0 translate-x-4"
+                      }`}
+                    >
+                      Section 3
+                    </span>
+                    <div
+                      className={`w-6 h-6 rounded-full border flex items-center justify-center transition-all duration-300 ease-in-out transform relative ${
+                        activeSection === 2
+                          ? "border-white bg-transparent scale-110"
+                          : activeSection > 2
+                          ? "border-white scale-100 opacity-55"
+                          : "border-gray-600 scale-100"
+                      }`}
+                    >
+                      {/* Progress Circle - Only for active section */}
+                      {activeSection === 2 && (
+                        <svg
+                          className="absolute inset-0 w-6 h-6 -rotate-90"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="11"
+                            fill="none"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeDasharray={`${2 * Math.PI * 11}`}
+                            strokeDashoffset={`${
+                              2 * Math.PI * 11 * (1 - overallProgress)
+                            }`}
+                            className="transition-all duration-100 ease-out"
+                          />
+                        </svg>
+                      )}
+                      {/* Inner dot */}
+                      <div
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ease-in-out relative z-10 ${
+                          activeSection === 2
+                            ? "bg-white scale-110"
+                            : activeSection > 2
+                            ? "bg-transparent scale-0"
+                            : "bg-gray-500 scale-90"
+                        }`}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

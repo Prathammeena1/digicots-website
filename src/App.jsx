@@ -14,6 +14,7 @@ import Approach from "./pages/Approach.jsx";
 import Footer from "./sections/Footer.jsx";
 import ThankyouPopUp from "./sections/ThankyouPopup.jsx";
 import ServicesDetail from "./pages/ServicesDetail.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 // Lazy load heavy components
 const FluidCanvas = React.lazy(() => import("./components/FluidCanvas.jsx"));
@@ -99,7 +100,7 @@ const App = () => {
     }
   };
 
-  console.log(window.innerWidth)
+  console.log(window.innerWidth);
 
   return (
     <>
@@ -186,6 +187,8 @@ const App = () => {
                 </div>
               }
             />
+
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer setPopActive={setPopActive} />
 
