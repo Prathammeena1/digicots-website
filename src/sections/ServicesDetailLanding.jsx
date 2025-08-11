@@ -14,7 +14,7 @@ const data = [
   },
 ];
 
-const ServicesDetailLanding = ({ imageConfig }) => {
+const ServicesDetailLanding = ({ servicesData }) => {
   const linesRef = React.useRef([]);
   const parentRef = React.useRef(null);
   const section1Ref = React.useRef(null);
@@ -224,7 +224,7 @@ const ServicesDetailLanding = ({ imageConfig }) => {
             <span className="uppercase tracking-wider">SERVICES</span>
             <span className="text-white">•</span>
             <span className="text-white uppercase tracking-wider font-medium">
-              {imageConfig.title}
+              {servicesData.title}
             </span>
           </nav>
         </div>
@@ -240,7 +240,7 @@ const ServicesDetailLanding = ({ imageConfig }) => {
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: `url('${imageConfig.src}')`,
+                backgroundImage: `url('${servicesData.src}')`,
               }}
             >
               {/* Dark Gradient Overlay */}
@@ -253,7 +253,7 @@ const ServicesDetailLanding = ({ imageConfig }) => {
               <div className="text-center max-w-4xl mx-auto">
                 {/* Main Title */}
                 <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide mb-8">
-                  {imageConfig.title}
+                  {servicesData.title}
                 </h1>
 
                 {/* Description Text */}

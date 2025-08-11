@@ -14,94 +14,72 @@ const servicesData = [
     title: "Web & Digital",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+    src: "/images/service1.png",
+    width: "25vw",
+    hasBackground: false,
+    containerWidth: "w-full",
+    tags: ["web", "digital", "branding", "marketing", "graphics"],
+    href: "/services/1"
   },
   {
     id: "02",
     title: "Branding",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+    src: "/images/service2.png",
+    width: "15vw",
+    hasBackground: false,
+    containerWidth: "",
+    tags: ["branding", "identity", "logo", "design"],
+    href: "/services/2"
   },
   {
     id: "03",
     title: "Digital Marketing",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+    src: "/images/service3.png",
+    width: "10vw",
+    hasBackground: true,
+    containerWidth: "",
+    tags: ["marketing", "digital", "social", "strategy"],
+    href: "/services/3"
   },
   {
     id: "04",
     title: "Content Generation",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+    src: "/images/service4.png",
+    width: "0vw",
+    hasBackground: true,
+    containerWidth: "",
+    tags: ["content", "writing", "copywriting", "strategy"],
+    href: "/services/4"
   },
   {
     id: "05",
     title: "Production (Pre-Post)",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+    src: "/images/service5.png",
+    width: "0vw",
+    hasBackground: true,
+    containerWidth: "",
+    tags: ["production", "video", "photography", "editing"],
+    href: "/services/5"
   },
   {
     id: "06",
     title: "Creative & Graphics",
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
-  },
-];
-
-// Service images configuration array
-const serviceImagesConfig = [
-  {
-    src: "/images/service1.png",
-    width: "25vw",
-    hasBackground: false,
-    containerWidth: "w-full",
-    title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"],
-    href:"/services/1"
-  },
-  {
-    src: "/images/service2.png",
-    width: "15vw",
-    hasBackground: false,
-    containerWidth: "",
-    title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"],
-    href:"/services/2"
-  },
-  {
-    src: "/images/service3.png",
-    width: "10vw",
-    hasBackground: true,
-    containerWidth: "",
-    title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"],
-    href:"/services/3"
-  },
-  {
-    src: "/images/service4.png",
-    width: "0vw",
-    hasBackground: true,
-    containerWidth: "",
-    title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"],
-    href:"/services/4"
-  },
-  {
-    src: "/images/service5.png",
-    width: "0vw",
-    hasBackground: true,
-    containerWidth: "",
-    title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"],
-    href:"/services/5"
-  },
-  {
     src: "/images/service6.png",
     width: "0vw",
     hasBackground: true,
     containerWidth: "w-full",
-    title: "Web & Digital",
-    tags:["web", "digital", "branding", "marketing", "graphics"],
-    href:"/services/6"
+    tags: ["graphics", "creative", "design", "illustration"],
+    href: "/services/6"
   },
 ];
 
@@ -542,7 +520,7 @@ const ServiceLanding = () => {
             position: "relative",
           }}
         >
-          {serviceImagesConfig.map((imageConfig, index) => (
+          {servicesData.map((imageConfig, index) => (
             <div
               key={index}
               ref={(el) => (servicesRef.current[index] = el)}
