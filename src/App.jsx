@@ -31,6 +31,17 @@ const App = () => {
   const { isLoading } = useLoading();
 
   const [popActive, setPopActive] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Track scroll position for scroll-to-top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Scroll to top when route changes
   useEffect(() => {
@@ -108,91 +119,93 @@ const App = () => {
       <LoadingScreen isLoading={isLoading} />
 
       {/* Main App Content */}
-      <div
-        className={`h-full transition-opacity duration-500 ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        <Navigation />
-
-        <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-black">
-          <ErrorBoundary>
-            <Suspense fallback={<div className="w-full h-full bg-black" />}>
-              <FluidCanvas />
-              <WolfMaskSVG />
-            </Suspense>
-          </ErrorBoundary>
-        </div>
-
         <div
-          onClick={handleScrollToTop}
-          className="fixed z-30 scroll-to-top bg-amber-50 h-[70px] w-[70px] right-10 bottom-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-amber-100 transition-colors duration-300"
+          className={`h-full transition-opacity duration-500 ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
         >
-          <button className="text-2xl font-semibold text-zinc-600">↑</button>
-        </div>
+          <Navigation />
 
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/approach/:id" element={<Approach />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/:id" element={<ServicesDetail />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route
-              path="/branding"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Branding</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/marketing"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Marketing</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/web-digital"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Web & Digital</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/graphics"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Graphics</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/content"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Content</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/production"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Production</h1>
-                </div>
-              }
-            />
+          <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-black">
+            <ErrorBoundary>
+          <Suspense fallback={<div className="w-full h-full bg-black" />}>
+            <FluidCanvas />
+            <WolfMaskSVG />
+          </Suspense>
+            </ErrorBoundary>
+          </div>
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer setPopActive={setPopActive} />
+          <div
+            onClick={handleScrollToTop}
+            className={`fixed z-30 scroll-to-top bg-amber-50 h-[70px] w-[70px] right-10 bottom-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-amber-100 transition-all duration-300 ${
+          window.scrollY > 100 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+            }`}
+          >
+            <button className="text-2xl font-semibold text-zinc-600">↑</button>
+          </div>
 
-          {/* your main content here */}
+          <main>
+            <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/approach/:id" element={<Approach />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:id" element={<ServicesDetail />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/branding"
+            element={
+              <div className="p-8 pt-24">
+            <h1 className="text-3xl font-gilroy-bold">Branding</h1>
+              </div>
+            }
+          />
+          <Route
+            path="/marketing"
+            element={
+              <div className="p-8 pt-24">
+            <h1 className="text-3xl font-gilroy-bold">Marketing</h1>
+              </div>
+            }
+          />
+          <Route
+            path="/web-digital"
+            element={
+              <div className="p-8 pt-24">
+            <h1 className="text-3xl font-gilroy-bold">Web & Digital</h1>
+              </div>
+            }
+          />
+          <Route
+            path="/graphics"
+            element={
+              <div className="p-8 pt-24">
+            <h1 className="text-3xl font-gilroy-bold">Graphics</h1>
+              </div>
+            }
+          />
+          <Route
+            path="/content"
+            element={
+              <div className="p-8 pt-24">
+            <h1 className="text-3xl font-gilroy-bold">Content</h1>
+              </div>
+            }
+          />
+          <Route
+            path="/production"
+            element={
+              <div className="p-8 pt-24">
+            <h1 className="text-3xl font-gilroy-bold">Production</h1>
+              </div>
+            }
+          />
+
+          <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer setPopActive={setPopActive} />
+
+            {/* your main content here */}
           <ThankyouPopUp
             popActive={popActive}
             onClose={() => setPopActive(false)}
