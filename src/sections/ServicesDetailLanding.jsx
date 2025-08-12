@@ -244,7 +244,7 @@ const ServicesDetailLanding = ({ servicesData }) => {
               }}
             >
               {/* Dark Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/60"></div>
             </div>
 
             {/* Content Container */}
@@ -262,6 +262,13 @@ const ServicesDetailLanding = ({ servicesData }) => {
                   technology. With the consulting of marketing and communication
                   of Quamm, the value del your business grows in the tempo.
                 </p>
+              </div>
+              <div className="tags flex w-full justify-between items-center px-20 absolute bottom-30">
+                {servicesData.subCategories.map((s, i) => (
+                  <div className="text-white capitalize text-xl font-medium px-10 py-4 border border-zinc-300 rounded-full bg-black/[.3]">
+                    {s}
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -655,31 +662,61 @@ const ServicesDetailLanding = ({ servicesData }) => {
                   className="fixed top-0 left-0 z-50 pointer-events-none"
                   style={{ transform: "translate(50%, 50%)" }}
                 >
-                  <div style={{
-                width: 120,
-                height: 120,
-                borderRadius: '50%',
-                border: '2px solid #fff',
-                background: 'rgba(100,100,100,0.25)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                boxShadow: '0 0 0 1px rgba(255,255,255,0.08)'
-              }}>
-                {/* Left arrow */}
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{position:'absolute',left:8,top:'50%',transform:'translateY(-50%)'}}><polygon points="16,6 8,12 16,18" fill="#fff"/></svg>
-                {/* Right arrow */}
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{position:'absolute',right:8,top:'50%',transform:'translateY(-50%)'}}><polygon points="8,6 16,12 8,18" fill="#fff"/></svg>
-                {/* Center dot */}
-                <div style={{
-                  width: 16,
-                  height: 16,
-                  borderRadius: '50%',
-                  background: '#e5e5e5',
-                  zIndex: 2
-                }} />
-              </div>
+                  <div
+                    style={{
+                      width: 120,
+                      height: 120,
+                      borderRadius: "50%",
+                      border: "2px solid #fff",
+                      background: "rgba(100,100,100,0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      position: "relative",
+                      boxShadow: "0 0 0 1px rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    {/* Left arrow */}
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      style={{
+                        position: "absolute",
+                        left: 8,
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                      }}
+                    >
+                      <polygon points="16,6 8,12 16,18" fill="#fff" />
+                    </svg>
+                    {/* Right arrow */}
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      style={{
+                        position: "absolute",
+                        right: 8,
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                      }}
+                    >
+                      <polygon points="8,6 16,12 8,18" fill="#fff" />
+                    </svg>
+                    {/* Center dot */}
+                    <div
+                      style={{
+                        width: 16,
+                        height: 16,
+                        borderRadius: "50%",
+                        background: "#e5e5e5",
+                        zIndex: 2,
+                      }}
+                    />
+                  </div>
                 </div>
 
                 {/* Navigation Progress Dots */}

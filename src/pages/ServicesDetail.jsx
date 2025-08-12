@@ -12,6 +12,7 @@ const servicesData = [
     src: "/final-images/services/Content.webp",
     width: "25vw",
     tags: ["web", "digital", "branding", "marketing", "graphics"],
+    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     href: "/services/1"
@@ -22,6 +23,7 @@ const servicesData = [
     src: "/final-images/services/Graphic.webp",
     width: "15vw",
     tags: ["branding", "identity", "logo", "design"],
+    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     href: "/services/2"
@@ -32,6 +34,7 @@ const servicesData = [
     src: "/final-images/services/Production.webp",
     width: "0vw",
     tags: ["marketing", "digital", "social", "strategy"],
+    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     href: "/services/3"
@@ -42,6 +45,7 @@ const servicesData = [
     src: "/final-images/services/Branding.webp",
     width: "0vw",
     tags: ["content", "writing", "copywriting", "strategy"],
+    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     href: "/services/4"
@@ -52,6 +56,7 @@ const servicesData = [
     src: "/final-images/services/Web.webp",
     width: "0vw",
     tags: ["production", "video", "photography", "editing"],
+    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     href: "/services/5"
@@ -62,6 +67,7 @@ const servicesData = [
     src: "/final-images/services/Digital.webp",
     width: "0vw",
     tags: ["graphics", "creative", "design", "illustration"],
+    subCategories: [],
     description:
       "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
     href: "/services/6"
@@ -72,7 +78,6 @@ const servicesData = [
 const ServicesDetail = () => {
 
     const {id} = useParams();
-    console.log(id);
 
   return (
     <div>

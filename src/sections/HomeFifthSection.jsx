@@ -14,7 +14,7 @@ const servicesData = [
     title: "Web & Digital",
     description:
       "Website Design | Website Development | UI/UX Design | Ecommerce Sol...",
-      href: "/services/1"
+      href: "/services/5"
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const servicesData = [
       title: "Branding",
       description:
       "Logo Design  |  Brand Strategy  |  Visual Identity  |  Brand Guidelines  |  Na...",
-      href: "/services/2"
+      href: "/services/4"
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const servicesData = [
       title: "Digital Marketing",
       description:
       "Logo Design | Brand Identity | Marketing Materials | Brand Strategy...",
-      href: "/services/3"
+      href: "/services/6"
     },
     {
       id: 4,
@@ -41,7 +41,7 @@ const servicesData = [
       title: "Content Generation",
       description:
       "3D Modelling  |  Content Strategy  |  Copywriting  |  Photography   |  Anim...",
-      href: "/services/4"
+      href: "/services/1"
     },
     {
       id: 5,
@@ -50,7 +50,7 @@ const servicesData = [
     title: "Production (Pre-Post)",
     description:
       "Creative Direction & Storyboarding  |  Scriptwriting & Copywriting  |  Cam...",
-      href: "/services/5"
+      href: "/services/3"
     },
     {
       id: 6,
@@ -59,7 +59,7 @@ const servicesData = [
       title: "Creatives & Graphics",
       description:
       "Creatives Solutions  |  Motion Design  |  Illustration Design  |  Print...",
-      href: "/services/6"
+      href: "/services/2"
   },
 ];
 
@@ -152,7 +152,7 @@ const HomeFifthSection = () => {
             ref={sectionRefs.current[index]}
             className="h-screen w-full absolute z-10 flex items-end"
           >
-            <div className="h-[90%] w-full bg-gradient-to-b from-transparent to-black"></div>
+            <div className="h-[30%] w-full bg-gradient-to-b from-transparent to-black"></div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center absolute bottom-20 left-40">
               {/* Service info */}
               <div className="text-white w-[80vw] flex items-end justify-between">
