@@ -107,8 +107,8 @@ return (
         <div 
             ref={containerRef}
             className={windowSize.width > 1536 
-                ? "relative mt-[300vh] scale-[2.3]" 
-                : "relative mt-[420vh] scale-[2.3]"
+                ? "relative mt-[3050px] scale-[2.3]" 
+                : "relative mt-[3050px] scale-[2.3]"
             }
         >
             
