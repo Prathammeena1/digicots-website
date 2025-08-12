@@ -47,11 +47,14 @@ const AboutFirstSection = () => {
 
   return (
     <div className="section min-h-screen flex items-center justify-start px-12 py-16 overflow-hidden relative pointer-events-none">
-      <div className="h-[60vh] w-full relative z-10">
-        {/* Content for the first section of the About page */}
+      <div className="absolute h-screen w-full top-0 left-0 px-12 pt-28 ">
+        <h1 className="font-bold text-[8vw] leading-[1] ">
+          Future-Proof <br /> Design Agency
+        </h1>
+
         <div
           ref={boxRef}
-          className="h-[270px] w-[380px] absolute left-0 transform bottom-0 rounded-xl overflow-hidden"
+          className="h-[270px] w-[380px] transform bottom-[5vh] rounded-xl overflow-hidden"
         >
           <video
             src="https://www.datocms-assets.com/57508/1738945450-loop_03.mp4"
@@ -61,13 +64,8 @@ const AboutFirstSection = () => {
             className="w-full h-full object-cover"
           ></video>
         </div>
-      </div>
-      <div className="absolute h-screen w-full top-0 left-0 px-12 pt-28 ">
-        <h1 className="font-bold text-[8vw] leading-[1] ">
-          Future-Proof <br /> Design Agency
-        </h1>
 
-        <p className="mt-[250px] ">
+        <p className="">
           The force della knowledge, the impact della creativity, the
           pervasiveness <br /> della technology. With the consulting of
           marketing and communication of <br /> Quamm, the value del your

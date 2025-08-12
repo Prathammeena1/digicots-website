@@ -542,8 +542,8 @@ const ServiceLanding = () => {
               <div
                 style={{
                   height: "100%",
-                  width:
-                    imageConfig.containerWidth === "w-full" ? "100%" : "auto",
+                  width: "100%"
+                    // imageConfig.containerWidth === "w-full" ? "100%" : "auto",
                 }}
                 className="relative"
               >
