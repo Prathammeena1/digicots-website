@@ -19,7 +19,7 @@ const Home = () => {
 
       <HomeFourthSection />
 
-      <HomeFifthSection /> 
+      <HomeFifthSection />
 
       <HomeSixthSection />
 
@@ -28,7 +28,6 @@ const Home = () => {
       <HomeEighthSection />
 
       <HomeNinthSection />
-
     </div>
   );
 };

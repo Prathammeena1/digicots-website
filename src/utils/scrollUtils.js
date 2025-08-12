@@ -3,14 +3,21 @@
 let lastScrollTime = 0;
 let isScrolling = false;
 let currentSection = 0; // Track current viewport section
-const SCROLL_DEBOUNCE = 50; // Short debounce to prevent multiple triggers
+const SCROLL_DEBOUNCE = 1500; // Much longer debounce to completely prevent multiple triggers
 const SECTION_HEIGHT = window.innerHeight; // Each section is 100vh
+let accumulatedDelta = 0; // Accumulate small touchpad deltas
+const DELTA_THRESHOLD = 30; // Lower threshold for more sensitive detection
 
 // Reset scroll state for route changes
 export const resetScrollState = () => {
   currentSection = 0;
   isScrolling = false;
   lastScrollTime = 0;
+  accumulatedDelta = 0; // Reset accumulated delta
+  
+  // Make sure global variables are also reset
+  window.currentSection = 0;
+  window.isScrolling = false;
   
   // Reset scroll position to top
   if (window.lenis) {
@@ -24,20 +31,37 @@ export const resetScrollState = () => {
 export const handleControlledScroll = (deltaY) => {
   const currentTime = Date.now();
   
-  // Prevent new scroll while animating
-  if (isScrolling) return;
-  
-  // Simple debounce to prevent rapid firing
-  if (currentTime - lastScrollTime < SCROLL_DEBOUNCE) {
+  // COMPLETELY BLOCK any scroll while animation is happening
+  if (isScrolling) {
+    accumulatedDelta = 0; // Reset accumulated delta while scrolling
     return;
   }
+  
+  // STRICT debounce - absolutely no scroll during this period
+  if (currentTime - lastScrollTime < SCROLL_DEBOUNCE) {
+    accumulatedDelta = 0; // Reset accumulated delta during debounce
+    return;
+  }
+  
+  // Accumulate delta for touchpad handling
+  accumulatedDelta += deltaY;
+  
+  // Only proceed if accumulated delta exceeds threshold
+  if (Math.abs(accumulatedDelta) < DELTA_THRESHOLD) {
+    return;
+  }
+  
+  // Determine direction from accumulated delta
+  const direction = accumulatedDelta > 0 ? 1 : -1;
+  
+  // IMMEDIATELY reset accumulated delta to prevent further accumulation
+  accumulatedDelta = 0;
   
   // Get total number of sections based on document height
   const documentHeight = document.documentElement.scrollHeight;
   const maxSections = Math.ceil(documentHeight / SECTION_HEIGHT) - 1;
   
-  // Determine scroll direction and calculate target section
-  const direction = deltaY > 0 ? 1 : -1;
+  // Calculate target section
   const targetSection = currentSection + direction;
   
   // Strict boundary checks - don't allow scrolling beyond valid range
@@ -59,8 +83,13 @@ export const handleControlledScroll = (deltaY) => {
   // Update current section only after validation
   currentSection = targetSection;
   
-  // Set scrolling flag
+  // Update global variable too
+  window.currentSection = currentSection;
+  
+  // Set scrolling flag IMMEDIATELY to block further scrolls
   isScrolling = true;
+  window.isScrolling = true;
+  lastScrollTime = currentTime;
   
   // Execute scroll to exact section position
   if (window.lenis) {
@@ -74,17 +103,16 @@ export const handleControlledScroll = (deltaY) => {
       },
       onComplete: () => {
         isScrolling = false; // Reset flag when animation completes
+        window.isScrolling = false; // Reset global flag too
       }
     });
     
     // Fallback reset in case onComplete doesn't fire
     setTimeout(() => {
       isScrolling = false;
+      window.isScrolling = false;
     }, 1200);
   }
-  
-  // Update time
-  lastScrollTime = currentTime;
 };
 
 // Initialize current section based on scroll position
@@ -103,10 +131,35 @@ export const initControlledScroll = () => {
   // Reset scroll state on initialization
   resetScrollState();
   
+  // Make variables globally accessible for debugging and external reset
+  window.currentSection = currentSection;
+  window.isScrolling = isScrolling;
+  
+  let deltaResetTimeout;
+  
   const handleWheel = (e) => {
     // Prevent default scroll behavior
     e.preventDefault();
+    
+    // COMPLETELY BLOCK touchpad events while scrolling
+    if (isScrolling) {
+      return; // Don't even process the event
+    }
+    
+    // Clear existing timeout
+    if (deltaResetTimeout) {
+      clearTimeout(deltaResetTimeout);
+    }
+    
+    // Handle the scroll
     handleControlledScroll(e.deltaY);
+    
+    // Reset accumulated delta after a very short period of inactivity
+    deltaResetTimeout = setTimeout(() => {
+      if (!isScrolling) { // Only reset if not currently scrolling
+        accumulatedDelta = 0;
+      }
+    }, 100); // Shorter reset time
   };
   
   // Add wheel event listener with passive false for preventDefault

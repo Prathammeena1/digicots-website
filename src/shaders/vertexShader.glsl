@@ -65,7 +65,7 @@ void main() {
 	float visibility = smoothstep(-0.8, 0.8, appearanceCycle);
 	
 	// Random point size with increased range and better randomization
-	float randomSize = 0.5 + randomX * 6.5; // 2.5 to 4.0 range (increased size)
+	float randomSize = 0.5 + randomX * 4.5; // 2.5 to 4.0 range (increased size)
 	
 	#include <begin_vertex>
 	// Use our modified position

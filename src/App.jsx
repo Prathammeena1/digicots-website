@@ -77,7 +77,8 @@ const App = () => {
 
   // Handle scroll to top with proper reset
   const handleScrollToTop = () => {
-    // Reset scroll state to ensure we're at section 0
+    // IMMEDIATELY reset scroll state before scrolling
+    resetScrollState();
 
     // Use Lenis smooth scroll to top if available
     if (window.lenis) {
@@ -90,6 +91,7 @@ const App = () => {
         },
         force: true, // Ensure scroll happens even if already at top
         onComplete: () => {
+          // Double reset to ensure clean state
           resetScrollState();
 
           // Ensure we're truly at the top
@@ -108,6 +110,11 @@ const App = () => {
         top: 0,
         behavior: "smooth",
       });
+      
+      // Reset state for fallback too
+      setTimeout(() => {
+        resetScrollState();
+      }, 100);
     }
   };
 
@@ -138,7 +145,7 @@ const App = () => {
           <div
             onClick={handleScrollToTop}
             className={`fixed z-30 scroll-to-top bg-amber-50 h-[70px] w-[70px] right-10 bottom-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-amber-100 transition-all duration-300 ${
-          window.scrollY > 100 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+              showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
             }`}
           >
             <button className="text-2xl font-semibold text-zinc-600">↑</button>

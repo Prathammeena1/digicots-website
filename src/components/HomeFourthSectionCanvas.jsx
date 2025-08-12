@@ -15,9 +15,9 @@ const HomeFourthSectionCanvas = () => {
     if (!canvasRef.current) return;
 
     // const multiplier = 250;
-    const multiplier = 120;
+    const multiplier = 295;
     const nbCol = 1 * multiplier; // Number of columns
-    const nbRows = 1.0347 * multiplier; // Number of rows
+    const nbRows = 1.5 * multiplier; // Number of rows
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -87,7 +87,7 @@ const HomeFourthSectionCanvas = () => {
     const texture = textureLoader.load(
       // "/images/wolf-new.svg",
       // "/images/tommy.jpg",
-      "/images/sample2.png",
+      "/final-images/logo/Wolf-new1.png",
       (loadedTexture) => {
         console.log("Texture loaded successfully");
         loadedTexture.minFilter = THREE.LinearFilter;
@@ -273,7 +273,7 @@ const HomeFourthSectionCanvas = () => {
   }, []);
 
   return (
-    <div className="h-screen w-[25vw] overflow-hidden scale-[1.3] bg-black absolute left-1/2 top-1/2 -translate-1/2">
+    <div className="h-screen w-[25vw] overflow-hidden scale-[1.1] bg-black absolute left-1/2 top-1/2 -translate-1/2">
       <canvas
         ref={canvasRef}
         className="w-[25vw] h-full block bg-black "
