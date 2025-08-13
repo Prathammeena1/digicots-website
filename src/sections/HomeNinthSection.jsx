@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MySwiper from "../components/MySwiper";
+import HomeSliderCxFeedback from "../components/HomeSliderCxFeedback";
 
 const HomeNinthSection = () => {
   const [currentSlide, setCurrentSlide] = useState(85);
@@ -18,7 +19,7 @@ const HomeNinthSection = () => {
   };
 
   return (
-    <div className="w-full h-screen relative overflow-hidden">
+    <div className="w-full h-screen relative overflow-hidden pointer-events-none">
       {/* Image container with blue border */}
       <div className="w-full  h-[75vh] bg-transparent flex items-center justify-center mb-8 absolute top-[22vh] px-16 ">
         {/* <img
@@ -28,15 +29,17 @@ const HomeNinthSection = () => {
         /> */}
       </div>
       {/* Content */}
-      <div className="relative z-10 h-full px-16">
+      {/* <div className="relative z-10 h-full px-16"> */}
         {/* Heading */}
-           <h2 className="text-zinc-200 text-6xl md:text-7xl text-center font-bold tracking-wide my-10 py-10">
+           {/* <h2 className="text-zinc-200 text-6xl md:text-7xl text-center font-bold tracking-wide my-10 py-10">
           Customer Feedback
-          </h2>
+          </h2> */}
 
         {/* Card */}
-        <MySwiper />
-      </div>
+        {/* <MySwiper /> */}
+        
+      {/* </div> */}
+      <HomeSliderCxFeedback />
     </div>
   );
 };
