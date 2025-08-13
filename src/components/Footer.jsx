@@ -162,7 +162,7 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="text"
                 placeholder="Full Name"
-                className="bg-[#3A3A3A]  p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white raleway pointer-events-auto"
+                className="  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
                 name="Full_Name"
                 variants={childVariants}
               />
@@ -176,7 +176,7 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="text"
                 placeholder="Company Name"
-                className="bg-[#3A3A3A] p-4 sm:p-5 rounded-[14px] w-full focus:outline-none text-white raleway pointer-events-auto"
+                className=" p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
                 name="Company_Name"
                 variants={childVariants}
               />
@@ -187,7 +187,7 @@ export default function Footer({ popActive, setPopActive }) {
                 }
                 type="email"
                 placeholder="Email Address"
-                className="bg-[#3A3A3A] text-white p-4 sm:p-5 rounded-[14px] w-full focus:outline-none raleway pointer-events-auto"
+                className=" text-white  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none raleway pointer-events-auto border border-zinc-600 "
                 name="email"
                 variants={childVariants}
               />
@@ -202,12 +202,12 @@ export default function Footer({ popActive, setPopActive }) {
                     }))
                   }
                   placeholder="Contact Number"
-                  className="bg-[#3A3A3A] text-white p-4 sm:p-5 w-full rounded-[14px] focus:outline-none raleway pointer-events-auto"
+                  className=" text-white  p-4 text-md w-full rounded-[999px] sm:px-10 focus:outline-none raleway pointer-events-auto border border-zinc-600 "
                   name="Contact_Number"
                 />
               </motion.div>
               <motion.button
-                className="md:col-span-2 p-4 sm:p-5 font-bold rounded-[14px] relative items-center justify-center overflow-hidden bg-[#ED510C] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-[15px] before:bg-black before:duration-500 before:ease-out  hover:before:h-56 hover:before:w-full flex px-5 py-2 cursor-pointer raleway pointer-events-auto"
+                className="md:col-span-2 p-4 font-bold  border border-zinc-600 rounded-[999px] relative items-center justify-center overflow-hidden text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:bg-white before:duration-500 before:ease-out hover:text-black hover:before:h-56 hover:before:w-full flex cursor-pointer raleway pointer-events-auto"
                 variants={childVariants}
               >
                 <div className="relative z-[11]">

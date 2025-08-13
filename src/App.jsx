@@ -11,7 +11,7 @@ import { useLenis } from "./hooks/useLenis.js";
 import { useLoading } from "./context/LoadingContext.jsx";
 import { resetScrollState } from "./utils/scrollUtils.js";
 import Approach from "./pages/Approach.jsx";
-import Footer from "./sections/Footer.jsx";
+import Footer from "./components/Footer.jsx";
 import ThankyouPopUp from "./sections/ThankyouPopup.jsx";
 import ServicesDetail from "./pages/ServicesDetail.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -22,7 +22,7 @@ const WolfMaskSVG = React.lazy(() => import("./components/WolfMaskSVG.jsx"));
 
 const App = () => {
   // Initialize Lenis smooth scroll
-  useLenis();
+  // useLenis();
 
   // Get current location for route changes
   const location = useLocation();
