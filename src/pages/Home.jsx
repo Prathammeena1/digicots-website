@@ -12,7 +12,7 @@ import HomeNinthSection from "../sections/HomeNinthSection.jsx";
 const Home = () => {
   return (
     <div className="h-full w-full bg-transparent">
-      {/* <HomeHeroSection />
+      <HomeHeroSection />
       <HomeSecondSection />
 
       <HomeThirdSection />
@@ -25,7 +25,7 @@ const Home = () => {
 
       <HomeSeventhSection />
 
-      <HomeEighthSection /> */}
+      <HomeEighthSection />
 
       <HomeNinthSection />
     </div>
