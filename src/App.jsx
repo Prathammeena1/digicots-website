@@ -15,6 +15,7 @@ import Footer from "./components/Footer.jsx";
 import ThankyouPopUp from "./sections/ThankyouPopup.jsx";
 import ServicesDetail from "./pages/ServicesDetail.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Branding from "./pages/Branding.jsx";
 
 // Lazy load heavy components
 const FluidCanvas = React.lazy(() => import("./components/FluidCanvas.jsx"));
@@ -161,14 +162,7 @@ const App = () => {
             <Route path="/services" element={<Services />} />
             <Route path="/services/:id" element={<ServicesDetail />} />
             <Route path="/contact" element={<Contact />} />
-            <Route
-              path="/branding"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Branding</h1>
-                </div>
-              }
-            />
+            <Route path="/branding" element={<Branding />} />
             <Route
               path="/marketing"
               element={
