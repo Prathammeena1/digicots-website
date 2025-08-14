@@ -80,7 +80,7 @@ const HomeFifthSection = () => {
       scrollTrigger: {
         trigger: parentRef.current,
         start: "top 0%",
-        end: "top -600%",
+        end: "top -200%",
         scrub: 1,
       },
     });
@@ -181,7 +181,7 @@ const HomeFifthSection = () => {
       </div>
 
       {/* This div creates the scroll height for the sticky effect */}
-      <div className="h-[600vh]"></div>
+      <div className="h-[200vh]"></div>
     </div>
   );
 };

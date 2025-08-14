@@ -121,7 +121,7 @@ const HomeHeroSection = () => {
       scrollTrigger: {
         trigger: homeRef.current,
         start: "top 0",
-        end: "top -300%",
+        end: "top -100%",
         scrub: 1.2,
         anticipatePin: 1,
         refreshPriority: -1,
@@ -225,8 +225,9 @@ const HomeHeroSection = () => {
         alt="Logo"
         className="fixed left-[51%] top-1/2 -translate-1/2 w-30 h-auto z-[99999] pointer-events-none select-none opacity-0"
       /> */}
-      <div className="section h-[400vh] w-full relative">
+      <div id="HomeHero"  className="section h-[200vh] w-full relative">
         <div
+        
           ref={homeRef}
           className="h-screen w-full sticky top-0 overflow-hidden"
         >

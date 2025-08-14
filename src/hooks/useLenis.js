@@ -4,29 +4,24 @@ import { initControlledScroll } from '../utils/scrollUtils.js'
 
 export const useLenis = () => {
   useEffect(() => {
-    // Create Lenis instance with settings optimized for fixed 100vh scrolling
+    // Create Lenis instance with settings optimized for normal smooth scrolling
     const lenis = new Lenis({
-      duration: 1.2,          // Matched with fixed scroll duration
-      easing: (t) => {
-        // Consistent easing for 100vh scrolls
-        return t < 0.5 
-          ? 2 * t * t 
-          : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      },
+      duration: 1.2,          
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing
       direction: 'vertical',   
       gestureDirection: 'vertical',
       smooth: true,           
-      mouseMultiplier: 0,     // Disable default mouse wheel (we handle it)
-      smoothTouch: true,      // Enable smooth touch for mobile
-      touchMultiplier: 1.5,   // Normal touch sensitivity
+      mouseMultiplier: 1,     // Enable normal mouse wheel
+      smoothTouch: true,      
+      touchMultiplier: 1.5,   
       infinite: false,        
       autoResize: true,       
-      syncTouch: true,        // Better touch sync
+      syncTouch: true,        
       syncTouchLerp: 0.1,     
       touchInertiaMultiplier: 25, 
-      wheelMultiplier: 0,     // Disable default wheel handling
-      normalizeWheel: false,  // We handle normalization
-      lerp: 0.1,             // Smooth interpolation for touch
+      wheelMultiplier: 1,     // Enable normal wheel handling
+      normalizeWheel: true,   // Enable wheel normalization
+      lerp: 0.1,             
     })
 
     // Make Lenis instance globally accessible
@@ -43,13 +38,23 @@ export const useLenis = () => {
 
     requestAnimationFrame(raf)
 
-    // Add scroll event listener to sync section tracking
+    // Add scroll event listener to sync section tracking only for target section
     lenis.on('scroll', (e) => {
-      // Update current section when manually scrolled (e.g., via scrollbar)
-      if (!window.isScrolling) {
-        const currentScroll = e.scroll;
-        const sectionHeight = window.innerHeight;
-        window.currentSection = Math.round(currentScroll / sectionHeight);
+      // Update current section when manually scrolled within target section
+      const targetElement = document.getElementById('HomeHero');
+      if (targetElement && !window.isScrolling) {
+        const rect = targetElement.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Only track sections if we're in the target section
+        if (rect.top <= 0 && rect.bottom >= viewportHeight) {
+          // Calculate current section within the 400vh HomeHero container
+          const targetElementTop = e.scroll + rect.top;
+          const relativeScroll = e.scroll - targetElementTop;
+          const calculatedSection = Math.floor(relativeScroll / viewportHeight);
+          
+          window.currentSection = Math.max(0, Math.min(calculatedSection, 3));
+        }
       }
     })
 
