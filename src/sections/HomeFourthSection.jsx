@@ -21,7 +21,7 @@ const content = [
 
 const HomeFourthSection = () => {
   return (
-    <div className='h-screen w-full bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-16 '>
+    <div className='h-screen w-full bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-30 '>
       <HomeFourthSectionCanvas />
 
       {

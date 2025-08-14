@@ -18,7 +18,6 @@ const Home = () => {
       <HomeThirdSection />
 
       <HomeFourthSection />
-
       <HomeFifthSection />
 
       <HomeSixthSection />

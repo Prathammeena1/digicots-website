@@ -102,7 +102,7 @@ const HomeSixthSection = () => {
   };
 
   return (
-    <div className="bg-transparent min-h-screen py-10 px-8 relative overflow-hidden pointer-events-none">
+    <div className="bg-transparent min-h-screen py-10 px-30 relative overflow-hidden pointer-events-none">
       <div className="fixed z-20">
         <div
           ref={screen1Ref}
@@ -113,7 +113,7 @@ const HomeSixthSection = () => {
           className="screen2 top-[100%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
         ></div>
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 mx-auto">
         {/* Main heading */}
         <div className="text-center my-10">
           <h2 className="text-white text-6xl md:text-7xl font-bold tracking-wide">

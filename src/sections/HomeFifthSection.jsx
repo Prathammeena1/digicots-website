@@ -153,9 +153,9 @@ const HomeFifthSection = () => {
             className="h-screen w-full absolute z-10 flex items-end"
           >
             <div className="h-[30%] w-full bg-gradient-to-b from-transparent to-black"></div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center absolute bottom-20 left-40">
+            <div className="w-full absolute bottom-20 left-0 px-30">
               {/* Service info */}
-              <div className="text-white w-[80vw] flex items-end justify-between">
+              <div className="text-white w-full flex items-end justify-between">
                 <div className="">
                   <div className="mb-2">
                     <span className="text-zinc-300 text-sm tracking-wider">

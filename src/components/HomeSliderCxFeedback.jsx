@@ -52,8 +52,8 @@ export default function HomeSliderCxFeedback() {
     const { text, name, role } = slides[current];
 
     return (
-        <div className="pointer-events-none text-white flex items-center justify-center min-h-screen">
-            <div className="w-6xl xl:w-8xl px-6 py-10 relative flex min-h-[50vh] justify-between items-start">
+        <div className="pointer-events-none text-white flex items-center justify-center px-30">
+            <div className="w-full py-10 relative flex min-h-[50vh] justify-between items-start">
                 <div
                     className={`transition-opacity duration-300 ${
                         fade ? "opacity-100" : "opacity-0"
