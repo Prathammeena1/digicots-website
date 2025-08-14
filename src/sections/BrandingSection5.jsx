@@ -12,18 +12,20 @@ const BrandingSection5 = () => {
 
   // Image mapping for each list item
   const imageMap = {
-    "Research & Strategy": "/images/branding-page/img1.png",
-    Branding: "/images/branding-page/img2.png",
-    Content: "/images/branding-page/img3.png",
-    "Advertising Campaigns": "/images/branding-page/img4.png",
-    "Website Design": "/images/branding-page/img1.png",
+    "Research & Strategy": "/images/branding-page/img5.png",
+    "Branding": "/images/branding-page/img6.png",
+    "Content": "/images/branding-page/img7.png",
+    "Advertising ": "/images/branding-page/img8.png",
+    "Campaigns": "/images/branding-page/img9.png",
+    "Website Design": "/images/branding-page/img10.png",
   };
 
   const listItems = [
     "Research & Strategy",
     "Branding",
     "Content",
-    "Advertising Campaigns",
+    "Advertising ",
+    "Campaigns",
     "Website Design",
   ];
 
@@ -65,7 +67,7 @@ const BrandingSection5 = () => {
         </RollingImageEffect>
       </div>
 
-      <div className=" min-h-screen w-full py-20 px-10">
+      <div className=" min-h-screen w-full py-20 px-30">
         <div className="w-full flex flex-col gap-10">
           <h2 className="text-7xl font-light">
             <TextAnimH1>Brand and creative</TextAnimH1>

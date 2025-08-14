@@ -122,7 +122,7 @@ export default function Footer({ popActive, setPopActive }) {
   return (
     <footer
       ref={footerRef}
-      className=" pointer-events-none text-white py-16 px-6 relative z-10 overflow-hidden"
+      className=" pointer-events-none text-white py-16 px-30 relative z-10 overflow-hidden"
     >
       <div className="container mx-auto max-w-[1600px]">
         {/* Top Section - Join the Pack */}
@@ -134,7 +134,7 @@ export default function Footer({ popActive, setPopActive }) {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <h2 className="text-5xl sm:text-8xl font-inter font-bold leading-tight text-white audiowide-regular">
+            <h2 className="text-5xl sm:text-7xl font-inter font-bold leading-tight text-white audiowide-regular">
               Join the Pack
             </h2>
           </motion.div>

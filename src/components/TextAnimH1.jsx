@@ -31,6 +31,8 @@ const TextAnimH1 = ({ children, isLanding = false, delay = 0 }) => {
         { y: 0, opacity: 1, duration: 1.6, ease: "power3.inOut" }
       );
     } else {
+      console.log("loading",isLoading);
+      console.log("landing",isLanding);
       !isLoading &&
         gsap.fromTo(
           childRef.current,

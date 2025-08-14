@@ -30,7 +30,7 @@ const BrandingSection2 = () => {
           </TextAnimP1>
         </p>
       </div>
-      <div className="absolute left-0 bottom-0 w-[600px] h-[400px]  translate-y-1/2">
+      <div className="absolute left-0 bottom-0 w-[600px] h-[400px]  translate-y-[70%]">
         <RollingImageEffect align="right">
           <img
             src="/images/branding-page/img2.png"

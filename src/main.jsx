@@ -9,7 +9,6 @@ import HomeThirdSection from './sections/HomeThirdSection.jsx'
 import HomeEighthSection from './sections/HomeEighthSection.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <BrowserRouter>
       <LoadingProvider>
         <LogoProvider>
@@ -17,8 +16,4 @@ createRoot(document.getElementById('root')).render(
         </LogoProvider>
       </LoadingProvider>
     </BrowserRouter>
-  </StrictMode>
-  // <HomeThirdSection />
-      // <HomeEighthSection />
-
 )

@@ -18,7 +18,7 @@ const Navigation = () => {
     // { path: '/graphics', label: 'Graphics' },
     { path: '/about', label: 'About' },
     { path: '/services', label: 'Services' },
-    { path: '/production', label: 'Production' }
+    { path: '/contact', label: 'Contact' }
   ]
 
   gsap.registerPlugin(ScrollTrigger)

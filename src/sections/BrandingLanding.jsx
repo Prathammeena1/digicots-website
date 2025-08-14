@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import RollingImageEffect from "../components/RollingImageEffect";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
 
-const BrandingLanding = () => {
+const BrandingLanding = memo(() => {
   return (
     <div className="h-screen w-full flex items-center px-30 relative">
       <div className="h-[60vh] flex flex-col justify-between">
@@ -26,17 +26,19 @@ const BrandingLanding = () => {
           </button>
         </TextAnimP1>
       </div>
-      <div className="absolute right-0 bottom-0 w-[600px] h-[400px]  translate-y-1/2 overflow-hidden">
+      <div className="absolute right-0 bottom-0 w-[600px] h-[400px] translate-y-1/2 overflow-hidden">
         <RollingImageEffect>
           <img
             src="/images/branding-page/img1.png"
             className="object-cover w-full h-full"
-            alt=""
+            alt="Branding"
           />
         </RollingImageEffect>
       </div>
     </div>
   );
-};
+});
+
+BrandingLanding.displayName = 'BrandingLanding';
 
 export default BrandingLanding;
