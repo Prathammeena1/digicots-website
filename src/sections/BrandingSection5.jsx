@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RollingImageEffect from "../components/RollingImageEffect";
-
+import TextAnimH1 from "../components/TextAnimH1";
+import TextAnimP1 from "../components/TextAnimP1";
 const BrandingSection5 = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [lastHoveredItem, setLastHoveredItem] = useState(null);
@@ -55,59 +56,71 @@ const BrandingSection5 = () => {
   return (
     <div className="min-h-screen w-full">
       <div className="h-[50vh] w-full">
-        <img
-          src="/images/branding-page/img4.png"
-          className="h-full w-full object-cover"
-          alt=""
-        />
+        <RollingImageEffect direction="vertical">
+          <img
+            src="/images/branding-page/img4.png"
+            className="h-full w-full object-cover"
+            alt=""
+          />
+        </RollingImageEffect>
       </div>
 
       <div className=" min-h-screen w-full py-20 px-10">
         <div className="w-full flex flex-col gap-10">
-          <h2 className="text-7xl font-light">Brand and creative</h2>
+          <h2 className="text-7xl font-light">
+            <TextAnimH1>Brand and creative</TextAnimH1>
+          </h2>
           <p className="text-lg leading-relaxed text-gray-300">
-            We make the world sit up and take notice—crafting a brand voice,
-            identity, and message <br /> as powerful as a wolf’s call, ready to
-            be heard far and wide.
+            <TextAnimP1>
+              We make the world sit up and take notice—crafting a brand voice,
+              identity, and message <br /> as powerful as a wolf’s call, ready
+              to be heard far and wide.
+            </TextAnimP1>
           </p>
 
-          <ul className="list-disc pl-20 space-y-2">
+          <ul className="list-disc pl-20 space-y-4">
             {listItems.map((item, index) => (
-              <li
-                key={index}
-                className="cursor-pointer transition-colors duration-300 hover:text-blue-400 pointer-events-auto w-fit"
-                onMouseEnter={() => {
-                  setHoveredItem(item);
-                  setLastHoveredItem(item); // Save as last hovered
-                }}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                {item}
-              </li>
+              <TextAnimP1>
+                <li
+                  key={index}
+                  className="cursor-pointer transition-colors duration-300 hover:text-blue-400 pointer-events-auto w-fit"
+                  onMouseEnter={() => {
+                    setHoveredItem(item);
+                    setLastHoveredItem(item); // Save as last hovered
+                  }}
+                  onMouseLeave={() => setHoveredItem(null)}
+                >
+                  {item}
+                </li>
+              </TextAnimP1>
             ))}
           </ul>
 
-          <button className="w-fit text-white py-3 px-8 border border-zinc-200">
-            Get in touch
-          </button>
+          <TextAnimP1>
+            <button className="w-fit text-white py-3 px-8 border border-zinc-200">
+              Get in touch
+            </button>
+          </TextAnimP1>
         </div>
         <div className="absolute right-0 bottom-0 w-[700px] h-[500px] overflow-hidden">
-          <div className="relative w-full h-full">
-            {/* <RollingImageEffect> */}
-              <img
-                src={currentImage}
-                className={`absolute inset-0 object-cover w-full h-full transition-all duration-400 ease-in-out transform hover:scale-105 ${
-                  isTransitioning ? "opacity-0" : "opacity-100"
-                }`}
-                alt={hoveredItem || "Branding"}
-              />
-              {/* Overlay for smoother transitions */}
-              <div
-                className={`absolute inset-0 bg-black transition-opacity duration-200 ${
-                  isTransitioning ? "opacity-20" : "opacity-0"
-                }`}
-              />
-            {/* </RollingImageEffect> */}
+          <div className="h-full w-full relative overflow-hidden">
+            <RollingImageEffect>
+              <div className="relative w-full h-full">
+                <img
+                  src={currentImage}
+                  className={`absolute inset-0 object-cover w-full h-full transition-all duration-400 ease-in-out transform hover:scale-105 ${
+                    isTransitioning ? "opacity-0" : "opacity-100"
+                  }`}
+                  alt={hoveredItem || "Branding"}
+                />
+                {/* Overlay for smoother transitions */}
+                <div
+                  className={`absolute inset-0 bg-black transition-opacity duration-200 ${
+                    isTransitioning ? "opacity-20" : "opacity-0"
+                  }`}
+                />
+              </div>
+            </RollingImageEffect>
           </div>
         </div>
       </div>
