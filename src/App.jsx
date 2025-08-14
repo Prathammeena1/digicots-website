@@ -9,7 +9,7 @@ import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import LoadingScreen from "./components/LoadingScreen.jsx";
 import { useLenis } from "./hooks/useLenis.js";
 import { useLoading } from "./context/LoadingContext.jsx";
-import { resetScrollState } from "./utils/scrollUtils.js";
+// import { resetScrollState } from "./utils/scrollUtils.js";
 import Approach from "./pages/Approach.jsx";
 import Footer from "./components/Footer.jsx";
 import ThankyouPopUp from "./sections/ThankyouPopup.jsx";
@@ -79,7 +79,7 @@ const App = () => {
   // Handle scroll to top with proper reset
   const handleScrollToTop = () => {
     // IMMEDIATELY reset scroll state before scrolling
-    resetScrollState();
+    // resetScrollState();
 
     // Use Lenis smooth scroll to top if available
     if (window.lenis) {
@@ -93,7 +93,7 @@ const App = () => {
         force: true, // Ensure scroll happens even if already at top
         onComplete: () => {
           // Double reset to ensure clean state
-          resetScrollState();
+          // resetScrollState();
 
           // Ensure we're truly at the top
           if (window.lenis) {
@@ -114,7 +114,7 @@ const App = () => {
 
       // Reset state for fallback too
       setTimeout(() => {
-        resetScrollState();
+        // resetScrollState();
       }, 100);
     }
   };
@@ -163,46 +163,8 @@ const App = () => {
             <Route path="/services/:id" element={<ServicesDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/branding" element={<Branding />} />
-            <Route
-              path="/marketing"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Marketing</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/web-digital"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Web & Digital</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/graphics"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Graphics</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/content"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Content</h1>
-                </div>
-              }
-            />
-            <Route
-              path="/production"
-              element={
-                <div className="p-8 pt-24">
-                  <h1 className="text-3xl font-gilroy-bold">Production</h1>
-                </div>
-              }
-            />
+            <Route path="/marketing" element={<Branding />} />
+            <Route path="/web-digital" element={<Branding />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -5,21 +5,21 @@ const AboutSixthSection = () => {
   const websites = [
     {
       id: 1,
-      image: "/images/website1.png", // Tennis website mockup
+      image: "/final-images/about-images/img1.png", // Tennis website mockup
       title: "Tennis Website",
       rotation: "-15deg",
       position: "left",
     },
     {
       id: 2,
-      image: "/images/website2.png", // La Revolution Fraiche website mockup
+      image: "/final-images/about-images/img2.png", // La Revolution Fraiche website mockup
       title: "La Revolution Website",
       rotation: "8deg",
       position: "center",
     },
     {
       id: 3,
-      image: "/images/website3.png", // Sound Unchained website mockup
+      image: "/final-images/about-images/img3.png", // Sound Unchained website mockup
       title: "Sound Unchained Website",
       rotation: "-12deg",
       position: "right",
@@ -27,7 +27,7 @@ const AboutSixthSection = () => {
   ];
 
   return (
-    <div className="h-screen w-full relative  text-white py-20 overflow-hidden">
+    <div className="min-h-screen w-full relative  text-white py-20 overflow-hidden">
 
         {/* <div className="absolute top-20 bg-black/20 z-10 h-[85%] w-[90%] left-1/2 transform -translate-x-1/2 rounded-3xl"></div> */}
         {/* Floating Website Mockups */}
@@ -42,7 +42,7 @@ const AboutSixthSection = () => {
         <div className="relative z-20 flex flex-col items-center justify-center h-screen text-center">
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold leading-[.9] mt-60">
+            <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold leading-[.9] mt-100">
               Contact us to get website
               <br />
               <span className="text-white">of your dreams</span>

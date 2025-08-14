@@ -142,44 +142,44 @@ const HomeHeroSection = () => {
         duration: 3.1,
         ease: "power3.out",
       },
-      0.2
+      // 0.2
     )
-      .to(
-        sec1.current,
-        {
-          opacity: 0,
-          duration: 0.5,
-          ease: "power2.inOut",
-        },
-        3.7
-      )
-      .to(
-        sec2.current,
-        {
-          y: "0%",
-          duration: 3.1,
-          ease: "power3.out",
-        },
-        4.2
-      )
-      .to(
-        sec2.current,
-        {
-          opacity: 0,
-          duration: 0.5,
-          ease: "power2.inOut",
-        },
-        "+=0.2"
-      )
-      .to(
-        sec3.current,
-        {
-          y: "0%",
-          duration: 3.1,
-          ease: "power3.out",
-        },
-        "+=0.1"
-      )
+    //   .to(
+    //     sec1.current,
+    //     {
+    //       opacity: 0,
+    //       duration: 0.5,
+    //       ease: "power2.inOut",
+    //     },
+    //     3.7
+    //   )
+    //   .to(
+    //     sec2.current,
+    //     {
+    //       y: "0%",
+    //       duration: 3.1,
+    //       ease: "power3.out",
+    //     },
+    //     4.2
+    //   )
+    //   .to(
+    //     sec2.current,
+    //     {
+    //       opacity: 0,
+    //       duration: 0.5,
+    //       ease: "power2.inOut",
+    //     },
+    //     "+=0.2"
+    //   )
+    //   .to(
+    //     sec3.current,
+    //     {
+    //       y: "0%",
+    //       duration: 3.1,
+    //       ease: "power3.out",
+    //     },
+    //     "+=0.1"
+    //   )
   }, [
     sec1.current,
     sec2.current,
