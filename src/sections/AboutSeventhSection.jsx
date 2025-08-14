@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './AboutSeventhSection.css'
 
 const AboutSeventhSection = () => {
@@ -6,6 +6,7 @@ const AboutSeventhSection = () => {
   const [isHovering, setIsHovering] = useState(false) // Track if user is hovering
   const [autoActiveOption, setAutoActiveOption] = useState(0) // For auto cycling
   const [progress, setProgress] = useState(0) // Progress of current timer
+  const hoverTimeoutRef = useRef(null) // For debouncing hover effects
 
   const optionsData = [
     {
@@ -85,16 +86,41 @@ const AboutSeventhSection = () => {
     }
   }, [isHovering, optionsData.length, autoActiveOption])
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current)
+      }
+    }
+  }, [])
+
   const handleOptionHover = (optionId) => {
-    setHoveredOption(optionId)
-    setIsHovering(true)
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
+    
+    // Set a timeout before triggering the hover effect
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredOption(optionId)
+      setIsHovering(true)
+    }, 200) // 200ms delay before hover effect starts
   }
 
   const handleOptionsEnter = () => {
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
     setIsHovering(true)
   }
 
   const handleOptionsLeave = () => {
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+    }
     setIsHovering(false)
     setHoveredOption(0) // Reset to first option
   }

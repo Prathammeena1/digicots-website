@@ -399,10 +399,13 @@ const ServiceLanding2 = () => {
       .to(
         ".content",
         {
-          width: "70vw",
+          width: "72vw",
         },
         "g"
-      );
+      )
+      // .to(".content .service-content-description",{
+      //   // width:"22vw"
+      // }, "i")
     const tl8 = gsap.timeline({
       scrollTrigger: {
         trigger: parentRef.current,
@@ -458,7 +461,7 @@ const ServiceLanding2 = () => {
             width: "60vw",
           }}
         >
-          <div className="pl-8 pr-4 md:pl-16 lg:pl-24">
+          <div className="pl-30 pr-4 ">
             {/* Main Services Title */}
             <div className="mb-16">
               <h1 className="text-white text-7xl md:text-8xl lg:text-9xl font-bold tracking-wide mb-8">
@@ -596,37 +599,7 @@ const ServiceLanding2 = () => {
           );
         })}
 
-        {/* <div
-          className="service2 relative h-screen  bg-sky-400"
-          style={{
-            width: "15vw",
-          }}
-        ></div>
-        <div
-          className="service3 relative h-screen  bg-purple-400"
-          style={{
-            width: "0",
-          }}
-        ></div>
-        <div
-          className="service4 relative h-screen  bg-pink-400"
-          style={{
-            width: "0",
-          }}
-        ></div>
-        <div
-          className="service5 relative h-screen  bg-yellow-800"
-          style={{
-            width: "0",
-          }}
-        ></div>
-        <div
-          className="service6 relative h-screen  bg-emerald-500"
-          style={{
-            width: "0",
-          }}
-        ></div> */}
-
+        
         <div
           className=" content-parent absolute right-0 top-0 h-screen bg-gradient-to-b from-transparent to-black/50 z-10 flex"
           style={{
@@ -681,13 +654,13 @@ const ServiceLanding2 = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent:"center",
-              paddingLeft: "3rem",
-              paddingRight: "3rem",
+              // paddingLeft: "3rem",
+              // paddingRight: "3rem",
               paddingTop: "4.5rem",
             }}
           >
             {/* Services Title */}
-            <div className="">
+            <div className="px-30">
               <h1 className="text-white text-6xl md:text-7xl font-bold tracking-wide">
                 Services
               </h1>
@@ -699,7 +672,7 @@ const ServiceLanding2 = () => {
                     <div
                       // ref={(el) => (servicesGridRef.current[index] = el)}
                       key={index}
-                      className="grid grid-cols-[14vw_2fr_4fr] gap-0 items-center border-b border-gray-600 pb-4"
+                      className="grid grid-cols-[8vw_2fr_3.5fr] gap-0 items-center border-b border-gray-600 pb-4"
                     >
                       <span className="text-gray-400 text-xl font-medium">
                         {service.id}
@@ -720,7 +693,7 @@ const ServiceLanding2 = () => {
             </div>
 
             {/* Description Text */}
-            <div className="mt-6">
+            <div className="mt-6 px-30">
               <p className="text-gray-300 text-lg leading-[1.5]">
                 The force della knowledge, the impact della creativity, the
                 pervasiveness della technology. With the consulting of marketing

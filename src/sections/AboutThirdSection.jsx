@@ -2,7 +2,7 @@ import React from 'react'
 
 const AboutThirdSection = () => {
 return (
-    <div className='section h-screen w-full text-white px-12 pt-16'>
+    <div className='section h-screen w-full text-white px-30 pt-16'>
         <div className=' w-full max-w-[1700px] mx-auto'>
             {/* Our Core Values Section */}
             <div className='border-t border-gray-400/[.9] mt-10 py-16'>
