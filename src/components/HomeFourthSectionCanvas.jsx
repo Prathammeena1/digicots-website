@@ -15,7 +15,7 @@ const HomeFourthSectionCanvas = () => {
     if (!canvasRef.current) return;
 
     // const multiplier = 250;
-    const multiplier = 295;
+    const multiplier = 380;
     const nbCol = 1 * multiplier; // Number of columns
     const nbRows = 1.5 * multiplier; // Number of rows
 
@@ -87,7 +87,7 @@ const HomeFourthSectionCanvas = () => {
     const texture = textureLoader.load(
       // "/images/wolf-new.svg",
       // "/images/tommy.jpg",
-      "/final-images/logo/Wolf-new1.png",
+      "/final-images/logo/wolf_5.png",
       (loadedTexture) => {
         console.log("Texture loaded successfully");
         loadedTexture.minFilter = THREE.LinearFilter;
@@ -273,7 +273,7 @@ const HomeFourthSectionCanvas = () => {
   }, []);
 
   return (
-    <div className="h-screen w-[25vw] overflow-hidden scale-[1.1] bg-black absolute left-1/2 top-1/2 -translate-1/2">
+    <div className="h-screen w-[25vw] overflow-hidden scale-[.9] bg-black absolute left-1/2 top-1/2 -translate-1/2">
       <canvas
         ref={canvasRef}
         className="w-[25vw] h-full block bg-black "

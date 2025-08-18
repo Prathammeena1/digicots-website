@@ -17,8 +17,8 @@ const HomeFourthSectionCard = ({align,content}) => {
         </h3>
       </div>
 
-      <div className='h-[50vh] w-full'>
-        <img src={content.imgSrc} className='object-cover h-full w-full' alt="" />
+      <div className='h-[50vh] w-full scale-[.9]'>
+        <img src={content.imgSrc} className='object-contain h-full w-full' alt="" />
       </div>
 
 
