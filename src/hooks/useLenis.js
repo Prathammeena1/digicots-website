@@ -1,29 +1,43 @@
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import Lenis from 'lenis'
+import { useLocation } from 'react-router-dom'
 
 export const useLenis = () => {
+  const location = useLocation()
+
+  // Immediate scroll reset on route change - before anything renders
+  useLayoutEffect(() => {
+    // Stop everything immediately
+    if (window.lenis) {
+      window.lenis.stop()
+    }
+    
+    // Hard reset scroll position
+    window.scrollTo(0, 0)
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0
+    
+    // Block animations
+    window.isRouteChanging = true
+    
+    // Reset Lenis position
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true, force: true })
+    }
+  }, [location.pathname])
+
   useEffect(() => {
-    // Create natural smooth scroll - faster and more responsive
+    // Create natural smooth scroll
     const lenis = new Lenis({
-      duration: 1.2,          // Much faster duration
-      easing: (t) => t,       // Linear easing for natural scroll behavior
+      easing: (t) => t,
       direction: 'vertical',
       smooth: true,
-      mouseMultiplier: 1.5,   // Faster mouse wheel response
-      touchMultiplier: 2.5,   // Faster touch response
-      wheelMultiplier: 1.5,   // Faster wheel response
-      touchInertiaMultiplier: 35,
-      syncTouch: true,
-      syncTouchLerp: 0.15,    // Much more responsive touch
-      normalizeWheel: true,
-      lerp: 0.18,            // Much more responsive interpolation
-      autoResize: true,
     })
 
     // Make Lenis globally accessible
     window.lenis = lenis
 
-    // Natural 60fps animation loop
+    // Animation loop
     function raf(time) {
       lenis.raf(time)
       requestAnimationFrame(raf)
@@ -37,7 +51,20 @@ export const useLenis = () => {
     return () => {
       document.documentElement.classList.remove('lenis')
       window.lenis = null
+      window.isRouteChanging = false
       lenis.destroy()
     }
   }, [])
+
+  // Re-enable Lenis after route change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.lenis) {
+        window.lenis.start()
+      }
+      window.isRouteChanging = false
+    }, 50) // Very short delay
+
+    return () => clearTimeout(timer)
+  }, [location.pathname])
 }

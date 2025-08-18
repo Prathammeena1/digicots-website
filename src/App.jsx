@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation.jsx";
 import Home from "./pages/Home.jsx";
@@ -23,7 +23,7 @@ const WolfMaskSVG = React.lazy(() => import("./components/WolfMaskSVG.jsx"));
 
 const App = () => {
   // Initialize Lenis smooth scroll
-  // useLenis();
+  useLenis();
 
   // Get current location for route changes
   const location = useLocation();
@@ -44,37 +44,41 @@ const App = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Scroll to top when route changes
-  useEffect(() => {
-    // Use enhanced route reset function if available
-    if (window.lenisRouteReset) {
-      window.lenisRouteReset();
-    } else if (window.lenisReset) {
-      // Fallback to regular reset
-      window.lenisReset();
+  // IMMEDIATE scroll reset on route change - useLayoutEffect runs before useEffect
+  useLayoutEffect(() => {
+    // This runs synchronously before the browser paints
+    // Disable scroll restoration
+    if (history.scrollRestoration) {
+      history.scrollRestoration = 'manual';
     }
+    
+    // Immediate reset - runs before any other effects
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    
+    // Stop Lenis immediately
+    if (window.lenis) {
+      window.lenis.stop();
+      window.lenis.scrollTo(0, { immediate: true });
+    }
+    
+    // Block animations
+    window.isRouteChanging = true;
+    
+  }, [location.pathname]);
 
-    // Also reset native scroll position as fallback
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "auto", // Use 'auto' for instant scroll
-    });
-
-    // Additional safety reset with delay
-    const timeoutId = setTimeout(() => {
+  // Re-enable scroll after layout
+  useEffect(() => {
+    const enableTimeout = setTimeout(() => {
       if (window.lenis) {
-        window.lenis.scrollTo(0, { immediate: true, force: true });
-        window.lenis.resize(); // Recalculate scroll bounds
+        window.lenis.start();
       }
-
-      // Reset any remaining scroll state
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    }, 150);
-
-    return () => clearTimeout(timeoutId);
-  }, [location.pathname]); // Trigger when pathname changes
+      window.isRouteChanging = false;
+    }, 100);
+    
+    return () => clearTimeout(enableTimeout);
+  }, [location.pathname]);
 
   // Handle scroll to top with proper reset
   const handleScrollToTop = () => {

@@ -5,8 +5,11 @@ import { LogoProvider } from './context/LogoContext'
 import { LoadingProvider } from './context/LoadingContext'
 import './index.css'
 import App from './App.jsx'
-import HomeThirdSection from './sections/HomeThirdSection.jsx'
-import HomeEighthSection from './sections/HomeEighthSection.jsx'
+
+// Disable automatic scroll restoration
+if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>

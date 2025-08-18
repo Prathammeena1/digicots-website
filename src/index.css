@@ -16,6 +16,8 @@ html, body {
   scrollbar-width: none;
    /* Hide scrollbar for Internet Explorer 10+ */
    -ms-overflow-style: none; 
+   /* Force scroll to start from top */
+   scroll-behavior: auto !important;
 }
 
 /* Hide scrollbar utility class */
