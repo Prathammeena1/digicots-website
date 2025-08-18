@@ -7,7 +7,7 @@ import BrandingSection5 from "../sections/BrandingSection5";
 
 const Branding = () => {
   return (
-    <div className="min-h-screen w-full text-zinc-200 relative z-10 pointer-events-none">
+    <div className="min-h-screen w-full text-zinc-200 relative z-10">
         
       <BrandingLanding />
       <BrandingSection2 />
