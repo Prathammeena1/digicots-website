@@ -52,6 +52,11 @@ export default function Footer({ popActive, setPopActive }) {
   const [message, setMessage] = useState("");
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(true);
+
+  useEffect(() => {
+    setShowContactForm(location.pathname !== "/contact");
+  }, [location.pathname]);
 
   const validateForm = () => {
     const requiredFields = [
@@ -126,100 +131,104 @@ export default function Footer({ popActive, setPopActive }) {
     >
       <div className="container mx-auto max-w-[1600px]">
         {/* Top Section - Join the Pack */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-10">
-          {/* Left - Text */}
-          <motion.div
-            className="md:w-[25%] text-center md:text-left"
-            variants={sectionVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
-            <h2 className="text-5xl sm:text-7xl font-inter font-bold leading-tight text-white audiowide-regular">
-              Join the Pack
-            </h2>
-          </motion.div>
-
-          {/* Right - Form */}
-          <motion.div
-            className="md:w-[65%] w-full"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
-            <form
-              onSubmit={handleSubmit}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        {showContactForm && (
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+            {/* Left - Text */}
+            <motion.div
+              className="md:w-[25%] text-center md:text-left"
+              variants={sectionVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
             >
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <motion.input
-                value={formData.Full_Name}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    Full_Name: e.target.value,
-                  }))
-                }
-                type="text"
-                placeholder="Full Name"
-                className="  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
-                name="Full_Name"
-                variants={childVariants}
-              />
-              <motion.input
-                value={formData.Company_Name}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    Company_Name: e.target.value,
-                  }))
-                }
-                type="text"
-                placeholder="Company Name"
-                className=" p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
-                name="Company_Name"
-                variants={childVariants}
-              />
-              <motion.input
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData((prev) => ({ ...prev, email: e.target.value }))
-                }
-                type="email"
-                placeholder="Email Address"
-                className=" text-white  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none raleway pointer-events-auto border border-zinc-600 "
-                name="email"
-                variants={childVariants}
-              />
-              <motion.div className="flex" variants={childVariants}>
-                <input
-                  type="text"
-                  value={formData.Contact_Number}
+              <h2 className="text-5xl sm:text-7xl font-inter font-bold leading-tight text-white audiowide-regular">
+                Join the Pack
+              </h2>
+            </motion.div>
+
+            {/* Right - Form */}
+            <motion.div
+              className="md:w-[65%] w-full"
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              <form
+                onSubmit={handleSubmit}
+                className="grid grid-cols-1 md:grid-cols-2 gap-4"
+              >
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <motion.input
+                  value={formData.Full_Name}
                   onChange={(e) =>
                     setFormData((prev) => ({
                       ...prev,
-                      Contact_Number: e.target.value,
+                      Full_Name: e.target.value,
                     }))
                   }
-                  placeholder="Contact Number"
-                  className=" text-white  p-4 text-md w-full rounded-[999px] sm:px-10 focus:outline-none raleway pointer-events-auto border border-zinc-600 "
-                  name="Contact_Number"
+                  type="text"
+                  placeholder="Full Name"
+                  className="  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
+                  name="Full_Name"
+                  variants={childVariants}
                 />
-              </motion.div>
-              <motion.button
-                className="md:col-span-2 p-4 font-bold  border border-zinc-600 rounded-[999px] relative items-center justify-center overflow-hidden text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:bg-white before:duration-500 before:ease-out hover:text-black hover:before:h-56 hover:before:w-full flex cursor-pointer raleway pointer-events-auto"
-                variants={childVariants}
-              >
-                <div className="relative z-[11]">
-                  {loading ? "Submitting..." : "Let's Talk about the Future"}
-                </div>
-              </motion.button>
-            </form>
-            {message && (
-              <p className="text-sm text-white mt-2 font-semibold">{message}</p>
-            )}
-          </motion.div>
-        </div>
+                <motion.input
+                  value={formData.Company_Name}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      Company_Name: e.target.value,
+                    }))
+                  }
+                  type="text"
+                  placeholder="Company Name"
+                  className=" p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
+                  name="Company_Name"
+                  variants={childVariants}
+                />
+                <motion.input
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, email: e.target.value }))
+                  }
+                  type="email"
+                  placeholder="Email Address"
+                  className=" text-white  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none raleway pointer-events-auto border border-zinc-600 "
+                  name="email"
+                  variants={childVariants}
+                />
+                <motion.div className="flex" variants={childVariants}>
+                  <input
+                    type="text"
+                    value={formData.Contact_Number}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        Contact_Number: e.target.value,
+                      }))
+                    }
+                    placeholder="Contact Number"
+                    className=" text-white  p-4 text-md w-full rounded-[999px] sm:px-10 focus:outline-none raleway pointer-events-auto border border-zinc-600 "
+                    name="Contact_Number"
+                  />
+                </motion.div>
+                <motion.button
+                  className="md:col-span-2 p-4 font-bold  border border-zinc-600 rounded-[999px] relative items-center justify-center overflow-hidden text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:bg-white before:duration-500 before:ease-out hover:text-black hover:before:h-56 hover:before:w-full flex cursor-pointer raleway pointer-events-auto"
+                  variants={childVariants}
+                >
+                  <div className="relative z-[11]">
+                    {loading ? "Submitting..." : "Let's Talk about the Future"}
+                  </div>
+                </motion.button>
+              </form>
+              {message && (
+                <p className="text-sm text-white mt-2 font-semibold">
+                  {message}
+                </p>
+              )}
+            </motion.div>
+          </div>
+        )}
 
         {/* Divider */}
         <motion.div
@@ -366,7 +375,10 @@ export default function Footer({ popActive, setPopActive }) {
                     },
                   ].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
-                      <Link to={`discover?i=${i}`} className="hover:text-white pointer-events-auto">
+                      <Link
+                        to={`discover?i=${i}`}
+                        className="hover:text-white pointer-events-auto"
+                      >
                         {link.title}
                       </Link>
                     </motion.li>
