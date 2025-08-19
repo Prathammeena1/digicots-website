@@ -71,15 +71,13 @@ const Branding = () => {
       ref={pageRef}
       className="min-h-screen w-full text-zinc-200 relative z-10 bg-[#C8498F]"
     >
-      {pageRef.current && (
-        <>
-          <BrandingLanding pageRef={pageRef} data={landingdata} />
-          <BrandingSection2 pageRef={pageRef} data={section2Data} />
-          <BrandingSection3 pageRef={pageRef} data={section3Data} />
-          <BrandingSection4 pageRef={pageRef} data={section4Data} />
-          <BrandingSection5 pageRef={pageRef} data={section5Data} />
-        </>
-      )}
+      <>
+        <BrandingLanding pageRef={pageRef} data={landingdata} />
+        <BrandingSection2 pageRef={pageRef} data={section2Data} />
+        <BrandingSection3 pageRef={pageRef} data={section3Data} />
+        <BrandingSection4 pageRef={pageRef} data={section4Data} />
+        <BrandingSection5 pageRef={pageRef} data={section5Data} />
+      </>
     </div>
   );
 };

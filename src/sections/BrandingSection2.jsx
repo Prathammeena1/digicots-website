@@ -24,7 +24,7 @@ const BrandingSection2 = ({ data, pageRef }) => {
           scrub: true,
         },
       });
-    }, [data, pageRef]);
+    }, [data, pageRef.current]);
 
   return (
     <div

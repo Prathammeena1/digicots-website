@@ -106,7 +106,7 @@ const BrandingSection5 = ({data}) => {
         </div>
         <div className="absolute right-0 bottom-0 w-[700px] h-[500px] overflow-hidden">
           <div className="h-full w-full relative overflow-hidden">
-            <RollingImageEffect>
+            <RollingImageEffect bgColor={data?.bgColor}>
               <div className="relative w-full h-full">
                 <img
                   src={currentImage}
