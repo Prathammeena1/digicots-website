@@ -13,11 +13,13 @@ const Home = () => {
   return (
     <div className="h-full w-full bg-transparent">
       <HomeHeroSection />
+
       <HomeSecondSection />
 
       <HomeThirdSection />
 
       <HomeFourthSection />
+      
       <HomeFifthSection />
 
       <HomeSixthSection />

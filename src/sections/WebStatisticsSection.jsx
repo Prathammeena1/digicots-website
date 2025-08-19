@@ -78,16 +78,16 @@ export default function WebStatisticsSection() {
           <div className="space-y-8">
             <div>
               <h1 className="text-6xl lg:text-7xl font-light leading-tight">
-                <TextAnimH1 isLanding={true} delay={.1}>Our</TextAnimH1>
+                <TextAnimH1>Our</TextAnimH1>
                 <span className="font-semibold block">
-                  <TextAnimH1 isLanding={true} delay={.1}>tour in</TextAnimH1>
+                  <TextAnimH1>tour in</TextAnimH1>
                 </span>
                 <span className="">
-                  <TextAnimH1 isLanding={true} delay={.1}>numbers.</TextAnimH1>
+                  <TextAnimH1>numbers.</TextAnimH1>
                 </span>
               </h1>
               <p className="text-zinc-300 text-lg">
-                <TextAnimP1 isLanding={true} delay={.1}>
+                <TextAnimP1>
                   We work all over the world.
                 </TextAnimP1>
               </p>
@@ -100,7 +100,7 @@ export default function WebStatisticsSection() {
                   <CountingAnimation>550</CountingAnimation> <span>+</span>
                 </div>
                 <p className="text-zinc-300 text-lg">
-                  <TextAnimP1 isLanding={true} delay={.1} >Web pages created</TextAnimP1>
+                  <TextAnimP1 >Web pages created</TextAnimP1>
                 </p>
               </div>
               <div>
@@ -108,44 +108,44 @@ export default function WebStatisticsSection() {
                   <CountingAnimation>50</CountingAnimation> <span>+</span>
                 </div>
                 <p className="text-zinc-300 text-lg">
-                  <TextAnimP1 isLanding={true} delay={.1} >Fixed support customers</TextAnimP1>
+                  <TextAnimP1 >Fixed support customers</TextAnimP1>
                 </p>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-1">
-            <TextAnimP1 isLanding={true} delay={.1} >
+            <TextAnimP1 >
               <Card
                 heading="WordPress Expert"
                 description="more than 500 sites developed"
               />
             </TextAnimP1>
-            <TextAnimP1 isLanding={true} delay={.2} >
+            <TextAnimP1 >
               <Card
                 heading="WordPress Expert"
                 description="more than 500 sites developed"
               />
             </TextAnimP1>
-            <TextAnimP1 isLanding={true} delay={.3} >
+            <TextAnimP1 >
               <Card
                 heading="WordPress Expert"
                 description="more than 500 sites developed"
               />
             </TextAnimP1>
-            <TextAnimP1 isLanding={true} delay={.4} >
+            <TextAnimP1 >
               <Card
                 heading="WordPress Expert"
                 description="more than 500 sites developed"
               />
             </TextAnimP1>
-            <TextAnimP1 isLanding={true} delay={.5} >
+            <TextAnimP1 >
               <Card
                 heading="WordPress Expert"
                 description="more than 500 sites developed"
               />
             </TextAnimP1>
-            <TextAnimP1 isLanding={true} delay={.6} >
+            <TextAnimP1 >
               <Card
                 heading="WordPress Expert"
                 description="more than 500 sites developed"
