@@ -61,11 +61,11 @@ void main() {
 	pos.y += rotationInfluence * (randomY - 0.5) * uWaveStrength * 0.3;
 	
 	// Particle appearance/disappearance effect
-	float appearanceCycle = sin(uTime * 0.3 + randomTime * 6.28);
+	float appearanceCycle = sin(uTime * 0.3 + randomTime * 10.28);
 	float visibility = smoothstep(-0.8, 0.8, appearanceCycle);
 	
 	// Random point size with increased range and better randomization
-	float randomSize = 0.5 + randomX * 4.5; // 2.5 to 4.0 range (increased size)
+	float randomSize = 0.5 + randomX * 7.5; // 2.5 to 4.0 range (increased size)
 	
 	#include <begin_vertex>
 	// Use our modified position

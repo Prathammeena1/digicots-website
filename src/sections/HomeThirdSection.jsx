@@ -15,8 +15,7 @@ const HomeThirdSection = () => {
           duration="2"
           stagger={10}
         >
-          We Squeeze Out the Best of Global Applied Marketing & Strategy to
-          Drive Customer Loyalty
+          We turn the unknown into your greatest weapon
         </TextAnimation>
       </p>
 

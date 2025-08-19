@@ -15,7 +15,7 @@ const HomeFourthSectionCanvas = () => {
     if (!canvasRef.current) return;
 
     // const multiplier = 250;
-    const multiplier = 380;
+    const multiplier = 500;
     const nbCol = 1 * multiplier; // Number of columns
     const nbRows = 1.5 * multiplier; // Number of rows
 
@@ -127,8 +127,8 @@ const HomeFourthSectionCanvas = () => {
         uNbLines: { value: nbRows },
         uMouse: { value: new THREE.Vector2(999999, 999999) },
         uTime: { value: 0 },
-        uWaveStrength: { value: 5.5 },
-        uWaveRadius: { value: 150 },
+        uWaveStrength: { value: 8.5 },
+        uWaveRadius: { value: 190 },
         uMouseInfluence: { value: 0 },
       },
       transparent: true,
@@ -195,11 +195,11 @@ const HomeFourthSectionCanvas = () => {
         // Smooth mouse influence transition
         const canvas = canvasRef.current;
         if (canvas) {
-          materialRef.current.uniforms.uTime.value += 0.07; // Slightly faster for more dynamic effect
+          materialRef.current.uniforms.uTime.value += 0.14; // Slightly faster for more dynamic effect
           const isHovering = canvas.matches(":hover");
           const currentInfluence =
             materialRef.current.uniforms.uMouseInfluence.value;
-          const targetInfluence = isHovering ? 1.0 : 0.0;
+          const targetInfluence = isHovering ? 2.0 : 0.0;
           const lerpSpeed = 0.05; // Slower transition for more organic feel
 
           materialRef.current.uniforms.uMouseInfluence.value =
@@ -272,10 +272,10 @@ const HomeFourthSectionCanvas = () => {
   }, []);
 
   return (
-      <div className="h-screen w-[25vw] overflow-hidden scale-[.9] bg-black absolute left-1/2 top-1/2 -translate-1/2">
+      <div className="h-screen w-[38vw] overflow-hidden scale-[.7] bg-black absolute left-1/2 top-1/2 -translate-1/2">
         <canvas
           ref={canvasRef}
-          className="w-[25vw] h-full block bg-black "
+          className="w-[38vw] h-full block  "
           style={{ display: "block" }}
         />
       </div>

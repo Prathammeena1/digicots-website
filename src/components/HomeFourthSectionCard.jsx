@@ -11,12 +11,12 @@ const HomeFourthSectionCard = ({ align, content }) => {
     <div
       className={`text-white rounded-lg max-h-[100vh] flex flex-col justify-between min-h-[400px] mt-12 ${alignment[align]}`}
     >
-      <TextAnimP1>
         {/* Top section with Pro-Development */}
+      {/* <TextAnimP1>
         <div className="mb-6">
           <h3 className="text-lg font-medium text-gray-300">Pro-Development</h3>
         </div>
-      </TextAnimP1>
+      </TextAnimP1> */}
 
       <TextAnimP1>
         <div className="h-[50vh] w-full scale-[.9]">

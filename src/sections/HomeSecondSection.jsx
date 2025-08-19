@@ -5,8 +5,8 @@ const HomeSecondSection = () => {
   return (
     <div className="h-screen w-full relative pointer-events-none pt-30">
       <TextAnimation scrub={true} animeStart="70%" animeEnd="30%" duration="2" stagger={10} className="text-zinc-200 text-center font-bold text-3xl ">
-        Driven by instinct, powered by strategy <br /> we’re the ALPHA of digital
-        marketing and lead generation.
+        We’re not just any other marketing agency, we’re the alpha pack. <br />
+We are Digicots! Fierce. Relentless. Unapologetically Bold.
       </TextAnimation>
 
 

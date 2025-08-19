@@ -5,24 +5,24 @@ import HomeFourthSectionCanvas from '../components/HomeFourthSectionCanvas'
 const content = [
   {
     title:"Pro-Strategist ",
-    imgSrc:"/final-images/gif/1.gif",
-    // imgSrc:"/final-images/gif/2.gif",
-    h2:"DEVELOPMENT",
+    // imgSrc:"/final-images/gif/1.gif",
+    imgSrc:"/final-images/gif/2.gif",
+    h2:"HOLISTIC ADVISORY",
     dHead:"Strategies that are tailored to your goals.",
     dParagraph:"We craft data-driven strategies aligned with your goals to drive growth and keep you competitive in a changing market."   
   },
   {
     title:"Pro-Strategist ",
     imgSrc:"/final-images/gif/2.gif",
-    h2:"DEVELOPMENT",
-    dHead:"Strategies that are tailored to your goals.",
-    dParagraph:"We craft data-driven strategies aligned with your goals to drive growth and keep you competitive in a changing market."   
+    h2:"CUSTOMIZED SOLUTIONS",
+    dHead:"Solutions that are adapt to your company.",
+    dParagraph:"We develop customised systems and solutions that optimise the technological and management processes in your company."   
   }
 ]
 
 const HomeFourthSection = () => {
   return (
-    <div className='h-screen w-full bg-black relative overflow-hidden flex items-start justify-center gap-[35vw] px-30 '>
+    <div className='h-screen w-full bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-30 '>
       <HomeFourthSectionCanvas />
 
       {
