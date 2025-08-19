@@ -4,6 +4,8 @@ import { ScrollTrigger } from "gsap/all";
 import React from "react";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import TextAnimH1 from "../components/TextAnimH1";
+import TextAnimP1 from "../components/TextAnimP1";
 
 const servicesData = [
   {
@@ -362,7 +364,18 @@ const ServiceLanding2 = () => {
           width: "100vw",
         },
         "f"
-      );
+      )
+      .fromTo(
+        ".content-parent",
+        {
+          opacity: 0,
+        },
+        {
+          delay: 0.1,
+          opacity: 1,
+        },
+        "f"
+      )
     const tl7 = gsap.timeline({
       scrollTrigger: {
         trigger: parentRef.current,
@@ -402,10 +415,10 @@ const ServiceLanding2 = () => {
           width: "72vw",
         },
         "g"
-      )
-      // .to(".content .service-content-description",{
-      //   // width:"22vw"
-      // }, "i")
+      );
+    // .to(".content .service-content-description",{
+    //   // width:"22vw"
+    // }, "i")
     const tl8 = gsap.timeline({
       scrollTrigger: {
         trigger: parentRef.current,
@@ -447,9 +460,13 @@ const ServiceLanding2 = () => {
         },
         "i"
       )
-      .to(".content .service-content-description",{
-        width:"40vw"
-      }, "i")
+      .to(
+        ".content .service-content-description",
+        {
+          width: "40vw",
+        },
+        "i"
+      );
   }, [servicesData]);
 
   return (
@@ -465,15 +482,17 @@ const ServiceLanding2 = () => {
             {/* Main Services Title */}
             <div className="mb-16">
               <h1 className="text-white text-7xl md:text-8xl lg:text-9xl font-bold tracking-wide mb-8">
-                Services
+                <TextAnimH1 isLanding={true}>Services</TextAnimH1>
               </h1>
 
               {/* Description Text */}
               <p className="text-zinc-300 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-[1.4]">
-                The force della knowledge, the impact della creativity, the
-                pervasiveness della technology. With the consulting of marketing
-                and communication of Quamm, the value del your business grows in
-                the tempo.
+                <TextAnimP1 isLanding={true} delay={0.1}>
+                  The force della knowledge, the impact della creativity, the
+                  pervasiveness della technology. With the consulting of
+                  marketing and communication of Quamm, the value del your
+                  business grows in the tempo.
+                </TextAnimP1>
               </p>
             </div>
 
@@ -483,74 +502,76 @@ const ServiceLanding2 = () => {
               <div className="w-full h-px bg-zinc-600 mb-12"></div>
 
               {/* Categories Grid */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "2rem",
-                }}
-                className="md:grid-cols-4 md:gap-16"
-              >
-                <div style={{ textAlign: "center" }}>
-                  <h3
-                    style={{
-                      color: "rgb(161, 161, 170)",
-                      fontSize: "1.125rem",
-                      fontWeight: "500",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.05em",
-                    }}
-                    className="md:text-xl"
-                  >
-                    Development
-                  </h3>
-                </div>
+              <TextAnimP1 isLanding={true} delay={0.2}>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gap: "2rem",
+                  }}
+                  className="md:grid-cols-4 md:gap-16"
+                >
+                  <div style={{ textAlign: "left" }}>
+                    <h3
+                      style={{
+                        color: "rgb(161, 161, 170)",
+                        fontSize: "1.125rem",
+                        fontWeight: "500",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em",
+                      }}
+                      className="md:text-xl"
+                    >
+                      Development
+                    </h3>
+                  </div>
 
-                <div style={{ textAlign: "center" }}>
-                  <h3
-                    style={{
-                      color: "rgb(161, 161, 170)",
-                      fontSize: "1.125rem",
-                      fontWeight: "500",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.05em",
-                    }}
-                    className="md:text-xl"
-                  >
-                    Design
-                  </h3>
-                </div>
+                  <div style={{ textAlign: "left" }}>
+                    <h3
+                      style={{
+                        color: "rgb(161, 161, 170)",
+                        fontSize: "1.125rem",
+                        fontWeight: "500",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em",
+                      }}
+                      className="md:text-xl"
+                    >
+                      Design
+                    </h3>
+                  </div>
 
-                <div style={{ textAlign: "center" }}>
-                  <h3
-                    style={{
-                      color: "rgb(161, 161, 170)",
-                      fontSize: "1.125rem",
-                      fontWeight: "500",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.05em",
-                    }}
-                    className="md:text-xl"
-                  >
-                    Graphics
-                  </h3>
-                </div>
+                  <div style={{ textAlign: "left" }}>
+                    <h3
+                      style={{
+                        color: "rgb(161, 161, 170)",
+                        fontSize: "1.125rem",
+                        fontWeight: "500",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em",
+                      }}
+                      className="md:text-xl"
+                    >
+                      Graphics
+                    </h3>
+                  </div>
 
-                <div style={{ textAlign: "center" }}>
-                  <h3
-                    style={{
-                      color: "rgb(161, 161, 170)",
-                      fontSize: "1.125rem",
-                      fontWeight: "500",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.05em",
-                    }}
-                    className="md:text-xl"
-                  >
-                    Content
-                  </h3>
+                  <div style={{ textAlign: "left" }}>
+                    <h3
+                      style={{
+                        color: "rgb(161, 161, 170)",
+                        fontSize: "1.125rem",
+                        fontWeight: "500",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em",
+                      }}
+                      className="md:text-xl"
+                    >
+                      Content
+                    </h3>
+                  </div>
                 </div>
-              </div>
+              </TextAnimP1>
             </div>
           </div>
         </div>
@@ -599,7 +620,6 @@ const ServiceLanding2 = () => {
           );
         })}
 
-        
         <div
           className=" content-parent absolute right-0 top-0 h-screen bg-gradient-to-b from-transparent to-black/50 z-10 flex"
           style={{
@@ -653,7 +673,7 @@ const ServiceLanding2 = () => {
               right: "0vw",
               display: "flex",
               flexDirection: "column",
-              justifyContent:"center",
+              justifyContent: "center",
               // paddingLeft: "3rem",
               // paddingRight: "3rem",
               paddingTop: "4.5rem",
