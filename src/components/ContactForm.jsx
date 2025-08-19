@@ -2,6 +2,44 @@ import { useState } from "react";
 import TextAnimH1 from "./TextAnimH1";
 import TextAnimP1 from "./TextAnimP1";
 
+// Reusable Form Field Component
+const FormField = ({ field, value, onChange, isLanding = false, delay = 0 }) => {
+  const { id, label, name, type, placeholder, required, isTextarea } = field;
+  
+  const commonClasses = "w-full bg-transparent border-0 pointer-events-auto border-b pb-8 border-zinc-600 py-2 text-2xl placeholder-zinc-600 font-semibold focus:outline-none focus:border-gray-400 transition-colors";
+  
+  return (
+    <TextAnimP1 isLanding={isLanding} delay={delay}>
+      <div>
+        <label className="block text-sm text-zinc-200 mb-1">
+          {id} {label}
+        </label>
+        {isTextarea ? (
+          <textarea
+            name={name}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            className="w-full bg-transparent border-0 pointer-events-auto py-2 text-2xl placeholder-zinc-600 font-semibold focus:outline-none focus:border-gray-400 transition-colors resize-none"
+            rows="3"
+            required={required}
+          />
+        ) : (
+          <input
+            type={type}
+            name={name}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            className={commonClasses}
+            required={required}
+          />
+        )}
+      </div>
+    </TextAnimP1>
+  );
+};
+
 export default function ContactForm() {
   const [form, setForm] = useState({
     name: "",
@@ -10,6 +48,61 @@ export default function ContactForm() {
     services: "",
     message: "",
   });
+
+  // Form fields configuration
+  const formFields = [
+    {
+      id: "01",
+      label: "What's your name?",
+      name: "name",
+      type: "text",
+      placeholder: "John Doe*",
+      required: true,
+      isLanding: true,
+      delay: 0.2
+    },
+    {
+      id: "02",
+      label: "What's your email?",
+      name: "email",
+      type: "email",
+      placeholder: "John@email.com",
+      required: true,
+      isLanding: false,
+      delay: 0
+    },
+    {
+      id: "03",
+      label: "What's the name of your organization?",
+      name: "organization",
+      type: "text",
+      placeholder: "John & Doe.co",
+      required: false,
+      isLanding: false,
+      delay: 0
+    },
+    {
+      id: "04",
+      label: "What services are you looking for?",
+      name: "services",
+      type: "text",
+      placeholder: "Branding...",
+      required: false,
+      isLanding: false,
+      delay: 0
+    },
+    {
+      id: "05",
+      label: "Your Message",
+      name: "message",
+      type: "text",
+      placeholder: "John think...",
+      required: false,
+      isTextarea: true,
+      isLanding: false,
+      delay: 0
+    }
+  ];
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -118,86 +211,16 @@ export default function ContactForm() {
             {/* Right Side - Form */}
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <TextAnimP1 isLanding={true} delay={0.2}>
-                  <div>
-                    <label className="block text-sm text-zinc-200 mb-1">
-                      01 What's your name?
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="John Doe*"
-                      value={form.name}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-0 pointer-events-auto border-b pb-8 pl-14 border-zinc-600 py-2 text-2xl placeholder-zinc-600 font-semibold focus:outline-none focus:border-gray-400 transition-colors"
-                      required
-                    />
-                  </div>
-                </TextAnimP1>
-
-                <TextAnimP1>
-                  <div>
-                    <label className="block text-sm text-zinc-200 mb-1">
-                      02 What's your email?
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="John@email.com"
-                      value={form.email}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-0 pointer-events-auto border-b pb-8 pl-14 border-zinc-600 py-2 text-2xl placeholder-zinc-600 font-semibold focus:outline-none focus:border-gray-400 transition-colors"
-                      required
-                    />
-                  </div>
-                </TextAnimP1>
-
-                <TextAnimP1>
-                  <div>
-                    <label className="block text-sm text-zinc-200 mb-1">
-                      03 What's the name of your organization?
-                    </label>
-                    <input
-                      type="text"
-                      name="organization"
-                      placeholder="John & Doe.co"
-                      value={form.organization}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-0 pointer-events-auto border-b pb-8 pl-14 border-zinc-600 py-2 text-2xl placeholder-zinc-600 font-semibold focus:outline-none focus:border-gray-400 transition-colors"
-                    />
-                  </div>
-                </TextAnimP1>
-
-                <TextAnimP1>
-                  <div>
-                    <label className="block text-sm text-zinc-200 mb-1">
-                      04 What services are you looking for?
-                    </label>
-                    <input
-                      type="text"
-                      name="services"
-                      placeholder="Branding..."
-                      value={form.services}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-0 pointer-events-auto border-b pb-8 pl-14 border-zinc-600 py-2 text-2xl placeholder-zinc-600 font-semibold focus:outline-none focus:border-gray-400 transition-colors"
-                    />
-                  </div>
-                </TextAnimP1>
-                <TextAnimP1>
-                  <div>
-                    <label className="block text-sm text-zinc-200 mb-1">
-                      05 Your Message
-                    </label>
-                    <textarea
-                      name="message"
-                      placeholder="John think..."
-                      value={form.message}
-                      onChange={handleChange}
-                      className="w-full bg-transparent border-0 pointer-events-auto pl-14 py-2 text-2xl placeholder-zinc-600 font-semibold focus:outline-none focus:border-gray-400 transition-colors resize-none"
-                      rows="3"
-                    />
-                  </div>
-                </TextAnimP1>
+                {formFields.map((field, index) => (
+                  <FormField
+                    key={field.name}
+                    field={field}
+                    value={form[field.name]}
+                    onChange={handleChange}
+                    isLanding={field.isLanding}
+                    delay={field.delay}
+                  />
+                ))}
 
                 <TextAnimP1>
                   <div className="flex items-center justify-between gap-4">

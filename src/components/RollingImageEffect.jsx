@@ -54,7 +54,7 @@ const RollingImageEffect = React.memo(({children, direction = "horizontal", alig
 
   return (
     <div className='h-full w-full relative overflow-hidden'>
-        <div ref={divRef} className='w-full h-full absolute top-0 left-0 bg-black pointer-events-none z-30'>
+        <div ref={divRef} className='w-full h-full absolute top-0 left-0 bg-[#9372B9] pointer-events-none z-30'>
 
         </div>
 
