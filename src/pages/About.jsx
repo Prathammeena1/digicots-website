@@ -6,6 +6,8 @@ import AboutFourthSection from "../sections/AboutFourthSection";
 import AboutFifthSection from "../sections/AboutFifthSection";
 import AboutSixthSection from "../sections/AboutSixthSection";
 import AboutSeventhSection from "../sections/AboutSeventhSection";
+import AboutWhyDigi from "../sections/AboutWhyDigi";
+import AboutStatSection from "../sections/AboutStatSection";
 
 //  <AboutFirstSection />
 //       <AboutSecondSection />
@@ -17,6 +19,10 @@ const About = () => {
       <AboutFirstSection />
       {/* <AboutSecondSection /> */}
       <AboutThirdSection />
+
+      <AboutWhyDigi />
+      <AboutStatSection/>
+
       <AboutFourthSection />
       <AboutFifthSection />
       <AboutSixthSection />
