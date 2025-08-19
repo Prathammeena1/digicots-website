@@ -123,7 +123,7 @@ const App = () => {
     }
   };
 
-  console.log(window.innerWidth);
+  // console.log(window.innerWidth);
 
   return (
     <>
