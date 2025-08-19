@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import WebStatisticsSection from "../sections/WebStatisticsSection";
 import WebsAndDigitalCaseStudySection from "../sections/WebsAndDigitalCaseStudySection";
 import BrandingLanding from "../sections/BrandingLanding";
@@ -14,37 +14,72 @@ const landingdata = {
             services <br /> gets our global clients noticed for all the right
             reasons.`,
   btn: "Get in touch",
-  img:"/final-images/web/img1.png",
-  bgColor:"black"
+  img: "/images/branding-page/img1.png",
+  bgColor: ["black", "black"],
 };
 
 const section2Data = {
-    heading: ["Building", "authenticity", "and trust"],
-    p: [
-        `New to the wild? Or back on the hunt? We’re a brand creation agency
-        with the instincts of a wolf—strategic, relentless, and loyal to your
-        success. We track, research, and craft strategies that make you own
-        your territory.`,
-        `  Our pack works with precision, uniting your values and goals into a
-        clear path. Whether claiming new ground or chasing recognition, we
-        shape perceptions and make your presence impossible to ignore.`,
-    ],
-    img:"/final-images/web/img2.png",
-  bgColor: "black",
+  heading: ["Building", "authenticity", "and trust"],
+  p: [
+    `New to the wild? Or back on the hunt? We’re a brand creation agency
+    with the instincts of a wolf—strategic, relentless, and loyal to your
+    success. We track, research, and craft strategies that make you own
+    your territory.`,
+    `  Our pack works with precision, uniting your values and goals into a
+    clear path. Whether claiming new ground or chasing recognition, we
+    shape perceptions and make your presence impossible to ignore.`,
+  ],
+  img: "/images/branding-page/img2.png",
+  bgColor: ["black", "black"],
+};
+const section3Data = {
+  heading: ["Have a", "Query ?"],
+  btn: "Get in touch",
+  img: "/images/branding-page/img3.png",
+  bgColor: ["black", "black"],
+};
+
+const section4Data = {
+  headings: {
+    h1: ["Brand creation", "specialists", "at the ready"],
+    h2: ["Taking your", "brand message", "to the world"],
+  },
+
+  p: {
+    p1: ` With every insight we track down, our brand creation pack moves
+                in-storytellers and visionaries who make your brand spark
+                emotion and forge lasting connections. It’s more than words or a
+                logo; our work gives your brand the strength and depth to lead
+                the pack.`,
+    p2: ` For the strongest brands, it’s not just what you say, it’s how
+                  you say it. Our brand messaging pack makes sure your voice hits
+                  with precision. We hunt down what makes you great, then turn it
+                  into powerful copy and a voice that commands the world’s
+                  attention.`,
+  },
+
+  bgColor: ["black", "black"],
+};
+const section5Data = {
+  heading: ["Have a", "Query ?"],
+  btn: "Get in touch",
+  img: "/images/branding-page/img4.png",
+  bgColor: ["black", "black"],
 };
 
 const WebAndDigital = () => {
+    const pageRef = useRef(null);
   return (
-    <div className="h-full w-full relative z-20 text-white ">
-      <BrandingLanding data={landingdata} />
+    <div ref={pageRef} className="h-full w-full relative z-20 text-white ">
+      <BrandingLanding data={landingdata} pageRef={pageRef} />
 
-      <BrandingSection2 data={section2Data} />
-      <WebSolveSection />
-      <WebStatisticsSection />
-      <WebsAndDigitalCaseStudySection />
-      <BrandingSection3 />
-      <BrandingSection4 />
-      <BrandingSection5 />
+      <BrandingSection2 data={section2Data} pageRef={pageRef} />
+      <WebSolveSection data={section3Data} pageRef={pageRef} />
+      <WebStatisticsSection data={section4Data} pageRef={pageRef} />
+      <WebsAndDigitalCaseStudySection data={section5Data} pageRef={pageRef} />
+      <BrandingSection3 data={section3Data} pageRef={pageRef} />
+      <BrandingSection4 data={section4Data} pageRef={pageRef} />
+      <BrandingSection5 data={section5Data} pageRef={pageRef} />
     </div>
   );
 };

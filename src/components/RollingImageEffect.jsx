@@ -6,6 +6,7 @@ import React, { useRef, useCallback } from 'react'
 gsap.registerPlugin(ScrollTrigger);
 
 const RollingImageEffect = React.memo(({children, direction = "horizontal", align = "left",bgColor}) => {
+    console.log(bgColor)
     const divRef = useRef(null);
     const animationRef = useRef(null);
 
@@ -54,13 +55,18 @@ const RollingImageEffect = React.memo(({children, direction = "horizontal", alig
 
   return (
     <div className='h-full w-full relative overflow-hidden'>
-        <div
-        style={{ backgroundColor: bgColor }} // Use CSS variable for background color
-         ref={divRef} className='w-full h-full absolute top-0 left-0  pointer-events-none z-30'>
+      <div
+        style={{
+          background: Array.isArray(bgColor) && bgColor.length >= 2
+            ? `linear-gradient(to bottom right, ${bgColor[0]}, ${bgColor[1]})`
+            : 'linear-gradient(to bottom right, #ffffff, #cccccc)'
+        }} // Use CSS variable for background color
+        ref={divRef}
+        className='w-full h-full absolute top-0 left-0 pointer-events-none z-30'
+      >
+      </div>
 
-        </div>
-
-        {children}
+      {children}
     </div>
   )
 });

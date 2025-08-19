@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import RollingImageEffect from "../components/RollingImageEffect";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
-const BrandingSection5 = () => {
+const BrandingSection5 = ({data}) => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [lastHoveredItem, setLastHoveredItem] = useState(null);
   const [currentImage, setCurrentImage] = useState(
@@ -58,9 +58,9 @@ const BrandingSection5 = () => {
   return (
     <div className="min-h-screen w-full">
       <div className="h-[50vh] w-full">
-        <RollingImageEffect direction="vertical">
+        <RollingImageEffect direction="vertical" bgColor={data?.bgColor}>
           <img
-            src="/images/branding-page/img4.png"
+            src={data?.img}
             className="h-full w-full object-cover"
             alt=""
           />
