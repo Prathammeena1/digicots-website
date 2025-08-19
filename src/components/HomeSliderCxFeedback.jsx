@@ -4,29 +4,34 @@ import TextAnimP1 from "./TextAnimP1";
 
 const slides = [
   {
-    text: `We needed a partner who saw our vision and pushed us to new levels, from ideation to implementation. Clay's deep bench of athletes and expertise allowed us to deliver on target early on and scale for future expansion.`,
-    name: "Hanna Byers",
+    text: `Digicots knows how to strike a balance among knowledge, humor & relatability.
+They really know how to keep our viewers engaged.`,
+    name: "Glocal Edits",
     role: "VP of Product, Wealth",
   },
   {
-    text: `Clay's collaborative approach and creative thinking were instrumental in helping us achieve our product goals on time and with exceptional quality.`,
-    name: "John Smith",
+    text: `It feels like having a team that can flawlessly harmonize with our vision, mission and values.
+They thoroughly understand how we want the world to see us; and they make it happen.`,
+    name: "Head Field Solutions",
     role: "Head of Marketing",
   },
   {
-    text: `From strategy to execution, Clay provided the guidance and expertise we needed to excel in a highly competitive market.`,
-    name: "Sarah Johnson",
+    text: `The design sense perfectly aligns with the vision we have.
+Having Digicots is like having a therapist who gets you.`,
+    name: "Taste & Beyond",
     role: "Product Manager",
   },
   {
-    text: `The team's dedication and professionalism exceeded our expectations. We look forward to working together again.`,
-    name: "Michael Brown",
+    text: `They are data-driven and that is where our visions align.
+Their ability to blend data, tech & creativity is truly exceptional.`,
+    name: "ArtifiQ ",
     role: "CEO, TechNova",
   },
   {
-    text: `Clay's ability to understand our vision and turn it into reality made all the difference in our project's success.`,
-    name: "Emma Wilson",
-    role: "CTO, FinEdge",
+    text: `It is phenomenal how easily they dive into details and grab the gap.
+    They really do know when, where and how to strike.`,
+    name: "Glocal BPO",
+    role: "CEO, Glocal BPO",
   },
 ];
 
@@ -53,8 +58,8 @@ export default function HomeSliderCxFeedback() {
   const { text, name, role } = slides[current];
 
   return (
-      <TextAnimP1>
-    <div className="pointer-events-none text-white flex items-center justify-center px-30">
+    <TextAnimP1>
+      <div className="pointer-events-none text-white flex items-center justify-center px-30">
         <div className="w-full py-10 relative flex min-h-[50vh] justify-between items-start">
           <div
             className={`transition-opacity duration-300 ${
@@ -89,7 +94,7 @@ export default function HomeSliderCxFeedback() {
             </button>
           </div>
         </div>
-    </div>
-      </TextAnimP1>
+      </div>
+    </TextAnimP1>
   );
 }

@@ -10,20 +10,20 @@ const HomeSixthSection = () => {
     {
       id: 1,
       stepNumber: "STEP 1",
-      title: "Customised Approach",
+      title: "Smell the Wind ",
       image: "/images/approach1.png",
       description:
-        "We thoroughly analyse your needs to crate digital solution that reflect the essences of your brand and meet your needs with your specific objectives.",
+        "We sniff out every detail, dig deep – your goals, your challenges, your hidden opportunities.",
       fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       fallbackText: "Office Scene",
     },
     {
       id: 2,
       stepNumber: "STEP 2",
-      title: "Innovative & Creativity",
+      title: "Sharpen the Claws",
       image: "/images/approach2.png",
       description:
-        "We use modern technology and creative design to develop unique digital experiences that stand out in a competitive market.",
+        "We craft systems that are precise, powerful and purpose-driven.",
       fallbackGradient:
         "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
       fallbackText: "Creative Scene",
@@ -31,10 +31,10 @@ const HomeSixthSection = () => {
     {
       id: 3,
       stepNumber: "STEP 3",
-      title: "Measurable Results",
+      title: "Set the Pack in Motion",
       image: "/images/approach3.png",
       description:
-        "We focus on delivering tangible results, optimising each project to ensure a return on investment that drives your growth.",
+        "We balance creativity with practicality – our duality gives you the edge.",
       fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       fallbackText: "Team Results",
     },
@@ -118,7 +118,7 @@ const HomeSixthSection = () => {
         {/* Main heading */}
         <div className="text-center my-10">
           <h2 className="text-white text-6xl md:text-7xl font-bold tracking-wide">
-            <TextAnimH1>APPROACH</TextAnimH1>
+            <TextAnimH1>THE ALPHA EDGE</TextAnimH1>
           </h2>
         </div>
 
