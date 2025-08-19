@@ -14,7 +14,7 @@ const servicesData = [
     tags: ["web", "digital", "branding", "marketing", "graphics"],
     subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "We craft words and visuals that bite. Content designed to grab attention and keep your audience hooked. From blogs to campaigns, we make every message count.",
     href: "/services/1"
   },
   {
@@ -25,7 +25,7 @@ const servicesData = [
     tags: ["branding", "identity", "logo", "design"],
     subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "Designs that prowl ahead of trends, combining bold creativity with precision. Every visual tells your story with style and impact.",
     href: "/services/2"
   },
   {
@@ -36,7 +36,7 @@ const servicesData = [
     tags: ["marketing", "digital", "social", "strategy"],
     subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "From concept to final cut, we bring your ideas to life with cinematic quality. Sharp, sleek, and ready to dominate screens.",
     href: "/services/3"
   },
   {
@@ -47,7 +47,7 @@ const servicesData = [
     tags: ["content", "writing", "copywriting", "strategy"],
     subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "We build brands with presence and power-identities that stand tall in any market. Strategy meets storytelling in a way they’ll never forget.",
     href: "/services/4"
   },
   {
@@ -58,7 +58,7 @@ const servicesData = [
     tags: ["production", "video", "photography", "editing"],
     subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "Web experiences as smooth as a predator’s stride. Engaging, functional, and built to convert curiosity into loyalty.",
     href: "/services/5"
   },
   {
@@ -69,7 +69,7 @@ const servicesData = [
     tags: ["graphics", "creative", "design", "illustration"],
     subCategories: [],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "We hunt for opportunities across the digital landscape. Targeted campaigns that find, attract, and win your ideal audience.",
     href: "/services/6"
   },
 ];

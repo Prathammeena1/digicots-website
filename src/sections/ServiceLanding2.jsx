@@ -15,7 +15,7 @@ const servicesData = [
     width: "25vw",
     tags: ["web", "digital", "branding", "marketing", "graphics"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "We craft words and visuals that bite. Content designed to grab attention and keep your audience hooked. From blogs to campaigns, we make every message count.",
   },
   {
     id: "2",
@@ -24,7 +24,7 @@ const servicesData = [
     width: "15vw",
     tags: ["branding", "identity", "logo", "design"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "Designs that prowl ahead of trends, combining bold creativity with precision. Every visual tells your story with style and impact.",
   },
   {
     id: "3",
@@ -33,7 +33,7 @@ const servicesData = [
     width: "0vw",
     tags: ["marketing", "digital", "social", "strategy"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "From concept to final cut, we bring your ideas to life with cinematic quality. Sharp, sleek, and ready to dominate screens.",
   },
   {
     id: "4",
@@ -42,7 +42,7 @@ const servicesData = [
     width: "0vw",
     tags: ["content", "writing", "copywriting", "strategy"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "We build brands with presence and power-identities that stand tall in any market. Strategy meets storytelling in a way they’ll never forget.",
   },
   {
     id: "5",
@@ -51,7 +51,7 @@ const servicesData = [
     width: "0vw",
     tags: ["production", "video", "photography", "editing"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "Web experiences as smooth as a predator’s stride. Engaging, functional, and built to convert curiosity into loyalty.",
   },
   {
     id: "6",
@@ -60,7 +60,7 @@ const servicesData = [
     width: "0vw",
     tags: ["graphics", "creative", "design", "illustration"],
     description:
-      "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and.",
+      "We hunt for opportunities across the digital landscape. Targeted campaigns that find, attract, and win your ideal audience.",
   },
 ];
 

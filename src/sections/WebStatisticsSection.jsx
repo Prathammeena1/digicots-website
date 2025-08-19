@@ -1,5 +1,7 @@
 import React from "react";
 import CountingAnimation from "../components/CountingAnimation";
+import TextAnimH1 from "../components/TextAnimH1";
+import TextAnimP1 from "../components/TextAnimP1";
 
 const Card = ({ heading, description }) => {
   return (
@@ -76,11 +78,18 @@ export default function WebStatisticsSection() {
           <div className="space-y-8">
             <div>
               <h1 className="text-6xl lg:text-7xl font-light leading-tight">
-                Our <span className="font-semibold block">tour in</span>
-                <span className="">numbers.</span>
+                <TextAnimH1 isLanding={true} delay={.1}>Our</TextAnimH1>
+                <span className="font-semibold block">
+                  <TextAnimH1 isLanding={true} delay={.1}>tour in</TextAnimH1>
+                </span>
+                <span className="">
+                  <TextAnimH1 isLanding={true} delay={.1}>numbers.</TextAnimH1>
+                </span>
               </h1>
               <p className="text-zinc-300 text-lg">
-                We work all over the world.
+                <TextAnimP1 isLanding={true} delay={.1}>
+                  We work all over the world.
+                </TextAnimP1>
               </p>
             </div>
 
@@ -88,45 +97,60 @@ export default function WebStatisticsSection() {
             <div className="flex gap-20 pt-8">
               <div>
                 <div className="text-6xl lg:text-7xl font-semibold mb-2 flex gap-1">
-                  <CountingAnimation>550</CountingAnimation> <span>
-                    +</span>
+                  <CountingAnimation>550</CountingAnimation> <span>+</span>
                 </div>
-                <p className="text-zinc-300 text-lg">Web pages created</p>
+                <p className="text-zinc-300 text-lg">
+                  <TextAnimP1 isLanding={true} delay={.1} >Web pages created</TextAnimP1>
+                </p>
               </div>
               <div>
                 <div className="text-6xl lg:text-7xl font-semibold mb-2 flex gap-1">
                   <CountingAnimation>50</CountingAnimation> <span>+</span>
                 </div>
-                <p className="text-zinc-300 text-lg">Fixed support customers</p>
+                <p className="text-zinc-300 text-lg">
+                  <TextAnimP1 isLanding={true} delay={.1} >Fixed support customers</TextAnimP1>
+                </p>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-1">
-            <Card
-              heading="WordPress Expert"
-              description="more than 500 sites developed"
-            />
-            <Card
-              heading="WordPress Expert"
-              description="more than 500 sites developed"
-            />
-            <Card
-              heading="WordPress Expert"
-              description="more than 500 sites developed"
-            />
-            <Card
-              heading="WordPress Expert"
-              description="more than 500 sites developed"
-            />
-            <Card
-              heading="WordPress Expert"
-              description="more than 500 sites developed"
-            />
-            <Card
-              heading="WordPress Expert"
-              description="more than 500 sites developed"
-            />
+            <TextAnimP1 isLanding={true} delay={.1} >
+              <Card
+                heading="WordPress Expert"
+                description="more than 500 sites developed"
+              />
+            </TextAnimP1>
+            <TextAnimP1 isLanding={true} delay={.2} >
+              <Card
+                heading="WordPress Expert"
+                description="more than 500 sites developed"
+              />
+            </TextAnimP1>
+            <TextAnimP1 isLanding={true} delay={.3} >
+              <Card
+                heading="WordPress Expert"
+                description="more than 500 sites developed"
+              />
+            </TextAnimP1>
+            <TextAnimP1 isLanding={true} delay={.4} >
+              <Card
+                heading="WordPress Expert"
+                description="more than 500 sites developed"
+              />
+            </TextAnimP1>
+            <TextAnimP1 isLanding={true} delay={.5} >
+              <Card
+                heading="WordPress Expert"
+                description="more than 500 sites developed"
+              />
+            </TextAnimP1>
+            <TextAnimP1 isLanding={true} delay={.6} >
+              <Card
+                heading="WordPress Expert"
+                description="more than 500 sites developed"
+              />
+            </TextAnimP1>
           </div>
         </div>
       </div>

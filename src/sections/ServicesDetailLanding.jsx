@@ -258,9 +258,7 @@ const ServicesDetailLanding = ({ servicesData }) => {
 
                 {/* Description Text */}
                 <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                  The force della knowledge, the impact della creativity, the
-                  technology. With the consulting of marketing and communication
-                  of Quamm, the value del your business grows in the tempo.
+                  {servicesData.description}
                 </p>
               </div>
               <div className="tags flex w-full justify-between items-center px-20 absolute bottom-30">
