@@ -192,7 +192,6 @@ const HomeFourthSectionCanvas = () => {
 
       // Update time uniform for wave animation
       if (materialRef.current) {
-        
         // Smooth mouse influence transition
         const canvas = canvasRef.current;
         if (canvas) {
@@ -273,13 +272,13 @@ const HomeFourthSectionCanvas = () => {
   }, []);
 
   return (
-    <div className="h-screen w-[25vw] overflow-hidden scale-[.9] bg-black absolute left-1/2 top-1/2 -translate-1/2">
-      <canvas
-        ref={canvasRef}
-        className="w-[25vw] h-full block bg-black "
-        style={{ display: "block" }}
-      />
-    </div>
+      <div className="h-screen w-[25vw] overflow-hidden scale-[.9] bg-black absolute left-1/2 top-1/2 -translate-1/2">
+        <canvas
+          ref={canvasRef}
+          className="w-[25vw] h-full block bg-black "
+          style={{ display: "block" }}
+        />
+      </div>
   );
 };
 

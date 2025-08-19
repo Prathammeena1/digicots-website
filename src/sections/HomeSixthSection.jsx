@@ -1,6 +1,8 @@
 import gsap from "gsap";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import TextAnimH1 from "../components/TextAnimH1";
+import TextAnimP1 from "../components/TextAnimP1";
 
 const HomeSixthSection = () => {
   // State variable containing all approach data
@@ -40,7 +42,6 @@ const HomeSixthSection = () => {
   // Refs for the screens
   const screen1Ref = React.useRef(null);
   const screen2Ref = React.useRef(null);
-  
 
   const navigate = useNavigate();
 
@@ -117,7 +118,7 @@ const HomeSixthSection = () => {
         {/* Main heading */}
         <div className="text-center my-10">
           <h2 className="text-white text-6xl md:text-7xl font-bold tracking-wide">
-            APPROACH
+            <TextAnimH1>APPROACH</TextAnimH1>
           </h2>
         </div>
 
@@ -127,34 +128,38 @@ const HomeSixthSection = () => {
             <div key={step.id} className="relative">
               <div className="mb-6">
                 <span className="text-gray-400 text-sm font-medium tracking-wider uppercase">
-                  {step.stepNumber}
+                  <TextAnimP1>{step.stepNumber}</TextAnimP1>
                 </span>
               </div>
 
               <h3 className="text-white text-2xl md:text-3xl font-bold mb-6">
-                {step.title}
+                <TextAnimP1>{step.title}</TextAnimP1>
               </h3>
 
               {/* Image container */}
               <div className="relative mb-6 overflow-hidden h-54">
-                <img
-                  src={step.image}
-                  alt={step.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => handleImageError(e, step)}
-                />
+                <TextAnimP1>
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => handleImageError(e, step)}
+                  />
+                </TextAnimP1>
               </div>
 
+              <TextAnimP1>
               <p className="text-gray-300 text-sm leading-relaxed text-center mb-8">
                 {step.description}
               </p>
 
-              <button
-                onClick={() => handleClick(step.id)}
-                className="border text-sm cursor-pointer pointer-events-auto border-gray-500 text-gray-400 px-8 py-3 rounded-full hover:bg-gray-500 hover:text-white transition-colors duration-300 font-medium w-full"
-              >
-                SEE HOW
-              </button>
+                <button
+                  onClick={() => handleClick(step.id)}
+                  className="border text-sm cursor-pointer pointer-events-auto border-gray-500 text-gray-400 px-8 py-3 rounded-full hover:bg-gray-500 hover:text-white transition-colors duration-300 font-medium w-full"
+                >
+                  SEE HOW
+                </button>
+              </TextAnimP1>
             </div>
           ))}
         </div>
