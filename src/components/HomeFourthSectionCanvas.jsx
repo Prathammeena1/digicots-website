@@ -19,10 +19,11 @@ const HomeFourthSectionCanvas = () => {
     const nbCol = 1 * multiplier; // Number of columns
     const nbRows = 1.5 * multiplier; // Number of rows
 
-    // Scene setup
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color("black");
-    sceneRef.current = scene;
+  // Scene setup
+  const scene = new THREE.Scene();
+  // Remove explicit background color for transparency
+  scene.background = null;
+  sceneRef.current = scene;
 
     // Camera setup (orthographic for perfect scaling)
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 1000);
@@ -64,6 +65,7 @@ const HomeFourthSectionCanvas = () => {
     const renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current,
       antialias: true,
+      alpha: true, // Enable transparency
     });
 
     // Set initial canvas and renderer size
@@ -272,7 +274,7 @@ const HomeFourthSectionCanvas = () => {
   }, []);
 
   return (
-      <div className="h-screen w-[38vw] overflow-hidden scale-[.7] bg-black absolute left-1/2 top-1/2 -translate-1/2">
+      <div className="h-screen w-[38vw] overflow-hidden scale-[.7] dark:bg-black bg-white absolute left-1/2 top-1/2 -translate-1/2">
         <canvas
           ref={canvasRef}
           className="w-[38vw] h-full block  "

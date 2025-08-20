@@ -9,7 +9,7 @@ const alignment = {
 const HomeFourthSectionCard = ({ align, content }) => {
   return (
     <div
-      className={`text-white rounded-lg max-h-[100vh] flex flex-col justify-between min-h-[400px] mt-12 ${alignment[align]}`}
+      className={`dark:text-white rounded-lg max-h-[100vh] flex flex-col justify-between min-h-[400px] mt-12 ${alignment[align]}`}
     >
         {/* Top section with Pro-Development */}
       {/* <TextAnimP1>
@@ -33,7 +33,7 @@ const HomeFourthSectionCard = ({ align, content }) => {
         <div className="space-y-4">
           {/* DEVELOPMENT label */}
           <div className={`my-3 ${alignment[align]}`}>
-            <span className="text-xs font-semibold text-gray-400 tracking-wider uppercase">
+            <span className="text-xs font-semibold dark:text-gray-400 text-zinc-800 tracking-wider uppercase">
               DEVELOPMENT
             </span>
           </div>
@@ -44,7 +44,7 @@ const HomeFourthSectionCard = ({ align, content }) => {
           </h2>
 
           {/* Description text */}
-          <p className="text-gray-300 text-sm leading-relaxed">
+          <p className="dark:text-gray-300 text-sm leading-relaxed">
             We develop customised systems and solutions that optimise the
             technological and management processes in your company.
           </p>

@@ -195,7 +195,7 @@ const HomeHeroSection = () => {
       {/* Mute Toggle Button */}
       <button
         onClick={toggleVideoMute}
-        className="fixed top-5 right-6 z-[100000] bg-black/20 backdrop-blur-sm border border-white/20 rounded-full p-3 hover:bg-black/40 transition-all duration-300 group"
+        className="fixed top-5 right-6 z-[100000] dark:bg-black/20 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full p-3 hover:bg-black/40 transition-all duration-300 group"
         aria-label={videoMuted ? "Unmute video" : "Mute video"}
       >
         {videoMuted ? (
@@ -234,7 +234,7 @@ const HomeHeroSection = () => {
           <div className="top-0 h-full w-full relative">
             {/* Production-Level Video Background Container */}
             <div
-              className="absolute inset-0 h-screen w-full bg-black"
+              className="absolute inset-0 h-screen w-full dark:bg-black bg-white"
               style={{
                 contain: "layout style paint",
                 willChange: "transform",
@@ -327,7 +327,7 @@ const HomeHeroSection = () => {
               >
                 <defs>
                   <mask id="text-mask">
-                    <rect width="100%" height="100%" fill="white" />
+                    <rect width="100%" height="100%"  className="dark:fill-black fill-white" />
                     <text
                       x="960"
                       y="420"
@@ -368,7 +368,8 @@ const HomeHeroSection = () => {
                 <rect
                   width="100%"
                   height="100%"
-                  fill="black"
+                  // fill="black"
+                  className="dark:fill-black fill-white"
                   mask="url(#text-mask)"
                 />
               </svg>

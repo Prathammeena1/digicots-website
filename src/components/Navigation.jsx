@@ -24,8 +24,8 @@ const Navigation = () => {
   gsap.registerPlugin(ScrollTrigger)
 
   return (
-    <nav ref={navRef} className="fixed bg-transparent backdrop-blur top-0 left-0 right-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <nav ref={navRef} className="fixed bg-transparent backdrop-blur top-0 left-0 right-0 z-50 flex items-center justify-center">
+      <div className="mx-auto px-6 lg:px-8">
         <div className="flex justify-center gap-18 items-center h-20">
           {/* Left side navigation */}
           <div className="flex items-center space-x-18">
@@ -33,7 +33,7 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-white font-gilroy-semibold text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
+                className="dark:text-white font-gilroy-semibold text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
               >
                 {item.label}
               </Link>
@@ -46,7 +46,8 @@ const Navigation = () => {
           {/* Center logo */}
           <div ref={navigationLogoRef} className="flex items-center">
             <Link to="/" className="logo-container">
-              <img src="/images/logo-1.svg" className='w-30' alt="" />
+              {/* <img src="/images/logo-1.svg" className='w-30' alt="" /> */}
+              <img src="/images/logo-black.svg" className='w-30' alt="" />
             </Link>
           </div>
 
@@ -56,7 +57,7 @@ const Navigation = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="text-white font-gilroy-semibold text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
+                className="dark:text-white font-gilroy-semibold text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
               >
                 {item.label}
               </Link>

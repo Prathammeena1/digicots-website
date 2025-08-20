@@ -31,11 +31,11 @@ const HomeSeventhSection = () => {
   return (
     <div
       ref={parentRef}
-      className="relative h-screen w-full flex flex-col items-center justify-start overflow-hidden pointer-events-none py-10"
+      className="relative w-full flex flex-col items-center justify-start overflow-hidden pointer-events-none py-10"
     >
       {/* Heading */}
       <div className="text-center my-10">
-        <h2 className="text-white text-6xl md:text-7xl font-bold tracking-wide">
+        <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
           <TextAnimH1>LOVED by BRANDS</TextAnimH1>
         </h2>
       </div>
@@ -44,7 +44,7 @@ const HomeSeventhSection = () => {
       <div className="px-20">
         <TextAnimP1>
           <div className="w-full flex gap-5 flex-col items-center justify-center">
-            {Array.from({ length: 5 }).map((_, i) => (
+            {Array.from({ length: 3 }).map((_, i) => (
               <div
                 key={i}
                 ref={(el) => (lineRefs.current[i] = el)}
@@ -58,7 +58,7 @@ const HomeSeventhSection = () => {
                   >
                     <img
                       className="w-full object-contain"
-                      src={`/images/logo-1.png`}
+                      src={`/images/logo-black.svg`}
                     />
                   </div>
                 ))}
@@ -70,7 +70,7 @@ const HomeSeventhSection = () => {
                   >
                     <img
                       className="w-full object-contain"
-                      src={`/images/logo-1.png`}
+                      src={`/images/logo-black.svg`}
                     />
                   </div>
                 ))}

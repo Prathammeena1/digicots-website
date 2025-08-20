@@ -13,7 +13,7 @@ const content = [
   },
   {
     title:"Pro-Strategist ",
-    imgSrc:"/final-images/gif/2.gif",
+    imgSrc:"/final-images/gif/1.gif",
     h2:"CUSTOMIZED SOLUTIONS",
     dHead:"Solutions that are adapt to your company.",
     dParagraph:"We develop customised systems and solutions that optimise the technological and management processes in your company."   
@@ -22,7 +22,7 @@ const content = [
 
 const HomeFourthSection = () => {
   return (
-    <div className='h-screen w-full bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-30 '>
+    <div className='h-screen w-full dark:bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-30 '>
       <HomeFourthSectionCanvas />
 
       {

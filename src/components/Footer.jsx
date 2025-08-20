@@ -129,7 +129,7 @@ export default function Footer({ popActive, setPopActive }) {
   return (
     <footer
       ref={footerRef}
-      className=" pointer-events-none text-white py-16 px-30 relative z-10 overflow-hidden"
+      className=" pointer-events-none dark:text-white py-16 px-30 relative z-10 overflow-hidden"
     >
       <div className="container mx-auto max-w-[1600px]">
         {/* Top Section - Join the Pack */}
@@ -142,7 +142,7 @@ export default function Footer({ popActive, setPopActive }) {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
-              <h2 className="text-5xl sm:text-7xl font-inter font-bold leading-tight text-white audiowide-regular">
+              <h2 className="text-5xl sm:text-7xl font-inter font-bold leading-tight dakr:text-white audiowide-regular">
                 Join the Pack
               </h2>
             </motion.div>
@@ -243,7 +243,7 @@ export default function Footer({ popActive, setPopActive }) {
 
         {/* Divider */}
         <motion.div
-          className="border-t border-gray-700 my-12 raleway"
+          className="border-t dark:border-gray-700 border-zinc-300 my-12 raleway"
           variants={sectionVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -263,7 +263,8 @@ export default function Footer({ popActive, setPopActive }) {
               variants={childVariants}
             >
               <Link to={"/"}>
-                <img src="/images/logo-1.svg" className="w-[400px]" alt="" />
+                {/* <img src="/images/logo-1.svg" className="w-[400px]" alt="" /> */}
+                <img src="/images/logo-black.svg" className="w-[400px]" alt="" />
               </Link>
             </motion.h3>
             <motion.div
@@ -284,7 +285,7 @@ export default function Footer({ popActive, setPopActive }) {
               ].map((socialIcon, i) => (
                 <motion.div
                   key={i}
-                  className="w-8 h-8 bg-gray-800 rounded-md flex justify-center items-center pointer-events-auto"
+                  className="w-8 h-8 dark:bg-gray-800 rounded-md flex justify-center items-center pointer-events-auto"
                   variants={socialIconVariants}
                 >
                   <a href={socialIcon.link} target="_blank">
@@ -301,12 +302,12 @@ export default function Footer({ popActive, setPopActive }) {
             variants={childVariants}
           >
             <h4 className="text-lg font-semibold raleway">India</h4>
-            <p className="text-gray-400 mt-2  raleway">
+            <p className="dark:text-gray-400 mt-2  raleway">
               <a href="">
                 B 73, Block B, Sector 57 <br /> Noida, Uttar Pradesh, India
               </a>
             </p>
-            <p className="mt-2  text-gray-400 raleway">+91 987 987 5632</p>
+            <p className="mt-2  dark:text-gray-400 raleway">+91 987 987 5632</p>
           </motion.div>
 
           {/* Links */}
@@ -320,7 +321,7 @@ export default function Footer({ popActive, setPopActive }) {
                   {header}
                 </motion.h4>
                 <motion.ul
-                  className="text-gray-400 mt-2 space-y-1"
+                  className="dark:text-gray-400 mt-2 space-y-1"
                   variants={containerVariants}
                 >
                   {[
@@ -388,7 +389,7 @@ export default function Footer({ popActive, setPopActive }) {
                     <motion.li key={i} variants={childVariants}>
                       <Link
                         to={`discover?i=${i}`}
-                        className="hover:text-white pointer-events-auto"
+                        className="dark:hover:text-white hover:text-zinc-700 pointer-events-auto"
                       >
                         {link.title}
                       </Link>
@@ -404,7 +405,7 @@ export default function Footer({ popActive, setPopActive }) {
                   {header}
                 </motion.h4>
                 <motion.ul
-                  className="text-gray-400 mt-2 space-y-1  pointer-events-auto"
+                  className="dark:text-gray-400 mt-2 space-y-1  pointer-events-auto"
                   variants={containerVariants}
                 >
                   {[
@@ -434,7 +435,7 @@ export default function Footer({ popActive, setPopActive }) {
                     },
                   ].map((link, i) => (
                     <motion.li key={i} variants={childVariants}>
-                      <Link to={`/${link.id}`} className="hover:text-white">
+                      <Link to={`/${link.id}`} className="dark:hover:text-white hover:text-zinc-700">
                         {link.title}
                       </Link>
                     </motion.li>
@@ -447,7 +448,7 @@ export default function Footer({ popActive, setPopActive }) {
 
         {/* Bottom Footer */}
         <motion.div
-          className="mt-12 text-gray-400 flex flex-col sm:flex-row justify-between align-middle"
+          className="mt-12 dark:text-gray-400 flex flex-col sm:flex-row justify-between align-middle"
           variants={sectionVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

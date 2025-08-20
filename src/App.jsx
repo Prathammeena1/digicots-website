@@ -150,13 +150,13 @@ const App = () => {
 
         <div
           onClick={handleScrollToTop}
-          className={`fixed z-30 scroll-to-top bg-amber-50 h-[70px] w-[70px] right-10 bottom-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-amber-100 transition-all duration-300 ${
+          className={`fixed z-30 scroll-to-top dark:bg-amber-50 bg-zinc-800 h-[70px] w-[70px] right-10 bottom-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer ${
             showScrollTop
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-4 pointer-events-none"
           }`}
         >
-          <div className="text-2xl font-semibold text-zinc-600">↑</div>
+          <div className="text-2xl font-semibold dark:text-zinc-600 text-zinc-100">↑</div>
         </div>
 
         <main>

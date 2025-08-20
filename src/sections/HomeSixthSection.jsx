@@ -118,7 +118,7 @@ const HomeSixthSection = () => {
       <div className="relative z-10 mx-auto">
         {/* Main heading */}
         <div className="text-center my-10">
-          <h2 className="text-white text-6xl md:text-7xl font-bold tracking-wide">
+          <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
             <TextAnimH1>THE ALPHA EDGE</TextAnimH1>
           </h2>
         </div>
@@ -128,12 +128,12 @@ const HomeSixthSection = () => {
           {approachSteps.map((step) => (
             <div key={step.id} className="relative">
               <div className="mb-6">
-                <span className="text-gray-400 text-sm font-medium tracking-wider uppercase">
+                <span className="dark:text-gray-400 text-sm font-medium tracking-wider uppercase">
                   <TextAnimP1>{step.stepNumber}</TextAnimP1>
                 </span>
               </div>
 
-              <h3 className="text-white text-2xl md:text-3xl font-bold mb-6">
+              <h3 className="dark:text-white text-2xl md:text-3xl font-bold mb-6">
                 <TextAnimP1>{step.title}</TextAnimP1>
               </h3>
 
@@ -150,7 +150,7 @@ const HomeSixthSection = () => {
               </div>
 
               <TextAnimP1>
-              <p className="text-gray-300 text-sm leading-relaxed text-center mb-8">
+              <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
                 {step.description}
               </p>
 

@@ -59,7 +59,7 @@ export default function HomeSliderCxFeedback() {
 
   return (
     <TextAnimP1>
-      <div className="pointer-events-none text-white flex items-center justify-center px-30">
+      <div className="pointer-events-none dark:text-white flex items-center justify-center px-30">
         <div className="w-full py-10 relative flex min-h-[50vh] justify-between items-start">
           <div
             className={`transition-opacity duration-300 ${
