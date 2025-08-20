@@ -11,22 +11,22 @@ const HomeSixthSection = () => {
     {
       id: 1,
       stepNumber: "STEP 1",
-      title: "Smell the Wind ",
+      title: "Discovery & Vision Sync",
       image: "/images/approach1.png",
-      description:
-        "We sniff out every detail, dig deep – your goals, your challenges, your hidden opportunities.",
+      description:`We sniff out every detail, dig deep into your goals, your challenges, your hidden potential.`,
+      d2:`Your vision becomes our obsession.`,
       fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       fallbackText: "Office Scene",
     },
     {
       id: 2,
       stepNumber: "STEP 2",
-      title: "Sharpen the Claws",
+      title: "Strategy & Creativity ",
       image: "/images/approach2.png",
-      description:
-        "We craft systems that are precise, powerful and purpose-driven.",
+      description:`We design systems that cut through the noise and help us predict the next big opportunity.`,
+      d2:`Our instinct is your advantage.`,
       fallbackGradient:
-        "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
+      "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
       fallbackText: "Creative Scene",
     },
     {
@@ -34,8 +34,8 @@ const HomeSixthSection = () => {
       stepNumber: "STEP 3",
       title: "Set the Pack in Motion",
       image: "/images/approach3.png",
-      description:
-        "We balance creativity with practicality – our duality gives you the edge.",
+      description:`We create workflows that adapt, endure and drive momentum balancing creativity & practicality.`,
+      d2:`Our duality gives you the edge.`,
       fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       fallbackText: "Team Results",
     },
@@ -152,6 +152,9 @@ const HomeSixthSection = () => {
               <TextAnimP1>
               <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
                 {step.description}
+              </p>
+              <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
+                {step.d2}
               </p>
 
                 <Button

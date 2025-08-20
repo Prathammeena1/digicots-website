@@ -18,6 +18,12 @@ const HomeFourthSectionCard = ({ align, content }) => {
         </div>
       </TextAnimP1> */}
 
+      {/* Main heading */}
+      <h2
+        className="text-2xl font-bold leading-tight mb-4"
+        dangerouslySetInnerHTML={{ __html: content.dHead }}
+      />
+
       <TextAnimP1>
         <div className="h-[60vh] w-full">
           <img
@@ -32,19 +38,16 @@ const HomeFourthSectionCard = ({ align, content }) => {
       <TextAnimP1>
         <div className="space-y-4">
           {/* DEVELOPMENT label */}
-          <div className={`my-3 ${alignment[align]}`}>
+          {/* <div className={`my-3 ${alignment[align]}`}>
             <span className="text-xs font-semibold dark:text-gray-400 text-zinc-800 tracking-wider uppercase">
               {content.h2}
             </span>
-          </div>
+          </div> */}
 
-          {/* Main heading */}
-          <h2 className="text-2xl font-bold leading-tight mb-4">
-            {content.dHead}
-          </h2>
+          
 
           {/* Description text */}
-          <p className="dark:text-gray-300 text-sm leading-relaxed">
+          <p className="dark:text-gray-300 text-md leading-relaxed mt-4">
             {content.dParagraph}
           </p>
         </div>

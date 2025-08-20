@@ -1,42 +1,40 @@
-import React from 'react'
-import HomeFourthSectionCard from '../components/HomeFourthSectionCard'
-import HomeFourthSectionCanvas from '../components/HomeFourthSectionCanvas'
+import React from "react";
+import HomeFourthSectionCard from "../components/HomeFourthSectionCard";
+import HomeFourthSectionCanvas from "../components/HomeFourthSectionCanvas";
 
 const content = [
   {
-    title:"Pro-Strategist ",
+    title: "Pro-Strategist ",
     // imgSrc:"/final-images/gif/1.gif",
-    imgSrc:"/final-images/gif/2.gif",
-    h2:"HOLISTIC ADVISORY",
-    dHead:"Strategies that are tailored to your goals.",
-    dParagraph:"We craft data-driven strategies aligned with your goals to drive growth and keep you competitive in a changing market."   
+    imgSrc: "/final-images/gif/2.gif",
+    h2: "HOLISTIC ADVISORY",
+    dHead: `Strategies that <br />
+reflect who you are.`,
+    dParagraph: `We understand your core, your values and blend them into data & analytics to create systems that rip apart your competition.`,
   },
   {
-    title:"Pro-Strategist ",
-    imgSrc:"/final-images/gif/1.gif",
-    h2:"CUSTOMIZED SOLUTIONS",
-    dHead:"Solutions that are adapt to your company.",
-    dParagraph:"We develop customised systems and solutions that optimise the technological and management processes in your company."   
-  }
-]
+    title: "Pro-Strategist ",
+    imgSrc: "/final-images/gif/1.gif",
+    h2: "CUSTOMIZED SOLUTIONS",
+    dHead: `Solutions that <br /> deliver your future.`,
+    dParagraph: `We scour your existing systems for gaps and develop automated solutions that boost efficiencies and minimize risks.`,
+  },
+];
 
 const HomeFourthSection = () => {
   return (
-    <div className='h-screen w-full dark:bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-30 '>
+    <div className="h-screen w-full dark:bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-30 ">
       <HomeFourthSectionCanvas />
 
-      {
-        content.map((item, index) => (
-          <HomeFourthSectionCard
-            key={index}
-            align={index % 2 === 0 ? "left" : "right"}
-            content={item}
-          />
-        ))
-      }
-
+      {content.map((item, index) => (
+        <HomeFourthSectionCard
+          key={index}
+          align={index % 2 === 0 ? "left" : "right"}
+          content={item}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default HomeFourthSection
+export default HomeFourthSection;
