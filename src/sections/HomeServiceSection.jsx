@@ -1,96 +1,107 @@
 import React, { useState } from "react";
 import TextAnimP1 from "../components/TextAnimP1";
+import TextAnimH1 from "../components/TextAnimH1";
 
-export default function HomeServiceSection() {
+export default function WebsAndDigitalCaseStudySection() {
   const [hoveredSection, setHoveredSection] = useState(null);
 
-  const servicesData = [
+  const caseStudyData = [
     {
       id: 1,
-      title: "Details of the case",
+      image: "/final-images/home-services/WebnDigital.webp",
+      category: "Solutions/Services",
+      title: "Web & Digital",
       description:
-        "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and communication.",
-      image: "/final-images/web/img1.png",
-      position: "top-0",
-      subServices:["Web Development", "App Development", "E-commerce Solutions"]
+        "Website Design | Website Development | UI/UX Design | Ecommerce Sol...",
+      href: "/services/5",
+      position: "top-[-5%]",
     },
     {
       id: 2,
-      title: "Opportunity",
+      image: "/final-images/home-services/Branding.webp",
+      category: "Solutions/Services",
+      title: "Branding",
       description:
-        "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and communication.",
-      image: "/final-images/web/img2.png",
-      position: "top-0",
-      subServices:["Web Development", "App Development", "E-commerce Solutions"]
+        "Logo Design  |  Brand Strategy  |  Visual Identity  |  Brand Guidelines  |  Na...",
+      href: "/services/4",
+      position: "top-[10%]",
     },
     {
       id: 3,
-      title: "Implemented Solution",
+      image: "/final-images/home-services/DIgitalM.webp",
+      category: "Solutions/Services",
+      title: "Digital Marketing",
       description:
-        "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and communication.",
-      image: "/final-images/web/img3.png",
-      position: "top-0",
-      subServices:["Web Development", "App Development", "E-commerce Solutions"]
+        "Logo Design | Brand Identity | Marketing Materials | Brand Strategy...",
+      href: "/services/6",
+      position: "top-[30%]",
     },
     {
       id: 4,
-      title: "Implemented Solution",
+      image: "/final-images/home-services/Content.webp",
+      category: "Solutions/Services",
+      title: "Content Generation",
       description:
-        "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and communication.",
-      image: "/final-images/web/img3.png",
-      position: "top-0",
-      subServices:["Web Development", "App Development", "E-commerce Solutions"]
+        "3D Modelling  |  Content Strategy  |  Copywriting  |  Photography   |  Anim...",
+      href: "/services/1",
+      position: "top-[45%]",
     },
     {
       id: 5,
-      title: "Implemented Solution",
+      image: "/final-images/home-services/Production.webp",
+      category: "Solutions/Services",
+      title: "Production (Pre-Post)",
       description:
-        "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and communication.",
-      image: "/final-images/web/img3.png",
-      position: "top-0",
-      subServices:["Web Development", "App Development", "E-commerce Solutions"]
+        "Creative Direction & Storyboarding  |  Scriptwriting & Copywriting  |  Cam...",
+      href: "/services/3",
+      position: "top-[62%]",
     },
     {
       id: 6,
-      title: "Implemented Solution",
+      image: "/final-images/home-services/Graphic.webp",
+      category: "Solutions/Services",
+      title: "Creatives & Graphics",
       description:
-        "The force della knowledge, the impact della creativity, the technology. With the consulting of marketing and communication.",
-      image: "/final-images/web/img3.png",
-      position: "top-0",
-      subServices:["Web Development", "App Development", "E-commerce Solutions"]
+        "Creatives Solutions  |  Motion Design  |  Illustration Design  |  Print...",
+      href: "/services/2",
+      position: "top-[78%]",
     },
   ];
 
   return (
-    <div className="min-h-screen dark:text-white">
-      <div className=" mx-auto px-30 py-26">
+    <div className="min-h-screen dark:text-white px-30 py-26">
+
+      <h1 className="text-3xl font-semibold">
+        <TextAnimH1>Services</TextAnimH1>
+      </h1>
+      <div className=" mx-auto">
         <div className="grid lg:grid-cols-[1fr_1fr] items-center">
           {/* Left Side - Content */}
           <div className=" w-[55vw]">
-            {servicesData.map((section, index) => (
+            {caseStudyData.map((section, index) => (
               <React.Fragment key={section.id}>
-                  <TextAnimP1>
-                <div
-                  className="flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-zinc-700/10 p-6 py-6 rounded-lg"
-                  onMouseEnter={() => setHoveredSection(section.id)}
-                  onMouseLeave={() => setHoveredSection(null)}
-                >
-                    <div className="text-4xl font-bold dark:text-gray-600 leading-none">
+                <TextAnimP1>
+                  <div
+                    className="flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-zinc-200/60 p-6 py-12 rounded-lg"
+                    onMouseEnter={() => setHoveredSection(section.id)}
+                    onMouseLeave={() => setHoveredSection(null)}
+                  >
+                    <div className="text-8xl font-bold text-gray-600 leading-none">
                       {section.id}.
                     </div>
                     <div className="flex-1">
-                      <h2 className="text-2xl font-semibold mb-2">
+                      <h2 className="text-2xl font-semibold mb-6">
                         {section.title}
                       </h2>
-                      <p className="dark:text-gray-300 text-zinc-600 text-lg leading-relaxed">
-                        {/* {section.description} */}
+                      <p className="dark:text-gray-300 text-lg leading-relaxed">
+                        {section.description}
                       </p>
                     </div>
-                </div>
-                  </TextAnimP1>
+                  </div>
+                </TextAnimP1>
 
                 {/* Add border after each section except the last one */}
-                {index < servicesData.length - 1 && (
+                {index < caseStudyData.length - 1 && (
                   <div className="border-t border-gray-700"></div>
                 )}
               </React.Fragment>
@@ -99,7 +110,7 @@ export default function HomeServiceSection() {
 
           {/* Right Side - Images */}
           <div className=" h-full w-full relative">
-            {servicesData.map((section) => (
+            {caseStudyData.map((section) => (
               <div
                 key={`image-${section.id}`}
                 className={`h-[45vh] absolute ${
@@ -108,13 +119,11 @@ export default function HomeServiceSection() {
                   hoveredSection === section.id ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <ul>
-                    {section.subServices.map((service, index) => (
-                      <li key={index} className="dark:text-gray-300 text-zinc-600 text-xl">
-                        {service}
-                      </li>
-                    ))}
-                </ul>
+                <img
+                  className="object-cover w-full h-full"
+                  src={section.image}
+                  alt={section.title}
+                />
               </div>
             ))}
           </div>
