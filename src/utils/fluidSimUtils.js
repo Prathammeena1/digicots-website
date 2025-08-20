@@ -61,15 +61,28 @@ export const shaders = {
         gl_Position = vec4(aPosition, 0.0, 1.0);
     }
   `,
+  // FIXED: Modified display shader to maintain white background
   display: `
     precision highp float;
     precision mediump sampler2D;
     varying vec2 vUv;
     uniform sampler2D uTexture;
     void main () {
-        gl_FragColor = texture2D(uTexture, vUv);
+        vec4 fluid = texture2D(uTexture, vUv);
+        
+        // Calculate fluid intensity for proper blending
+        float fluidIntensity = length(fluid.rgb);
+        
+        // Always maintain white background by blending fluid over white
+        // Use fluid intensity as alpha for proper color mixing
+        vec3 backgroundColor = vec3(1.0, 1.0, 1.0); // Pure white
+        vec3 blendedColor = mix(backgroundColor, fluid.rgb, min(fluidIntensity * 0.8, 0.9));
+        
+        // Always output full alpha to maintain opaque background
+        gl_FragColor = vec4(blendedColor, 1.0);
     }
   `,
+  // FIXED: Modified splat shader to handle alpha consistently
   splat: `
     precision highp float;
     precision mediump sampler2D;
@@ -84,9 +97,13 @@ export const shaders = {
         p.x *= aspectRatio;
         vec3 splat = exp(-dot(p, p) / radius) * color;
         vec3 base = texture2D(uTarget, vUv).xyz;
-        gl_FragColor = vec4(base + splat, 1.0);
+        
+        // Ensure consistent alpha handling for density textures
+        float alpha = 1.0;
+        gl_FragColor = vec4(base + splat, alpha);
     }
   `,
+  // FIXED: Modified advection shader for consistent alpha
   advection: `
     precision highp float;
     precision mediump sampler2D;
@@ -98,9 +115,12 @@ export const shaders = {
     uniform float dissipation;
     void main () {
         vec2 coord = vUv - dt * texture2D(uVelocity, vUv).xy * texelSize;
-        gl_FragColor = dissipation * texture2D(uSource, coord);
+        vec4 result = dissipation * texture2D(uSource, coord);
+        // Maintain consistent alpha
+        gl_FragColor = vec4(result.rgb, 1.0);
     }
   `,
+  // FIXED: Modified advection manual filtering for consistent alpha
   advectionManualFiltering: `
     precision highp float;
     precision mediump sampler2D;
@@ -124,8 +144,9 @@ export const shaders = {
     }
     void main () {
         vec2 coord = gl_FragCoord.xy - dt * texture2D(uVelocity, vUv).xy;
-        gl_FragColor = dissipation * bilerp(uSource, coord);
-        gl_FragColor.a = 1.0;
+        vec4 result = dissipation * bilerp(uSource, coord);
+        // Always maintain alpha = 1.0 for consistent background
+        gl_FragColor = vec4(result.rgb, 1.0);
     }
   `,
   divergence: `

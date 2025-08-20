@@ -142,8 +142,8 @@ const App = () => {
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-white dark:bg-black">
           <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-white" />}>
-              {/* <FluidCanvas /> */}
-              {/* <WolfMaskSVG /> */}
+              <FluidCanvas />
+              <WolfMaskSVG />
             </Suspense>
           </ErrorBoundary>
         </div>

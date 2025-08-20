@@ -146,7 +146,7 @@ const initializeWebGL = (canvas) => {
     return null;
   }
 
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.clearColor(1.0, 1.0, 1.0, 1.0);
 
   const halfFloat = gl.getExtension("OES_texture_half_float");
   let support_linear_float = gl.getExtension("OES_texture_half_float_linear");

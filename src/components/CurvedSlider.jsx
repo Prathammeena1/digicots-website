@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import TextAnimP1 from "./TextAnimP1";
 
 const CurvedSlider = ({
   numberOfCards = 14,
@@ -107,7 +106,7 @@ const CurvedSlider = ({
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center overflow-hidden absolute top-0 left-0 right-0 bottom-0">
-      <TextAnimP1>
+   
         <div
           ref={containerRef}
           className={
@@ -138,34 +137,8 @@ const CurvedSlider = ({
             </div>
           ))}
 
-          {/* Connection lines (optional visual enhancement) */}
-          {/* <svg 
-                className="absolute pointer-events-none opacity-20"
-                style={{
-                    width: responsiveRadius * 2,
-                    height: responsiveRadius * 2,
-                    left: -responsiveRadius,
-                    top: -responsiveRadius,
-                }}
-            >
-                {cards.map((card, index) => {
-                    const nextCard = cards[(index + 1) % cards.length]
-                    return (
-                        <line
-                            key={`line-${index}`}
-                            x1={card.x + responsiveRadius}
-                            y1={card.y + responsiveRadius}
-                            x2={nextCard.x + responsiveRadius}
-                            y2={nextCard.y + responsiveRadius}
-                            stroke="rgb(75, 85, 99)"
-                            strokeWidth="1"
-                            strokeDasharray="5,5"
-                        />
-                    )
-                })}
-            </svg> */}
+        
         </div>
-      </TextAnimP1>
     </div>
   );
 };
