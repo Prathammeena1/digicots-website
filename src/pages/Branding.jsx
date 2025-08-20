@@ -27,13 +27,13 @@ const section2Data = {
     shape perceptions and make your presence impossible to ignore.`,
   ],
   img: "/images/branding-page/img2.png",
-  bgColor: ["#AF71BF", "#AF71BF"],
+  bgColor: ["#C8498F", "#C8498F"],
 };
 const section3Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
   img: "/images/branding-page/img3.png",
-  bgColor: ["#AF71BF", "#AF71BF"],
+  bgColor: ["#C8498F", "#C8498F"],
 };
 
 const section4Data = {
@@ -55,13 +55,13 @@ const section4Data = {
                   attention.`,
   },
 
-  bgColor: ["#AF71BF", "#AF71BF"],
+  bgColor: ["#C8498F", "#C8498F"],
 };
 const section5Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
   img: "/images/branding-page/img4.png",
-  bgColor: ["#AF71BF", "#AF71BF"],
+  bgColor: ["#C8498F", "#C8498F"],
 };
 
 const Branding = () => {
@@ -72,11 +72,11 @@ const Branding = () => {
       className="min-h-screen w-full text-zinc-200 relative z-10 bg-[#C8498F]"
     >
       <>
-        <BrandingLanding pageRef={pageRef} data={landingdata} />
-        <BrandingSection2 pageRef={pageRef} data={section2Data} />
-        <BrandingSection3 pageRef={pageRef} data={section3Data} />
-        <BrandingSection4 pageRef={pageRef} data={section4Data} />
-        <BrandingSection5 pageRef={pageRef} data={section5Data} />
+        <BrandingLanding data={landingdata} />
+        <BrandingSection2 data={section2Data} />
+        <BrandingSection3 data={section3Data} />
+        <BrandingSection4 data={section4Data} />
+        <BrandingSection5 data={section5Data} />
       </>
     </div>
   );

@@ -156,7 +156,7 @@ const App = () => {
               : "opacity-0 translate-y-4 pointer-events-none"
           }`}
         >
-          <button className="text-2xl font-semibold text-zinc-600">↑</button>
+          <div className="text-2xl font-semibold text-zinc-600">↑</div>
         </div>
 
         <main>

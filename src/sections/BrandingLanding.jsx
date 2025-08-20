@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import RollingImageEffect from "../components/RollingImageEffect";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
+import Button from "../components/Button";
 
 const BrandingLanding = memo(({ data }) => {
   return (
@@ -28,9 +29,7 @@ const BrandingLanding = memo(({ data }) => {
           </TextAnimP1>
         </p>
         <TextAnimP1 isLanding={true} delay={0.6}>
-          <button className="w-fit text-white py-3 px-8 border border-zinc-200">
-            Get in touch
-          </button>
+          <Button>Get in touch</Button>
         </TextAnimP1>
       </div>
       <div className="absolute right-0 bottom-0 w-[600px] h-[400px] translate-y-1/2 overflow-hidden">

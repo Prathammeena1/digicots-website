@@ -7,31 +7,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
-const BrandingSection2 = ({ data, pageRef }) => {
-  const containerRef = useRef(null);
-    useGSAP(() => {
-      if (!containerRef.current || !pageRef.current) return;
-
-      gsap.to(pageRef.current, {
-        backgroundColor: data?.bgColor[0],
-        duration: 1,
-        ease: "power3.inOut",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 50%",
-          end: "top 45%",
-          // markers: true,
-          scrub: true,
-        },
-      });
-    }, [data, pageRef.current]);
-
+const BrandingSection2 = ({ data }) => {
   return (
     <div
      
       className="h-screen w-full flex items-center px-30 relative "
     >
-      <div ref={containerRef} className="h-[90vh] flex flex-col gap-5">
+      <div  className="h-[90vh] flex flex-col gap-5">
         <h1 className="font-light text-[6vw] leading-[1.15]">
           <TextAnimH1>{data?.heading[0]}</TextAnimH1>
           <span className="font-bold">

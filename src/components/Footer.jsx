@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import Button from "./Button";
+import Input from "./Input";
 
 // Animation variants for sections
 const sectionVariants = {
@@ -158,7 +160,10 @@ export default function Footer({ popActive, setPopActive }) {
               >
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="table" />
-                <motion.input
+                <motion.div
+                  variants={childVariants}
+                >
+                  <Input
                   value={formData.Full_Name}
                   onChange={(e) =>
                     setFormData((prev) => ({
@@ -168,11 +173,14 @@ export default function Footer({ popActive, setPopActive }) {
                   }
                   type="text"
                   placeholder="Full Name"
-                  className="  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
+                  // className="  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
                   name="Full_Name"
-                  variants={childVariants}
                 />
-                <motion.input
+                </motion.div>
+                <motion.div
+                  variants={childVariants}
+                >
+                <Input
                   value={formData.Company_Name}
                   onChange={(e) =>
                     setFormData((prev) => ({
@@ -182,23 +190,26 @@ export default function Footer({ popActive, setPopActive }) {
                   }
                   type="text"
                   placeholder="Company Name"
-                  className=" p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
+                  // className=" p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
                   name="Company_Name"
-                  variants={childVariants}
-                />
-                <motion.input
+                  />
+                  </motion.div>
+                  <motion.div
+                    variants={childVariants}
+                  >
+                <Input
                   value={formData.email}
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, email: e.target.value }))
                   }
                   type="email"
                   placeholder="Email Address"
-                  className=" text-white  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none raleway pointer-events-auto border border-zinc-600 "
+                  // className=" text-white  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none raleway pointer-events-auto border border-zinc-600 "
                   name="email"
-                  variants={childVariants}
                 />
+                </motion.div>
                 <motion.div className="flex" variants={childVariants}>
-                  <input
+                  <Input
                     type="text"
                     value={formData.Contact_Number}
                     onChange={(e) =>
@@ -208,18 +219,18 @@ export default function Footer({ popActive, setPopActive }) {
                       }))
                     }
                     placeholder="Contact Number"
-                    className=" text-white  p-4 text-md w-full rounded-[999px] sm:px-10 focus:outline-none raleway pointer-events-auto border border-zinc-600 "
+                    // className=" text-white  p-4 text-md w-full rounded-[999px] sm:px-10 focus:outline-none raleway pointer-events-auto border border-zinc-600 "
                     name="Contact_Number"
                   />
                 </motion.div>
-                <motion.button
-                  className="md:col-span-2 p-4 font-bold  border border-zinc-600 rounded-[999px] relative items-center justify-center overflow-hidden text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:bg-white before:duration-500 before:ease-out hover:text-black hover:before:h-56 hover:before:w-full flex cursor-pointer raleway pointer-events-auto"
+                <motion.div
+                className="w-full md:col-span-2 pointer-events-auto"
                   variants={childVariants}
                 >
-                  <div className="relative z-[11]">
+                  <Button className="relative z-[11] w-full">
                     {loading ? "Submitting..." : "Let's Talk about the Future"}
-                  </div>
-                </motion.button>
+                  </Button>
+                </motion.div>
               </form>
               {message && (
                 <p className="text-sm text-white mt-2 font-semibold">

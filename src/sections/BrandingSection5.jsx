@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import RollingImageEffect from "../components/RollingImageEffect";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
+import Button from "../components/Button";
 const BrandingSection5 = ({data}) => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [lastHoveredItem, setLastHoveredItem] = useState(null);
@@ -99,9 +100,9 @@ const BrandingSection5 = ({data}) => {
           </ul>
 
           <TextAnimP1>
-            <button className="w-fit text-white py-3 px-8 border border-zinc-200">
+            <Button className="w-fit text-white py-3 px-8 border border-zinc-200">
               Get in touch
-            </button>
+            </Button>
           </TextAnimP1>
         </div>
         <div className="absolute right-0 bottom-0 w-[700px] h-[500px] overflow-hidden">

@@ -1,13 +1,11 @@
 import { useState } from "react";
+import Input from "./Input";
 import TextAnimH1 from "./TextAnimH1";
 import TextAnimP1 from "./TextAnimP1";
+import Button from "./Button";
 
-// Reusable Form Field Component
 const FormField = ({ field, value, onChange, isLanding = false, delay = 0 }) => {
   const { id, label, name, type, placeholder, required, isTextarea } = field;
-  
-  const commonClasses = "w-full bg-transparent border-0 pointer-events-auto border-b pb-8 border-zinc-600 py-2 text-2xl placeholder-zinc-600 font-semibold focus:outline-none focus:border-gray-400 transition-colors";
-  
   return (
     <TextAnimP1 isLanding={isLanding} delay={delay}>
       <div>
@@ -25,13 +23,12 @@ const FormField = ({ field, value, onChange, isLanding = false, delay = 0 }) => 
             required={required}
           />
         ) : (
-          <input
+          <Input
             type={type}
             name={name}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
-            className={commonClasses}
             required={required}
           />
         )}
@@ -211,7 +208,7 @@ export default function ContactForm() {
             {/* Right Side - Form */}
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
-                {formFields.map((field, index) => (
+                {formFields.map((field) => (
                   <FormField
                     key={field.name}
                     field={field}
@@ -225,9 +222,7 @@ export default function ContactForm() {
                 <TextAnimP1>
                   <div className="flex items-center justify-between gap-4">
                     <hr className="h-1 w-[70%] border-zinc-600" />
-                    <button className="w-fit text-white py-3 px-8 border border-zinc-200">
-                      Get in touch
-                    </button>
+                    <Button>Get in touch</Button>
                   </div>
                 </TextAnimP1>
               </form>

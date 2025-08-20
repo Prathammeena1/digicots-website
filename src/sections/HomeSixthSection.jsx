@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
+import Button from "../components/Button";
 
 const HomeSixthSection = () => {
   // State variable containing all approach data
@@ -153,12 +154,12 @@ const HomeSixthSection = () => {
                 {step.description}
               </p>
 
-                <button
+                <Button
                   onClick={() => handleClick(step.id)}
-                  className="border text-sm cursor-pointer pointer-events-auto border-gray-500 text-gray-400 px-8 py-3 rounded-full hover:bg-gray-500 hover:text-white transition-colors duration-300 font-medium w-full"
+                  className=" font-medium w-full pointer-events-auto"
                 >
                   SEE HOW
-                </button>
+                </Button>
               </TextAnimP1>
             </div>
           ))}

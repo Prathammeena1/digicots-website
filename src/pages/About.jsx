@@ -18,10 +18,10 @@ const About = () => {
     <div className="min-h-screen  w-full relative z-10 text-zinc-200 pointer-events-none ">
       <AboutFirstSection />
       {/* <AboutSecondSection /> */}
+      <AboutStatSection/>
       <AboutThirdSection />
 
       <AboutWhyDigi />
-      <AboutStatSection/>
 
       <AboutFourthSection />
       <AboutFifthSection />

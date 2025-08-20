@@ -2,6 +2,7 @@ import React from "react";
 import RollingImageEffect from "../components/RollingImageEffect";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
+import Button from "../components/Button";
 
 const BrandingSection3 = ({data}) => {
   return (
@@ -13,9 +14,9 @@ const BrandingSection3 = ({data}) => {
         </h1>
         <TextAnimP1>
 
-        <button className="w-fit text-white py-3 px-8 border border-zinc-200">
+        <Button className="">
           {data?.btn}
-        </button>
+        </Button>
         </TextAnimP1>
       </div>
       <div className="absolute right-0 bottom-0 w-[800px] h-[600px] ">

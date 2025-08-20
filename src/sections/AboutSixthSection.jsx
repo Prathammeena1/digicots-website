@@ -2,6 +2,7 @@ import React from "react";
 import CurvedSlider from "../components/CurvedSlider";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
+import Button from "../components/Button";
 
 const AboutSixthSection = () => {
   const websites = [
@@ -52,9 +53,9 @@ const AboutSixthSection = () => {
             {/* Call to Action Button */}
             <div className="pt-6">
               <TextAnimP1>
-                <button className="bg-transparent border-2 border-white text-white px-20 py-3 rounded-full text-lg font-medium hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105 pointer-events-auto cursor-pointer">
+                <Button className="text-xl px-20 py-5">
                   GET IN TOUCH
-                </button>
+                </Button>
               </TextAnimP1>
             </div>
           </div>

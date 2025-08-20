@@ -1,6 +1,7 @@
 import React from "react";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
+import Button from "../components/Button";
 
 const cardData = [
   {
@@ -41,9 +42,9 @@ const WebSolveSection = () => {
               </TextAnimP1>
             </p>
             <TextAnimP1>
-              <button className="border border-gray-300 text-white px-8 py-3 text-lg font-medium rounded-none hover:bg-gray-800 transition-colors">
+              <Button>
                 Get in touch
-              </button>
+              </Button>
             </TextAnimP1>
           </div>
 
