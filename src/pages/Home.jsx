@@ -8,19 +8,22 @@ import HomeSixthSection from "../sections/HomeSixthSection.jsx";
 import HomeSeventhSection from "../sections/HomeSeventhSection.jsx";
 import HomeEighthSection from "../sections/HomeEighthSection.jsx";
 import HomeNinthSection from "../sections/HomeNinthSection.jsx";
+import HomeServiceSection from "../sections/HomeServiceSection.jsx";
 
 const Home = () => {
   return (
     <div className="h-full w-full bg-transparent">
-      <HomeHeroSection />
+      {/* <HomeHeroSection /> */}
 
-      <HomeSecondSection />
+      {/* <HomeSecondSection /> */}
 
       {/* <HomeThirdSection /> */}
 
-      <HomeFourthSection />
-      
+      {/* <HomeFourthSection /> */}
+
       {/* <HomeFifthSection /> */}
+
+      <HomeServiceSection />
 
       <HomeSixthSection />
 

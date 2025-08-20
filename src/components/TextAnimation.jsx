@@ -29,7 +29,7 @@ const TextAnimation = ({ children, className = "", animeStart = "50", animeEnd =
     tl.fromTo(
       validRefs,
       { 
-        opacity: 0.3,
+        opacity: 0.1,
         y: 1,
       },
       {
