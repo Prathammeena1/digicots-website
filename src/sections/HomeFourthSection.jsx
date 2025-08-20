@@ -27,10 +27,10 @@ const HomeFourthSection = () => {
 
       {
         content.map((item, index) => (
-          <HomeFourthSectionCard 
-            key={index} 
-            align={index % 2 === 0 ? "left" : "right"} 
-            content={item} 
+          <HomeFourthSectionCard
+            key={index}
+            align={index % 2 === 0 ? "left" : "right"}
+            content={item}
           />
         ))
       }

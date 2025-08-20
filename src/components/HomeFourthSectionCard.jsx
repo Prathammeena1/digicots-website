@@ -9,7 +9,7 @@ const alignment = {
 const HomeFourthSectionCard = ({ align, content }) => {
   return (
     <div
-      className={`dark:text-white rounded-lg max-h-[100vh] flex flex-col justify-between min-h-[400px] mt-12 ${alignment[align]}`}
+      className={`dark:text-white rounded-lg max-h-[100vh] flex flex-col justify-between min-h-[400px] mt-20 ${alignment[align]}`}
     >
         {/* Top section with Pro-Development */}
       {/* <TextAnimP1>
@@ -19,10 +19,10 @@ const HomeFourthSectionCard = ({ align, content }) => {
       </TextAnimP1> */}
 
       <TextAnimP1>
-        <div className="h-[50vh] w-full scale-[.9]">
+        <div className="h-[60vh] w-full">
           <img
             src={content.imgSrc}
-            className="object-contain h-full w-full"
+            className="object-contain w-full"
             alt=""
           />
         </div>
@@ -34,19 +34,18 @@ const HomeFourthSectionCard = ({ align, content }) => {
           {/* DEVELOPMENT label */}
           <div className={`my-3 ${alignment[align]}`}>
             <span className="text-xs font-semibold dark:text-gray-400 text-zinc-800 tracking-wider uppercase">
-              DEVELOPMENT
+              {content.h2}
             </span>
           </div>
 
           {/* Main heading */}
           <h2 className="text-2xl font-bold leading-tight mb-4">
-            Solutions that are adapt to your company.
+            {content.dHead}
           </h2>
 
           {/* Description text */}
           <p className="dark:text-gray-300 text-sm leading-relaxed">
-            We develop customised systems and solutions that optimise the
-            technological and management processes in your company.
+            {content.dParagraph}
           </p>
         </div>
       </TextAnimP1>

@@ -13,9 +13,9 @@ import HomeServiceSection from "../sections/HomeServiceSection.jsx";
 const Home = () => {
   return (
     <div className="h-full w-full bg-transparent">
-      {/* <HomeHeroSection /> */}
+      <HomeHeroSection />
 
-      {/* <HomeSecondSection /> */}
+      <HomeSecondSection />
 
       {/* <HomeThirdSection /> */}
 

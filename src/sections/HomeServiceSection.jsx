@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import TextAnimP1 from "../components/TextAnimP1";
 import TextAnimH1 from "../components/TextAnimH1";
+import { Link } from "react-router-dom";
 
-export default function WebsAndDigitalCaseStudySection() {
+export default function HomeServiceSection() {
   const [hoveredSection, setHoveredSection] = useState(null);
 
   const caseStudyData = [
@@ -71,9 +72,11 @@ export default function WebsAndDigitalCaseStudySection() {
   return (
     <div className="min-h-screen dark:text-white px-30 py-26">
 
-      <h1 className="text-3xl font-semibold">
-        <TextAnimH1>Services</TextAnimH1>
-      </h1>
+       <div className="text-center mb-10">
+          <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
+            <TextAnimH1>Services</TextAnimH1>
+          </h2>
+        </div>
       <div className=" mx-auto">
         <div className="grid lg:grid-cols-[1fr_1fr] items-center">
           {/* Left Side - Content */}
@@ -81,7 +84,8 @@ export default function WebsAndDigitalCaseStudySection() {
             {caseStudyData.map((section, index) => (
               <React.Fragment key={section.id}>
                 <TextAnimP1>
-                  <div
+                  <Link
+                    to={section.href}
                     className="flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-zinc-200/60 p-6 py-12 rounded-lg"
                     onMouseEnter={() => setHoveredSection(section.id)}
                     onMouseLeave={() => setHoveredSection(null)}
@@ -97,7 +101,7 @@ export default function WebsAndDigitalCaseStudySection() {
                         {section.description}
                       </p>
                     </div>
-                  </div>
+                  </Link>
                 </TextAnimP1>
 
                 {/* Add border after each section except the last one */}
