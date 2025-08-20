@@ -15,7 +15,7 @@ const landingdata = {
             reasons.`,
   btn: "Get in touch",
   img: "/images/branding-page/img1.png",
-  bgColor: ["black", "black"],
+  bgColor: ["white", "white"],
 };
 
 const section2Data = {
@@ -30,13 +30,13 @@ const section2Data = {
     shape perceptions and make your presence impossible to ignore.`,
   ],
   img: "/images/branding-page/img2.png",
-  bgColor: ["black", "black"],
+  bgColor: ["white", "white"],
 };
 const section3Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
   img: "/images/branding-page/img3.png",
-  bgColor: ["black", "black"],
+  bgColor: ["white", "white"],
 };
 
 const section4Data = {
@@ -58,13 +58,13 @@ const section4Data = {
                   attention.`,
   },
 
-  bgColor: ["black", "black"],
+  bgColor: ["white", "white"],
 };
 const section5Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
   img: "/images/branding-page/img4.png",
-  bgColor: ["black", "black"],
+  bgColor: ["white", "white"],
 };
 
 const WebAndDigital = () => {
