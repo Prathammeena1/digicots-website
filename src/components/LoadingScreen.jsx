@@ -45,21 +45,21 @@ const LoadingScreen = ({ isLoading, onLoadingComplete }) => {
   if (!isLoading || !mounted) return null;
 
   return (
-    <div className="fixed inset-0 z-[999999] bg-white flex items-center justify-center will-change-auto">
+    <div className="fixed inset-0 z-[999999] bg-white dark:bg-black flex items-center justify-center will-change-auto">
       {/* Main loading content - simplified for performance */}
       <div className="text-center">
         {/* Simple text logo - no images to load */}
         <div className="mb-4">
-          <h1 className="text-2xl font-bold text-black tracking-wider" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+          <h1 className="text-2xl font-bold text-black dark:text-white tracking-wider" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
             DIGICOTS
           </h1>
         </div>
 
         {/* Optimized progress bar with hardware acceleration */}
         <div className="w-32 mx-auto">
-          <div className="bg-zinc-300 h-px">
+          <div className="bg-zinc-300 h-px dark:bg-zinc-700 ">
             <div 
-              className="h-full bg-black"
+              className="h-full bg-black dark:bg-white"
               style={{ 
                 width: `${Math.min(progress, 100)}%`,
                 transform: 'translateZ(0)' // Hardware acceleration

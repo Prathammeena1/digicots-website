@@ -1111,8 +1111,8 @@ const FluidCanvas = React.memo(() => {
   return (
     <canvas
       ref={canvasRef}
-      className="h-full w-full"
-      style={{ display: "block" }}
+      className="h-full w-full bg-white"
+      style={{ display: "block", backgroundColor: "white" }}
     />
   );
 });
