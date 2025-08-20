@@ -145,9 +145,9 @@ const AboutSeventhSection = () => {
 
   return (
       <TextAnimP1>
-    <div className="about-seventh-section">
+    <div className="about-seventh-section text-black dark:text-white">
         <div className="">
-          <h1 className="text-center text-7xl font-semibold">
+          <h1 className="text-center text-7xl font-semibold text-black">
             <TextAnimH1>Our Services</TextAnimH1>
           </h1>
         </div>

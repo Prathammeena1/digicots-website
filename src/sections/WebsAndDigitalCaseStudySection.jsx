@@ -32,7 +32,7 @@ export default function WebsAndDigitalCaseStudySection() {
   ];
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen dark:text-white">
       <div className=" mx-auto px-30 py-26">
         <div className="grid lg:grid-cols-[1fr_1fr] items-center">
           {/* Left Side - Content */}
@@ -41,18 +41,18 @@ export default function WebsAndDigitalCaseStudySection() {
               <React.Fragment key={section.id}>
                   <TextAnimP1>
                 <div
-                  className="flex gap-8 cursor-pointer transition-all duration-300 hover:bg-zinc-700/30 p-6 py-12 rounded-lg"
+                  className="flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-zinc-600/10 p-6 py-12 rounded-lg"
                   onMouseEnter={() => setHoveredSection(section.id)}
                   onMouseLeave={() => setHoveredSection(null)}
                 >
-                    <div className="text-8xl font-bold text-gray-600 leading-none">
+                    <div className="text-8xl font-bold dark:text-gray-600 text-zinc-500 leading-none">
                       {section.id}.
                     </div>
                     <div className="flex-1">
                       <h2 className="text-2xl font-semibold mb-6">
                         {section.title}
                       </h2>
-                      <p className="text-gray-300 text-lg leading-relaxed">
+                      <p className="dark:text-gray-300 text-lg leading-relaxed">
                         {section.description}
                       </p>
                     </div>

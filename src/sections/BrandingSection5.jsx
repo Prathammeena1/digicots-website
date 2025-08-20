@@ -73,7 +73,7 @@ const BrandingSection5 = ({data}) => {
           <h2 className="text-7xl font-light">
             <TextAnimH1>Brand and creative</TextAnimH1>
           </h2>
-          <p className="text-lg leading-relaxed text-gray-300">
+          <p className="text-lg leading-relaxed dark:text-gray-300 text-zinc-500">
             <TextAnimP1>
               We make the world sit up and take notice—crafting a brand voice,
               identity, and message <br /> as powerful as a wolf’s call, ready
@@ -100,7 +100,7 @@ const BrandingSection5 = ({data}) => {
           </ul>
 
           <TextAnimP1>
-            <Button className="w-fit text-white py-3 px-8 border border-zinc-200">
+            <Button>
               Get in touch
             </Button>
           </TextAnimP1>

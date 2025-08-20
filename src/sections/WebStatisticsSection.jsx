@@ -8,10 +8,10 @@ const Card = ({ heading, description }) => {
     <>
       <div className="relative h-[250px] aspect-square p-8 group cursor-pointer">
         <div
-          className="absolute z-20 top-0 left-0 right-0 bottom-0 h-full w-full bg-zinc-900 scale-y-[1.1] opacity-0 group-hover:opacity-100 rotate-0 group-hover:rotate-[-8deg]"
+          className="absolute z-20 top-0 left-0 right-0 bottom-0 h-full w-full dark:bg-zinc-900 bg-zinc-200 scale-y-[1.1] opacity-0 group-hover:opacity-100 rotate-0 group-hover:rotate-[-8deg]"
           style={{ transition: "all 0.5s cubic-bezier(0.65, 0, 0.35, 1)" }}
         ></div>
-        <div className="absolute z-20 top-0 left-0 right-0 bottom-0 h-full w-full bg-zinc-800 scale-y-[1.1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute z-20 top-0 left-0 right-0 bottom-0 h-full w-full dark:bg-zinc-800 bg-zinc-100 scale-y-[1.1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <img
           className="absolute w-[25%] top-0 left-0"
           src="/final-images/utils/Line.png"
@@ -71,7 +71,7 @@ const Card = ({ heading, description }) => {
 
 export default function WebStatisticsSection() {
   return (
-    <div className="min-h-screen  text-white py-24">
+    <div className="min-h-screen  dark:text-white py-24">
       <div className=" px-30 mx-auto ">
         <div className="flex gap-20 items-center ">
           {/* Left Side - Text Content */}
@@ -86,7 +86,7 @@ export default function WebStatisticsSection() {
                   <TextAnimH1>numbers.</TextAnimH1>
                 </span>
               </h1>
-              <p className="text-zinc-300 text-lg">
+              <p className="dark:text-zinc-300 text-zinc-500 text-lg">
                 <TextAnimP1>
                   We work all over the world.
                 </TextAnimP1>
@@ -99,7 +99,7 @@ export default function WebStatisticsSection() {
                 <div className="text-6xl lg:text-7xl font-semibold mb-2 flex gap-1">
                   <CountingAnimation>550</CountingAnimation> <span>+</span>
                 </div>
-                <p className="text-zinc-300 text-lg">
+                <p className="dark:text-zinc-300 text-lg">
                   <TextAnimP1 >Web pages created</TextAnimP1>
                 </p>
               </div>
@@ -107,7 +107,7 @@ export default function WebStatisticsSection() {
                 <div className="text-6xl lg:text-7xl font-semibold mb-2 flex gap-1">
                   <CountingAnimation>50</CountingAnimation> <span>+</span>
                 </div>
-                <p className="text-zinc-300 text-lg">
+                <p className="dark:text-zinc-300 text-lg">
                   <TextAnimP1 >Fixed support customers</TextAnimP1>
                 </p>
               </div>

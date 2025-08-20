@@ -481,12 +481,12 @@ const ServiceLanding2 = () => {
           <div className="pl-30 pr-4 ">
             {/* Main Services Title */}
             <div className="mb-16">
-              <h1 className="text-white text-7xl md:text-8xl lg:text-9xl font-bold tracking-wide mb-8">
+              <h1 className="dark:text-white text-7xl md:text-8xl lg:text-9xl font-bold tracking-wide mb-8">
                 <TextAnimH1 isLanding={true}>Services</TextAnimH1>
               </h1>
 
               {/* Description Text */}
-              <p className="text-zinc-300 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-[1.4]">
+              <p className="dark:text-zinc-300 text-zinc-500 text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-[1.4]">
                 <TextAnimP1 isLanding={true} delay={0.1}>
                   The force della knowledge, the impact della creativity, the
                   pervasiveness della technology. With the consulting of
@@ -499,7 +499,7 @@ const ServiceLanding2 = () => {
             {/* Service Categories */}
             <div className="w-full max-w-6xl">
               {/* Horizontal line */}
-              <div className="w-full h-px bg-zinc-600 mb-12"></div>
+              <div className="w-full h-px dark:bg-zinc-600 bg-zinc-300 mb-12"></div>
 
               {/* Categories Grid */}
               <TextAnimP1 isLanding={true} delay={0.2}>
@@ -514,13 +514,13 @@ const ServiceLanding2 = () => {
                   <div style={{ textAlign: "left" }}>
                     <h3
                       style={{
-                        color: "rgb(161, 161, 170)",
+                        
                         fontSize: "1.125rem",
                         fontWeight: "500",
                         textTransform: "uppercase",
                         letterSpacing: "0.05em",
                       }}
-                      className="md:text-xl"
+                      className="md:text-xl dark:text-zinc-700 text-zinc-500"
                     >
                       Development
                     </h3>
@@ -529,13 +529,13 @@ const ServiceLanding2 = () => {
                   <div style={{ textAlign: "left" }}>
                     <h3
                       style={{
-                        color: "rgb(161, 161, 170)",
+                        
                         fontSize: "1.125rem",
                         fontWeight: "500",
                         textTransform: "uppercase",
                         letterSpacing: "0.05em",
                       }}
-                      className="md:text-xl"
+                      className="md:text-xl dark:text-zinc-700 text-zinc-500"
                     >
                       Design
                     </h3>
@@ -544,13 +544,13 @@ const ServiceLanding2 = () => {
                   <div style={{ textAlign: "left" }}>
                     <h3
                       style={{
-                        color: "rgb(161, 161, 170)",
+                        
                         fontSize: "1.125rem",
                         fontWeight: "500",
                         textTransform: "uppercase",
                         letterSpacing: "0.05em",
                       }}
-                      className="md:text-xl"
+                      className="md:text-xl dark:text-zinc-700 text-zinc-500"
                     >
                       Graphics
                     </h3>
@@ -559,13 +559,13 @@ const ServiceLanding2 = () => {
                   <div style={{ textAlign: "left" }}>
                     <h3
                       style={{
-                        color: "rgb(161, 161, 170)",
+                        
                         fontSize: "1.125rem",
                         fontWeight: "500",
                         textTransform: "uppercase",
                         letterSpacing: "0.05em",
                       }}
-                      className="md:text-xl"
+                      className="md:text-xl dark:text-zinc-700 text-zinc-500"
                     >
                       Content
                     </h3>
@@ -621,13 +621,13 @@ const ServiceLanding2 = () => {
         })}
 
         <div
-          className=" content-parent absolute right-0 top-0 h-screen bg-gradient-to-b from-transparent to-black/50 z-10 flex"
+          className=" content-parent absolute right-0 top-0 h-screen z-10 flex"
           style={{
             width: "0vw",
           }}
         >
           <div
-            className="content-imgs h-[200vh] bg-gradient-to-bl from-red-300 to-blue-400"
+            className="content-imgs h-[200vh]"
             style={{
               width: "60vw",
               transform: "translateY(50%)",
@@ -664,7 +664,7 @@ const ServiceLanding2 = () => {
           </div>
 
           <div
-            className="content h-screen bg-gradient-to-bl "
+            className="content h-screen "
             style={{
               width: "40vw",
               height: "100vh",
@@ -681,7 +681,7 @@ const ServiceLanding2 = () => {
           >
             {/* Services Title */}
             <div className="px-30">
-              <h1 className="text-white text-6xl md:text-7xl font-bold tracking-wide">
+              <h1 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
                 Services
               </h1>
 
@@ -694,15 +694,15 @@ const ServiceLanding2 = () => {
                       key={index}
                       className="grid grid-cols-[8vw_2fr_3.5fr] gap-0 items-center border-b border-gray-600 pb-4"
                     >
-                      <span className="text-gray-400 text-xl font-medium">
+                      <span className="dark:text-gray-400 text-zinc-600 text-xl font-medium">
                         {service.id}
                       </span>
-                      <span className="text-white text-xl md:text-2xl font-medium">
+                      <span className="dark:text-white text-xl md:text-2xl font-medium">
                         {service.title}
                       </span>
                       <span
                         // ref={(el) => (contentDesRef.current[index] = el)}
-                        className="service-content-description text-white text-sm font-medium leading-[1.2] w-[25vw] pl-4"
+                        className="service-content-description dark:text-white text-sm font-medium leading-[1.2] w-[25vw] pl-4"
                       >
                         {service.description}
                       </span>
@@ -714,7 +714,7 @@ const ServiceLanding2 = () => {
 
             {/* Description Text */}
             <div className="mt-6 px-30">
-              <p className="text-gray-300 text-lg leading-[1.5]">
+              <p className="dark:text-gray-300 text-zinc-600 text-lg leading-[1.5]">
                 The force della knowledge, the impact della creativity, the
                 pervasiveness della technology. With the consulting of marketing
                 and communication of Quamm, the value del your business grows in

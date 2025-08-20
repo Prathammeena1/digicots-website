@@ -38,13 +38,13 @@ const AboutWhyDigi = () => {
   ];
 
   return (
-    <div className="min-h-screen text-white py-20">
+    <div className="min-h-screen dark:text-white py-20">
       <div className="mx-auto px-30">
         <div className="w-full flex justify-between mb-16">
           <h1 className="text-7xl font-semibold leading-[1.2] mb-8">
             <TextAnimH1>Why Digicots</TextAnimH1>
           </h1>
-          <p className="text-zinc-300 text-lg leading-relaxed max-w-md">
+          <p className="dark:text-zinc-300 text-lg leading-relaxed max-w-md">
             <TextAnimP1>
               The force della knowledge, the impact della creativity, the
               pervasiveness della technology.
@@ -74,7 +74,7 @@ const AboutWhyDigi = () => {
                 </div>
 
                 {/* Description Text */}
-                <div className="space-y-6 text-gray-300 text-lg leading-relaxed w-[34vw]">
+                <div className="space-y-6 dark:text-gray-300 text-lg leading-relaxed w-[34vw]">
                   {section.paragraphs.map((paragraph, pIndex) => (
                     <p key={pIndex}>
                       <TextAnimP1>{paragraph}</TextAnimP1>

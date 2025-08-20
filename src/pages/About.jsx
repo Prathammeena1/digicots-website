@@ -15,7 +15,7 @@ import AboutStatSection from "../sections/AboutStatSection";
 //       <AboutFourthSection />
 const About = () => {
   return (
-    <div className="min-h-screen  w-full relative z-10 text-zinc-200 pointer-events-none ">
+    <div className="min-h-screen  w-full relative z-10 dark:text-zinc-200 pointer-events-none ">
       <AboutFirstSection />
       {/* <AboutSecondSection /> */}
       <AboutStatSection/>

@@ -70,7 +70,7 @@ const section5Data = {
 const WebAndDigital = () => {
     const pageRef = useRef(null);
   return (
-    <div ref={pageRef} className="h-full w-full relative z-20 text-white ">
+    <div ref={pageRef} className="h-full w-full relative z-20 dark:text-white ">
       <BrandingLanding data={landingdata} pageRef={pageRef} />
 
       <BrandingSection2 data={section2Data} pageRef={pageRef} />

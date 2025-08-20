@@ -9,7 +9,7 @@ const FormField = ({ field, value, onChange, isLanding = false, delay = 0 }) => 
   return (
     <TextAnimP1 isLanding={isLanding} delay={delay}>
       <div>
-        <label className="block text-sm text-zinc-200 mb-1">
+        <label className="block text-sm dark:text-zinc-200 text-zinc-400 mb-1">
           {id} {label}
         </label>
         {isTextarea ? (
@@ -111,12 +111,12 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="min-h-screen text-zinc-200">
+    <div className="min-h-screen dark:text-zinc-200">
       {/* Hero Image Section */}
       <TextAnimH1 isLanding={true}>
         <div className="relative h-64 bg-gradient-to-b ">
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-80"
+            className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: `url('/final-images/contact/img1.png')`,
             }}
@@ -129,7 +129,7 @@ export default function ContactForm() {
         <div className="mx-auto">
           {/* Header */}
           <div className="mb-16">
-            <p className="text-gray-500 text-md mb-4">
+            <p className="dark:text-gray-500 text-md mb-4">
               <TextAnimH1 isLanding={true} delay={0.1}>
                 Contact us
               </TextAnimH1>
@@ -140,7 +140,7 @@ export default function ContactForm() {
                   Let's Talk
                 </TextAnimH1>
               </h1>
-              <p className="text-gray-400 text-md">
+              <p className="dark:text-gray-400 text-md">
                 <TextAnimP1 isLanding={true} delay={0.1}>
                   Don't be shy / We know you have project in your mind!
                 </TextAnimP1>
@@ -195,7 +195,7 @@ export default function ContactForm() {
                     <TextAnimP1>
                       <p
                         key={item}
-                        className="text-md font-semibold hover:text-gray-300 cursor-pointer transition-colors pointer-events-auto"
+                        className="text-md font-semibold dark:hover:text-gray-300 hover:text-zinc-500 cursor-pointer transition-colors pointer-events-auto"
                       >
                         {item}
                       </p>

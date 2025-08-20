@@ -12,7 +12,7 @@ const landingdata = {
             reasons.`,
   btn: "Get in touch",
   img: "/images/branding-page/img1.png",
-  bgColor: ["#C8498F", "#C8498F"],
+  bgColor: ["#ccbadd", "#ccbadd"],
 };
 
 const section2Data = {
@@ -27,13 +27,13 @@ const section2Data = {
     shape perceptions and make your presence impossible to ignore.`,
   ],
   img: "/images/branding-page/img2.png",
-  bgColor: ["#C8498F", "#C8498F"],
+  bgColor: ["#ccbadd", "#ccbadd"],
 };
 const section3Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
   img: "/images/branding-page/img3.png",
-  bgColor: ["#C8498F", "#C8498F"],
+  bgColor: ["#ccbadd", "#ccbadd"],
 };
 
 const section4Data = {
@@ -55,13 +55,13 @@ const section4Data = {
                   attention.`,
   },
 
-  bgColor: ["#C8498F", "#C8498F"],
+  bgColor: ["#ccbadd", "#ccbadd"],
 };
 const section5Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
   img: "/images/branding-page/img4.png",
-  bgColor: ["#C8498F", "#C8498F"],
+  bgColor: ["#ccbadd", "#ccbadd"],
 };
 
 const Branding = () => {
@@ -69,7 +69,7 @@ const Branding = () => {
   return (
     <div
       ref={pageRef}
-      className="min-h-screen w-full text-zinc-200 relative z-10 bg-[#C8498F]"
+      className="min-h-screen w-full dark:text-zinc-200 relative z-10 bg-[#ccbadd]"
     >
       <>
         <BrandingLanding data={landingdata} />

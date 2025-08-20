@@ -4,7 +4,7 @@ import TextAnimP1 from "../components/TextAnimP1";
 
 const BrandingSection4 = ({ data }) => {
   return (
-    <div className="section h-screen w-full text-white px-30">
+    <div className="section h-screen w-full dark:text-white px-30">
       <div className=" w-full max-w-[1700px] mx-auto">
         {/* Our Core Values Section */}
         <div className="border-b border-gray-400/[.9] mt-10 py-16">
@@ -19,7 +19,7 @@ const BrandingSection4 = ({ data }) => {
               </h2>
             </div>
             <div className="lg:w-1/2">
-              <p className="text-lg leading-relaxed text-gray-300">
+              <p className="text-lg leading-relaxed dark:text-gray-300 text-zinc-500">
                 <TextAnimP1>
 
                 {data?.p?.p1}
@@ -40,7 +40,7 @@ const BrandingSection4 = ({ data }) => {
               </h2>
             </div>
             <div className="lg:w-1/2">
-              <p className="text-lg leading-relaxed text-gray-300">
+              <p className="text-lg leading-relaxed dark:text-gray-300 text-zinc-500">
                 <TextAnimP1>
                   {data?.p?.p2}
                 </TextAnimP1>

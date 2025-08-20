@@ -112,7 +112,7 @@ const AboutFifthSection = () => {
 
   return (
     <div
-      className="h-[200vh] w-full relative text-white pt-16"
+      className="h-[200vh] w-full relative dark:text-white pt-16"
       ref={sectionRef}
     >
       <div className="w-full mx-auto px-30">
@@ -123,14 +123,14 @@ const AboutFifthSection = () => {
             <div className="w-fit" ref={titleRef}>
               <h2 className="text-6xl lg:text-7xl font-bold leading-[1] mt-2">
                 <TextAnimH1>Our Fundamental</TextAnimH1>
-                <span className="text-white">
+                <span className="dark:text-white">
                   <TextAnimH1>Creators</TextAnimH1>
                 </span>
               </h2>
             </div>
 
             <div className="w-fit" ref={descriptionRef}>
-              <p className="text-lg text-gray-300 leading-[1.6]">
+              <p className="text-lg dark:text-gray-300 leading-[1.6]">
                 <TextAnimP1>
                 We craft data-driven strategies aligned with <br /> your goals
                 to drive growth and keep you <br /> competitive in a changing
@@ -160,7 +160,7 @@ const AboutFifthSection = () => {
                           className="w-[22vw] h-full object-cover rounded-lg"
                         />
                         <div className="content">
-                          <p className="text-lg text-gray-300">{c.role}</p>
+                          <p className="text-lg dark:text-gray-300">{c.role}</p>
                           <h3 className="text-2xl font-semibold">{c.name}</h3>
                         </div>
                       </div>

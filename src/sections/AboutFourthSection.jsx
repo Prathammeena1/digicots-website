@@ -439,15 +439,15 @@ const AboutFourthSection = () => {
               >
                 {index === currentSlide ? (
                   // Active dot with progress
-                  <div className="w-12 h-3 bg-gray-600 rounded-full relative overflow-hidden">
+                  <div className="w-12 h-3 dark:bg-gray-600 bg-zinc-400 rounded-full relative overflow-hidden">
                     <div
-                      className="h-full bg-white rounded-full transition-all duration-100 ease-linear"
+                      className="h-full dark:bg-white bg-zinc-500 rounded-full transition-all duration-100 ease-linear"
                       style={{ width: `${Math.min(progress, 100)}%` }}
                     ></div>
                   </div>
                 ) : (
                   // Inactive dots
-                  <div className="w-3 h-3 cursor-pointer bg-gray-600 rounded-full group-hover:bg-gray-400 transition-colors duration-200"></div>
+                  <div className="w-3 h-3 cursor-pointer dark:bg-gray-600 bg-zinc-300 rounded-full group-hover:bg-gray-400 transition-colors duration-200"></div>
                 )}
               </button>
             ))}

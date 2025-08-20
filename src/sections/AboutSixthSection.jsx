@@ -30,7 +30,7 @@ const AboutSixthSection = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full relative  text-white py-20 overflow-hidden">
+    <div className="min-h-screen w-full relative  dark:text-white py-20 overflow-hidden">
       {/* <div className="absolute top-20 bg-black/20 z-10 h-[85%] w-[90%] left-1/2 transform -translate-x-1/2 rounded-3xl"></div> */}
       {/* Floating Website Mockups */}
       <div className="absolute top-16 h-screen w-full inset-0 flex items-center justify-center z-10">
@@ -45,7 +45,7 @@ const AboutSixthSection = () => {
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-6xl font-bold leading-[1.1] mt-100">
               <TextAnimH1>Contact us to get website</TextAnimH1>
-              <span className="text-white">
+              <span className="dark:text-white">
                 <TextAnimH1>of your dreams</TextAnimH1>
               </span>
             </h1>

@@ -33,7 +33,7 @@ const WebSolveSection = () => {
                 We <span className="font-bold">Solve</span> Problem
               </TextAnimH1>
             </h1>
-            <p className="text-gray-300 text-lg mb-8 w-[50%]">
+            <p className="dark:text-gray-300 text-zinc-500 text-lg mb-8 w-[50%]">
               <TextAnimP1>
                 New to the wild? Or back on the hunt? We’re a brand creation
                 agency with the instincts of a wolf—strategic, relentless, and

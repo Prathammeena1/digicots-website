@@ -4,7 +4,7 @@ import TextAnimP1 from "../components/TextAnimP1";
 
 const AboutThirdSection = () => {
   return (
-    <div className="section h-screen w-full text-white px-30 pt-16">
+    <div className="section h-screen w-full dark:text-white px-30 pt-16">
       <div className=" w-full max-w-[1700px] mx-auto">
         {/* Our Core Values Section */}
         <div className="border-t border-gray-400/[.9] mt-10 py-16">
@@ -17,7 +17,7 @@ const AboutThirdSection = () => {
               </h2>
             </div>
             <div className="lg:w-1/2">
-              <p className="text-lg leading-relaxed text-gray-300">
+              <p className="text-lg leading-relaxed dark:text-gray-300">
                 <TextAnimP1>
                   The force della knowledge, the impact della creativity, the
                   pervasiveness della technology. With the consulting of
@@ -48,7 +48,7 @@ const AboutThirdSection = () => {
               </div>
             </div>
             <div className="relative">
-              <p className="text-lg leading-relaxed text-gray-300 mb-8">
+              <p className="text-lg leading-relaxed dark:text-gray-300 mb-8">
                 <TextAnimP1>
                   The force della knowledge, the impact della creativity, the
                   pervasiveness della technology. With the consulting of

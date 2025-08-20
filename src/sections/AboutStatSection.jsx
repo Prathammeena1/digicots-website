@@ -23,7 +23,7 @@ const AboutStatSection = () => {
   ];
 
   return (
-    <div className=" text-white py-20">
+    <div className=" dark:text-white py-20">
       <div className="px-30 mx-auto flex flex-col justify-center">
         {/* Statistics Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-10">
@@ -33,7 +33,7 @@ const AboutStatSection = () => {
                 <CountingAnimation>{stat.number} </CountingAnimation>{" "}
                 <span>{stat.symbol}</span>
               </h2>
-              <p className="text-zinc-300 text-xl">
+              <p className="dark:text-zinc-300 text-xl">
                 <TextAnimP1>{stat.label}</TextAnimP1>
               </p>
             </div>
@@ -45,7 +45,7 @@ const AboutStatSection = () => {
           <h1 className="text-8xl lg:text-9xl font-bold leading-none mb-3">
             <TextAnimH1>San Francisco</TextAnimH1>
           </h1>
-          <p className="text-zinc-300 text-xl">
+          <p className="dark:text-zinc-300 text-xl">
             <TextAnimP1>Headquarters</TextAnimP1>
           </p>
         </div>
