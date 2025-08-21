@@ -18,13 +18,13 @@ const HomeFourthSectionCard = ({ align, content }) => {
         </div>
       </TextAnimP1> */}
 
+      <TextAnimP1>
       {/* Main heading */}
       <h2
         className="text-2xl font-bold leading-tight mb-4"
         dangerouslySetInnerHTML={{ __html: content.dHead }}
       />
 
-      <TextAnimP1>
         <div className="h-[60vh] w-full">
           <img
             src={content.imgSrc}
@@ -32,10 +32,7 @@ const HomeFourthSectionCard = ({ align, content }) => {
             alt=""
           />
         </div>
-      </TextAnimP1>
-
       {/* Bottom section with content */}
-      <TextAnimP1>
         <div className="space-y-4">
           {/* DEVELOPMENT label */}
           {/* <div className={`my-3 ${alignment[align]}`}>

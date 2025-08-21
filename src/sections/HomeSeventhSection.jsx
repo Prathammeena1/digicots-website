@@ -35,8 +35,8 @@ const HomeSeventhSection = () => {
     >
       {/* Heading */}
       <div className="text-center my-10">
-        <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
-          <TextAnimH1>LOVED by BRANDS</TextAnimH1>
+        <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide uppercase">
+          <TextAnimH1>LOVED BY BRANDS</TextAnimH1>
         </h2>
       </div>
 

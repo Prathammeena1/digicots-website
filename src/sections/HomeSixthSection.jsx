@@ -118,7 +118,7 @@ const HomeSixthSection = () => {
       <div className="relative z-10 mx-auto">
         {/* Main heading */}
         <div className="text-center my-10">
-          <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
+          <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide uppercase">
             <TextAnimH1>THE ALPHA EDGE</TextAnimH1>
           </h2>
         </div>

@@ -24,7 +24,7 @@ const Navigation = () => {
   gsap.registerPlugin(ScrollTrigger)
 
   return (
-    <nav ref={navRef} className="fixed bg-white/20 backdrop-blur top-0 left-0 right-0 z-50 flex items-center justify-center">
+    <nav ref={navRef} className="fixed bg-white/50 backdrop-blur-md top-0 left-0 right-0 z-50 flex items-center justify-center">
       <div className="mx-auto px-6 lg:px-8">
         <div className="flex justify-center gap-18 items-center h-20">
           {/* Left side navigation */}

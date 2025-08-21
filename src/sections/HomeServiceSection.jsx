@@ -9,12 +9,12 @@ export default function HomeServiceSection() {
   const caseStudyData = [
     {
       id: 1,
-      image: "/final-images/home-services/WebnDigital.webp",
+      image: "/final-images/home-services/Graphic.webp",
       category: "Solutions/Services",
-      title: "Web & Digital",
+      title: "Creatives & Graphics",
       description:
-        "Website Design | Website Development | UI/UX Design | Ecommerce Sol...",
-      href: "/services/5",
+        "Creatives Solutions  |  Motion Design  |  Illustration Design  |  Print...",
+      href: "/services/2",
       position: "top-[-5%]",
     },
     {
@@ -23,57 +23,58 @@ export default function HomeServiceSection() {
       category: "Solutions/Services",
       title: "Branding",
       description:
-        "Logo Design  |  Brand Strategy  |  Visual Identity  |  Brand Guidelines  |  Na...",
+      "Logo Design  |  Brand Strategy  |  Visual Identity  |  Brand Guidelines  |  Na...",
       href: "/services/4",
       position: "top-[10%]",
     },
     {
       id: 3,
-      image: "/final-images/home-services/DIgitalM.webp",
+      image: "/final-images/home-services/WebnDigital.webp",
       category: "Solutions/Services",
-      title: "Digital Marketing",
+      title: "Web & Digital",
       description:
-        "Logo Design | Brand Identity | Marketing Materials | Brand Strategy...",
-      href: "/services/6",
+      "Website Design | Website Development | UI/UX Design | Ecommerce Sol...",
+      href: "/services/5",
       position: "top-[30%]",
     },
     {
       id: 4,
-      image: "/final-images/home-services/Content.webp",
+      image: "/final-images/home-services/DIgitalM.webp",
       category: "Solutions/Services",
-      title: "Content Generation",
+      title: "Digital Marketing",
       description:
-        "3D Modelling  |  Content Strategy  |  Copywriting  |  Photography   |  Anim...",
-      href: "/services/1",
+      "Logo Design | Brand Identity | Marketing Materials | Brand Strategy...",
+      href: "/services/6",
       position: "top-[45%]",
     },
     {
       id: 5,
-      image: "/final-images/home-services/Production.webp",
+      image: "/final-images/home-services/Content.webp",
       category: "Solutions/Services",
-      title: "Production (Pre-Post)",
+      title: "Content Generation",
       description:
-        "Creative Direction & Storyboarding  |  Scriptwriting & Copywriting  |  Cam...",
-      href: "/services/3",
+      "3D Modelling  |  Content Strategy  |  Copywriting  |  Photography   |  Anim...",
+      href: "/services/1",
       position: "top-[62%]",
     },
     {
       id: 6,
-      image: "/final-images/home-services/Graphic.webp",
+      image: "/final-images/home-services/Production.webp",
       category: "Solutions/Services",
-      title: "Creatives & Graphics",
+      title: "Production (Pre-Post)",
       description:
-        "Creatives Solutions  |  Motion Design  |  Illustration Design  |  Print...",
-      href: "/services/2",
+      "Creative Direction & Storyboarding  |  Scriptwriting & Copywriting  |  Cam...",
+      href: "/services/3",
       position: "top-[78%]",
     },
+    
   ];
 
   return (
     <div className="min-h-screen dark:text-white px-30 py-26">
 
        <div className="text-center mb-10">
-          <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
+          <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide uppercase">
             <TextAnimH1>Services</TextAnimH1>
           </h2>
         </div>
