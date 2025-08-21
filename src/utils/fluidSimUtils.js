@@ -1,20 +1,20 @@
 // Utility functions and shader code for the fluid simulation
 
 export const paletteStops = [
-  "#87CEEB",    // Light sky blue (primary)
-  "#32A4E2",    // Medium sky blue
-  "#1E90ED",    // Vibrant sky blue
-  "#4FC3F7",    // Bright sky blue
-  "#81D4FA",    // Pale sky blue
-  "#B8443B",    // Copper red (primary contrast)
-  "#C44536",    // Bright copper red
-  "#A0392F",    // Deep copper red
-  "#D2482A",    // Vivid copper red
-  "#8B3626",    // Dark copper red
-  "#5DADE2",    // Sky blue variant
-  "#E74C3C",    // Enhanced red
-  "#3498DB",    // Pure blue
-  "#CD5C3F",    // Warm copper
+  "#1565C0",    // Deep blue (stands out on white)
+  "#1976D2",    // Strong blue
+  "#2196F3",    // Vibrant blue
+  "#42A5F5",    // Bright blue
+  "#90CAF9",    // Soft blue
+  "#D84315",    // Strong orange-red (contrast for white)
+  "#E64A19",    // Bright orange-red
+  "#BF360C",    // Deep orange-red
+  "#FF7043",    // Vivid orange
+  "#8D6E63",    // Muted brown
+  "#00B8D4",    // Cyan accent
+  "#FF5252",    // Bright red
+  "#1976D2",    // Pure blue
+  "#FF8A65",    // Warm orange
 ];
 
 export function hexToRgb(hex) {

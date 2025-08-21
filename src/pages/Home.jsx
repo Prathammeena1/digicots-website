@@ -15,6 +15,8 @@ const Home = () => {
     <div className="h-full w-full bg-transparent">
       <HomeHeroSection />
 
+      
+
       <HomeFourthSection />
 
       {/* <HomeThirdSection /> */}

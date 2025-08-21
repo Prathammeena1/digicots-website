@@ -72,13 +72,13 @@ export default function HomeServiceSection() {
   return (
     <div className="min-h-screen dark:text-white px-30 py-10">
       <div className="text-center mb-25">
-        <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
+        <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide mb-5">
           <TextAnimH1>Services</TextAnimH1>
-          <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full relative z-20 mt-5">
+        </h2>
+          <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl  relative z-20">
             As global leaders in UX/UI, tech, and marketing, Digicots helps <br />
             businesses simplify, strengthen, and grow.
           </h2>
-        </h2>
       </div>
       <div className=" mx-auto ">
         <div className="grid lg:grid-cols-[1fr_1fr] items-center">

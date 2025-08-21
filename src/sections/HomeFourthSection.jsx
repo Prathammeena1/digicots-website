@@ -27,13 +27,14 @@ const HomeFourthSection = () => {
   return (
     <>
       <TextAnimP1>
-        <div className="text-black relative z-20">
-          <div className="text-center mb-10">
-            <div className="text-2xl ">
-              Hello! We’re Digicots
-            </div>
-            <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full ">
-                Where creativity transforms into digital impact
+        <div className="text-black relative z-20 mt-40">
+          <div className="text-center">
+            <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide mb-5">
+              <TextAnimH1>Innovative</TextAnimH1>
+            </h2>
+            <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full">
+              {/* Where creativity transforms into digital impact */}
+              Creative by nature, Digital by design - We are Digicots.
             </h2>
           </div>
         </div>
