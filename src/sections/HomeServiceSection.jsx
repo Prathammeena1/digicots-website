@@ -23,7 +23,7 @@ export default function HomeServiceSection() {
       category: "Solutions/Services",
       title: "Branding",
       description:
-      "Logo Design  |  Brand Strategy  |  Visual Identity  |  Brand Guidelines  |  Na...",
+        "Logo Design  |  Brand Strategy  |  Visual Identity  |  Brand Guidelines  |  Na...",
       href: "/services/4",
       position: "top-[10%]",
     },
@@ -33,7 +33,7 @@ export default function HomeServiceSection() {
       category: "Solutions/Services",
       title: "Web & Digital",
       description:
-      "Website Design | Website Development | UI/UX Design | Ecommerce Sol...",
+        "Website Design | Website Development | UI/UX Design | Ecommerce Sol...",
       href: "/services/5",
       position: "top-[30%]",
     },
@@ -43,7 +43,7 @@ export default function HomeServiceSection() {
       category: "Solutions/Services",
       title: "Digital Marketing",
       description:
-      "Logo Design | Brand Identity | Marketing Materials | Brand Strategy...",
+        "Logo Design | Brand Identity | Marketing Materials | Brand Strategy...",
       href: "/services/6",
       position: "top-[45%]",
     },
@@ -53,7 +53,7 @@ export default function HomeServiceSection() {
       category: "Solutions/Services",
       title: "Content Generation",
       description:
-      "3D Modelling  |  Content Strategy  |  Copywriting  |  Photography   |  Anim...",
+        "3D Modelling  |  Content Strategy  |  Copywriting  |  Photography   |  Anim...",
       href: "/services/1",
       position: "top-[62%]",
     },
@@ -63,22 +63,24 @@ export default function HomeServiceSection() {
       category: "Solutions/Services",
       title: "Production (Pre-Post)",
       description:
-      "Creative Direction & Storyboarding  |  Scriptwriting & Copywriting  |  Cam...",
+        "Creative Direction & Storyboarding  |  Scriptwriting & Copywriting  |  Cam...",
       href: "/services/3",
       position: "top-[78%]",
     },
-    
   ];
 
   return (
-    <div className="min-h-screen dark:text-white px-30 py-26">
-
-       <div className="text-center mb-10">
-          <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide uppercase">
-            <TextAnimH1>Services</TextAnimH1>
+    <div className="min-h-screen dark:text-white px-30 py-10">
+      <div className="text-center mb-25">
+        <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide">
+          <TextAnimH1>Services</TextAnimH1>
+          <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full relative z-20 mt-5">
+            As global leaders in UX/UI, tech, and marketing, Digicots helps <br />
+            businesses simplify, strengthen, and grow.
           </h2>
-        </div>
-      <div className=" mx-auto">
+        </h2>
+      </div>
+      <div className=" mx-auto ">
         <div className="grid lg:grid-cols-[1fr_1fr] items-center">
           {/* Left Side - Content */}
           <div className=" w-[55vw]">

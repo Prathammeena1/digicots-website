@@ -28,11 +28,8 @@ void main() {
     
     vec4 textureColor = texture2D(uTexture, uv);
     
-    // Exact #ff008a color - use blend instead of multiply to preserve color accuracy
-    vec3 exactColor = vec3(1.0, 0.0, 0.541176); // #ff008a precise RGB conversion
-    vec3 finalColor = mix(textureColor.rgb, exactColor, 0.8); // Blend 80% target color with texture
-    
-    gl_FragColor = vec4(finalColor, textureColor.a);
-    
+    // Use #FD4161 color for the effect
+    vec3 effectColor = vec3(255.0/255.0, 149.0/255.0, 177.0/255.0); // #ff95b1ff precise RGB
+    gl_FragColor = vec4(effectColor, textureColor.a);
     gl_FragColor.a *= circle(gl_PointCoord, 0.2);
 }

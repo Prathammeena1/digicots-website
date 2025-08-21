@@ -18,7 +18,7 @@ const HomeFourthSectionCard = ({ align, content }) => {
         </div>
       </TextAnimP1> */}
 
-      <TextAnimP1>
+      {/* <TextAnimP1> */}
       {/* Main heading */}
       <h2
         className="text-2xl font-bold leading-tight mb-4"
@@ -48,7 +48,7 @@ const HomeFourthSectionCard = ({ align, content }) => {
             {content.dParagraph}
           </p>
         </div>
-      </TextAnimP1>
+      {/* </TextAnimP1> */}
     </div>
   );
 };

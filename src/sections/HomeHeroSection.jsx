@@ -3,25 +3,26 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef, useState, useEffect } from "react";
 import { useLogo } from "../context/LogoContext.jsx";
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
+import TextAnimation from "../components/TextAnimation.jsx";
 
 /**
  * PRODUCTION VIDEO SETUP:
- * 
+ *
  * For optimal production performance, replace VIDEO_URL with:
- * 
+ *
  * 1. VIMEO PRO (Recommended):
  *    const VIDEO_URL = "https://vimeo.com/your-video-id";
- * 
+ *
  * 2. CLOUDINARY:
  *    const VIDEO_URL = "https://res.cloudinary.com/your-cloud/video/upload/your-video.mp4";
- * 
+ *
  * 3. AWS CLOUDFRONT:
  *    const VIDEO_URL = "https://your-cloudfront-domain.com/showreel.mp4";
- * 
+ *
  * 4. YOUTUBE (Public videos):
  *    const VIDEO_URL = "https://www.youtube.com/watch?v=your-video-id";
- * 
+ *
  * Current setup supports all these platforms with automatic optimization.
  */
 
@@ -39,7 +40,7 @@ const HomeHeroSection = () => {
   const [videoReady, setVideoReady] = useState(false);
 
   // Production video URL - Replace with your actual video URL
-  
+
   // const VIDEO_URL = "https://ik.imagekit.io/x5xessyka/digicots/showreel.webm/ik-video.mp4?tr=orig"; // Change this to your cloud video URL
   const VIDEO_URL = "/videos/showreel.webm"; // Change this to your cloud video URL
   // Get logo context
@@ -48,22 +49,22 @@ const HomeHeroSection = () => {
   // Video health monitoring and performance optimization
   useEffect(() => {
     let healthCheckInterval;
-    
+
     const checkVideoHealth = () => {
       if (playerRef.current) {
         try {
           const player = playerRef.current;
-          
+
           // Check if getInternalPlayer method exists
-          if (typeof player.getInternalPlayer === 'function') {
+          if (typeof player.getInternalPlayer === "function") {
             const internalPlayer = player.getInternalPlayer();
-            
+
             if (internalPlayer && internalPlayer.readyState >= 2) {
               // Video is ready
               if (!videoReady) {
                 setVideoReady(true);
               }
-              
+
               // Check if video should be playing but is paused
               if (internalPlayer.paused && !internalPlayer.ended && isPlaying) {
                 console.log("Video health check: resuming paused video");
@@ -99,11 +100,11 @@ const HomeHeroSection = () => {
   // Handle video mute toggle with performance optimization
   const toggleVideoMute = () => {
     const newMutedState = !videoMuted;
-    
+
     // Use requestAnimationFrame for smooth state updates
     requestAnimationFrame(() => {
       setVideoMuted(newMutedState);
-      
+
       // Ensure video continues playing smoothly
       if (playerRef.current && videoReady) {
         const player = playerRef.current;
@@ -141,9 +142,9 @@ const HomeHeroSection = () => {
         y: "0%",
         duration: 3.1,
         ease: "power3.out",
-      },
+      }
       // 0.2
-    )
+    );
     //   .to(
     //     sec1.current,
     //     {
@@ -225,9 +226,8 @@ const HomeHeroSection = () => {
         alt="Logo"
         className="fixed left-[51%] top-1/2 -translate-1/2 w-30 h-auto z-[99999] pointer-events-none select-none opacity-0"
       /> */}
-      <div id="HomeHero"  className="section h-[200vh] w-full relative">
+      <div id="HomeHero" className="section h-[200vh] w-full relative">
         <div
-        
           ref={homeRef}
           className="h-screen w-full sticky top-0 overflow-hidden"
         >
@@ -252,30 +252,30 @@ const HomeHeroSection = () => {
                 width="100%"
                 height="100%"
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   top: 0,
                   left: 0,
                 }}
                 config={{
                   file: {
                     attributes: {
-                      preload: 'metadata',
-                      'webkit-playsinline': true,
+                      preload: "metadata",
+                      "webkit-playsinline": true,
                       playsinline: true,
                       disablePictureInPicture: true,
                       disableRemotePlayback: true,
-                      'x-webkit-airplay': 'deny',
+                      "x-webkit-airplay": "deny",
                       style: {
-                        objectFit: 'cover',
-                        filter: 'brightness(0.9)',
-                        willChange: 'auto',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
-                        transform: 'translate3d(0, 0, 0)',
-                        WebkitTransform: 'translate3d(0, 0, 0)',
-                        imageRendering: 'optimizeSpeed',
-                        WebkitImageRendering: 'optimizeSpeed',
-                      }
+                        objectFit: "cover",
+                        filter: "brightness(0.9)",
+                        willChange: "auto",
+                        backfaceVisibility: "hidden",
+                        WebkitBackfaceVisibility: "hidden",
+                        transform: "translate3d(0, 0, 0)",
+                        WebkitTransform: "translate3d(0, 0, 0)",
+                        imageRendering: "optimizeSpeed",
+                        WebkitImageRendering: "optimizeSpeed",
+                      },
                     },
                     forceVideo: true,
                     forceHLS: false,
@@ -288,9 +288,9 @@ const HomeHeroSection = () => {
                       autoplay: true,
                       loop: true,
                       muted: videoMuted,
-                      quality: 'auto',
-                      responsive: true
-                    }
+                      quality: "auto",
+                      responsive: true,
+                    },
                   },
                   // For YouTube (if needed)
                   youtube: {
@@ -301,9 +301,9 @@ const HomeHeroSection = () => {
                       showinfo: 0,
                       mute: videoMuted ? 1 : 0,
                       loop: 1,
-                      playlist: '', // Add video ID here for loop
-                    }
-                  }
+                      playlist: "", // Add video ID here for loop
+                    },
+                  },
                 }}
               />
             </div>
@@ -316,18 +316,21 @@ const HomeHeroSection = () => {
             className="section h-screen w-full absolute top-0 left-0 right-0 z-20 bg-white/[.1] backdrop-blur"
           >
             {/* SVG Text Mask Implementation */}
-            <div className="relative w-full h-full">  
+            <div className="relative w-full h-full">
               {/* SVG Text Mask */}
               <svg
                 className="absolute top-0 left-0 pointer-events-none h-screen w-screen"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1920 1080"
                 preserveAspectRatio="xMidYMid slice"
-                
               >
                 <defs>
                   <mask id="text-mask">
-                    <rect width="100%" height="100%"  className="dark:fill-black fill-white" />
+                    <rect
+                      width="100%"
+                      height="100%"
+                      className="dark:fill-black fill-white"
+                    />
                     <text
                       x="960"
                       y="420"
@@ -340,8 +343,6 @@ const HomeHeroSection = () => {
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
-                      
-
                     >
                       BRIEF
                     </text>
@@ -357,7 +358,6 @@ const HomeHeroSection = () => {
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
-                      
                     >
                       TO BELIEF.
                     </text>
@@ -373,6 +373,18 @@ const HomeHeroSection = () => {
                   mask="url(#text-mask)"
                 />
               </svg>
+              <div
+                scrub={true}
+                animeStart="70%"
+                animeEnd="30%"
+                duration="2"
+                stagger={10}
+                className="dark:text-zinc-200 text-center font-semibold text-3xl absolute bottom-25 w-full "
+              >
+                We are a results-driven digital agency that blends creativity,
+                strategy and <br /> technology to build powerful brands and
+                deliver measurable growth
+              </div>
             </div>
           </div>
           <div

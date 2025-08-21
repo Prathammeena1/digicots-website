@@ -15,11 +15,10 @@ const Home = () => {
     <div className="h-full w-full bg-transparent">
       <HomeHeroSection />
 
-      <HomeSecondSection />
+      <HomeFourthSection />
 
       {/* <HomeThirdSection /> */}
 
-      <HomeFourthSection />
 
       {/* <HomeFifthSection /> */}
 
@@ -28,6 +27,8 @@ const Home = () => {
       <HomeSixthSection />
 
       <HomeSeventhSection />
+      <HomeSecondSection />
+
 
       <HomeEighthSection />
 
