@@ -12,14 +12,14 @@ const content = [
     h2: "HOLISTIC ADVISORY",
     dHead: `Strategies that <br />
 reflect who you are.`,
-    dParagraph: `We understand your core, your values and blend them into data & analytics to create systems that rip apart your competition.`,
+    dParagraph: `We design customised tech solutions and development strategies that optimise both technological and management processes within your company. Our approach empowers businesses to achieve efficiency, scalability, and sustainable growth.`,
   },
   {
     title: "Pro-Strategist ",
     imgSrc: "/final-images/gif/1.gif",
     h2: "CUSTOMIZED SOLUTIONS",
     dHead: `Solutions that <br /> deliver your future.`,
-    dParagraph: `We scour your existing systems for gaps and develop automated solutions that boost efficiencies and minimize risks.`,
+    dParagraph: `We craft innovative, data-driven digital solutions and performance marketing strategies that maximise visibility, reach, and ROI. From comprehensive SEO research to targeted campaigns, we help brands grow smarter, faster, and stronger.`,
   },
 ];
 
@@ -29,8 +29,8 @@ const HomeFourthSection = () => {
       <TextAnimP1>
         <div className="text-black relative z-20 mt-40">
           <div className="text-center">
-            <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide mb-5">
-              <TextAnimH1>Innovative</TextAnimH1>
+            <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5">
+              Innovative
             </h2>
             <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full">
               {/* Where creativity transforms into digital impact */}
@@ -38,7 +38,7 @@ const HomeFourthSection = () => {
             </h2>
           </div>
         </div>
-        <div className="h-screen w-full dark:bg-black relative overflow-hidden flex items-start justify-center gap-[33vw] px-30 ">
+        <div className="min-h-screen w-full dark:bg-black relative overflow-hidden flex items-start justify-center gap-[30vw] px-30 mt-20 ">
           <HomeFourthSectionCanvas />
 
           {content.map((item, index) => (

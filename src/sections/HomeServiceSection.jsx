@@ -70,10 +70,10 @@ export default function HomeServiceSection() {
   ];
 
   return (
-    <div className="min-h-screen dark:text-white px-30 py-10">
+    <div className="min-h-screen dark:text-white py-10">
       <div className="text-center mb-25">
-        <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide mb-5">
-          <TextAnimH1>Services</TextAnimH1>
+        <h2 className="dark:text-white text-6xl md:text-7xl font-bold mb-5 relative z-20">
+          Services
         </h2>
           <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl  relative z-20">
             As global leaders in UX/UI, tech, and marketing, Digicots helps <br />
@@ -89,15 +89,15 @@ export default function HomeServiceSection() {
                 <TextAnimP1>
                   <Link
                     to={section.href}
-                    className="flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-zinc-200/60 p-6 py-12 rounded-lg"
+                    className="flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-[#F5C0CF]/20 p-6 py-12 rounded-lg"
                     onMouseEnter={() => setHoveredSection(section.id)}
                     onMouseLeave={() => setHoveredSection(null)}
                   >
-                    <div className="text-8xl font-bold text-gray-600 leading-none">
+                    <div className=" pl-30 text-8xl font-bold text-gray-600 leading-none">
                       {section.id}.
                     </div>
                     <div className="flex-1">
-                      <h2 className="text-2xl font-semibold mb-6">
+                      <h2 className="text-2xl font-semibold mb-3">
                         {section.title}
                       </h2>
                       <p className="dark:text-gray-300 text-lg leading-relaxed">

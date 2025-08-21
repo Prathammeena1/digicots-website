@@ -118,23 +118,28 @@ const HomeSixthSection = () => {
       <div className="relative z-10 mx-auto">
         {/* Main heading */}
         <div className="text-center my-10">
-          <h2 className="dark:text-white text-6xl md:text-7xl font-bold tracking-wide uppercase">
-            <TextAnimH1>THE ALPHA EDGE</TextAnimH1>
-          </h2>
+           <div className="text-center">
+            <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5 capitalize">
+              The alpha edge
+            </h2>
+            <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full">
+              Our Alpha Edge represents innovation, precision, and relentless drive that empowers businesses to lead, adapt, and thrive in a competitive digital world.
+            </h2>
+          </div>
         </div>
 
         {/* Dynamic steps grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-20">
           {approachSteps.map((step) => (
             <div key={step.id} className="relative">
               <TextAnimP1>
-                <div className="mb-6">
+                {/* <div className="mb-6">
                   <span className="dark:text-gray-400 text-sm font-medium tracking-wider uppercase">
                     {step.stepNumber}
                   </span>
-                </div>
+                </div> */}
 
-                <h3 className="dark:text-white text-2xl md:text-3xl font-bold mb-6">
+                <h3 className="text-2xl font-semibold mb-6 text-center">
                   {step.title}
                 </h3>
 
@@ -148,16 +153,16 @@ const HomeSixthSection = () => {
                   />
                 </div>
 
-                <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
+                <p className="dark:text-gray-300 text-md text-center">
                   {step.description}
                 </p>
-                <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
+                <p className="dark:text-gray-300 text-md text-center">
                   {step.d2}
                 </p>
 
                 <Button
                   onClick={() => handleClick(step.id)}
-                  className=" font-medium w-full pointer-events-auto"
+                  className=" font-medium w-full pointer-events-auto mt-6"
                 >
                   SEE HOW
                 </Button>

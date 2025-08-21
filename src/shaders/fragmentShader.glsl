@@ -29,7 +29,7 @@ void main() {
     vec4 textureColor = texture2D(uTexture, uv);
     
     // Use #FD4161 color for the effect
-    vec3 effectColor = vec3(255.0/255.0, 149.0/255.0, 177.0/255.0); // #ff95b1ff precise RGB
+     vec3 effectColor = vec3(255.0/255.0, 149.0/255.0, 177.0/255.0); // #ff95b1ff precise RGB
     gl_FragColor = vec4(effectColor, textureColor.a);
     gl_FragColor.a *= circle(gl_PointCoord, 0.2);
 }

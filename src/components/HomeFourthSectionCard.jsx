@@ -9,7 +9,7 @@ const alignment = {
 const HomeFourthSectionCard = ({ align, content }) => {
   return (
     <div
-      className={`dark:text-white rounded-lg max-h-[100vh] flex flex-col justify-between min-h-[400px] mt-20 ${alignment[align]}`}
+      className={`dark:text-white rounded-lg max-h-[100vh] flex flex-col justify-between ${alignment[align]}`}
     >
         {/* Top section with Pro-Development */}
       {/* <TextAnimP1>
@@ -21,14 +21,17 @@ const HomeFourthSectionCard = ({ align, content }) => {
       {/* <TextAnimP1> */}
       {/* Main heading */}
       <h2
-        className="text-2xl font-bold leading-tight mb-4"
+        className="text-2xl font-semibold "
         dangerouslySetInnerHTML={{ __html: content.dHead }}
       />
 
-        <div className="h-[60vh] w-full">
+        <div className="h-[60vh] w-full overflow-hidden">
           <img
             src={content.imgSrc}
             className="object-contain w-full"
+            style={{
+              scale: align === "right" ? "1" : ".9",
+            }}
             alt=""
           />
         </div>
@@ -44,7 +47,7 @@ const HomeFourthSectionCard = ({ align, content }) => {
           
 
           {/* Description text */}
-          <p className="dark:text-gray-300 text-md leading-relaxed mt-4">
+          <p className="dark:text-gray-300 text-lg mt-4">
             {content.dParagraph}
           </p>
         </div>
