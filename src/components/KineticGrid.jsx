@@ -48,7 +48,7 @@ const KineticGrid = () => {
               trigger: containerRef.current,
               start: "top bottom",
               end: "top -100%",
-              scrub: true,
+              scrub: 4,
               onUpdate: (self) => {
                 // Add phase offset for kinetic effect
                 const progress = self.progress;

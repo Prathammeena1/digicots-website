@@ -13,8 +13,8 @@ const HomeSixthSection = () => {
       stepNumber: "STEP 1",
       title: "Discovery & Vision Sync",
       image: "/images/approach1.png",
-      description:`We sniff out every detail, dig deep into your goals, your challenges, your hidden potential.`,
-      d2:`Your vision becomes our obsession.`,
+      description: `We sniff out every detail, dig deep into your goals, your challenges, your hidden potential.`,
+      d2: `Your vision becomes our obsession.`,
       fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       fallbackText: "Office Scene",
     },
@@ -23,10 +23,10 @@ const HomeSixthSection = () => {
       stepNumber: "STEP 2",
       title: "Strategy & Creativity ",
       image: "/images/approach2.png",
-      description:`We design systems that cut through the noise and help us predict the next big opportunity.`,
-      d2:`Our instinct is your advantage.`,
+      description: `We design systems that cut through the noise and help us predict the next big opportunity.`,
+      d2: `Our instinct is your advantage.`,
       fallbackGradient:
-      "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
+        "linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)",
       fallbackText: "Creative Scene",
     },
     {
@@ -34,8 +34,8 @@ const HomeSixthSection = () => {
       stepNumber: "STEP 3",
       title: "Set the Pack in Motion",
       image: "/images/approach3.png",
-      description:`We create workflows that adapt, endure and drive momentum balancing creativity & practicality.`,
-      d2:`Our duality gives you the edge.`,
+      description: `We create workflows that adapt, endure and drive momentum balancing creativity & practicality.`,
+      d2: `Our duality gives you the edge.`,
       fallbackGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       fallbackText: "Team Results",
     },
@@ -127,35 +127,33 @@ const HomeSixthSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {approachSteps.map((step) => (
             <div key={step.id} className="relative">
-              <div className="mb-6">
-                <span className="dark:text-gray-400 text-sm font-medium tracking-wider uppercase">
-                  <TextAnimP1>{step.stepNumber}</TextAnimP1>
-                </span>
-              </div>
+              <TextAnimP1>
+                <div className="mb-6">
+                  <span className="dark:text-gray-400 text-sm font-medium tracking-wider uppercase">
+                    {step.stepNumber}
+                  </span>
+                </div>
 
-              <h3 className="dark:text-white text-2xl md:text-3xl font-bold mb-6">
-                <TextAnimP1>{step.title}</TextAnimP1>
-              </h3>
+                <h3 className="dark:text-white text-2xl md:text-3xl font-bold mb-6">
+                  {step.title}
+                </h3>
 
-              {/* Image container */}
-              <div className="relative mb-6 overflow-hidden h-54">
-                <TextAnimP1>
+                {/* Image container */}
+                <div className="relative mb-6 overflow-hidden h-54">
                   <img
                     src={step.image}
                     alt={step.title}
                     className="w-full h-full object-cover"
                     onError={(e) => handleImageError(e, step)}
                   />
-                </TextAnimP1>
-              </div>
+                </div>
 
-              <TextAnimP1>
-              <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
-                {step.description}
-              </p>
-              <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
-                {step.d2}
-              </p>
+                <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
+                  {step.description}
+                </p>
+                <p className="dark:text-gray-300 text-sm leading-relaxed text-center mb-8">
+                  {step.d2}
+                </p>
 
                 <Button
                   onClick={() => handleClick(step.id)}
