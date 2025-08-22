@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
 import Button from "../components/Button";
+import TwistedTextEffect from "../components/TwistedTextEffect";
 
 const HomeSixthSection = () => {
   // State variable containing all approach data
@@ -104,8 +105,8 @@ const HomeSixthSection = () => {
   };
 
   return (
-    <div className="bg-transparent pt-10 px-30 relative overflow-hidden ">
-      <div className="fixed z-20">
+    <div className="bg-transparent pt-10 relative overflow-hidden ">
+      <div className="fixed z-20 ">
         <div
           ref={screen1Ref}
           className="screen1 top-[-50%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
@@ -115,21 +116,25 @@ const HomeSixthSection = () => {
           className="screen2 top-[100%] h-[50vh] w-screen left-0 right-0 z-20 fixed bg-black"
         ></div>
       </div>
-      <div className="relative z-10 mx-auto">
+      <div className="relative z-10 mx-auto ">
         {/* Main heading */}
-        <div className="text-center mt-10">
-           <div className="text-center">
+        <div className="text-center mt-10 px-30">
+          <div className="text-center">
             <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5 capitalize">
               The alpha edge
             </h2>
             <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full">
-              Our Alpha Edge represents innovation, precision, and relentless drive that empowers businesses to lead, adapt, and thrive in a competitive digital world.
+              Our Alpha Edge represents innovation, precision, and relentless
+              drive that empowers businesses to lead, adapt, and thrive in a
+              competitive digital world.
             </h2>
           </div>
         </div>
 
+        <TwistedTextEffect />
+
         {/* Dynamic steps grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-160 px-30">
           {approachSteps.map((step) => (
             <div key={step.id} className="relative">
               <TextAnimP1>

@@ -89,6 +89,26 @@ export default function HomeServiceSection() {
                 <Link
                   to={section.href}
                   className="relative flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-[#F5C0CF]/20 p-6 py-12 rounded-lg"
+                  onMouseEnter={(e) => {
+                    const { clientX, clientY } = e;
+                    const { left, top, width } = e.currentTarget.getBoundingClientRect();
+                    const img = e.currentTarget.querySelector('.img');
+                    e.currentTarget._prevMouseX = clientX;
+                    const mouseX = clientX - left;
+                    const mouseY = clientY - top;
+                    if (img) {
+                      gsap.to(img, {
+                        duration: 0.3,
+                        left: mouseX - img.offsetWidth / 2,
+                        top: mouseY - img.offsetHeight / 2,
+                        scale: 1.4,
+                        opacity: 1,
+                        rotate: 0,
+                        ease: 'power3.out',
+                        position: 'absolute',
+                      });
+                    }
+                  }}
                   onMouseMove={(e) => {
                     const { clientX, clientY } = e;
                     const { left, top, width } = e.currentTarget.getBoundingClientRect();

@@ -45,7 +45,7 @@ const boxFragment = `
 `;
 
 // TwistedText: renders text to a texture, then maps it to a twisted box
-function TwistedText({ text }) {
+function  TwistedText({ text }) {
   const meshRef = useRef();
   const materialRef = useRef();
   const textRef = useRef();
@@ -60,7 +60,7 @@ function TwistedText({ text }) {
     rtCameraRef.current = new THREE.PerspectiveCamera(45, 2, 0.1, 1000);
     rtCameraRef.current.position.z = 2.4;
     rtSceneRef.current = new THREE.Scene();
-    rtSceneRef.current.background = new THREE.Color("black");
+    rtSceneRef.current.background = new THREE.Color("white");
     return () => {
       rtRef.current && rtRef.current.dispose();
     };
@@ -110,14 +110,13 @@ function TwistedText({ text }) {
       <Text
         ref={textRef}
         fontSize={1.2}
-        // width={10007}
         fontWeight={900}
         lineHeight={1}
         letterSpacing={0.1}
         textAlign="center"
         anchorX="center"
         anchorY="middle"
-        color="white"
+        color="black"
         position={[0, 0, 0]}
         scale={[.28, 1.8, 1]}
         visible={true}
@@ -128,7 +127,7 @@ function TwistedText({ text }) {
       </Text>
       {/* Twisted box geometry with text texture */}
       <mesh ref={meshRef}>
-        <boxGeometry args={[160, 18, 18, 168, 168, 64]} scale={[4.5,1,1]} />
+        <boxGeometry args={[160, 18, 18, 168, 168, 64]} scale={[10.5,1,1]} />
         <shaderMaterial
           ref={materialRef}
           vertexShader={boxVertex}
@@ -143,9 +142,9 @@ function TwistedText({ text }) {
 
 const TwistedTextEffect = () => {
   return (
-    <div className="h-screen w-full relative pointer-events-none overflow-hidden">
+    <div className="h-screen w-full absolute top-0 pointer-events-none overflow-hidden">
       <Canvas
-        className="w-full h-full absolute top-24 left-0 z-10 pointer-events-none"
+        className="w-full h-full absolute top-0 left-0 z-10 pointer-events-none"
         camera={{ position: [0, 0, 80], fov: 45 }}
         style={{ pointerEvents: 'none' }}
         onPointerOver={undefined}

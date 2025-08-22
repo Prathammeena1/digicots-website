@@ -1,8 +1,9 @@
-import React from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import ServicesDetailLanding from '../sections/ServicesDetailLanding';
-
-
+import React from "react";
+import { useLocation, useParams } from "react-router-dom";
+import ServicesDetailLanding from "../sections/ServicesDetailLanding";
+import ServicesSectionOtherSections from "../sections/ServicesSectionOtherSections";
+import ServicesSectionOtherSections2 from "../sections/ServicesSectionOtherSections2";
+import ServicesSectionOtherSections3 from "../sections/ServicesSectionOtherSections3";
 
 // Services data array
 const servicesData = [
@@ -12,10 +13,16 @@ const servicesData = [
     src: "/final-images/services/Content.webp",
     width: "25vw",
     tags: ["web", "digital", "branding", "marketing", "graphics"],
-    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
+    subCategories: [
+      "sub-Cat 1",
+      "sub-Cat 2",
+      "sub-Cat 3",
+      "sub-Cat 4",
+      "sub-Cat 5",
+    ],
     description:
       "We craft words and visuals that bite. Content designed to grab attention and keep your audience hooked. From blogs to campaigns, we make every message count.",
-    href: "/services/1"
+    href: "/services/1",
   },
   {
     id: "2",
@@ -23,10 +30,16 @@ const servicesData = [
     src: "/final-images/services/Graphic.webp",
     width: "15vw",
     tags: ["branding", "identity", "logo", "design"],
-    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
+    subCategories: [
+      "sub-Cat 1",
+      "sub-Cat 2",
+      "sub-Cat 3",
+      "sub-Cat 4",
+      "sub-Cat 5",
+    ],
     description:
       "Designs that prowl ahead of trends, combining bold creativity with precision. Every visual tells your story with style and impact.",
-    href: "/services/2"
+    href: "/services/2",
   },
   {
     id: "3",
@@ -34,10 +47,16 @@ const servicesData = [
     src: "/final-images/services/Production.webp",
     width: "0vw",
     tags: ["marketing", "digital", "social", "strategy"],
-    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
+    subCategories: [
+      "sub-Cat 1",
+      "sub-Cat 2",
+      "sub-Cat 3",
+      "sub-Cat 4",
+      "sub-Cat 5",
+    ],
     description:
       "From concept to final cut, we bring your ideas to life with cinematic quality. Sharp, sleek, and ready to dominate screens.",
-    href: "/services/3"
+    href: "/services/3",
   },
   {
     id: "4",
@@ -45,10 +64,16 @@ const servicesData = [
     src: "/final-images/services/Branding.webp",
     width: "0vw",
     tags: ["content", "writing", "copywriting", "strategy"],
-    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
+    subCategories: [
+      "sub-Cat 1",
+      "sub-Cat 2",
+      "sub-Cat 3",
+      "sub-Cat 4",
+      "sub-Cat 5",
+    ],
     description:
       "We build brands with presence and power-identities that stand tall in any market. Strategy meets storytelling in a way they’ll never forget.",
-    href: "/services/4"
+    href: "/services/4",
   },
   {
     id: "5",
@@ -56,10 +81,16 @@ const servicesData = [
     src: "/final-images/services/Web.webp",
     width: "0vw",
     tags: ["production", "video", "photography", "editing"],
-    subCategories: ["sub-Cat 1", "sub-Cat 2", "sub-Cat 3", "sub-Cat 4", "sub-Cat 5"],
+    subCategories: [
+      "sub-Cat 1",
+      "sub-Cat 2",
+      "sub-Cat 3",
+      "sub-Cat 4",
+      "sub-Cat 5",
+    ],
     description:
       "Web experiences as smooth as a predator’s stride. Engaging, functional, and built to convert curiosity into loyalty.",
-    href: "/services/5"
+    href: "/services/5",
   },
   {
     id: "6",
@@ -70,20 +101,28 @@ const servicesData = [
     subCategories: [],
     description:
       "We hunt for opportunities across the digital landscape. Targeted campaigns that find, attract, and win your ideal audience.",
-    href: "/services/6"
+    href: "/services/6",
   },
 ];
 
-
 const ServicesDetail = () => {
-
-    const {id} = useParams();
+  const { id } = useParams();
 
   return (
-    <div>
-        <ServicesDetailLanding servicesData={servicesData.find(image => image.href === `/services/${id}`)} />
-    </div>
-  )
-}
+    <div className="">
+      <div className="h-[70vh] w-full "></div>
+      <ServicesDetailLanding
+        servicesData={servicesData.find(
+          (image) => image.href === `/services/${id}`
+        )}
+      />
+      <ServicesSectionOtherSections />
+      <ServicesSectionOtherSections2 />
+      <ServicesSectionOtherSections3 />
+        
 
-export default ServicesDetail
+    </div>
+  );
+};
+
+export default ServicesDetail;

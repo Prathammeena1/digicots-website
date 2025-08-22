@@ -11,12 +11,7 @@ const HomeSeventhSection = () => {
   useGSAP(() => {
     lineRefs.current.forEach((line, index) => {
       if (line) {
-        // Set initial position
-        gsap.set(line, {
-          x: "0%",
-        });
-
-        // Create infinite marquee animation that moves exactly 50% (half the content)
+        gsap.set(line, { x: "0%" });
         gsap.to(line, {
           x: index % 2 === 0 ? "-30%" : "30%",
           duration: 25,
@@ -28,10 +23,23 @@ const HomeSeventhSection = () => {
     });
   }, [lineRefs.current]);
 
+  // Brand images array
+  const brandImages = [
+    "10.png",
+    "2.png",
+    "3.png",
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png",
+    "9.png",
+  ];
+
   return (
     <div
       ref={parentRef}
-      className="relative w-full flex flex-col items-center justify-start overflow-hidden pointer-events-none py-10"
+      className="relative w-full flex flex-col items-center justify-start overflow-hidden pointer-events-none py-30"
     >
       {/* Heading */}
       <div className="text-center my-10">
@@ -42,42 +50,30 @@ const HomeSeventhSection = () => {
 
       {/* Grid of rounded rectangles */}
       <div className="px-20">
-        <TextAnimP1>
-          <div className="w-full flex gap-5 flex-col items-center justify-center">
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div
-                key={i}
-                ref={(el) => (lineRefs.current[i] = el)}
-                className="w-full flex gap-10 whitespace-nowrap"
-              >
-                {/* First set of logos */}
-                {Array.from({ length: 8 }).map((_, j) => (
-                  <div
-                    key={`first-${j}`}
-                    className="w-50 h-20 rounded-[3.5rem] border-2 border-[#6b5b5b] opacity-60 overflow-hidden flex items-center justify-center px-10 flex-shrink-0"
-                  >
-                    <img
-                      className="w-full object-contain"
-                      src={`/images/logo-black.svg`}
-                    />
-                  </div>
-                ))}
-                {/* Duplicate set for seamless loop */}
-                {Array.from({ length: 8 }).map((_, j) => (
-                  <div
-                    key={`second-${j}`}
-                    className="w-50 h-20 rounded-[3.5rem] border-2 border-[#6b5b5b] opacity-60 overflow-hidden flex items-center justify-center px-10 flex-shrink-0"
-                  >
-                    <img
-                      className="w-full object-contain"
-                      src={`/images/logo-black.svg`}
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </TextAnimP1>
+          <TextAnimP1>
+            <div className="w-full flex gap-5 flex-col items-center justify-center">
+              {[0, 1, 2].map((rowIdx) => (
+                <div
+                  key={rowIdx}
+                  ref={(el) => (lineRefs.current[rowIdx] = el)}
+                  className="w-full flex gap-10 whitespace-nowrap"
+                >
+                  {Array.from({ length: 12 }).map((_, repeatIdx) => (
+                    <div
+                      key={`brand-${rowIdx}-${repeatIdx}`}
+                      className="w-80 h-30 rounded-[3.5rem] pointer-events-auto border-2 border-[#d1d1d1] opacity-60 overflow-hidden flex items-center justify-center px-10 flex-shrink-0 group"
+                    >
+                      <img
+                        className="w-full object-contain filter grayscale transition-all duration-300 group-hover:filter-none"
+                        src={`/final-images/brands/${brandImages[(rowIdx * 3 + repeatIdx) % 3 + rowIdx * 3]}`}
+                        alt={`Brand ${(rowIdx * 3 + repeatIdx) % 3 + rowIdx * 3 + 1}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </TextAnimP1>
       </div>
     </div>
   );

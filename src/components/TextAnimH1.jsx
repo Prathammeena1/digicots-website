@@ -39,8 +39,8 @@ const TextAnimH1 = ({ children, isLanding = false, delay = 0 }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: parentRef.current,
-          start: "top 80%",
-          end: "top 70%",
+          start: "top 90%",
+          end: "top 88%",
           // markers: true, // Enable for debugging
         },
       });

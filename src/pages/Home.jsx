@@ -31,7 +31,7 @@ const Home = () => {
       <HomeSixthSection />
 
       <HomeSeventhSection />
-      <HomeSecondSection />
+      {/* <HomeSecondSection /> */}
 
 
       <HomeEighthSection />
