@@ -115,7 +115,7 @@ export default function HomeServiceSection() {
                         duration: 0.3,
                         left: mouseX - img.offsetWidth / 2,
                         top: mouseY - img.offsetHeight / 2,
-                        scale: 1.1,
+                        scale: 1.4,
                         opacity: 1,
                         rotate: rotate,
                         ease: 'power3.out',

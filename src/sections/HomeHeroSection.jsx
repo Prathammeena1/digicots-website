@@ -196,13 +196,13 @@ const HomeHeroSection = () => {
       {/* Mute Toggle Button */}
       <button
         onClick={toggleVideoMute}
-        className="fixed top-5 right-6 z-[100000] dark:bg-black/20 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full p-3 hover:bg-black/40 transition-all duration-300 group"
+        className="fixed top-1 right-6 scale-[0.8] z-[100000] dark:bg-white/20 bg-white/80 backdrop-blur-sm border border-black/20 rounded-full p-3 hover:bg-white/90 transition-all duration-300 group"
         aria-label={videoMuted ? "Unmute video" : "Mute video"}
       >
         {videoMuted ? (
           // Muted icon
           <svg
-            className="w-5 h-5 text-white group-hover:scale-110 transition-transform"
+            className="w-5 h-5 text-black/50 group-hover:scale-110 transition-transform"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -211,7 +211,7 @@ const HomeHeroSection = () => {
         ) : (
           // Unmuted icon
           <svg
-            className="w-5 h-5 text-white group-hover:scale-110 transition-transform"
+            className="w-5 h-5 text-black/50 group-hover:scale-110 transition-transform"
             fill="currentColor"
             viewBox="0 0 24 24"
           >

@@ -104,7 +104,7 @@ const HomeSixthSection = () => {
   };
 
   return (
-    <div className="bg-transparent min-h-screen py-10 px-30 relative overflow-hidden pointer-events-none">
+    <div className="bg-transparent pt-10 px-30 relative overflow-hidden ">
       <div className="fixed z-20">
         <div
           ref={screen1Ref}
@@ -117,7 +117,7 @@ const HomeSixthSection = () => {
       </div>
       <div className="relative z-10 mx-auto">
         {/* Main heading */}
-        <div className="text-center my-10">
+        <div className="text-center mt-10">
            <div className="text-center">
             <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5 capitalize">
               The alpha edge
@@ -162,7 +162,7 @@ const HomeSixthSection = () => {
 
                 <Button
                   onClick={() => handleClick(step.id)}
-                  className=" font-medium w-full pointer-events-auto mt-6"
+                  className=" font-medium w-full pointer-events-auto mt-6 cursor-pointer"
                 >
                   SEE HOW
                 </Button>

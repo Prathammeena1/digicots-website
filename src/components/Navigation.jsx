@@ -26,15 +26,15 @@ const Navigation = () => {
   return (
     <nav
       ref={navRef}
-      className="fixed bg-white/50 backdrop-blur-md top-0 left-0 right-0 z-50 flex items-center justify-center"
+      className="fixed bg-black backdrop-blur-md top-0 left-0 right-0 z-50 flex items-center justify-center"
     >
-        <div className="flex justify-center gap-18 items-center h-20">
+        <div className="flex justify-center gap-18 items-center py-3">
           {/* Left side navigation */}
           {navItems.slice(0, 3).map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className="dark:text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
+              className="dark:text-white text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
             >
               {item.label}
             </Link>
@@ -45,14 +45,14 @@ const Navigation = () => {
 
           <Link to="/" className="logo-container ml-7">
             {/* <img src="/images/logo-1.svg" className='w-30' alt="" /> */}
-            <img src="/images/logo-black.svg" className="w-30" alt="" />
+            <img src="/images/logo-1.svg" className="w-30" alt="" />
           </Link>
 
           {navItems.slice(3).map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className="dark:text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
+              className="dark:text-white text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
             >
               {item.label}
             </Link>

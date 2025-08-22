@@ -14,13 +14,13 @@ const LoadingScreen = ({  onLoadingComplete }) => {
           </h1>
         </div> */}
         {/* Circular progress bar */}
-        <div className="w-24 h-24 mx-auto flex items-center justify-center relative">
+        <div className="w-24 h-24 mx-auto flex items-center justify-center relative scale-[1]">
 
-          <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+          <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[.9]'>
             <img src="/final-images/gif/Loader.gif" alt="" />
           </div>
 
-          <svg width="96" height="96" viewBox="0 0 96 96">
+          <svg width="100" height="100" viewBox="0 0 100 100">
             <circle
               cx="48"
               cy="48"
