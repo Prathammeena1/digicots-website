@@ -25,20 +25,20 @@ reflect who you are.`,
 
 const HomeFourthSection = () => {
   return (
-    <>
+    <div className="bg-white">
       <TextAnimP1>
-        <div className="text-black relative z-20 mt-40">
+        <div className="text-black relative z-20 pt-40 bg-white">
           <div className="text-center">
             <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5">
               Innovative
             </h2>
-            <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full">
+            <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] w-full">
               {/* Where creativity transforms into digital impact */}
               Creative by nature, Digital by design - We are Digicots.
             </h2>
           </div>
         </div>
-        <div className="min-h-screen w-full dark:bg-black relative overflow-hidden flex items-start justify-center gap-[30vw] px-30 mt-20 ">
+        <div className="min-h-screen w-full bg-white dark:bg-black relative overflow-hidden flex items-start justify-center gap-[30vw] px-30 mt-20 ">
           <HomeFourthSectionCanvas />
 
           {content.map((item, index) => (
@@ -50,7 +50,7 @@ const HomeFourthSection = () => {
           ))}
         </div>
       </TextAnimP1>
-    </>
+    </div>
   );
 };
 

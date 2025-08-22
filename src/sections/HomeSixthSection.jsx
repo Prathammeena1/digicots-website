@@ -105,7 +105,7 @@ const HomeSixthSection = () => {
   };
 
   return (
-    <div className="bg-transparent pt-10 relative overflow-hidden ">
+    <div className=" pt-10 relative overflow-hidden bg-white">
       <div className="fixed z-20 ">
         <div
           ref={screen1Ref}
@@ -123,18 +123,18 @@ const HomeSixthSection = () => {
             <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5 capitalize">
               The alpha edge
             </h2>
-            <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl w-full">
+            <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] w-full">
               Our Alpha Edge represents innovation, precision, and relentless
-              drive that empowers businesses to lead, adapt, and thrive in a
+              drive that empowers businesses <br /> to lead, adapt, and thrive in a
               competitive digital world.
             </h2>
           </div>
         </div>
 
-        <TwistedTextEffect />
+        {/* <TwistedTextEffect /> */}
 
         {/* Dynamic steps grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-160 px-30">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-20 px-30">
           {approachSteps.map((step) => (
             <div key={step.id} className="relative">
               <TextAnimP1>

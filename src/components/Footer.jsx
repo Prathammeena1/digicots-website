@@ -129,7 +129,7 @@ export default function Footer({ popActive, setPopActive }) {
   return (
     <footer
       ref={footerRef}
-      className=" pointer-events-none dark:text-white py-16 px-30 relative z-10 overflow-hidden"
+      className=" pointer-events-none dark:text-white py-16 px-30 relative z-10 overflow-hidden bg-white"
     >
       <div className="container mx-auto max-w-[1600px]">
         {/* Top Section - Join the Pack */}

@@ -338,7 +338,7 @@ const HomeHeroSection = () => {
                       dominantBaseline="middle"
                       fill="black"
                       stroke="black"
-                      strokeWidth="10"
+                      strokeWidth="1"
                       fontSize="260"
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
@@ -353,13 +353,13 @@ const HomeHeroSection = () => {
                       dominantBaseline="middle"
                       fill="black"
                       stroke="black"
-                      strokeWidth="10"
+                      strokeWidth="1"
                       fontSize="260"
                       fontFamily="Palette, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
                     >
-                      TO BELIEF.
+                      TO BELIEF
                     </text>
                   </mask>
                 </defs>

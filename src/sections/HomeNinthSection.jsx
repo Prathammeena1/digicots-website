@@ -19,7 +19,7 @@ const HomeNinthSection = () => {
   };
 
   return (
-    <div className="w-full pt-20 relative overflow-hidden pointer-events-none">
+    <div className="w-full pt-20 relative overflow-hidden pointer-events-none bg-white">
      
       <HomeSliderCxFeedback />
     </div>

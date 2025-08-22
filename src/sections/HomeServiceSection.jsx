@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 
 export default function HomeServiceSection() {
-
   const caseStudyData = [
     {
       id: 1,
@@ -70,29 +69,30 @@ export default function HomeServiceSection() {
   ];
 
   return (
-    <div className="min-h-screen dark:text-white py-10">
-      <div className="text-center mb-25">
-        <h2 className="dark:text-white text-6xl md:text-7xl font-bold mb-5 relative z-20">
+    <div className="min-h-screen dark:text-white py-25  bg-white">
+      <div className="text-center mb-15">
+        <h2 className="dark:text-white text-6xl md:text-7xl font-bold mb-5 relative z-10">
           Services
         </h2>
-        <h2 className="dark:text-zinc-200 text-center font-semibold text-3xl  relative z-20">
+        <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] relative z-10">
           As global leaders in UX/UI, tech, and marketing, Digicots helps <br />
           businesses simplify, strengthen, and grow.
         </h2>
       </div>
-      <div className=" mx-auto ">
+      <div className=" mx-auto relative z-30 ">
         {/* Left Side - Content */}
-        <div className=" w-full home-services-effect">
+        <div className=" w-full home-services-effect relative z-30">
           {caseStudyData.map((section, index) => (
             <React.Fragment key={section.id}>
               <TextAnimP1>
                 <Link
                   to={section.href}
-                  className="relative flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-[#F5C0CF]/20 p-6 py-12 rounded-lg"
+                  className="relative z-30 flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-[#8e44ad]/7 p-6 py-12 rounded-lg"
                   onMouseEnter={(e) => {
                     const { clientX, clientY } = e;
-                    const { left, top, width } = e.currentTarget.getBoundingClientRect();
-                    const img = e.currentTarget.querySelector('.img');
+                    const { left, top, width } =
+                      e.currentTarget.getBoundingClientRect();
+                    const img = e.currentTarget.querySelector(".img");
                     e.currentTarget._prevMouseX = clientX;
                     const mouseX = clientX - left;
                     const mouseY = clientY - top;
@@ -104,15 +104,16 @@ export default function HomeServiceSection() {
                         scale: 1.4,
                         opacity: 1,
                         rotate: 0,
-                        ease: 'power3.out',
-                        position: 'absolute',
+                        ease: "power3.out",
+                        position: "absolute",
                       });
                     }
                   }}
                   onMouseMove={(e) => {
                     const { clientX, clientY } = e;
-                    const { left, top, width } = e.currentTarget.getBoundingClientRect();
-                    const img = e.currentTarget.querySelector('.img');
+                    const { left, top, width } =
+                      e.currentTarget.getBoundingClientRect();
+                    const img = e.currentTarget.querySelector(".img");
                     // Store previous mouse position on the element
                     if (!e.currentTarget._prevMouseX) {
                       e.currentTarget._prevMouseX = clientX;
@@ -127,7 +128,8 @@ export default function HomeServiceSection() {
                     const maxDeg = 7;
                     let intensity = Math.abs(deltaX);
                     // Normalize intensity (tweak divisor for sensitivity)
-                    let rotate = minDeg + Math.min(intensity, 1) * (maxDeg - minDeg);
+                    let rotate =
+                      minDeg + Math.min(intensity, 1) * (maxDeg - minDeg);
                     // Direction: left or right
                     if (deltaX < 0) rotate = -rotate;
                     if (img) {
@@ -138,30 +140,34 @@ export default function HomeServiceSection() {
                         scale: 1.4,
                         opacity: 1,
                         rotate: rotate,
-                        ease: 'power3.out',
-                        position: 'absolute',
+                        ease: "power3.out",
+                        position: "absolute",
                       });
                     }
                   }}
                   onMouseLeave={() => {
-                    const container = document.querySelector('.home-services-effect');
+                    const container = document.querySelector(
+                      ".home-services-effect"
+                    );
                     if (container) {
-                      const imgs = container.querySelectorAll('.img');
-                      imgs.forEach(img => {
+                      const imgs = container.querySelectorAll(".img");
+                      imgs.forEach((img) => {
                         gsap.to(img, {
                           duration: 0.3,
                           opacity: 0,
                           scale: 1,
-                          ease: 'power3.out',
+                          ease: "power3.out",
                         });
                       });
                     }
                   }}
-
-                  
                 >
-                  <div className="img absolute h-60 w-90 opacity-0 z-20 overflow-hidden pointer-events-none">
-                    <img src={section.image} className="h-full w-full object-cover" alt="" />
+                  <div className="img absolute h-60 w-90 opacity-0 overflow-hidden pointer-events-none z-30">
+                    <img
+                      src={section.image}
+                      className="h-full w-full object-cover"
+                      alt=""
+                    />
                   </div>
                   <div className=" pl-30 text-8xl font-bold text-gray-600 leading-none">
                     {section.id}.
@@ -179,7 +185,7 @@ export default function HomeServiceSection() {
 
               {/* Add border after each section except the last one */}
               {index < caseStudyData.length - 1 && (
-                <div className="border-t border-gray-700"></div>
+                <div className="border-t border-gray-700/15"></div>
               )}
             </React.Fragment>
           ))}

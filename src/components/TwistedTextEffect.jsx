@@ -142,7 +142,7 @@ function  TwistedText({ text }) {
 
 const TwistedTextEffect = () => {
   return (
-    <div className="h-screen w-full absolute top-0 pointer-events-none overflow-hidden">
+    <div className="h-screen w-full absolute -top-[4%] pointer-events-none overflow-hidden">
       <Canvas
         className="w-full h-full absolute top-0 left-0 z-10 pointer-events-none"
         camera={{ position: [0, 0, 80], fov: 45 }}

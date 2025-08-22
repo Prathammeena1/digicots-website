@@ -73,10 +73,10 @@ const KineticGrid = () => {
         ref={containerRef}
         className="w-full h-screen sticky top-0 dark:bg-black flex items-center justify-center overflow-hidden"
       >
-        <div className="h-[30vh] w-full absolute top-0 bg-gradient-to-b dark:from-black from-white to-transparent z-10"></div>
+        {/* <div className="h-[30vh] w-full absolute top-0 bg-gradient-to-b dark:from-black from-white to-transparent z-10"></div> */}
         {/* <div className="h-[30vh] w-full absolute top-0 bg-gradient-to-b from-black to-transparent z-10"></div> */}
         {/* <div className="h-[30vh] w-full absolute bottom-0 bg-gradient-to-t from-black to-transparent z-10"></div> */}
-        <div className="h-[30vh] w-full absolute bottom-0 bg-gradient-to-t dark:from-black from-white to-transparent z-10"></div>
+        {/* <div className="h-[30vh] w-full absolute bottom-0 bg-gradient-to-t dark:from-black from-white to-transparent z-10"></div> */}
         <div className="flex gap-16 h-fit w-full px-30">
           {grid.map((col, cIdx) => (
             <div

@@ -13,31 +13,42 @@ import ScrollMarKi from "../components/ScrollMarKi.jsx";
 
 const Home = () => {
   return (
-    <div className="h-full w-full bg-transparent">
-      <HomeHeroSection />
+    <>
+      <div className="h-screen w-full fixed top-0 left-0 pointer-events-none z-10">
+        <img
+          className="h-full w-full object-cover"
+          src="/final-images/bg/testing.webp"
+          alt=""
+        />
+      </div>
+      <div className="h-full w-full bg-transparent relative z-40">
+        <HomeHeroSection />
 
-      <ScrollMarKi />
-      <ScrollMarKi direction={-1} />
+        <HomeFourthSection />
 
-      <HomeFourthSection />
+        <div className="-space-y-22">
+          <ScrollMarKi> {"          "} Strategies meeting </ScrollMarKi>
+          <ScrollMarKi direction={-1}>proven results</ScrollMarKi>
+        </div>
 
-      {/* <HomeThirdSection /> */}
+        {/* <HomeThirdSection /> */}
 
+        {/* <HomeFifthSection /> */}
 
-      {/* <HomeFifthSection /> */}
+        <div className="h-[50vh] w-full "></div>
 
-      <HomeServiceSection />
+        <HomeServiceSection />
 
-      <HomeSixthSection />
+        <HomeSixthSection />
 
-      <HomeSeventhSection />
-      {/* <HomeSecondSection /> */}
+        {/* <HomeSecondSection /> */}
 
+        <HomeEighthSection />
+        <HomeSeventhSection />
 
-      <HomeEighthSection />
-
-      <HomeNinthSection />
-    </div>
+        <HomeNinthSection />
+      </div>
+    </>
   );
 };
 

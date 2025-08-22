@@ -47,7 +47,7 @@ const HomeFourthSectionCard = ({ align, content }) => {
           
 
           {/* Description text */}
-          <p className="dark:text-gray-300 text-lg mt-4">
+          <p className="dark:text-gray-300 text-lg mt-7">
             {content.dParagraph}
           </p>
         </div>
