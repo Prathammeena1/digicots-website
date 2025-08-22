@@ -24,7 +24,7 @@ const WolfMaskSVG = React.lazy(() => import("./components/WolfMaskSVG.jsx"));
 
 const App = () => {
   // Initialize Lenis smooth scroll
-  // useLenis();
+  useLenis();
 
   // Get current location for route changes
   const location = useLocation();
@@ -163,7 +163,7 @@ const App = () => {
           <div className="text-2xl font-semibold dark:text-zinc-600 text-zinc-100">↑</div>
         </div>
 
-        <main>
+        <main className="">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/approach/:id" element={<Approach />} />

@@ -9,13 +9,15 @@ import HomeSeventhSection from "../sections/HomeSeventhSection.jsx";
 import HomeEighthSection from "../sections/HomeEighthSection.jsx";
 import HomeNinthSection from "../sections/HomeNinthSection.jsx";
 import HomeServiceSection from "../sections/HomeServiceSection.jsx";
+import ScrollMarKi from "../components/ScrollMarKi.jsx";
 
 const Home = () => {
   return (
     <div className="h-full w-full bg-transparent">
       <HomeHeroSection />
 
-      
+      <ScrollMarKi />
+      <ScrollMarKi direction={-1} />
 
       <HomeFourthSection />
 
