@@ -3,6 +3,7 @@ import HomeFourthSectionCard from "../components/HomeFourthSectionCard";
 import HomeFourthSectionCanvas from "../components/HomeFourthSectionCanvas";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
+import TextAnimation from "../components/TextAnimation";
 
 const content = [
   {
@@ -30,11 +31,11 @@ const HomeFourthSection = () => {
         <div className="text-black relative z-20 pt-40 bg-white">
           <div className="text-center">
             <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5">
-              Innovative
+              <TextAnimation >Innovative</TextAnimation>
             </h2>
             <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] w-full">
               {/* Where creativity transforms into digital impact */}
-              Creative by nature, Digital by design - We are Digicots.
+              <TextAnimation animeStart="95" animeEnd="90" duration={.2} stagger={10} >Creative by nature, Digital by design - We are Digicots.</TextAnimation>
             </h2>
           </div>
         </div>

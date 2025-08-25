@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/all";
 import React, { useRef, useState, useEffect } from "react";
 import { useLogo } from "../context/LogoContext.jsx";
 import ReactPlayer from "react-player";
-import TextAnimation from "../components/TextAnimation.jsx";
 
 /**
  * PRODUCTION VIDEO SETUP:

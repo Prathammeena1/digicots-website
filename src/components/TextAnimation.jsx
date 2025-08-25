@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import React, { useRef } from 'react';
 
-const TextAnimation = ({ children, className = "", animeStart = "50", animeEnd = "40", duration = 0.5, scrub = false, stagger = 20 }) => {
+const TextAnimation = ({ children, className = "", animeStart = "90", animeEnd = "85", duration = .4, scrub = false, stagger = 20 }) => {
   const parentRef = useRef(null);
   const letterRefs = useRef([]);
 
@@ -26,20 +26,37 @@ const TextAnimation = ({ children, className = "", animeStart = "50", animeEnd =
       }
     });
 
-    tl.fromTo(
-      validRefs,
-      { 
-        opacity: 0.1,
-        y: 1,
-      },
+    // Use a GSAP timeline for smooth, synced color transitions
+    const tlLetters = gsap.timeline({
+      scrollTrigger: tl.scrollTrigger,
+    });
+    tlLetters.fromTo(validRefs,
+      { opacity: 0, color: '#ED510C', y: 1 },
       {
         opacity: 1,
+        color: '#ED510C',
         y: 0,
         duration: duration,
-        stagger: duration / stagger,
-        ease: "power2.out",
-      }
-    );
+        stagger: stagger / 300,
+        ease: 'power3.inOut',
+      },"a"
+    )
+    .to(validRefs, {
+      color: '#D2D2D2',
+      duration: duration,
+      // delay: stagger / 100,
+      stagger: stagger / 300,
+      ease: 'power3.inOut',
+    // },`a+=.05`)
+    },`a+=${stagger / 350}`)
+    .to(validRefs, {
+      // delay: stagger / 100,
+      color: '#000',
+      duration: duration,
+      stagger: stagger / 300,
+      ease: 'power3.inOut',
+    },`a+=${stagger / 40}`);
+    // },"a+=.3");
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => {

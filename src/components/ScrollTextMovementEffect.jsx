@@ -1,5 +1,4 @@
-import React from "react";
-import TextAnimation from "../components/TextAnimation";
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";

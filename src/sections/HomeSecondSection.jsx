@@ -1,5 +1,3 @@
-import React from "react";
-import TextAnimation from "../components/TextAnimation.jsx";
 
 const HomeSecondSection = () => {
   return (
