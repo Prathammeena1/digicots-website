@@ -50,10 +50,10 @@ const HomeSeventhSection = () => {
         <div className="text-center mt-10 px-30">
           <TextAnimP1>
             <div className="text-center">
-              <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5 capitalize">
-                <TextAnimation>loved by brands</TextAnimation>
+              <h2 className="dark:text-white heading-text mb-5">
+                <TextAnimation>Loved By Brands</TextAnimation>
               </h2>
-              <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] w-full">
+              <h2 className="dark:text-zinc-200 subHeading-text w-full">
                 <TextAnimation
                   animeStart="95"
                   animeEnd="90"

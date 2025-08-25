@@ -6,55 +6,65 @@
 * {
   box-sizing: border-box;
 }
+/* FIXED CSS - Remove or modify these problematic properties */
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overscroll-behavior: none;
+  /* REMOVE THIS LINE - It's blocking wheel events */
+  /* overscroll-behavior: none; */
+  
+  /* OR use this instead to allow horizontal scroll but prevent vertical bounce */
+  overscroll-behavior-y: none; /* Only prevent vertical overscroll */
+  overscroll-behavior-x: auto; /* Allow horizontal overscroll */
+  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Hide scrollbar for Firefox */
   scrollbar-width: none;
-  /* Hide scrollbar for Internet Explorer 10+ */
   -ms-overflow-style: none;
-  /* Force scroll to start from top */
-  scroll-behavior: auto !important;
+  /* This might also interfere - consider removing or being more specific */
+  /* scroll-behavior: auto !important; */
 }
 
-/* Hide scrollbar utility class */
+/* Keep these - they're fine */
 .hide-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari and Opera */
+  display: none;
 }
 
-/* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
-html::-webkit-scrollbar,
+html::-webkit-scrollbar, 
 body::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbar for all elements */
 *::-webkit-scrollbar {
   display: none;
 }
 
-/* Firefox scrollbar hide for all elements */
 * {
   scrollbar-width: none;
 }
 
-/* Disable text selection globally */
-* {
+/* MODIFY THIS - Selective text selection disable */
+/* Instead of global disable, be more specific */
+body, div, span, h1, h2, h3, h4, h5, h6, p {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+/* Allow text selection for input elements */
+input, textarea, [contenteditable] {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
 }
 
 /* Disable drag and drop for images */
@@ -454,4 +464,19 @@ html {
   100% {
     background-position: 0% 50%;
   }
+}
+
+
+.heading-text{
+  text-align: center;
+  font-size: 72px;
+  font-weight: bold;
+  /* color: #00000085 !important; */
+}
+
+.subHeading-text{
+  text-align: center;
+  /* color: #00000085 !important; */
+  font-size: 27px;
+  font-weight: 600;
 }

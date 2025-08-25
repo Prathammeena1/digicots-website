@@ -72,10 +72,10 @@ export default function HomeServiceSection() {
   return (
     <div className="min-h-screen dark:text-white py-25  bg-white">
       <div className="text-center mb-15">
-        <h2 className="dark:text-white text-6xl md:text-7xl font-bold mb-5 relative z-10">
+        <h2 className="dark:text-white heading-text mb-5 relative z-10">
           <TextAnimation>Services</TextAnimation>
         </h2>
-        <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] relative z-10">
+        <h2 className="dark:text-zinc-200 subHeading-text relative z-10">
           <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >As global leaders in UX/UI, tech, and marketing, Digicots helps</TextAnimation> 
           <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >businesses simplify, strengthen, and grow.</TextAnimation>
         </h2>
@@ -88,7 +88,7 @@ export default function HomeServiceSection() {
               <TextAnimP1>
                 <Link
                   to={section.href}
-                  className="relative z-30 flex items-center gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-[#8e44ad]/7 p-6 py-12 rounded-lg"
+                  className="relative z-30 flex items-center gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-[#ED510C]/7 p-6 py-12 rounded-lg"
                   onMouseEnter={(e) => {
                     const { clientX, clientY } = e;
                     const { left, top, width } =

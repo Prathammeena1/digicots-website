@@ -30,10 +30,10 @@ const HomeFourthSection = () => {
       <TextAnimP1>
         <div className="text-black relative z-20 pt-40 bg-white">
           <div className="text-center">
-            <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5">
+            <h2 className="dark:text-white heading-text mb-5">
               <TextAnimation >Innovative</TextAnimation>
             </h2>
-            <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] w-full">
+            <h2 className="dark:text-zinc-200 subHeading-text w-full">
               {/* Where creativity transforms into digital impact */}
               <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >Creative by nature, Digital by design - We are Digicots.</TextAnimation>
             </h2>

@@ -3,6 +3,7 @@ import KineticGrid from "../components/KineticGrid";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
 import TextAnimation from "../components/TextAnimation";
+import HomeDigitalShow from "../components/HomeDigitalSHow";
 
 const HomeEighthSection = () => {
   return (
@@ -14,10 +15,10 @@ const HomeEighthSection = () => {
           </h2> */}
           <div className="text-center mt-10 px-30">
             <div className="text-center">
-              <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5 capitalize">
-                <TextAnimation>our digital showcase</TextAnimation>
+              <h2 className="dark:text-white heading-text mb-5">
+                <TextAnimation>Our Digital Showcase</TextAnimation>
               </h2>
-              <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px]  w-full">
+              <h2 className="dark:text-zinc-200 subHeading-text w-full">
                 <TextAnimation
                   animeStart="95"
                   animeEnd="90"
@@ -40,7 +41,10 @@ const HomeEighthSection = () => {
             </div>
           </div>
         </div>
-        <KineticGrid />
+        {/* <KineticGrid /> */}
+
+        <HomeDigitalShow />
+
       </TextAnimP1>
     </div>
   );

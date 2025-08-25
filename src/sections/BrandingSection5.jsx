@@ -118,7 +118,7 @@ const BrandingSection5 = ({data}) => {
                 />
                 {/* Overlay for smoother transitions */}
                 <div
-                  className={`absolute inset-0 bg-black transition-opacity duration-200 ${
+                  className={`absolute inset-0 bg-white transition-opacity duration-200 ${
                     isTransitioning ? "opacity-20" : "opacity-0"
                   }`}
                 />
