@@ -4,25 +4,30 @@ import { MdArrowRightAlt } from "react-icons/md";
 
 function SocialMediaCard() {
   return (
-    <div className="h-full w-[400px] shrink-0">
-      <div className="h-[75%] w-full overflow-hidden">
-        <img src="/final-images/services/Branding.webp" alt="" />
+    <div className="h-full w-[364px] shrink-0">
+      <div className="h-[425px] w-[364px] overflow-hidden">
+        <img className="h-full w-full object-cover" src="/final-images/services/Branding.webp" alt="" />
       </div>
-      <div className="">
-        <h2 className="text-xl">Head</h2>
-        <p className="text-md">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas veniam
-          accusamus voluptas?
+      <div className=" mt-2">
+        <h2 className="text-2xl font-semibold">Nueva Face</h2>
+        <p className="text-md text-zinc-600/40">
+          Project carried out withing digicots
+        </p>
+        <p className="text-md text-zinc-600/40">
+          Branding
         </p>
       </div>
       <div className="flex items-center gap-3 ">
-        <h3>View All</h3>
+        <h3 className="text-md font-semibold text-zinc-400 ">View All</h3>
         <img className="h-2 object-contain relativen z-10 " src="/final-images/utils/long-arrow.png" alt="" />
         {/* <MdArrowRightAlt /> */}
       </div>
     </div>
   );
 }
+
+
+
 
 
 const HomeDigitalShow = () => {
@@ -66,23 +71,12 @@ const HomeDigitalShow = () => {
 
   return (
     <div className=" ">
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-white mb-4">Digital Showcase</h2>
-        <p className="text-gray-400">Scroll horizontally using your mouse wheel</p>
-      </div>
       
       <div
         ref={containerRef}
-        className="h-[60vh] w-full flex gap-5 overflow-x-auto scrollbar-hide"
-      
+        className="h-[80vh] w-full flex gap-5 overflow-x-auto scrollbar-hide pointer-events-auto"
+        style={{ scrollBehavior: 'smooth', overflowX: 'auto' }}
       >
-        <SocialMediaCard />
-        <SocialMediaCard />
-        <SocialMediaCard />
-        <SocialMediaCard />
-        <SocialMediaCard />
-        <SocialMediaCard />
-        <SocialMediaCard />
         <SocialMediaCard />
         <SocialMediaCard />
         <SocialMediaCard />
