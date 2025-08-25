@@ -34,26 +34,26 @@ const Navigation = () => {
           <Link
             key={item.path}
             to={item.path}
-            className="dark:text-white rainbow-text text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide transition-colors duration-300 navigation-item"
+            className="dark:text-white text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide transition-colors duration-300 navigation-item"
             style={{
               transition:
                 "background 0.5s, color 0.5s, -webkit-text-fill-color 0.5s",
             }}
-            // onMouseEnter={(e) => {
-            //   e.currentTarget.style.background =
-            //     "linear-gradient(to right, #000, #D2D2D2, #ED510C)";
-            //   e.currentTarget.style.WebkitBackgroundClip = "text";
-            //   e.currentTarget.style.WebkitTextFillColor = "transparent";
-            //   e.currentTarget.style.backgroundClip = "text";
-            //   e.currentTarget.style.color = "transparent";
-            // }}
-            // onMouseLeave={(e) => {
-            //   e.currentTarget.style.background = "linear-gradient(to right, #ffffff,#ffffff)";
-            //   e.currentTarget.style.WebkitBackgroundClip = "text";
-            //   e.currentTarget.style.WebkitTextFillColor = "transparent";
-            //   e.currentTarget.style.backgroundClip = "text";
-            //   e.currentTarget.style.color = "transparent";
-            // }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background =
+                "linear-gradient(to right, #000, #D2D2D2, #ED510C)";
+              e.currentTarget.style.WebkitBackgroundClip = "text";
+              e.currentTarget.style.WebkitTextFillColor = "transparent";
+              e.currentTarget.style.backgroundClip = "text";
+              e.currentTarget.style.color = "transparent";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "linear-gradient(to right, #ffffff,#ffffff)";
+              e.currentTarget.style.WebkitBackgroundClip = "text";
+              e.currentTarget.style.WebkitTextFillColor = "transparent";
+              e.currentTarget.style.backgroundClip = "text";
+              e.currentTarget.style.color = "transparent";
+            }}
           >
             {item.label}
           </Link>
@@ -71,22 +71,22 @@ const Navigation = () => {
           <Link
             key={item.path}
             to={item.path}
-            className="dark:text-white rainbow-text text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide transition-colors duration-300 navigation-item"
-            // onMouseEnter={(e) => {
-            //   e.currentTarget.style.background =
-            //     "linear-gradient(to right, #000, #D2D2D2, #ED510C)";
-            //   e.currentTarget.style.WebkitBackgroundClip = "text";
-            //   e.currentTarget.style.WebkitTextFillColor = "transparent";
-            //   e.currentTarget.style.backgroundClip = "text";
-            //   e.currentTarget.style.color = "transparent";
-            // }}
-            // onMouseLeave={(e) => {
-            //   e.currentTarget.style.background = "";
-            //   e.currentTarget.style.WebkitBackgroundClip = "";
-            //   e.currentTarget.style.WebkitTextFillColor = "";
-            //   e.currentTarget.style.backgroundClip = "";
-            //   e.currentTarget.style.color = "";
-            // }}
+            className="dark:text-white text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide transition-colors duration-300 navigation-item"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background =
+                "linear-gradient(to right, #000, #D2D2D2, #ED510C)";
+              e.currentTarget.style.WebkitBackgroundClip = "text";
+              e.currentTarget.style.WebkitTextFillColor = "transparent";
+              e.currentTarget.style.backgroundClip = "text";
+              e.currentTarget.style.color = "transparent";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "";
+              e.currentTarget.style.WebkitBackgroundClip = "";
+              e.currentTarget.style.WebkitTextFillColor = "";
+              e.currentTarget.style.backgroundClip = "";
+              e.currentTarget.style.color = "";
+            }}
           >
             {item.label}
           </Link>
