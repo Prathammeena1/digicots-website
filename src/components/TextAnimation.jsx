@@ -102,7 +102,7 @@ const TextAnimation = ({ children, className = "", animeStart = "90", animeEnd =
 
   return (
     <div ref={parentRef} className={`${className} w-full`}>
-      <div>{wrappedText}</div>
+      {wrappedText}
     </div>
   );
 };

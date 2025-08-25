@@ -3,6 +3,7 @@ import TextAnimP1 from "../components/TextAnimP1";
 import TextAnimH1 from "../components/TextAnimH1";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
+import TextAnimation from "../components/TextAnimation";
 
 export default function HomeServiceSection() {
   const caseStudyData = [
@@ -72,11 +73,11 @@ export default function HomeServiceSection() {
     <div className="min-h-screen dark:text-white py-25  bg-white">
       <div className="text-center mb-15">
         <h2 className="dark:text-white text-6xl md:text-7xl font-bold mb-5 relative z-10">
-          Services
+          <TextAnimation>Services</TextAnimation>
         </h2>
         <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] relative z-10">
-          As global leaders in UX/UI, tech, and marketing, Digicots helps <br />
-          businesses simplify, strengthen, and grow.
+          <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >As global leaders in UX/UI, tech, and marketing, Digicots helps</TextAnimation> 
+          <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >businesses simplify, strengthen, and grow.</TextAnimation>
         </h2>
       </div>
       <div className=" mx-auto relative z-30 ">

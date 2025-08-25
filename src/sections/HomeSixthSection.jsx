@@ -5,6 +5,7 @@ import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
 import Button from "../components/Button";
 import TwistedTextEffect from "../components/TwistedTextEffect";
+import TextAnimation from "../components/TextAnimation";
 
 const HomeSixthSection = () => {
   // State variable containing all approach data
@@ -121,12 +122,16 @@ const HomeSixthSection = () => {
         <div className="text-center mt-10 px-30">
           <div className="text-center">
             <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5 capitalize">
-              The alpha edge
+              <TextAnimation>The alpha edge</TextAnimation>
             </h2>
             <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] w-full">
-              Our Alpha Edge represents innovation, precision, and relentless
-              drive that empowers businesses <br /> to lead, adapt, and thrive in a
-              competitive digital world.
+              <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10}>
+                Our Alpha Edge represents innovation, precision, and relentless
+                drive that empowers 
+              </TextAnimation>
+              <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10}>
+                businesses to lead, adapt, and thrive in a competitive digital world.
+              </TextAnimation>
             </h2>
           </div>
         </div>

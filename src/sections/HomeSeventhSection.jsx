@@ -3,6 +3,7 @@ import gsap from "gsap";
 import React from "react";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
+import TextAnimation from "../components/TextAnimation";
 
 const HomeSeventhSection = () => {
   const lineRefs = React.useRef([]);
@@ -50,10 +51,17 @@ const HomeSeventhSection = () => {
           <TextAnimP1>
             <div className="text-center">
               <h2 className="dark:text-white  text-6xl md:text-7xl font-bold tracking-wide mb-5 capitalize">
-                loved by brands
+                <TextAnimation>loved by brands</TextAnimation>
               </h2>
               <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] w-full">
-                Our Alpha Edge represents innovation, precision, and
+                <TextAnimation
+                  animeStart="95"
+                  animeEnd="90"
+                  duration={0.1}
+                  stagger={10}
+                >
+                  Our Alpha Edge represents innovation, precision, and
+                </TextAnimation>
               </h2>
             </div>
           </TextAnimP1>

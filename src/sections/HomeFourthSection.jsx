@@ -35,7 +35,7 @@ const HomeFourthSection = () => {
             </h2>
             <h2 className="dark:text-zinc-200 text-center font-semibold text-[27px] w-full">
               {/* Where creativity transforms into digital impact */}
-              <TextAnimation animeStart="95" animeEnd="90" duration={.2} stagger={10} >Creative by nature, Digital by design - We are Digicots.</TextAnimation>
+              <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >Creative by nature, Digital by design - We are Digicots.</TextAnimation>
             </h2>
           </div>
         </div>
