@@ -88,7 +88,7 @@ export default function HomeServiceSection() {
               <TextAnimP1>
                 <Link
                   to={section.href}
-                  className="relative z-30 flex gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-[#8e44ad]/7 p-6 py-12 rounded-lg"
+                  className="relative z-30 flex items-center gap-8 cursor-pointer transition-all duration-300 dark:hover:bg-zinc-700/30 hover:bg-[#8e44ad]/7 p-6 py-12 rounded-lg"
                   onMouseEnter={(e) => {
                     const { clientX, clientY } = e;
                     const { left, top, width } =
@@ -170,7 +170,7 @@ export default function HomeServiceSection() {
                       alt=""
                     />
                   </div>
-                  <div className=" pl-30 text-8xl font-bold text-gray-600 leading-none">
+                  <div className=" pl-30 text-8xl font-bold text-zinc-800 leading-none">
                     {section.id}.
                   </div>
                   <div className="flex-1">
