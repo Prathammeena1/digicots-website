@@ -32,7 +32,7 @@ const ScrollMarKi = ({direction = 1,children}) => {
         ref={secRef}
         className="whitespace-nowrap text-[12vw] uppercase text-transparent bg-clip-text"
         style={{
-          background: 'linear-gradient(to right, #ff95b1, #ec38bc, #7303c0, #380775)',
+          background: 'linear-gradient(to right, #000, #D2D2D2, #ED510C)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
         }}

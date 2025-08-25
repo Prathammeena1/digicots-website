@@ -28,36 +28,70 @@ const Navigation = () => {
       ref={navRef}
       className="fixed bg-black backdrop-blur-md top-0 left-0 right-0 z-50 flex items-center justify-center"
     >
-        <div className="flex justify-center gap-18 items-center py-3">
-          {/* Left side navigation */}
-          {navItems.slice(0, 3).map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className="dark:text-white text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
-            >
-              {item.label}
-            </Link>
-          ))}
-
-          {/* Preload logo for optimization */}
-          <link rel="preload" as="image" href="/images/logo-1.svg" />
-
-          <Link to="/" className="logo-container ml-7">
-            {/* <img src="/images/logo-1.svg" className='w-30' alt="" /> */}
-            <img src="/images/logo-1.svg" className="w-30" alt="" />
+      <div className="flex justify-center gap-18 items-center py-3.5">
+        {/* Left side navigation */}
+        {navItems.slice(0, 3).map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className="dark:text-white rainbow-text text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide transition-colors duration-300 navigation-item"
+            style={{
+              transition:
+                "background 0.5s, color 0.5s, -webkit-text-fill-color 0.5s",
+            }}
+            // onMouseEnter={(e) => {
+            //   e.currentTarget.style.background =
+            //     "linear-gradient(to right, #000, #D2D2D2, #ED510C)";
+            //   e.currentTarget.style.WebkitBackgroundClip = "text";
+            //   e.currentTarget.style.WebkitTextFillColor = "transparent";
+            //   e.currentTarget.style.backgroundClip = "text";
+            //   e.currentTarget.style.color = "transparent";
+            // }}
+            // onMouseLeave={(e) => {
+            //   e.currentTarget.style.background = "linear-gradient(to right, #ffffff,#ffffff)";
+            //   e.currentTarget.style.WebkitBackgroundClip = "text";
+            //   e.currentTarget.style.WebkitTextFillColor = "transparent";
+            //   e.currentTarget.style.backgroundClip = "text";
+            //   e.currentTarget.style.color = "transparent";
+            // }}
+          >
+            {item.label}
           </Link>
+        ))}
 
-          {navItems.slice(3).map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className="dark:text-white text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide hover:text-pink-300 transition-colors duration-300 navigation-item"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+        {/* Preload logo for optimization */}
+        <link rel="preload" as="image" href="/images/logo-1.svg" />
+
+        <Link to="/" className="logo-container ml-7">
+          {/* <img src="/images/logo-1.svg" className='w-30' alt="" /> */}
+          <img src="/images/logo-1.svg" className="w-30" alt="" />
+        </Link>
+
+        {navItems.slice(3).map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className="dark:text-white rainbow-text text-white font-gilroy-semibold w-30 text-center text-[17px] tracking-wide transition-colors duration-300 navigation-item"
+            // onMouseEnter={(e) => {
+            //   e.currentTarget.style.background =
+            //     "linear-gradient(to right, #000, #D2D2D2, #ED510C)";
+            //   e.currentTarget.style.WebkitBackgroundClip = "text";
+            //   e.currentTarget.style.WebkitTextFillColor = "transparent";
+            //   e.currentTarget.style.backgroundClip = "text";
+            //   e.currentTarget.style.color = "transparent";
+            // }}
+            // onMouseLeave={(e) => {
+            //   e.currentTarget.style.background = "";
+            //   e.currentTarget.style.WebkitBackgroundClip = "";
+            //   e.currentTarget.style.WebkitTextFillColor = "";
+            //   e.currentTarget.style.backgroundClip = "";
+            //   e.currentTarget.style.color = "";
+            // }}
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
     </nav>
   );
 };

@@ -2,13 +2,13 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-
 /* Performance optimizations */
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -17,20 +17,20 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   /* Hide scrollbar for Firefox */
   scrollbar-width: none;
-   /* Hide scrollbar for Internet Explorer 10+ */
-   -ms-overflow-style: none; 
-   /* Force scroll to start from top */
-   scroll-behavior: auto !important;
+  /* Hide scrollbar for Internet Explorer 10+ */
+  -ms-overflow-style: none;
+  /* Force scroll to start from top */
+  scroll-behavior: auto !important;
 }
 
 /* Hide scrollbar utility class */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari and Opera */
+  display: none; /* Chrome, Safari and Opera */
 }
 
 /* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
@@ -48,7 +48,6 @@ body::-webkit-scrollbar {
 * {
   scrollbar-width: none;
 }
-
 
 /* Disable text selection globally */
 * {
@@ -86,7 +85,8 @@ video {
 
 /* Loading Screen Animations */
 @keyframes loadingPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
@@ -97,7 +97,8 @@ video {
 }
 
 @keyframes loadingFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   33% {
@@ -118,7 +119,12 @@ video {
 }
 
 .loading-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   background-size: 200% 100%;
   animation: loadingShimmer 2s infinite;
 }
@@ -138,56 +144,56 @@ video {
 
 /* Font Face Declarations */
 @font-face {
-  font-family: 'Palette';
-  src: url('./assets/fonts/Palette-Regular.ttf') format('truetype');
+  font-family: "Palette";
+  src: url("./assets/fonts/Palette-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Palette';
-  src: url('./assets/fonts/Palette-Bold.ttf') format('truetype');
+  font-family: "Palette";
+  src: url("./assets/fonts/Palette-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Palette';
-  src: url('./assets/fonts/Palette-Black.ttf') format('truetype');
+  font-family: "Palette";
+  src: url("./assets/fonts/Palette-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Light.ttf') format('truetype');
+  font-family: "Gilroy";
+  src: url("./assets/fonts/Gilroy-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Regular.ttf') format('truetype');
+  font-family: "Gilroy";
+  src: url("./assets/fonts/Gilroy-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-SemiBold.ttf') format('truetype');
+  font-family: "Gilroy";
+  src: url("./assets/fonts/Gilroy-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('./assets/fonts/Gilroy-Bold.ttf') format('truetype');
+  font-family: "Gilroy";
+  src: url("./assets/fonts/Gilroy-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -195,57 +201,58 @@ video {
 
 /* Global Font Setup - Gilroy as default */
 * {
-  font-family: 'Gilroy', sans-serif;
+  font-family: "Gilroy", sans-serif;
 }
 
 /* Font Utility Classes */
 .font-palette {
-  font-family: 'Palette', sans-serif;
+  font-family: "Palette", sans-serif;
 }
 
 .font-palette-regular {
-  font-family: 'Palette', sans-serif;
+  font-family: "Palette", sans-serif;
   font-weight: 400;
 }
 
 .font-palette-bold {
-  font-family: 'Palette', sans-serif;
+  font-family: "Palette", sans-serif;
   font-weight: 700;
 }
 
 .font-palette-black {
-  font-family: 'Palette', sans-serif;
+  font-family: "Palette", sans-serif;
   font-weight: 900;
 }
 
 .font-gilroy {
-  font-family: 'Gilroy', sans-serif;
+  font-family: "Gilroy", sans-serif;
 }
 
 .font-gilroy-light {
-  font-family: 'Gilroy', sans-serif;
+  font-family: "Gilroy", sans-serif;
   font-weight: 300;
 }
 
 .font-gilroy-regular {
-  font-family: 'Gilroy', sans-serif;
+  font-family: "Gilroy", sans-serif;
   font-weight: 400;
 }
 
 .font-gilroy-semibold {
-  font-family: 'Gilroy', sans-serif;
+  font-family: "Gilroy", sans-serif;
   font-weight: 600;
 }
 
 .font-gilroy-bold {
-  font-family: 'Gilroy', sans-serif;
+  font-family: "Gilroy", sans-serif;
   font-weight: 700;
 }
 
 /* Custom styles for Digicots website */
 
 /* Lenis Smooth Scroll Optimizations */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -277,7 +284,7 @@ body {
 
 /* Optimize animations for scrolling */
 .main-text-line-1,
-.main-text-line-2, 
+.main-text-line-2,
 .main-text-line-3 {
   transform: translateZ(0); /* Enable hardware acceleration */
   backface-visibility: hidden;
@@ -313,7 +320,7 @@ body {
 
 /* Outline text effects */
 .outline-text {
-  -webkit-text-stroke: 2px #00FFD0;
+  -webkit-text-stroke: 2px #00ffd0;
 }
 
 /* Enhanced outline effect with multiple shadows for better visibility */
@@ -326,7 +333,7 @@ body {
 }
 
 .main-text-line-1,
-.main-text-line-2, 
+.main-text-line-2,
 .main-text-line-3 {
   animation-fill-mode: both;
   transform-origin: center;
@@ -365,7 +372,7 @@ html {
 /* Additional responsive typography */
 @media (max-width: 768px) {
   .main-text-line-1,
-  .main-text-line-2, 
+  .main-text-line-2,
   .main-text-line-3 {
     font-size: 4rem;
     line-height: 0.8;
@@ -374,7 +381,7 @@ html {
 
 @media (max-width: 480px) {
   .main-text-line-1,
-  .main-text-line-2, 
+  .main-text-line-2,
   .main-text-line-3 {
     font-size: 3rem;
     line-height: 0.8;
@@ -406,5 +413,45 @@ html {
   .text-mask-text {
     font-size: 3rem;
     line-height: 0.8;
+  }
+}
+
+/* Example 5: Rainbow text effect */
+.rainbow-text {
+  background: #000;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(
+    0deg,
+    white,
+    white
+  );
+  background-size: 100% 100%;
+  animation: rainbow 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.rainbow-text:hover {
+  animation-duration: 0.5s;
+  transform: scale(1.1);
+  filter: brightness(1.5);
+  background-image: linear-gradient(
+    90deg,
+    #000,
+    #D2D2D2,
+    #ED510C
+  );
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  /* 50% {
+    background-position: 100% 50%;
+  } */
+  100% {
+    background-position: 0% 50%;
   }
 }
