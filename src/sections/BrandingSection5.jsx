@@ -68,7 +68,7 @@ const BrandingSection5 = ({data}) => {
         </RollingImageEffect>
       </div>
 
-      <div className=" min-h-screen w-full py-20 px-30">
+      <div className=" min-h-screen w-full py-20 px-30 relative">
         <div className="w-full flex flex-col gap-10">
           <h2 className="text-7xl font-light">
             <TextAnimH1>Brand and creative</TextAnimH1>
@@ -105,8 +105,8 @@ const BrandingSection5 = ({data}) => {
             </Button>
           </TextAnimP1>
         </div>
-        <div className="absolute right-0 bottom-0 w-[700px] h-[500px] overflow-hidden">
-          <div className="h-full w-full relative overflow-hidden">
+        <div className="absolute right-0 bottom-0 w-[700px] h-[500px] overflow-hidden ">
+          <div className="h-full w-full relative overflow-hidden z-20">
             <RollingImageEffect bgColor={data?.bgColor}>
               <div className="relative w-full h-full">
                 <img

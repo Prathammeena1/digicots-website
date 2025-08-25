@@ -17,6 +17,7 @@ import ServicesDetail from "./pages/ServicesDetail.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Branding from "./pages/Branding.jsx";
 import WebAndDigital from "./pages/WebAndDigital.jsx";
+import Marketing from "./pages/Marketing.jsx";
 
 // Lazy load heavy components
 const FluidCanvas = React.lazy(() => import("./components/FluidCanvas.jsx"));
@@ -174,7 +175,7 @@ const App = () => {
             <Route path="/services/:id" element={<ServicesDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/branding" element={<Branding />} />
-            <Route path="/marketing" element={<Branding />} />
+            <Route path="/marketing" element={<Marketing />} />
             <Route path="/web-digital" element={<WebAndDigital />} />
 
             <Route path="*" element={<NotFound />} />
