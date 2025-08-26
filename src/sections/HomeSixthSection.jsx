@@ -121,17 +121,17 @@ const HomeSixthSection = () => {
         {/* Main heading */}
         <div className="text-center mt-10 px-30">
           <div className="text-center">
-            <h2 className="dark:text-white heading-text mb-5">
-              <TextAnimation>The Alpha Edge</TextAnimation>
+             <h2 className="dark:text-white heading-text mb-5">
+              <TextAnimation >Our Alpha Edge empowers businesses to lead, adapt and thrive.</TextAnimation>
             </h2>
             <h2 className="dark:text-zinc-200 subHeading-text w-full">
-              <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10}>
+              {/* <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10}>
                 Our Alpha Edge represents innovation, precision, and relentless
                 drive that empowers 
               </TextAnimation>
               <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10}>
                 businesses to lead, adapt, and thrive in a competitive digital world.
-              </TextAnimation>
+              </TextAnimation> */}
             </h2>
           </div>
         </div>

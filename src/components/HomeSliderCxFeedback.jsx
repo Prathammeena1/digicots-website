@@ -82,13 +82,13 @@ export default function HomeSliderCxFeedback() {
           <div className="transform flex gap-3">
             <button
               onClick={prevSlide}
-              className="bg-transparent p-2 hover:opacity-75 transition pointer-events-auto cursor-pointer"
+              className="bg-transparent p-2 hover:opacity-75 transition pointer-events-auto cursor-pointer hover:text-[#ED510C] "
             >
               <BsArrowLeft size={24} />
             </button>
             <button
               onClick={nextSlide}
-              className="bg-transparent p-2 hover:opacity-75 transition pointer-events-auto cursor-pointer"
+              className="bg-transparent p-2 hover:opacity-75 transition pointer-events-auto cursor-pointer hover:text-[#ED510C] "
             >
               <BsArrowRight size={24} />
             </button>

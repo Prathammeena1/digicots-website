@@ -72,12 +72,14 @@ export default function HomeServiceSection() {
   return (
     <div className="min-h-screen dark:text-white py-25  bg-white">
       <div className="text-center mb-15">
-        <h2 className="dark:text-white heading-text mb-5 relative z-10">
-          <TextAnimation>Services</TextAnimation>
+        <h2 className="dark:text-white heading-text mb-5">
+          <TextAnimation>
+            We power business growth with UI/UX, Technology, and Marketing.
+          </TextAnimation>
         </h2>
         <h2 className="dark:text-zinc-200 subHeading-text relative z-10">
-          <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >As global leaders in UX/UI, tech, and marketing, Digicots helps</TextAnimation> 
-          <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >businesses simplify, strengthen, and grow.</TextAnimation>
+          {/* <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >As global leaders in UX/UI, tech, and marketing, Digicots helps</TextAnimation> 
+          <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >businesses simplify, strengthen, and grow.</TextAnimation> */}
         </h2>
       </div>
       <div className=" mx-auto relative z-30 ">

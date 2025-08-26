@@ -51,17 +51,19 @@ const HomeSeventhSection = () => {
           <TextAnimP1>
             <div className="text-center">
               <h2 className="dark:text-white heading-text mb-5">
-                <TextAnimation>Loved By Brands</TextAnimation>
+                <TextAnimation>
+                  Trusted by Leading Brands Across Industries
+                </TextAnimation>
               </h2>
               <h2 className="dark:text-zinc-200 subHeading-text w-full">
-                <TextAnimation
+                {/* <TextAnimation
                   animeStart="95"
                   animeEnd="90"
                   duration={0.1}
                   stagger={10}
                 >
                   Our Alpha Edge represents innovation, precision, and
-                </TextAnimation>
+                </TextAnimation> */}
               </h2>
             </div>
           </TextAnimP1>
