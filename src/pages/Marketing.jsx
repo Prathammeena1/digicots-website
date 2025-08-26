@@ -63,8 +63,26 @@ const section4Data = {
 const section5Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
-  img: "/images/branding-page/img4.png",
+  img: "/final-images/branding-page/B4.png",
   bgColor: ["white", "white"],
+
+  imageMap: {
+    "Research & Strategy": "/final-images/branding-page/B5.png",
+    Branding: "/final-images/branding-page/B6.png",
+    Content: "/final-images/branding-page/B7.png",
+    "Advertising ": "/final-images/branding-page/B8.png",
+    Campaigns: "/final-images/branding-page/B9.png",
+    "Website Design": "/final-images/branding-page/B10.png",
+  },
+
+  listItems: [
+    "Research & Strategy",
+    "Branding",
+    "Content",
+    "Advertising ",
+    "Campaigns",
+    "Website Design",
+  ],
 };
 
 const Marketing = () => {
