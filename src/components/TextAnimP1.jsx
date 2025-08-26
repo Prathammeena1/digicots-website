@@ -64,11 +64,11 @@ const TextAnimP1 = ({ children, isLanding = false, delay = 0 }) => {
   }, [isLanding]);
 
   return (
-    <div ref={parentRef} className="h-auto">
-      <div ref={childRef} className="h-auto">
+    <span ref={parentRef} className="h-auto ">
+      <span ref={childRef} className="h-auto ">
         {children}
-      </div>
-    </div>
+      </span>
+    </span>
   );
 };
 

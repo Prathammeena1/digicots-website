@@ -10,6 +10,7 @@ import HomeEighthSection from "../sections/HomeEighthSection.jsx";
 import HomeNinthSection from "../sections/HomeNinthSection.jsx";
 import HomeServiceSection from "../sections/HomeServiceSection.jsx";
 import ScrollMarKi from "../components/ScrollMarKi.jsx";
+import AboutStatSection from "../sections/AboutStatSection.jsx";
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
       </div>
       <div className="h-full w-full bg-transparent relative">
         <HomeHeroSection />
+        <AboutStatSection />
 
         <HomeFourthSection />
 

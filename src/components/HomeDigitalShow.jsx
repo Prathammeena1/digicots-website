@@ -133,7 +133,8 @@ function SocialMediaCard() {
       <div className="h-[425px] w-[364px] overflow-hidden rounded-lg">
         <img
           className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-          src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=364&h=425&fit=crop&q=80"
+          // src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=364&h=425&fit=crop&q=80"
+          src="/final-images/services/Branding.webp"
           alt="Nueva Face Branding Project"
           loading="lazy"
         />

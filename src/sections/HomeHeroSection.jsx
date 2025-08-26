@@ -116,6 +116,11 @@ const HomeHeroSection = () => {
 
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
+    // Only run GSAP if all refs are defined
+    if (!homeRef.current || !sec1.current || !sec2.current || !sec3.current || !heroTextRef.current) {
+      return;
+    }
+
     // Main timeline with optimized scroll trigger
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -144,42 +149,6 @@ const HomeHeroSection = () => {
       }
       // 0.2
     );
-    //   .to(
-    //     sec1.current,
-    //     {
-    //       opacity: 0,
-    //       duration: 0.5,
-    //       ease: "power2.inOut",
-    //     },
-    //     3.7
-    //   )
-    //   .to(
-    //     sec2.current,
-    //     {
-    //       y: "0%",
-    //       duration: 3.1,
-    //       ease: "power3.out",
-    //     },
-    //     4.2
-    //   )
-    //   .to(
-    //     sec2.current,
-    //     {
-    //       opacity: 0,
-    //       duration: 0.5,
-    //       ease: "power2.inOut",
-    //     },
-    //     "+=0.2"
-    //   )
-    //   .to(
-    //     sec3.current,
-    //     {
-    //       y: "0%",
-    //       duration: 3.1,
-    //       ease: "power3.out",
-    //     },
-    //     "+=0.1"
-    //   )
   }, [
     sec1.current,
     sec2.current,
@@ -219,12 +188,6 @@ const HomeHeroSection = () => {
         )}
       </button>
 
-      {/* <img
-        ref={mainSvgLogoRef}
-        src="/images/logo-1.svg"
-        alt="Logo"
-        className="fixed left-[51%] top-1/2 -translate-1/2 w-30 h-auto z-[99999] pointer-events-none select-none opacity-0"
-      /> */}
       <div id="HomeHero" className="section h-[200vh] w-full relative">
         <div
           ref={homeRef}
@@ -343,7 +306,7 @@ const HomeHeroSection = () => {
                       fontWeight="900"
                       letterSpacing="0.02em"
                     >
-                      BRIEF
+                      DREAM TO
                     </text>
                     <text
                       x="960"
@@ -358,7 +321,7 @@ const HomeHeroSection = () => {
                       fontWeight="900"
                       letterSpacing="0.02em"
                     >
-                      TO BELIEF
+                     DELIVERY
                     </text>
                   </mask>
                 </defs>
@@ -373,136 +336,13 @@ const HomeHeroSection = () => {
                 />
               </svg>
               <div
-                scrub={true}
-                animeStart="70%"
-                animeEnd="30%"
-                duration="2"
-                stagger={10}
+                
                 className="dark:text-zinc-200 text-center font-semibold text-3xl absolute bottom-25 w-full "
               >
                 We are a results-driven digital agency that blends creativity,
                 strategy and <br /> technology to build powerful brands and
                 deliver measurable growth
               </div>
-            </div>
-          </div>
-          <div
-            ref={sec2}
-            className="section h-screen w-full absolute top-0 left-0 right-0 z-30 bg-white/[.1] backdrop-blur"
-          >
-            {/* SVG Text Mask Implementation */}
-            <div className="relative w-full h-full">
-              {/* SVG Text Mask */}
-              <svg
-                className="absolute top-0 left-0 pointer-events-none h-screen w-screen"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1920 1080"
-                preserveAspectRatio="xMidYMid slice"
-              >
-                <defs>
-                  <mask id="text-mask-2">
-                    <rect width="100%" height="110%" fill="white" />
-                    <text
-                      x="960"
-                      y="420"
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      fill="black"
-                      stroke="black"
-                      strokeWidth="8"
-                      fontSize="260"
-                      fontFamily="Palette, sans-serif"
-                      fontWeight="900"
-                      letterSpacing="0.02em"
-                    >
-                      ROUGH TO
-                    </text>
-
-                    <text
-                      x="960"
-                      y="645"
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      fill="black"
-                      stroke="black"
-                      strokeWidth="8"
-                      fontSize="260"
-                      fontFamily="Palette, sans-serif"
-                      fontWeight="900"
-                      letterSpacing="0.02em"
-                    >
-                      REALITY
-                    </text>
-                  </mask>
-                </defs>
-
-                {/* White background with text cut out */}
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill="white"
-                  mask="url(#text-mask-2)"
-                />
-              </svg>
-            </div>
-          </div>
-          <div
-            ref={sec3}
-            className="section h-screen w-full absolute top-0 left-0 right-0 z-30 bg-white/[.1] backdrop-blur"
-          >
-            {/* SVG Text Mask Implementation */}
-            <div className="relative w-full h-full">
-              {/* SVG Text Mask */}
-              <svg
-                className="absolute top-0 left-0 pointer-events-none h-screen w-screen"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 1920 1080"
-                preserveAspectRatio="xMidYMid slice"
-              >
-                <defs>
-                  <mask id="text-mask-3">
-                    <rect width="100%" height="110%" fill="white" />
-                    <text
-                      x="960"
-                      y="420"
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      fill="black"
-                      stroke="black"
-                      strokeWidth="8"
-                      fontSize="260"
-                      fontFamily="Palette, sans-serif"
-                      fontWeight="900"
-                      letterSpacing="0.02em"
-                    >
-                      DREAM TO
-                    </text>
-                    <text
-                      x="960"
-                      y="645"
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      fill="black"
-                      stroke="black"
-                      strokeWidth="8"
-                      fontSize="260"
-                      fontFamily="Palette, sans-serif"
-                      fontWeight="900"
-                      letterSpacing="0.02em"
-                    >
-                      DELIVERY
-                    </text>
-                  </mask>
-                </defs>
-
-                {/* White background with text cut out */}
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill="black"
-                  mask="url(#text-mask-3)"
-                />
-              </svg>
             </div>
           </div>
         </div>
