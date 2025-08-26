@@ -142,7 +142,7 @@ const App = () => {
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-white dark:bg-black">
           <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-white" />}>
-              <FluidCanvas />
+              {/* <FluidCanvas /> */}
               {/* <WolfMaskSVG /> */}
 
               <div className="h-full w-full absolute top-0 left-0 z-10 backdrop-blur pointer-events-none">
@@ -166,7 +166,7 @@ const App = () => {
         </div>
 
         <main className="">
-          {/* <Routes>
+          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/approach/:id" element={<Approach />} />
             <Route path="/about" element={<About />} />
@@ -178,8 +178,8 @@ const App = () => {
             <Route path="/web-digital" element={<WebAndDigital />} />
 
             <Route path="*" element={<NotFound />} />
-          </Routes> */}
-          {/* <Footer setPopActive={setPopActive} /> */}
+          </Routes>
+          <Footer setPopActive={setPopActive} />
 
           {/* your main content here */}
           <ThankyouPopUp
