@@ -51,23 +51,22 @@ const App = () => {
     // This runs synchronously before the browser paints
     // Disable scroll restoration
     if (history.scrollRestoration) {
-      history.scrollRestoration = 'manual';
+      history.scrollRestoration = "manual";
     }
-    
+
     // Immediate reset - runs before any other effects
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    
+
     // Stop Lenis immediately
     if (window.lenis) {
       window.lenis.stop();
       window.lenis.scrollTo(0, { immediate: true });
     }
-    
+
     // Block animations
     window.isRouteChanging = true;
-    
   }, [location.pathname]);
 
   // Re-enable scroll after layout
@@ -78,7 +77,7 @@ const App = () => {
       }
       window.isRouteChanging = false;
     }, 100);
-    
+
     return () => clearTimeout(enableTimeout);
   }, [location.pathname]);
 
@@ -143,12 +142,12 @@ const App = () => {
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-white dark:bg-black">
           <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-white" />}>
-              {/* <FluidCanvas /> */}
+              <FluidCanvas />
               {/* <WolfMaskSVG /> */}
 
-              {/* <div className="h-full w-full absolute top-0 left-0 z-10 backdrop-blur-2xl pointer-events-none">
+              <div className="h-full w-full absolute top-0 left-0 z-10 backdrop-blur pointer-events-none">
 
-              </div> */}
+              </div>
             </Suspense>
           </ErrorBoundary>
         </div>
@@ -161,13 +160,13 @@ const App = () => {
               : "opacity-0 translate-y-4 pointer-events-none"
           }`}
         >
-          <div className="text-2xl font-semibold dark:text-zinc-600 text-zinc-100">↑</div>
+          <div className="text-2xl font-semibold dark:text-zinc-600 text-zinc-100">
+            ↑
+          </div>
         </div>
 
-       
-
         <main className="">
-          <Routes>
+          {/* <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/approach/:id" element={<Approach />} />
             <Route path="/about" element={<About />} />
@@ -179,8 +178,8 @@ const App = () => {
             <Route path="/web-digital" element={<WebAndDigital />} />
 
             <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer setPopActive={setPopActive} />
+          </Routes> */}
+          {/* <Footer setPopActive={setPopActive} /> */}
 
           {/* your main content here */}
           <ThankyouPopUp
@@ -194,4 +193,3 @@ const App = () => {
 };
 
 export default App;
-

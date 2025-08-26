@@ -1,20 +1,20 @@
 // Utility functions and shader code for the fluid simulation
 
 export const paletteStops = [
-  "#1565C0",    // Deep blue (stands out on white)
-  "#1976D2",    // Strong blue
-  "#2196F3",    // Vibrant blue
-  "#42A5F5",    // Bright blue
-  "#90CAF9",    // Soft blue
-  "#D84315",    // Strong orange-red (contrast for white)
-  "#E64A19",    // Bright orange-red
-  "#BF360C",    // Deep orange-red
-  "#FF7043",    // Vivid orange
-  "#8D6E63",    // Muted brown
-  "#00B8D4",    // Cyan accent
-  "#FF5252",    // Bright red
-  "#1976D2",    // Pure blue
-  "#FF8A65",    // Warm orange
+  "#1565C0", // Deep blue (stands out on white)
+  "#1976D2", // Strong blue
+  "#2196F3", // Vibrant blue
+  "#42A5F5", // Bright blue
+  "#90CAF9", // Soft blue
+  "#D84315", // Strong orange-red (contrast for white)
+  "#E64A19", // Bright orange-red
+  "#BF360C", // Deep orange-red
+  "#FF7043", // Vivid orange
+  "#8D6E63", // Muted brown
+  "#00B8D4", // Cyan accent
+  "#FF5252", // Bright red
+  "#1976D2", // Pure blue
+  "#FF8A65", // Warm orange
 ];
 
 export function hexToRgb(hex) {
@@ -63,25 +63,21 @@ export const shaders = {
   `,
   // FIXED: Modified display shader to maintain white background
   display: `
-    precision highp float;
-    precision mediump sampler2D;
-    varying vec2 vUv;
-    uniform sampler2D uTexture;
-    void main () {
-        vec4 fluid = texture2D(uTexture, vUv);
-        
-        // Calculate fluid intensity for proper blending
-        float fluidIntensity = length(fluid.rgb);
-        
-        // Always maintain white background by blending fluid over white
-        // Use fluid intensity as alpha for proper color mixing
-        vec3 backgroundColor = vec3(1.0, 1.0, 1.0); // Pure white
-        vec3 blendedColor = mix(backgroundColor, fluid.rgb, min(fluidIntensity * 0.8, 0.9));
-        
-        // Always output full alpha to maintain opaque background
-        gl_FragColor = vec4(blendedColor, 1.0);
-    }
-  `,
+        precision highp float;
+precision mediump sampler2D;
+varying vec2 vUv;
+uniform sampler2D uTexture;
+void main () {
+    vec4 fluid = texture2D(uTexture, vUv);
+    float fluidIntensity = length(fluid.rgb) ;
+    vec3 backgroundColor = vec3(1.0, 1.0, 1.0);
+
+    float threshold = 1.0; // tweak for sharpness
+    vec3 visibleColor = (fluidIntensity > threshold) ? fluid.rgb : backgroundColor;
+
+    gl_FragColor = vec4(visibleColor, 1.0);
+}
+    `,
   // FIXED: Modified splat shader to handle alpha consistently
   splat: `
     precision highp float;
@@ -279,10 +275,16 @@ export class GLProgram {
     if (!gl.getProgramParameter(this.program, gl.LINK_STATUS))
       throw gl.getProgramInfoLog(this.program);
 
-    const uniformCount = gl.getProgramParameter(this.program, gl.ACTIVE_UNIFORMS);
+    const uniformCount = gl.getProgramParameter(
+      this.program,
+      gl.ACTIVE_UNIFORMS
+    );
     for (let i = 0; i < uniformCount; i++) {
       const uniformName = gl.getActiveUniform(this.program, i).name;
-      this.uniforms[uniformName] = gl.getUniformLocation(this.program, uniformName);
+      this.uniforms[uniformName] = gl.getUniformLocation(
+        this.program,
+        uniformName
+      );
     }
     this.gl = gl;
   }
@@ -301,7 +303,16 @@ export function compileShader(gl, type, source) {
   return shader;
 }
 
-export function createFBO(gl, texId, w, h, internalFormat, format, type, param) {
+export function createFBO(
+  gl,
+  texId,
+  w,
+  h,
+  internalFormat,
+  format,
+  type,
+  param
+) {
   gl.activeTexture(gl.TEXTURE0 + texId);
   const texture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -313,16 +324,40 @@ export function createFBO(gl, texId, w, h, internalFormat, format, type, param) 
 
   const fbo = gl.createFramebuffer();
   gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
-  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+  gl.framebufferTexture2D(
+    gl.FRAMEBUFFER,
+    gl.COLOR_ATTACHMENT0,
+    gl.TEXTURE_2D,
+    texture,
+    0
+  );
   gl.viewport(0, 0, w, h);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   return [texture, fbo, texId];
 }
 
-export function createDoubleFBO(gl, texId, w, h, internalFormat, format, type, param) {
+export function createDoubleFBO(
+  gl,
+  texId,
+  w,
+  h,
+  internalFormat,
+  format,
+  type,
+  param
+) {
   let fbo1 = createFBO(gl, texId, w, h, internalFormat, format, type, param);
-  let fbo2 = createFBO(gl, texId + 1, w, h, internalFormat, format, type, param);
+  let fbo2 = createFBO(
+    gl,
+    texId + 1,
+    w,
+    h,
+    internalFormat,
+    format,
+    type,
+    param
+  );
 
   return {
     get first() {
