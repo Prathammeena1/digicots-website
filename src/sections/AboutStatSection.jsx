@@ -23,13 +23,13 @@ const AboutStatSection = () => {
   ];
 
   return (
-    <div className=" dark:text-white py-20 bg-white">
+    <div className=" dark:text-white py-20 bg-white border-zinc-300 border-t border-b">
       <div className="px-30 mx-auto flex flex-col justify-center">
         {/* Statistics Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-10">
           {statsData.map((stat, index) => (
             <div key={index} className="text-center md:text-left">
-              <h2 className="text-8xl lg:text-9xl font-bold leading-none mb-1 text-[#ED510C]">
+              <h2 className="text-8xl lg:text-9xl font-bold leading-none mb-1 ">
                 <CountingAnimation>{stat.number} </CountingAnimation>{" "}
                 <span>{stat.symbol}</span>
               </h2>

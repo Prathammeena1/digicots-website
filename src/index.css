@@ -459,7 +459,9 @@ html {
 
 .heading-text{
   text-align: center;
-  font-size: 72px;
+  /* font-size: 72px; */
+  font-size: 42px;
+
   font-weight: bold;
   /* color: #00000085 !important; */
 }

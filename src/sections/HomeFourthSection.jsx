@@ -28,14 +28,14 @@ const HomeFourthSection = () => {
   return (
     <div className="bg-white">
       <TextAnimP1>
-        <div className="text-black relative z-20 pt-10 bg-white">
+        <div className="text-black relative z-20 pt-25 bg-white">
           <div className="text-center">
             <h2 className="dark:text-white heading-text mb-5">
-              <TextAnimation >Innovative</TextAnimation>
+              <TextAnimation >Digicots: Where innovation hunts with creativity.</TextAnimation>
             </h2>
             <h2 className="dark:text-zinc-200 subHeading-text w-full">
               {/* Where creativity transforms into digital impact */}
-              <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >Creative by nature, Digital by design - We are Digicots.</TextAnimation>
+              {/* <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >Creative by nature, Digital by design - We are Digicots.</TextAnimation> */}
             </h2>
           </div>
         </div>
