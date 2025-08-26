@@ -14,14 +14,14 @@ import ScrollMarKi from "../components/ScrollMarKi.jsx";
 const Home = () => {
   return (
     <>
-      <div className="h-screen w-full fixed top-0 left-0 pointer-events-none z-10">
+      <div className="h-screen w-full fixed top-0 left-0">
         <img
           className="h-full w-full object-cover"
           src="/final-images/bg/testing.webp"
           alt=""
         />
       </div>
-      <div className="h-full w-full bg-transparent relative z-40">
+      <div className="h-full w-full bg-transparent relative">
         <HomeHeroSection />
 
         <HomeFourthSection />

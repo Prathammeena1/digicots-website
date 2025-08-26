@@ -470,3 +470,9 @@ html {
   font-size: 27px;
   font-weight: 600;
 }
+
+/* Add this to your CSS file */
+.horizontal-scroll-container {
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}

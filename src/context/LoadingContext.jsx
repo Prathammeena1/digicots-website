@@ -74,11 +74,11 @@ export const LoadingProvider = ({ children }) => {
         const imagePromises = Array.from(images).map((img, index) => {
           return new Promise(resolve => {
             if (img.complete && img.naturalWidth > 0) {
-              console.log(`✅ Image ${index + 1} already loaded`);
+              // console.log(`✅ Image ${index + 1} already loaded`);
               resolve();
             } else {
               img.addEventListener('load', () => {
-                console.log(`✅ Image ${index + 1} loaded`);
+                // console.log(`✅ Image ${index + 1} loaded`);
                 resolve();
               });
               img.addEventListener('error', () => {
@@ -94,7 +94,7 @@ export const LoadingProvider = ({ children }) => {
           return new Promise(resolve => {
             const img = new Image();
             img.onload = () => {
-              console.log(`✅ Background image ${index + 1} loaded`);
+              // console.log(`✅ Background image ${index + 1} loaded`);
               resolve();
             };
             img.onerror = () => {
