@@ -3,7 +3,7 @@ import KineticGrid from "../components/KineticGrid";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
 import TextAnimation from "../components/TextAnimation";
-import HomeDigitalShow from "../components/HomeDigitalSHow";
+import HomeDigitalShow from "../components/HomeDigitalShow";
 
 const HomeEighthSection = () => {
   return (
