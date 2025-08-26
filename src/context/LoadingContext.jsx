@@ -105,7 +105,17 @@ export const LoadingProvider = ({ children }) => {
           });
         });
 
-        await Promise.all([...imagePromises, ...bgImagePromises]);
+
+        // Add a timeout so image loading never gets stuck
+        await Promise.race([
+          Promise.all([...imagePromises, ...bgImagePromises]),
+          new Promise(resolve => {
+            setTimeout(() => {
+              console.log('⚠️ Image loading timeout reached, continuing...');
+              resolve();
+            }, 4000); // 4 seconds max wait for images
+          })
+        ]);
         if (!isMounted) return;
         updateProgress('Loading videos...');
 
