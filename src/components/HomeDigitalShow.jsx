@@ -73,6 +73,7 @@ function SocialMediaCard() {
     .to(arrowElement, {
       x: -100,
       duration: 0.3,
+      opacity:.6,
       ease: "power2.in",
       force3D: true,
         "will-change": "transform"
@@ -130,7 +131,7 @@ function SocialMediaCard() {
 
   return (
     <div className="h-full w-[364px] shrink-0">
-      <div className="h-[425px] w-[364px] overflow-hidden rounded-lg">
+      <div className="h-[425px] w-[364px] overflow-hidden ">
         <img
           className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
           // src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=364&h=425&fit=crop&q=80"
@@ -148,7 +149,7 @@ function SocialMediaCard() {
       </div>
       <div 
         ref={containerRef}
-        className="flex items-center gap-3 cursor-pointer overflow-hidden relative mt-4 py-2 px-1 rounded-md transition-colors duration-200 hover:bg-gray-50 w-fit"
+        className="flex items-center gap-3 cursor-pointer overflow-hidden relative  py-2 px-1 rounded-md transition-colors duration-200 w-fit"
         role="button"
         tabIndex={0}
         aria-label="View all projects"
@@ -162,13 +163,13 @@ function SocialMediaCard() {
       >
         <h3 
           ref={viewAllRef}
-          className="text-base font-semibold text-zinc-700 whitespace-nowrap select-none"
+          className="text-base font-semibold text-zinc-500 whitespace-nowrap select-none"
         >
           View All
         </h3>
          <img
           ref={arrowRef}
-          className="h-2 object-contain relative z-10"
+          className="h-2 object-contain relative z-10 opacity-[.6]"
           src="/final-images/utils/long-arrow.png"
           alt=""
         />
@@ -216,39 +217,60 @@ const HomeDigitalShow = () => {
         t--;
         return (-c / 2) * (t * (t - 2) - 1) + b;
       };
-    }
+    };
+
+    const isMouseWheel = (e) => {
+      // Simplified detection focusing on most reliable indicators
+      
+      // Mouse wheels typically have larger delta values (usually 100-120)
+      const hasLargeDelta = Math.abs(e.deltaY) >= 100;
+      
+      // Mouse wheels often use line-based scrolling
+      const isLineMode = e.deltaMode === 1; // DOM_DELTA_LINE
+      
+      // Mouse wheels typically only affect one axis at a time
+      const isSingleAxis = e.deltaX === 0 && e.deltaY !== 0;
+      
+      // Legacy wheelDelta property (if available) can help distinguish
+      const hasWheelDelta = e.wheelDelta && Math.abs(e.wheelDelta) >= 120;
+      
+      // Consider it a mouse wheel if any strong indicator is present
+      return hasLargeDelta || isLineMode || hasWheelDelta;
+    };
 
     const onWheel = (e) => {
-      // Check if horizontal scrolling is possible
       const canScrollHorizontally = container.scrollWidth > container.clientWidth;
+      if (!canScrollHorizontally) return;
+
+      // Only handle mouse wheel events, ignore touchpad
+      if (!isMouseWheel(e)) {
+        return; // Let browser handle touchpad events normally
+      }
+
+      const isAtStart = container.scrollLeft === 0;
+      const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 1;
       
-      if (canScrollHorizontally) {
-        const isAtStart = container.scrollLeft === 0;
-        const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 1;
+      if ((e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart)) {
+        e.preventDefault();
+        e.stopPropagation();
         
-        // If scrolling down and not at the end, or scrolling up and not at the start
-        if ((e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart)) {
-          e.preventDefault();
-          
-          if (isScrolling) return;
-          isScrolling = true;
-          
-          const scrollAmount = e.deltaY * 7;
-          const target = Math.max(
-            0,
-            Math.min(
-              container.scrollLeft + scrollAmount,
-              container.scrollWidth - container.clientWidth
-            )
-          );
-          smoothScroll(target);
-        }
-        // If at the end and scrolling down, or at start and scrolling up, allow vertical scroll
-        // by not preventing default
+        if (isScrolling) return;
+        isScrolling = true;
+        
+        const scrollAmount = e.deltaY * 20;
+        const target = Math.max(
+          0,
+          Math.min(
+            container.scrollLeft + scrollAmount,
+            container.scrollWidth - container.clientWidth
+          )
+        );
+        smoothScroll(target);
       }
     };
 
     container.addEventListener("wheel", onWheel, { passive: false });
+
     return () => {
       container.removeEventListener("wheel", onWheel);
     };
@@ -259,7 +281,7 @@ const HomeDigitalShow = () => {
       <div
         data-lenis-prevent
         ref={containerRef}
-        className="h-[80vh] w-[100vw] flex gap-5 overflow-x-auto scrollbar-hide  px-30 "
+        className="h-auto w-[100vw] flex gap-5 overflow-x-auto scrollbar-hide px-30"
         style={{ scrollBehavior: "smooth", overflowX: "auto" }}
       >
         <SocialMediaCard />

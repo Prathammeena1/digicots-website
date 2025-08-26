@@ -28,7 +28,7 @@ const HomeFourthSection = () => {
   return (
     <div className="bg-white">
       <TextAnimP1>
-        <div className="text-black relative z-20 pt-40 bg-white">
+        <div className="text-black relative z-20 pt-10 bg-white">
           <div className="text-center">
             <h2 className="dark:text-white heading-text mb-5">
               <TextAnimation >Innovative</TextAnimation>
