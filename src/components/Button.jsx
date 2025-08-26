@@ -4,7 +4,7 @@ const Button = ({children,className, ...rest}) => {
   return (
     <button
     {...rest}
-     className={`w-fit dark:text-white py-3 px-8 border dark:border-zinc-200 border-zinc-700 ${className}`}>
+     className={`w-fit wave-effect overflow-hidden dark:text-white py-3 px-8 border dark:border-zinc-200 border-zinc-700 ${className}`}>
       {children}
     </button>
   );

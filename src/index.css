@@ -422,11 +422,7 @@ html {
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  background-image: linear-gradient(
-    0deg,
-    white,
-    white
-  );
+  background-image: linear-gradient(0deg, white, white);
   background-size: 100% 100%;
   animation: rainbow 3s ease-in-out infinite;
   transition: all 0.3s ease;
@@ -436,12 +432,7 @@ html {
   animation-duration: 0.5s;
   transform: scale(1.1);
   filter: brightness(1.5);
-  background-image: linear-gradient(
-    90deg,
-    #000,
-    #D2D2D2,
-    #ED510C
-  );
+  background-image: linear-gradient(90deg, #000, #d2d2d2, #ed510c);
 }
 
 @keyframes rainbow {
@@ -456,8 +447,7 @@ html {
   }
 }
 
-
-.heading-text{
+.heading-text {
   text-align: center;
   /* font-size: 72px; */
   font-size: 42px;
@@ -466,7 +456,7 @@ html {
   /* color: #00000085 !important; */
 }
 
-.subHeading-text{
+.subHeading-text {
   text-align: center;
   /* color: #00000085 !important; */
   font-size: 27px;
@@ -477,4 +467,30 @@ html {
 .horizontal-scroll-container {
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
+}
+
+/* Example 2: Color wave effect */
+.wave-effect {
+  position: relative;
+  cursor: pointer;
+}
+
+.wave-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #ff824d, transparent);
+  transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wave-effect:hover::before {
+  left: 100%;
+}
+
+.wave-effect:hover {
+  /* color: #ff824d;
+  text-shadow: 0 0 10px #ff824d; */
 }

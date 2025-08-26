@@ -75,8 +75,8 @@ const BrandingSection5 = ({data}) => {
           </h2>
           <p className="text-lg leading-relaxed dark:text-gray-300 text-zinc-500">
             <TextAnimP1>
-              We make the world sit up and take notice—crafting a brand voice,
-              identity, and message <br /> as powerful as a wolf’s call, ready
+              We make the world sit up and take notice—crafting a brand voice, <br />
+              identity, and message as powerful as a wolf’s call, ready <br />
               to be heard far and wide.
             </TextAnimP1>
           </p>
@@ -86,7 +86,7 @@ const BrandingSection5 = ({data}) => {
               <TextAnimP1>
                 <li
                   key={index}
-                  className="cursor-pointer transition-colors duration-300 hover:text-blue-400 pointer-events-auto w-fit"
+                  className="cursor-pointer transition-colors duration-300 pointer-events-auto w-fit"
                   onMouseEnter={() => {
                     setHoveredItem(item);
                     setLastHoveredItem(item); // Save as last hovered
