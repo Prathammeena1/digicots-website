@@ -11,7 +11,7 @@ const landingdata = {
             services <br /> gets our global clients noticed for all the right
             reasons.`,
   btn: "Get in touch",
-  img: "/images/branding-page/img1.png",
+  img: "/final-images/branding-page/B1.png",
   bgColor: ["white", "white"],
 };
 
@@ -26,13 +26,13 @@ const section2Data = {
     clear path. Whether claiming new ground or chasing recognition, we
     shape perceptions and make your presence impossible to ignore.`,
   ],
-  img: "/images/branding-page/img2.png",
+  img: "/final-images/branding-page/B2.png",
   bgColor: ["white", "white"],
 };
 const section3Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
-  img: "/images/branding-page/img3.png",
+  img: "/final-images/branding-page/B3.png",
   bgColor: ["white", "white"],
 };
 
@@ -60,8 +60,26 @@ const section4Data = {
 const section5Data = {
   heading: ["Have a", "Query ?"],
   btn: "Get in touch",
-  img: "/images/branding-page/img4.png",
+  img: "/final-images/branding-page/B4.png",
   bgColor: ["white", "white"],
+
+  imageMap: {
+    "Research & Strategy": "/final-images/branding-page/B5.png",
+    Branding: "/final-images/branding-page/B6.png",
+    Content: "/final-images/branding-page/B7.png",
+    "Advertising ": "/final-images/branding-page/B8.png",
+    Campaigns: "/final-images/branding-page/B9.png",
+    "Website Design": "/final-images/branding-page/B10.png",
+  },
+
+  listItems: [
+    "Research & Strategy",
+    "Branding",
+    "Content",
+    "Advertising ",
+    "Campaigns",
+    "Website Design",
+  ],
 };
 
 const Branding = () => {

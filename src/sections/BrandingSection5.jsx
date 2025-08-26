@@ -12,23 +12,23 @@ const BrandingSection5 = ({data}) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Image mapping for each list item
-  const imageMap = {
-    "Research & Strategy": "/images/branding-page/img5.png",
-    "Branding": "/images/branding-page/img6.png",
-    "Content": "/images/branding-page/img7.png",
-    "Advertising ": "/images/branding-page/img8.png",
-    "Campaigns": "/images/branding-page/img9.png",
-    "Website Design": "/images/branding-page/img10.png",
-  };
+  // const data?.imageMap = {
+  //   "Research & Strategy": "/images/branding-page/img5.png",
+  //   "Branding": "/images/branding-page/img6.png",
+  //   "Content": "/images/branding-page/img7.png",
+  //   "Advertising ": "/images/branding-page/img8.png",
+  //   "Campaigns": "/images/branding-page/img9.png",
+  //   "Website Design": "/images/branding-page/img10.png",
+  // };
 
-  const listItems = [
-    "Research & Strategy",
-    "Branding",
-    "Content",
-    "Advertising ",
-    "Campaigns",
-    "Website Design",
-  ];
+  // const data?.listItems = [
+  //   "Research & Strategy",
+  //   "Branding",
+  //   "Content",
+  //   "Advertising ",
+  //   "Campaigns",
+  //   "Website Design",
+  // ];
 
   // Handle image transitions with fade effect
   useEffect(() => {
@@ -36,13 +36,13 @@ const BrandingSection5 = ({data}) => {
 
     if (hoveredItem) {
       // Currently hovering - show hovered item
-      newImage = imageMap[hoveredItem];
+      newImage = data?.imageMap[hoveredItem];
     } else if (lastHoveredItem) {
       // Not hovering but have last hovered - keep showing last hovered
-      newImage = imageMap[lastHoveredItem];
+      newImage = data?.imageMap[lastHoveredItem];
     } else {
       // No hover history - show first item (Research & Strategy)
-      newImage = imageMap[listItems[0]];
+      newImage = data?.imageMap[data?.listItems[0]];
     }
 
     if (newImage !== currentImage) {
@@ -54,7 +54,7 @@ const BrandingSection5 = ({data}) => {
         setIsTransitioning(false);
       }, 200); // Half of the transition duration for smooth crossfade
     }
-  }, [hoveredItem, lastHoveredItem, currentImage, imageMap, listItems]);
+  }, [hoveredItem, lastHoveredItem, currentImage, data?.imageMap, data?.listItems]);
 
   return (
     <div className="min-h-screen w-full">
@@ -82,7 +82,7 @@ const BrandingSection5 = ({data}) => {
           </p>
 
           <ul className="list-disc pl-20 space-y-4">
-            {listItems.map((item, index) => (
+            {data?.listItems.map((item, index) => (
               <TextAnimP1>
                 <li
                   key={index}
