@@ -1,84 +1,88 @@
 import React from "react";
-import { useRef, useEffect, useCallback } from 'react';
-import { gsap } from 'gsap';
+import { useRef, useEffect, useCallback } from "react";
+import { gsap } from "gsap";
 
-function SocialMediaCard() {
+function SocialMediaCard({src,h1,p,cat}) {
   const viewAllRef = useRef(null);
   const arrowRef = useRef(null);
   const containerRef = useRef(null);
-    const animationRef = useRef({ isAnimating: false, currentTween: null });
+  const animationRef = useRef({ isAnimating: false, currentTween: null });
 
   // Memoized animation handlers to prevent recreation
   const handleMouseEnter = useCallback(() => {
     const viewAllElement = viewAllRef.current;
     const arrowElement = arrowRef.current;
-    
-    if (!viewAllElement || !arrowElement || animationRef.current.isAnimating) return;
-    
+
+    if (!viewAllElement || !arrowElement || animationRef.current.isAnimating)
+      return;
+
     // Kill any existing animation
     if (animationRef.current.currentTween) {
       animationRef.current.currentTween.kill();
     }
-    
+
     animationRef.current.isAnimating = true;
-    
+
     // Use timeline for better sync and performance
     const tl = gsap.timeline({
       onComplete: () => {
         animationRef.current.isAnimating = false;
         animationRef.current.currentTween = null;
-      }
+      },
     });
-    
+
     tl.to([viewAllElement, arrowElement], {
       x: 0,
       opacity: 1,
       duration: 0.4,
       ease: "power2.out",
       force3D: true, // Hardware acceleration
-        "will-change": "transform, opacity"
+      "will-change": "transform, opacity",
     });
-    
+
     animationRef.current.currentTween = tl;
   }, []);
 
   const handleMouseLeave = useCallback(() => {
     const viewAllElement = viewAllRef.current;
     const arrowElement = arrowRef.current;
-    
+
     if (!viewAllElement || !arrowElement) return;
-    
+
     // Kill any existing animation
     if (animationRef.current.currentTween) {
       animationRef.current.currentTween.kill();
     }
-    
+
     animationRef.current.isAnimating = true;
-    
+
     const tl = gsap.timeline({
-      onComplete: () => {
+      onStart: () => {
         animationRef.current.isAnimating = false;
         animationRef.current.currentTween = null;
-      }
+      },
     });
-    
+
     tl.to(viewAllElement, {
       x: -100,
       opacity: 0,
       duration: 0.3,
       ease: "power2.in",
       force3D: true,
-        "will-change": "transform, opacity"
-    })
-    .to(arrowElement, {
-      x: -100,
-      duration: 0.3,
-      opacity:.6,
-      ease: "power2.in",
-      force3D: true,
-        "will-change": "transform"
-    }, "<"); // Start at the same time as previous animation
-    
+      "will-change": "transform, opacity",
+    }).to(
+      arrowElement,
+      {
+        x: -100,
+        duration: 0.3,
+        opacity: 0.6,
+        ease: "power2.in",
+        force3D: true,
+        "will-change": "transform",
+      },
+      "<"
+    ); // Start at the same time as previous animation
+
     animationRef.current.currentTween = tl;
   }, []);
 
@@ -89,7 +93,7 @@ function SocialMediaCard() {
 
     // Safety check
     if (!viewAllElement || !arrowElement || !containerElement) {
-      console.warn('SocialMediaCard: Required elements not found');
+      console.warn("SocialMediaCard: Required elements not found");
       return;
     }
 
@@ -98,18 +102,22 @@ function SocialMediaCard() {
       x: -100,
       opacity: 0,
       force3D: true,
-        "will-change": "transform, opacity"
+      "will-change": "transform, opacity",
     });
-    
+
     gsap.set([arrowElement], {
       x: -100,
       force3D: true,
-        "will-change": "transform"
+      "will-change": "transform",
     });
 
     // Add event listeners with passive option for better performance
-    containerElement.addEventListener('mouseenter', handleMouseEnter, { passive: true });
-    containerElement.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+    containerElement.addEventListener("mouseenter", handleMouseEnter, {
+      passive: true,
+    });
+    containerElement.addEventListener("mouseleave", handleMouseLeave, {
+      passive: true,
+    });
 
     // Cleanup function
     return () => {
@@ -117,13 +125,13 @@ function SocialMediaCard() {
       if (animationRef.current.currentTween) {
         animationRef.current.currentTween.kill();
       }
-      
+
       // Remove event listeners
       if (containerElement) {
-        containerElement.removeEventListener('mouseenter', handleMouseEnter);
-        containerElement.removeEventListener('mouseleave', handleMouseLeave);
+        containerElement.removeEventListener("mouseenter", handleMouseEnter);
+        containerElement.removeEventListener("mouseleave", handleMouseLeave);
       }
-      
+
       // Reset animation state
       animationRef.current = { isAnimating: false, currentTween: null };
     };
@@ -135,39 +143,39 @@ function SocialMediaCard() {
         <img
           className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
           // src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=364&h=425&fit=crop&q=80"
-          src="/final-images/services/Branding.webp"
-          alt="Nueva Face Branding Project"
+          src={src}
+          alt={h1}
           loading="lazy"
         />
       </div>
       <div className="mt-4">
-        <h2 className="text-2xl font-semibold text-gray-900">Nueva Face</h2>
+        <h2 className="text-2xl font-semibold text-gray-900">{h1}</h2>
         <p className="text-base text-zinc-600 mt-1">
-          Project carried out within digicots
+          {p}
         </p>
-        <p className="text-sm text-zinc-500 mt-0.5">Branding</p>
+        <p className="text-sm text-zinc-500 mt-0.5">{cat}</p>
       </div>
-      <div 
+      <div
         ref={containerRef}
         className="flex items-center gap-3 cursor-pointer overflow-hidden relative  py-2 px-1 rounded-md transition-colors duration-200 w-fit"
         role="button"
         tabIndex={0}
         aria-label="View all projects"
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             // Handle click action here
-            console.log('View All clicked');
+            console.log("View All clicked");
           }
         }}
       >
-        <h3 
+        <h3
           ref={viewAllRef}
           className="text-base font-semibold text-zinc-500 whitespace-nowrap select-none"
         >
           View All
         </h3>
-         <img
+        <img
           ref={arrowRef}
           className="h-2 object-contain relative z-10 opacity-[.6]"
           src="/final-images/utils/long-arrow.png"
@@ -178,7 +186,69 @@ function SocialMediaCard() {
   );
 }
 
-
+const data = [
+  {
+    src: "/final-images/digital-showcase/D1.png",
+    h1: "Nueva Face",
+    p: "Project carried out within digicots",
+    cat: "Social Media",
+  },
+  {
+    src: "/final-images/digital-showcase/D2.png",
+    h1: "CripCoin",
+    p: "Platform project for crypto coins",
+    cat: "Website",
+  },
+  {
+    src: "/final-images/digital-showcase/D3.png",
+    h1: "Vietsu Batky",
+    p: "Theme design with Packaging",
+    cat: "Branding",
+  },
+  {
+    src: "/final-images/digital-showcase/D4.png",
+    h1: "Healthsure",
+    p: "Health care indstry application ",
+    cat: "App Development",
+  },
+  {
+    src: "/final-images/digital-showcase/D5.png",
+    h1: "Better3",
+    p: "Plastic moulding injection revamp",
+    cat: "Branding",
+  },
+  {
+    src: "/final-images/digital-showcase/D6.png",
+    h1: "Trent",
+    p: "Private project based for composites",
+    cat: "Branding",
+  },
+  {
+    src: "/final-images/digital-showcase/D7.png",
+    h1: "Magicwave",
+    p: "Party music mobile application",
+    cat: "App Development",
+  },
+  {
+    src: "/final-images/digital-showcase/D8.png",
+    h1: "HighSky",
+    p: "Hot air balloon booking platform ",
+    cat: "Website",
+  },
+  {
+    src: "/final-images/digital-showcase/D9.png",
+    h1: "Crystlome",
+    p: "Crypto currency platform design",
+    cat: "Website ",
+  },
+  {
+    src: "/final-images/digital-showcase/D10.png",
+    h1: "Kickstorm",
+    p: "Health & fItness brand identity",
+    cat: "Branding",
+  },
+];
+  
 const HomeDigitalShow = () => {
   const containerRef = React.useRef(null);
 
@@ -217,29 +287,30 @@ const HomeDigitalShow = () => {
         t--;
         return (-c / 2) * (t * (t - 2) - 1) + b;
       };
-    };
+    }
 
     const isMouseWheel = (e) => {
       // Simplified detection focusing on most reliable indicators
-      
+
       // Mouse wheels typically have larger delta values (usually 100-120)
       const hasLargeDelta = Math.abs(e.deltaY) >= 100;
-      
+
       // Mouse wheels often use line-based scrolling
       const isLineMode = e.deltaMode === 1; // DOM_DELTA_LINE
-      
+
       // Mouse wheels typically only affect one axis at a time
       const isSingleAxis = e.deltaX === 0 && e.deltaY !== 0;
-      
+
       // Legacy wheelDelta property (if available) can help distinguish
       const hasWheelDelta = e.wheelDelta && Math.abs(e.wheelDelta) >= 120;
-      
+
       // Consider it a mouse wheel if any strong indicator is present
       return hasLargeDelta || isLineMode || hasWheelDelta;
     };
 
     const onWheel = (e) => {
-      const canScrollHorizontally = container.scrollWidth > container.clientWidth;
+      const canScrollHorizontally =
+        container.scrollWidth > container.clientWidth;
       if (!canScrollHorizontally) return;
 
       // Only handle mouse wheel events, ignore touchpad
@@ -248,15 +319,17 @@ const HomeDigitalShow = () => {
       }
 
       const isAtStart = container.scrollLeft === 0;
-      const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 1;
-      
+      const isAtEnd =
+        container.scrollLeft >=
+        container.scrollWidth - container.clientWidth - 1;
+
       if ((e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart)) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         if (isScrolling) return;
         isScrolling = true;
-        
+
         const scrollAmount = e.deltaY * 12;
         const target = Math.max(
           0,
@@ -284,11 +357,12 @@ const HomeDigitalShow = () => {
         className="h-auto w-[100vw] flex gap-5 overflow-x-auto scrollbar-hide px-30"
         style={{ scrollBehavior: "smooth", overflowX: "auto" }}
       >
-        <SocialMediaCard />
-        <SocialMediaCard />
-        <SocialMediaCard />
-        <SocialMediaCard />
-        <SocialMediaCard />
+
+        {
+          data.map((item, index) => (
+            <SocialMediaCard key={index} {...item} />
+          ))
+        }
       </div>
     </div>
   );

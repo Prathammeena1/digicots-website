@@ -29,7 +29,7 @@ const AboutStatSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-10">
           {statsData.map((stat, index) => (
             <div key={index} className="text-center md:text-left">
-              <h2 className="text-8xl lg:text-9xl font-bold leading-none mb-1">
+              <h2 className="text-8xl lg:text-9xl font-bold leading-none mb-1 text-[#ED510C]">
                 <CountingAnimation>{stat.number} </CountingAnimation>{" "}
                 <span>{stat.symbol}</span>
               </h2>

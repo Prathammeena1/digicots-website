@@ -40,7 +40,7 @@ const HomeSeventhSection = () => {
   return (
     <div
       ref={parentRef}
-      className="relative w-full flex flex-col items-center justify-start overflow-hidden pointer-events-none py-30 bg-white"
+      className="relative w-full flex flex-col items-center justify-start overflow-hidden pointer-events-none py-10 bg-white"
     >
       {/* Heading */}
       <div className="text-center my-10">
@@ -81,7 +81,7 @@ const HomeSeventhSection = () => {
                 {Array.from({ length: 36 }).map((_, repeatIdx) => (
                   <div
                     key={`brand-${rowIdx}-${repeatIdx}`}
-                    className="w-30 h-14 rounded-[3.5rem] pointer-events-auto border-2 border-[#d1d1d1] opacity-60 overflow-hidden flex items-center justify-center px-10 flex-shrink-0 group"
+                    className="w-35 h-18 rounded-[3.5rem] pointer-events-auto border-2 border-[#d1d1d1] opacity-60 overflow-hidden flex items-center justify-center px-10 flex-shrink-0 group"
                   >
                     <img
                       className="w-full object-contain scale-[2.3] filter grayscale transition-all duration-300 group-hover:filter-none"
