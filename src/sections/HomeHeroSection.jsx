@@ -116,11 +116,6 @@ const HomeHeroSection = () => {
 
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
-    // Only run GSAP if all refs are defined
-    if (!homeRef.current || !sec1.current || !sec2.current || !sec3.current || !heroTextRef.current) {
-      return;
-    }
-
     // Main timeline with optimized scroll trigger
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -136,7 +131,7 @@ const HomeHeroSection = () => {
     });
 
     // Set initial states
-    gsap.set([sec1.current, sec2.current, sec3.current], { y: "100%" });
+    gsap.set([sec1.current], { y: "100%" });
     gsap.set(heroTextRef.current, { opacity: 1 });
 
     // Animation sequence
@@ -151,7 +146,6 @@ const HomeHeroSection = () => {
     );
   }, [
     sec1.current,
-    sec2.current,
     homeRef.current,
     heroTextRef.current,
     logoSvgRef.current,
@@ -321,7 +315,7 @@ const HomeHeroSection = () => {
                       fontWeight="900"
                       letterSpacing="0.02em"
                     >
-                     DELIVERY
+                      DELIVERY
                     </text>
                   </mask>
                 </defs>
@@ -335,10 +329,7 @@ const HomeHeroSection = () => {
                   mask="url(#text-mask)"
                 />
               </svg>
-              <div
-                
-                className="dark:text-zinc-200 text-center font-semibold text-3xl absolute bottom-25 w-full "
-              >
+              <div className="dark:text-zinc-200 text-center font-semibold text-3xl absolute bottom-25 w-full ">
                 We are a results-driven digital agency that blends creativity,
                 strategy and <br /> technology to build powerful brands and
                 deliver measurable growth
