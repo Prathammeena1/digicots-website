@@ -8,7 +8,7 @@ const BrandingLanding = memo(({ data }) => {
   return (
     <div className="h-screen w-full flex items-center px-30 relative">
       <div className="h-[60vh] flex flex-col justify-between">
-        <h1 className="font-bold text-[8vw] leading-[1.1] dark:text-zinc-200 text-zinc-800/80">
+        <h1 className="font-bold text-[8vw] leading-[1.1] dark:text-zinc-200 ">
           {/* <TextAnimH1 isLanding={true}>Create your</TextAnimH1>
           <TextAnimH1 isLanding={true} delay={0.4}>
             Dream Brand
