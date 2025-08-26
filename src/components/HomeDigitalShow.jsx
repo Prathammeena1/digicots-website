@@ -257,7 +257,7 @@ const HomeDigitalShow = () => {
         if (isScrolling) return;
         isScrolling = true;
         
-        const scrollAmount = e.deltaY * 20;
+        const scrollAmount = e.deltaY * 12;
         const target = Math.max(
           0,
           Math.min(
