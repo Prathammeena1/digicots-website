@@ -274,7 +274,7 @@ const HomeFourthSectionCanvas = () => {
   }, []);
 
   return (
-      <div className="h-screen w-[38vw] overflow-hidden scale-[.7] dark:bg-black bg-white absolute left-1/2 top-1/2 -translate-1/2">
+      <div className="h-screen w-[38vw] overflow-hidden scale-[.7] absolute left-1/2 top-1/2 -translate-1/2">
         <canvas
           ref={canvasRef}
           className="w-[38vw] h-full block  "

@@ -92,18 +92,7 @@ export default function HomeServicesVerticalSection() {
   const [lineX, setLineX] = useState(0);
 
   return (
-    <div className="h-screen text-white pt-50 ">
-      <div className="text-center ">
-        <h2 className="text-white heading-text mb-5">
-          <TextAnimation>
-            We power business growth with UI/UX, Technology, and Marketing.
-          </TextAnimation>
-        </h2>
-        <h2 className="text-zinc-200 subHeading-text relative z-10">
-          {/* <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >As global leaders in UX/UI, tech, and marketing, Digicots helps</TextAnimation> 
-          <TextAnimation animeStart="95" animeEnd="90" duration={.1} stagger={10} >businesses simplify, strengthen, and grow.</TextAnimation> */}
-        </h2>
-      </div>
+    <div className="h-screen text-white pt-50 overflow-hidden ">
       <div className=" mx-auto relative z-30 px-30 ">
         {/* Left Side - Content */}
         <div
@@ -223,9 +212,13 @@ export default function HomeServicesVerticalSection() {
                       }}
                       className=" text-2xl font-bold text-zinc-500 leading-none"
                     >
-                      <span className="group-hover:opacity-0 group-hover:-translate-x-8 inline-block duration-300">{section.id}.</span>
+                      <span className="group-hover:opacity-0 group-hover:-translate-x-8 inline-block duration-300">
+                        {section.id}.
+                      </span>
 
-                      <span className="opacity-0 group-hover:opacity-100 group-hover:-translate-x-8 inline-block duration-300">{section.category}</span>
+                      <span className="opacity-0 group-hover:opacity-100 group-hover:-translate-x-8 inline-block duration-300">
+                        {section.category}
+                      </span>
                     </div>
                   </h2>
                   {/* <p className="dark:text-gray-300 text-lg leading-relaxed">

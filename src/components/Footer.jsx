@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import Button from "./Button";
 import Input from "./Input";
+import TextAnimP1 from "./TextAnimP1";
 
 // Animation variants for sections
 const sectionVariants = {
@@ -129,347 +130,350 @@ export default function Footer({ popActive, setPopActive }) {
   return (
     <footer
       ref={footerRef}
-      className=" pointer-events-none dark:text-white py-16 px-30 relative z-10 overflow-hidden bg-white"
+      className=" pointer-events-none text-white py-16 px-30 relative z-10 overflow-hidden"
     >
       <div className="container mx-auto max-w-[1600px]">
-        {/* Top Section - Join the Pack */}
-        {showContactForm && (
-          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
-            {/* Left - Text */}
-            <motion.div
-              className="md:w-[25%] text-center md:text-left"
-              variants={sectionVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-            >
-              <h2 className="text-5xl sm:text-7xl font-inter font-bold leading-tight dakr:text-white audiowide-regular">
-                Join the Pack
-              </h2>
-            </motion.div>
-
-            {/* Right - Form */}
-            <motion.div
-              className="md:w-[65%] w-full"
-              variants={containerVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-            >
-              <form
-                onSubmit={handleSubmit}
-                className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        <TextAnimP1>
+          {/* Top Section - Join the Pack */}
+          {showContactForm && (
+            <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+              {/* Left - Text */}
+              <div
+                className="md:w-[25%] text-center md:text-left"
+                variants={sectionVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
               >
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_template" value="table" />
-                <motion.div
-                  variants={childVariants}
+                <h2 className="text-5xl sm:text-7xl font-inter font-bold leading-tight dakr:text-white audiowide-regular">
+                  Join the Pack
+                </h2>
+              </div>
+
+              {/* Right - Form */}
+              <div
+                className="md:w-[65%] w-full"
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+              >
+                <form
+                  onSubmit={handleSubmit}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-4"
                 >
-                  <Input
-                  value={formData.Full_Name}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      Full_Name: e.target.value,
-                    }))
-                  }
-                  type="text"
-                  placeholder="Full Name"
-                  // className="  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
-                  name="Full_Name"
-                />
-                </motion.div>
-                <motion.div
-                  variants={childVariants}
-                >
-                <Input
-                  value={formData.Company_Name}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      Company_Name: e.target.value,
-                    }))
-                  }
-                  type="text"
-                  placeholder="Company Name"
-                  // className=" p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
-                  name="Company_Name"
-                  />
-                  </motion.div>
-                  <motion.div
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_template" value="table" />
+                  <div
                     variants={childVariants}
                   >
-                <Input
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, email: e.target.value }))
-                  }
-                  type="email"
-                  placeholder="Email Address"
-                  // className=" text-white  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none raleway pointer-events-auto border border-zinc-600 "
-                  name="email"
-                />
-                </motion.div>
-                <motion.div className="flex" variants={childVariants}>
-                  <Input
-                    type="text"
-                    value={formData.Contact_Number}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        Contact_Number: e.target.value,
-                      }))
-                    }
-                    placeholder="Contact Number"
-                    // className=" text-white  p-4 text-md w-full rounded-[999px] sm:px-10 focus:outline-none raleway pointer-events-auto border border-zinc-600 "
-                    name="Contact_Number"
-                  />
-                </motion.div>
-                <motion.div
-                className="w-full md:col-span-2 pointer-events-auto"
-                  variants={childVariants}
-                >
-                  <Button className="relative z-[11] w-full">
-                    {loading ? "Submitting..." : "Let's Talk about the Future"}
-                  </Button>
-                </motion.div>
-              </form>
-              {message && (
-                <p className="text-sm text-white mt-2 font-semibold">
-                  {message}
-                </p>
-              )}
-            </motion.div>
-          </div>
-        )}
+                    <Input
+                      value={formData.Full_Name}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          Full_Name: e.target.value,
+                        }))
+                      }
+                      type="text"
+                      placeholder="Full Name"
+                      // className="  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
+                      name="Full_Name"
+                    />
+                  </div>
+                  <div
+                    variants={childVariants}
+                  >
+                    <Input
+                      value={formData.Company_Name}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          Company_Name: e.target.value,
+                        }))
+                      }
+                      type="text"
+                      placeholder="Company Name"
+                      // className=" p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none text-white raleway pointer-events-auto border border-zinc-600 "
+                      name="Company_Name"
+                    />
+                  </div>
+                  <div
+                    variants={childVariants}
+                  >
+                    <Input
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData((prev) => ({ ...prev, email: e.target.value }))
+                      }
+                      type="email"
+                      placeholder="Email Address"
+                      // className=" text-white  p-4 text-md rounded-[999px] sm:px-10 w-full focus:outline-none raleway pointer-events-auto border border-zinc-600 "
+                      name="email"
+                    />
+                  </div>
+                  <div className="flex" variants={childVariants}>
+                    <Input
+                      type="text"
+                      value={formData.Contact_Number}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          Contact_Number: e.target.value,
+                        }))
+                      }
+                      placeholder="Contact Number"
+                      // className=" text-white  p-4 text-md w-full rounded-[999px] sm:px-10 focus:outline-none raleway pointer-events-auto border border-zinc-600 "
+                      name="Contact_Number"
+                    />
+                  </div>
+                  <div
+                    className="w-full md:col-span-2 pointer-events-auto"
+                    variants={childVariants}
+                  >
+                    <Button className="relative z-[11] w-full">
+                      {loading ? "Submitting..." : "Let's Talk about the Future"}
+                    </Button>
+                  </div>
+                </form>
+                {message && (
+                  <p className="text-sm text-white mt-2 font-semibold">
+                    {message}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
 
-        {/* Divider */}
-        <motion.div
-          className="border-t dark:border-gray-700 border-zinc-300 my-12 raleway"
-          variants={sectionVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        ></motion.div>
+          {/* Divider */}
+          <div
+            className="border-t border-gray-700 my-12 raleway"
+            variants={sectionVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          ></div>
 
-        {/* Bottom Section - Footer Content */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {/* Branding */}
-          <div className="flex flex-col items-center md:items-start col-span-2 md:col-span-1">
-            <motion.h3
-              className="font-bold text-[#ED510C]"
+          {/* Bottom Section - Footer Content */}
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {/* Branding */}
+            <div className="flex flex-col items-center md:items-start col-span-2 md:col-span-1">
+              <h3
+                className="font-bold text-[#ED510C]"
+                variants={childVariants}
+              >
+                <Link to={"/"}>
+                  <img src="/images/logo-1.svg" className="w-[400px]" alt="" />
+                  {/* <img src="/images/logo-black.svg" className="w-[400px]" alt="" /> */}
+                </Link>
+              </h3>
+              <div
+                className="flex space-x-3 mt-4 raleway"
+                variants={containerVariants}
+              >
+                {[
+                  {
+                    title: "instagram",
+                    link: "https://www.instagram.com/digicots_/",
+                    icon: <FaInstagram />,
+                  },
+                  {
+                    title: "linkedin-in",
+                    link: "https://www.linkedin.com/company/digicots-interactive-private-limited/",
+                    icon: <FaLinkedinIn />,
+                  },
+                ].map((socialIcon, i) => (
+                  <div
+                    key={i}
+                    className="w-8 h-8 dark:bg-gray-800 rounded-md flex justify-center items-center pointer-events-auto"
+                    variants={socialIconVariants}
+                  >
+                    <a href={socialIcon.link} target="_blank">
+                      {socialIcon.icon}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Address */}
+            <div
+              className="sm:text-left sm:max-w-[250px] col-span-2 sm:col-span-1"
               variants={childVariants}
             >
-              <Link to={"/"}>
-                {/* <img src="/images/logo-1.svg" className="w-[400px]" alt="" /> */}
-                <img src="/images/logo-black.svg" className="w-[400px]" alt="" />
-              </Link>
-            </motion.h3>
-            <motion.div
-              className="flex space-x-3 mt-4 raleway"
+              <h4 className="text-lg font-semibold raleway">India</h4>
+              <p className="dark:text-gray-400 mt-2  raleway">
+                <a href="">
+                  B 73, Block B, Sector 57 <br /> Noida, Uttar Pradesh, India
+                </a>
+              </p>
+              <p className="mt-2  dark:text-gray-400 raleway">+91 987 987 5632</p>
+            </div>
+
+            {/* Links */}
+            <div
+              className="flex sm:justify-end gap-5 md:gap-10 lg:gap-20  md:justify-around md:text-left raleway"
               variants={containerVariants}
             >
-              {[
-                {
-                  title: "instagram",
-                  link: "https://www.instagram.com/digicots_/",
-                  icon: <FaInstagram />,
-                },
-                {
-                  title: "linkedin-in",
-                  link: "https://www.linkedin.com/company/digicots-interactive-private-limited/",
-                  icon: <FaLinkedinIn />,
-                },
-              ].map((socialIcon, i) => (
-                <motion.div
-                  key={i}
-                  className="w-8 h-8 dark:bg-gray-800 rounded-md flex justify-center items-center pointer-events-auto"
-                  variants={socialIconVariants}
-                >
-                  <a href={socialIcon.link} target="_blank">
-                    {socialIcon.icon}
-                  </a>
-                </motion.div>
+              {["Services"].map((header, idx) => (
+                <div key={idx}>
+                  <h4 className="font-semibold" variants={childVariants}>
+                    {header}
+                  </h4>
+                  <ul
+                    className="dark:text-gray-400 mt-2 space-y-1"
+                    variants={containerVariants}
+                  >
+                    {[
+                      {
+                        title: "Content Production",
+                        pera: "The art of storytelling by transforming ideas into captivating visual narratives that engage...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-9.png",
+                        id: "content-production",
+                      },
+                      {
+                        title: "Outreach Solutions",
+                        pera: "In today's super crowded market, old-school ads just don't cut it anymore. Really connecting with...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-8.png",
+                        id: "outreach-solutions",
+                      },
+                      {
+                        title: "Public Relations",
+                        pera: "This is the art of shaping and maintaining a brand’s reputation – its most valuable asset...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png",
+                        id: "public-relations",
+                      },
+                      {
+                        title: "Digital Marketing",
+                        pera: "We do way more than just post on social media. We build real strategies with data behind...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-6.png",
+                        id: "digital-marketing",
+                      },
+                      {
+                        title: "Performance Marketing",
+                        pera: "We're all about getting you the best returns on your advertising budget. We do this by creating...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-5.png",
+                        id: "performance-marketing",
+                      },
+                      {
+                        title: "Creative Designing",
+                        pera: "Turn concepts into striking visual assets – digital or print. Design is way more than just aesthetics...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-7.png",
+                        id: "creative-designing",
+                      },
+                      {
+                        title: "Branding",
+                        pera: "We're all about getting you the best returns on your advertising budget. We do this by creating...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png",
+                        id: "branding",
+                      },
+                      {
+                        title: "Outdoor Advertising",
+                        pera: "Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-3.png",
+                        id: "outdoor-advertising",
+                      },
+                      {
+                        title: "Website Development",
+                        pera: "Think of a website like your brand's online home. It's not just a place on the internet, it's how people...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-1.png",
+                        id: "website-development",
+                      },
+                      {
+                        title: "Artificial Reality (AR)",
+                        pera: "The future of marketing is immersive. AR brings products to life – allowing consumers to virtually...",
+                        icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-2.png",
+                        id: "artificial-reality",
+                      },
+                    ].map((link, i) => (
+                      <li key={i} variants={childVariants}>
+                        <Link
+                          to={`discover?i=${i}`}
+                          className="hover:text-white  pointer-events-auto"
+                        >
+                          {link.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </motion.div>
+
+              {["Quick Links"].map((header, idx) => (
+                <div key={idx}>
+                  <h4 className="font-semibold" variants={childVariants}>
+                    {header}
+                  </h4>
+                  <ul
+                    className="dark:text-gray-400 mt-2 space-y-1  pointer-events-auto"
+                    variants={containerVariants}
+                  >
+                    {[
+                      {
+                        title: "About Us",
+                        id: "about",
+                      },
+                      {
+                        title: "Insights",
+                        id: "insights",
+                      },
+                      {
+                        title: "Things We Do",
+                        id: "things-we-do",
+                      },
+                      {
+                        title: "Case Study",
+                        id: "case-study",
+                      },
+                      {
+                        title: "Let's Talk",
+                        id: "contact",
+                      },
+                      {
+                        title: "Discover",
+                        id: "discover",
+                      },
+                    ].map((link, i) => (
+                      <li key={i} variants={childVariants}>
+                        <Link to={`/${link.id}`} className="hover:text-white ">
+                          {link.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Address */}
-          <motion.div
-            className="sm:text-left sm:max-w-[250px] col-span-2 sm:col-span-1"
-            variants={childVariants}
+          {/* Bottom Footer */}
+          <div
+            className="mt-12 dark:text-gray-400 flex flex-col sm:flex-row justify-between align-middle"
+            variants={sectionVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
-            <h4 className="text-lg font-semibold raleway">India</h4>
-            <p className="dark:text-gray-400 mt-2  raleway">
-              <a href="">
-                B 73, Block B, Sector 57 <br /> Noida, Uttar Pradesh, India
-              </a>
-            </p>
-            <p className="mt-2  dark:text-gray-400 raleway">+91 987 987 5632</p>
-          </motion.div>
-
-          {/* Links */}
-          <motion.div
-            className="flex sm:justify-end gap-5 md:gap-10 lg:gap-20  md:justify-around md:text-left raleway"
-            variants={containerVariants}
-          >
-            {["Services"].map((header, idx) => (
-              <div key={idx}>
-                <motion.h4 className="font-semibold" variants={childVariants}>
-                  {header}
-                </motion.h4>
-                <motion.ul
-                  className="dark:text-gray-400 mt-2 space-y-1"
-                  variants={containerVariants}
-                >
-                  {[
-                    {
-                      title: "Content Production",
-                      pera: "The art of storytelling by transforming ideas into captivating visual narratives that engage...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-9.png",
-                      id: "content-production",
-                    },
-                    {
-                      title: "Outreach Solutions",
-                      pera: "In today's super crowded market, old-school ads just don't cut it anymore. Really connecting with...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-8.png",
-                      id: "outreach-solutions",
-                    },
-                    {
-                      title: "Public Relations",
-                      pera: "This is the art of shaping and maintaining a brand’s reputation – its most valuable asset...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png",
-                      id: "public-relations",
-                    },
-                    {
-                      title: "Digital Marketing",
-                      pera: "We do way more than just post on social media. We build real strategies with data behind...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-6.png",
-                      id: "digital-marketing",
-                    },
-                    {
-                      title: "Performance Marketing",
-                      pera: "We're all about getting you the best returns on your advertising budget. We do this by creating...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-5.png",
-                      id: "performance-marketing",
-                    },
-                    {
-                      title: "Creative Designing",
-                      pera: "Turn concepts into striking visual assets – digital or print. Design is way more than just aesthetics...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-7.png",
-                      id: "creative-designing",
-                    },
-                    {
-                      title: "Branding",
-                      pera: "We're all about getting you the best returns on your advertising budget. We do this by creating...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-4.png",
-                      id: "branding",
-                    },
-                    {
-                      title: "Outdoor Advertising",
-                      pera: "Regardless of the ever-changing digital landscape, outdoor advertising remains an unparalleled...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-3.png",
-                      id: "outdoor-advertising",
-                    },
-                    {
-                      title: "Website Development",
-                      pera: "Think of a website like your brand's online home. It's not just a place on the internet, it's how people...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-1.png",
-                      id: "website-development",
-                    },
-                    {
-                      title: "Artificial Reality (AR)",
-                      pera: "The future of marketing is immersive. AR brings products to life – allowing consumers to virtually...",
-                      icon: "https://ik.imagekit.io/8mbzq2hdl/digicots/icon-2.png",
-                      id: "artificial-reality",
-                    },
-                  ].map((link, i) => (
-                    <motion.li key={i} variants={childVariants}>
-                      <Link
-                        to={`discover?i=${i}`}
-                        className="dark:hover:text-white hover:text-zinc-700 pointer-events-auto"
-                      >
-                        {link.title}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </div>
-            ))}
-
-            {["Quick Links"].map((header, idx) => (
-              <div key={idx}>
-                <motion.h4 className="font-semibold" variants={childVariants}>
-                  {header}
-                </motion.h4>
-                <motion.ul
-                  className="dark:text-gray-400 mt-2 space-y-1  pointer-events-auto"
-                  variants={containerVariants}
-                >
-                  {[
-                    {
-                      title: "About Us",
-                      id: "about",
-                    },
-                    {
-                      title: "Insights",
-                      id: "insights",
-                    },
-                    {
-                      title: "Things We Do",
-                      id: "things-we-do",
-                    },
-                    {
-                      title: "Case Study",
-                      id: "case-study",
-                    },
-                    {
-                      title: "Let's Talk",
-                      id: "contact",
-                    },
-                    {
-                      title: "Discover",
-                      id: "discover",
-                    },
-                  ].map((link, i) => (
-                    <motion.li key={i} variants={childVariants}>
-                      <Link to={`/${link.id}`} className="dark:hover:text-white hover:text-zinc-700">
-                        {link.title}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Bottom Footer */}
-        <motion.div
-          className="mt-12 dark:text-gray-400 flex flex-col sm:flex-row justify-between align-middle"
-          variants={sectionVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          <div>
-            <p className="text-center sm:text-start raleway">
-              Designed by{" "}
-              <a href="#" className="text-[#ED510C]">
-                Team Digicots
-              </a>
-            </p>
-            <p className="mt-1 text-center sm:text-start raleway">
-              Created Proudly in India
-            </p>
+            <div>
+              <p className="text-center sm:text-start raleway">
+                Designed by{" "}
+                <a href="#" className="text-[#ED510C]">
+                  Team Digicots
+                </a>
+              </p>
+              <p className="mt-1 text-center sm:text-start raleway">
+                Created Proudly in India
+              </p>
+            </div>
+            <div className="text-center sm:text-end raleway">
+              <p className="mt-1">
+                Copyright 2025 © <br /> All Rights Reserved. All Wrongs Reversed.
+              </p>
+            </div>
           </div>
-          <div className="text-center sm:text-end raleway">
-            <p className="mt-1">
-              Copyright 2025 © <br /> All Rights Reserved. All Wrongs Reversed.
-            </p>
-          </div>
-        </motion.div>
+        </TextAnimP1>
+
       </div>
     </footer>
   );

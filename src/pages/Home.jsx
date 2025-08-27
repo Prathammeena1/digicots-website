@@ -12,6 +12,7 @@ import HomeServiceSection from "../sections/HomeServiceSection.jsx";
 import ScrollMarKi from "../components/ScrollMarKi.jsx";
 import AboutStatSection from "../sections/AboutStatSection.jsx";
 import HomeServicesVerticalSection from "../sections/HomeServicesVerticalSection.jsx";
+import HomeContactSection from "../sections/HomeContactSection.jsx";
 
 const Home = () => {
   return (
@@ -24,15 +25,14 @@ const Home = () => {
         /> */}
       </div>
       <div className="h-full w-full bg-transparent relative">
-        {/* <HomeHeroSection /> */}
-        {/* <AboutStatSection /> */}
+        <HomeHeroSection />
 
-        {/* <HomeFourthSection /> */}
+        <HomeFourthSection />
 
         {/* <div className="-space-y-22">
           <ScrollMarKi> {"          "} Strategies meeting </ScrollMarKi>
           <ScrollMarKi direction={-1}>proven results</ScrollMarKi>
-        </div> */}
+          </div> */}
 
         {/* <HomeThirdSection /> */}
 
@@ -44,12 +44,15 @@ const Home = () => {
 
         {/* <HomeServiceSection /> */}
 
-        <HomeSixthSection />
+        {/* <HomeSixthSection /> */}
 
         {/* <HomeSecondSection /> */}
 
-        <HomeEighthSection />
+        {/* <HomeEighthSection /> */}
         <HomeSeventhSection />
+          <AboutStatSection />
+
+        <HomeContactSection />
 
         <HomeNinthSection />
       </div>

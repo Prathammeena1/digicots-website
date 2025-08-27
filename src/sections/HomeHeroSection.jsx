@@ -273,7 +273,6 @@ const HomeHeroSection = () => {
           >
             {/* SVG Text Mask Implementation */}
             <div className="relative w-full h-full">
-              {/* SVG Text Mask */}
               <svg
                 className="absolute top-0 left-0 pointer-events-none h-screen w-screen"
                 xmlns="http://www.w3.org/2000/svg"
@@ -281,22 +280,16 @@ const HomeHeroSection = () => {
                 preserveAspectRatio="xMidYMid slice"
               >
                 <defs>
-                  <mask id="text-mask">
-                    <rect
-                      width="100%"
-                      height="100%"
-                      className="dark:fill-black fill-white"
-                    />
+                  <mask id="text-mask" maskUnits="userSpaceOnUse">
+                    <rect width="100%" height="100%" fill="white" />
                     <text
                       x="960"
                       y="420"
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fill="black"
-                      stroke="black"
-                      strokeWidth="1"
                       fontSize="260"
-                      fontFamily="Palette, sans-serif"
+                      fontFamily="Arial, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
                     >
@@ -308,10 +301,8 @@ const HomeHeroSection = () => {
                       textAnchor="middle"
                       dominantBaseline="middle"
                       fill="black"
-                      stroke="black"
-                      strokeWidth="1"
                       fontSize="260"
-                      fontFamily="Palette, sans-serif"
+                      fontFamily="Arial, sans-serif"
                       fontWeight="900"
                       letterSpacing="0.02em"
                     >
@@ -319,17 +310,15 @@ const HomeHeroSection = () => {
                     </text>
                   </mask>
                 </defs>
-
-                {/* White background with text cut out */}
+                {/* Black overlay with text cut out (transparent where text is) */}
                 <rect
                   width="100%"
                   height="100%"
-                  // fill="black"
-                  className="dark:fill-black fill-white"
+                  fill="black"
                   mask="url(#text-mask)"
                 />
               </svg>
-              <div className="dark:text-zinc-200 text-center font-semibold text-3xl absolute bottom-25 w-full ">
+              <div className="text-zinc-200 text-center font-semibold text-3xl absolute bottom-25 w-full ">
                 We are a results-driven digital agency that blends creativity,
                 strategy and <br /> technology to build powerful brands and
                 deliver measurable growth
