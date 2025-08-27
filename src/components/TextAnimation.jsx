@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import React, { useRef } from 'react';
 
-const TextAnimation = ({ children, className = "", animeStart = "90", animeEnd = "85", duration = .4, scrub = false, stagger = 20 }) => {
+const TextAnimation = ({ children, className = "", animeStart = "90", animeEnd = "85", duration = .2, scrub = false, stagger = 10 }) => {
   const parentRef = useRef(null);
   const letterRefs = useRef([]);
 
@@ -51,7 +51,7 @@ const TextAnimation = ({ children, className = "", animeStart = "90", animeEnd =
     },`a+=${stagger / 350}`)
     .to(validRefs, {
       // delay: stagger / 100,
-      color: '#000',
+      color: '#fff',
       duration: duration,
       stagger: stagger / 300,
       ease: 'power3.inOut',

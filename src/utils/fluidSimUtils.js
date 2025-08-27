@@ -1,20 +1,20 @@
 // Utility functions and shader code for the fluid simulation
 
 export const paletteStops = [
-  "#1565C0", // Deep blue (stands out on white)
-  "#1976D2", // Strong blue
-  "#2196F3", // Vibrant blue
-  "#42A5F5", // Bright blue
-  "#90CAF9", // Soft blue
-  "#D84315", // Strong orange-red (contrast for white)
-  "#E64A19", // Bright orange-red
-  "#BF360C", // Deep orange-red
-  "#FF7043", // Vivid orange
-  "#8D6E63", // Muted brown
-  "#00B8D4", // Cyan accent
-  "#FF5252", // Bright red
-  "#1976D2", // Pure blue
-  "#FF8A65", // Warm orange
+  "#87CEEB",    // Light sky blue (primary)
+  "#32A4E2",    // Medium sky blue
+  "#1E90ED",    // Vibrant sky blue
+  "#4FC3F7",    // Bright sky blue
+  "#81D4FA",    // Pale sky blue
+  "#B8443B",    // Copper red (primary contrast)
+  "#C44536",    // Bright copper red
+  "#A0392F",    // Deep copper red
+  "#D2482A",    // Vivid copper red
+  "#8B3626",    // Dark copper red
+  "#5DADE2",    // Sky blue variant
+  "#E74C3C",    // Enhanced red
+  "#3498DB",    // Pure blue
+  "#CD5C3F",    // Warm copper
 ];
 
 export function hexToRgb(hex) {
@@ -61,24 +61,15 @@ export const shaders = {
         gl_Position = vec4(aPosition, 0.0, 1.0);
     }
   `,
-  // FIXED: Modified display shader to maintain white background
   display: `
-        precision highp float;
-precision mediump sampler2D;
-varying vec2 vUv;
-uniform sampler2D uTexture;
-void main () {
-    vec4 fluid = texture2D(uTexture, vUv);
-    float fluidIntensity = length(fluid.rgb) ;
-    vec3 backgroundColor = vec3(1.0, 1.0, 1.0);
-
-    float threshold = 1.0; // tweak for sharpness
-    vec3 visibleColor = (fluidIntensity > threshold) ? fluid.rgb : backgroundColor;
-
-    gl_FragColor = vec4(visibleColor, 1.0);
-}
-    `,
-  // FIXED: Modified splat shader to handle alpha consistently
+    precision highp float;
+    precision mediump sampler2D;
+    varying vec2 vUv;
+    uniform sampler2D uTexture;
+    void main () {
+        gl_FragColor = texture2D(uTexture, vUv);
+    }
+  `,
   splat: `
     precision highp float;
     precision mediump sampler2D;
@@ -93,13 +84,9 @@ void main () {
         p.x *= aspectRatio;
         vec3 splat = exp(-dot(p, p) / radius) * color;
         vec3 base = texture2D(uTarget, vUv).xyz;
-        
-        // Ensure consistent alpha handling for density textures
-        float alpha = 1.0;
-        gl_FragColor = vec4(base + splat, alpha);
+        gl_FragColor = vec4(base + splat, 1.0);
     }
   `,
-  // FIXED: Modified advection shader for consistent alpha
   advection: `
     precision highp float;
     precision mediump sampler2D;
@@ -111,12 +98,9 @@ void main () {
     uniform float dissipation;
     void main () {
         vec2 coord = vUv - dt * texture2D(uVelocity, vUv).xy * texelSize;
-        vec4 result = dissipation * texture2D(uSource, coord);
-        // Maintain consistent alpha
-        gl_FragColor = vec4(result.rgb, 1.0);
+        gl_FragColor = dissipation * texture2D(uSource, coord);
     }
   `,
-  // FIXED: Modified advection manual filtering for consistent alpha
   advectionManualFiltering: `
     precision highp float;
     precision mediump sampler2D;
@@ -140,9 +124,8 @@ void main () {
     }
     void main () {
         vec2 coord = gl_FragCoord.xy - dt * texture2D(uVelocity, vUv).xy;
-        vec4 result = dissipation * bilerp(uSource, coord);
-        // Always maintain alpha = 1.0 for consistent background
-        gl_FragColor = vec4(result.rgb, 1.0);
+        gl_FragColor = dissipation * bilerp(uSource, coord);
+        gl_FragColor.a = 1.0;
     }
   `,
   divergence: `
@@ -275,16 +258,10 @@ export class GLProgram {
     if (!gl.getProgramParameter(this.program, gl.LINK_STATUS))
       throw gl.getProgramInfoLog(this.program);
 
-    const uniformCount = gl.getProgramParameter(
-      this.program,
-      gl.ACTIVE_UNIFORMS
-    );
+    const uniformCount = gl.getProgramParameter(this.program, gl.ACTIVE_UNIFORMS);
     for (let i = 0; i < uniformCount; i++) {
       const uniformName = gl.getActiveUniform(this.program, i).name;
-      this.uniforms[uniformName] = gl.getUniformLocation(
-        this.program,
-        uniformName
-      );
+      this.uniforms[uniformName] = gl.getUniformLocation(this.program, uniformName);
     }
     this.gl = gl;
   }
@@ -303,16 +280,7 @@ export function compileShader(gl, type, source) {
   return shader;
 }
 
-export function createFBO(
-  gl,
-  texId,
-  w,
-  h,
-  internalFormat,
-  format,
-  type,
-  param
-) {
+export function createFBO(gl, texId, w, h, internalFormat, format, type, param) {
   gl.activeTexture(gl.TEXTURE0 + texId);
   const texture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -324,40 +292,16 @@ export function createFBO(
 
   const fbo = gl.createFramebuffer();
   gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
-  gl.framebufferTexture2D(
-    gl.FRAMEBUFFER,
-    gl.COLOR_ATTACHMENT0,
-    gl.TEXTURE_2D,
-    texture,
-    0
-  );
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
   gl.viewport(0, 0, w, h);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   return [texture, fbo, texId];
 }
 
-export function createDoubleFBO(
-  gl,
-  texId,
-  w,
-  h,
-  internalFormat,
-  format,
-  type,
-  param
-) {
+export function createDoubleFBO(gl, texId, w, h, internalFormat, format, type, param) {
   let fbo1 = createFBO(gl, texId, w, h, internalFormat, format, type, param);
-  let fbo2 = createFBO(
-    gl,
-    texId + 1,
-    w,
-    h,
-    internalFormat,
-    format,
-    type,
-    param
-  );
+  let fbo2 = createFBO(gl, texId + 1, w, h, internalFormat, format, type, param);
 
   return {
     get first() {

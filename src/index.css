@@ -494,3 +494,11 @@ html {
   /* color: #ff824d;
   text-shadow: 0 0 10px #ff824d; */
 }
+
+.text-stroke-hover {
+  -webkit-text-stroke: 0px white;
+  transition: -webkit-text-stroke 0.3s;
+}
+.group:hover .text-stroke-hover {
+  -webkit-text-stroke: 1px white;
+}

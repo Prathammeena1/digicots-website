@@ -17,77 +17,61 @@ import {
 
 // Enhanced device capabilities detection with performance tiers
 const detectDeviceCapabilities = () => {
-  const canvas = document.createElement("canvas");
-  const gl =
-    canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-
-  if (!gl)
-    return {
-      isLowEnd: true,
-      maxTextureSize: 512,
-      performanceTier: "ultra-low",
-      targetFps: 15,
-      maxQuality: 0.3,
-    };
-
+  const canvas = document.createElement('canvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  
+  if (!gl) return { 
+    isLowEnd: true, 
+    maxTextureSize: 512, 
+    performanceTier: 'ultra-low',
+    targetFps: 15,
+    maxQuality: 0.3
+  };
+  
   const maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
-  const renderer = gl.getParameter(gl.RENDERER) || "";
-  const vendor = gl.getParameter(gl.VENDOR) || "";
+  const renderer = gl.getParameter(gl.RENDERER) || '';
+  const vendor = gl.getParameter(gl.VENDOR) || '';
   const maxVertexUniforms = gl.getParameter(gl.MAX_VERTEX_UNIFORM_VECTORS);
   const maxFragmentUniforms = gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS);
-
+  
   // Enhanced device detection
-  const isIntegrated =
-    /intel|integrated|mobile|mali|adreno|powervr|videocore/i.test(
-      renderer + vendor
-    );
+  const isIntegrated = /intel|integrated|mobile|mali|adreno|powervr|videocore/i.test(renderer + vendor);
   const hasLimitedMemory = maxTextureSize < 4096;
-  const isSlowCPU =
-    navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-  const hasLimitedUniforms =
-    maxVertexUniforms < 256 || maxFragmentUniforms < 256;
-
+  const isSlowCPU = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+  const hasLimitedUniforms = maxVertexUniforms < 256 || maxFragmentUniforms < 256;
+  
   // Detect high-end devices
-  const isHighEnd = /nvidia|geforce|radeon|apple.*gpu|m1|m2|m3/i.test(
-    renderer + vendor
-  );
+  const isHighEnd = /nvidia|geforce|radeon|apple.*gpu|m1|m2|m3/i.test(renderer + vendor);
   const hasHighMemory = maxTextureSize >= 8192;
-  const isFastCPU =
-    navigator.hardwareConcurrency && navigator.hardwareConcurrency >= 8;
-  const isDesktop =
-    !("ontouchstart" in window) && navigator.maxTouchPoints === 0;
-
+  const isFastCPU = navigator.hardwareConcurrency && navigator.hardwareConcurrency >= 8;
+  const isDesktop = !('ontouchstart' in window) && navigator.maxTouchPoints === 0;
+  
   // Performance tier classification
   let performanceTier, targetFps, maxQuality;
-
+  
   if (isHighEnd && hasHighMemory && isFastCPU && isDesktop) {
-    performanceTier = "high";
+    performanceTier = 'high';
     targetFps = 60;
     maxQuality = 1.0;
   } else if (!isIntegrated && !hasLimitedMemory && !isSlowCPU) {
-    performanceTier = "medium";
+    performanceTier = 'medium';
     targetFps = 45;
     maxQuality = 0.8;
-  } else if (
-    isIntegrated ||
-    hasLimitedMemory ||
-    isSlowCPU ||
-    hasLimitedUniforms
-  ) {
-    performanceTier = "low";
+  } else if (isIntegrated || hasLimitedMemory || isSlowCPU || hasLimitedUniforms) {
+    performanceTier = 'low';
     targetFps = 25;
     maxQuality = 0.5;
   } else {
-    performanceTier = "ultra-low";
+    performanceTier = 'ultra-low';
     targetFps = 15;
     maxQuality = 0.3;
   }
-
-  const isLowEnd = performanceTier === "low" || performanceTier === "ultra-low";
-
+  
+  const isLowEnd = performanceTier === 'low' || performanceTier === 'ultra-low';
+  
   canvas.remove();
-  return {
-    isLowEnd,
+  return { 
+    isLowEnd, 
     maxTextureSize: Math.min(maxTextureSize, isLowEnd ? 1024 : 4096),
     performanceTier,
     targetFps,
@@ -96,9 +80,9 @@ const detectDeviceCapabilities = () => {
       renderer,
       vendor,
       cores: navigator.hardwareConcurrency || 1,
-      isMobile: "ontouchstart" in window || navigator.maxTouchPoints > 0,
-      isDesktop,
-    },
+      isMobile: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+      isDesktop
+    }
   };
 };
 
@@ -111,29 +95,29 @@ const initializeWebGL = (canvas) => {
   // Enhanced resolution scaling based on performance tier
   const dpr = Math.min(window.devicePixelRatio || 1, 1.0);
   const rect = canvas.getBoundingClientRect();
-
+  
   // Detect device capabilities for dynamic sizing
   const deviceInfo = detectDeviceCapabilities();
-
+  
   // Performance-tier based quality multipliers
   let qualityMultiplier;
   switch (deviceInfo.performanceTier) {
-    case "high":
+    case 'high':
       qualityMultiplier = 0.9; // High quality for high-end devices
       break;
-    case "medium":
+    case 'medium':
       qualityMultiplier = 0.7; // Medium quality for mid-range devices
       break;
-    case "low":
+    case 'low':
       qualityMultiplier = 0.5; // Lower quality for low-end devices
       break;
-    case "ultra-low":
+    case 'ultra-low':
       qualityMultiplier = 0.3; // Minimal quality for ultra-low-end devices
       break;
     default:
       qualityMultiplier = 0.7;
   }
-
+  
   canvas.width = Math.floor(rect.width * dpr * qualityMultiplier);
   canvas.height = Math.floor(rect.height * dpr * qualityMultiplier);
 
@@ -162,7 +146,7 @@ const initializeWebGL = (canvas) => {
     return null;
   }
 
-  gl.clearColor(1.0, 1.0, 1.0, 1.0);
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
   const halfFloat = gl.getExtension("OES_texture_half_float");
   let support_linear_float = gl.getExtension("OES_texture_half_float_linear");
@@ -190,12 +174,8 @@ const FluidCanvas = React.memo(() => {
     targetFps: deviceCapabilities.targetFps, // Device-specific target FPS
     adaptiveQuality: deviceCapabilities.maxQuality * 0.8, // Start at 80% of max quality
     skipFrames: 0,
-    maxSkipFrames:
-      deviceCapabilities.performanceTier === "ultra-low"
-        ? 5
-        : deviceCapabilities.performanceTier === "low"
-        ? 3
-        : 2,
+    maxSkipFrames: deviceCapabilities.performanceTier === 'ultra-low' ? 5 : 
+                   deviceCapabilities.performanceTier === 'low' ? 3 : 2,
     isLowEndDevice: deviceCapabilities.isLowEnd,
     lastPerformanceCheck: 0,
     performanceTier: deviceCapabilities.performanceTier,
@@ -344,48 +324,34 @@ const FluidCanvas = React.memo(() => {
       // Enhanced texture size calculation based on performance tier
       const quality = performanceRef.current.adaptiveQuality;
       let baseDownsample, maxSize;
-
+      
       // Performance-tier specific texture sizing
       switch (deviceInfo.performanceTier) {
-        case "high":
-          baseDownsample =
-            FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE +
-            Math.floor((1.0 - quality) * 1);
+        case 'high':
+          baseDownsample = FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE + Math.floor((1.0 - quality) * 1);
           maxSize = 1024; // High resolution for high-end devices
           break;
-        case "medium":
-          baseDownsample =
-            FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE +
-            Math.floor((1.0 - quality) * 2);
+        case 'medium':
+          baseDownsample = FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE + Math.floor((1.0 - quality) * 2);
           maxSize = 512; // Medium resolution for mid-range devices
           break;
-        case "low":
-          baseDownsample =
-            FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE +
-            Math.floor((1.0 - quality) * 3);
+        case 'low':
+          baseDownsample = FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE + Math.floor((1.0 - quality) * 3);
           maxSize = 256; // Lower resolution for low-end devices
           break;
-        case "ultra-low":
-          baseDownsample =
-            FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE +
-            Math.floor((1.0 - quality) * 4);
+        case 'ultra-low':
+          baseDownsample = FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE + Math.floor((1.0 - quality) * 4);
           maxSize = 128; // Minimal resolution for ultra-low-end devices
           break;
         default:
-          baseDownsample =
-            FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE +
-            Math.floor((1.0 - quality) * 2);
+          baseDownsample = FLUID_CONSTANTS.TEXTURE_DOWNSAMPLE + Math.floor((1.0 - quality) * 2);
           maxSize = 512;
       }
-
+      
       // Ensure minimum viable texture size based on device tier
-      const minSize =
-        deviceInfo.performanceTier === "ultra-low"
-          ? 32
-          : deviceInfo.performanceTier === "low"
-          ? 64
-          : 128;
-
+      const minSize = deviceInfo.performanceTier === 'ultra-low' ? 32 : 
+                     deviceInfo.performanceTier === 'low' ? 64 : 128;
+      
       const textureWidth = Math.max(
         minSize,
         Math.min(maxSize, gl.drawingBufferWidth >> baseDownsample)
@@ -397,27 +363,11 @@ const FluidCanvas = React.memo(() => {
 
       // Use simpler formats for low-end devices
       const useSimpleFormats = deviceInfo.isLowEnd || !isWebGL2;
-      const internalFormat = useSimpleFormats
-        ? gl.RGBA
-        : isWebGL2
-        ? gl.RGBA16F
-        : gl.RGBA;
-      const internalFormatRG = useSimpleFormats
-        ? gl.RGBA
-        : isWebGL2
-        ? gl.RG16F
-        : gl.RGBA;
-      const formatRG = useSimpleFormats ? gl.RGBA : isWebGL2 ? gl.RG : gl.RGBA;
-      const texType = useSimpleFormats
-        ? gl.UNSIGNED_BYTE
-        : isWebGL2
-        ? gl.HALF_FLOAT
-        : halfFloat.HALF_FLOAT_OES;
-      const filterType = useSimpleFormats
-        ? gl.NEAREST
-        : support_linear_float
-        ? gl.LINEAR
-        : gl.NEAREST;
+      const internalFormat = useSimpleFormats ? gl.RGBA : (isWebGL2 ? gl.RGBA16F : gl.RGBA);
+      const internalFormatRG = useSimpleFormats ? gl.RGBA : (isWebGL2 ? gl.RG16F : gl.RGBA);
+      const formatRG = useSimpleFormats ? gl.RGBA : (isWebGL2 ? gl.RG : gl.RGBA);
+      const texType = useSimpleFormats ? gl.UNSIGNED_BYTE : (isWebGL2 ? gl.HALF_FLOAT : halfFloat.HALF_FLOAT_OES);
+      const filterType = useSimpleFormats ? gl.NEAREST : (support_linear_float ? gl.LINEAR : gl.NEAREST);
 
       // Framebuffer getters (lazy) with optimized settings for low-end devices
       const framebuffers = {
@@ -570,10 +520,8 @@ const FluidCanvas = React.memo(() => {
         const timeDiff = (currentTime - colorCycleTime) / 30; // Faster cycling from 40 to 30
 
         // Pre-computed colors
-        const copperRed = [0.82, 0.82, 0.82]; // pastel orange [web:5]
-        const skyBlue = [0.93, 0.32, 0.05];
-        // const copperRed = [1, 1, 1];
-        // const skyBlue = [1, 1, 1];
+        const copperRed = [0.722, 0.267, 0.169];
+        const skyBlue = [0.329, 0.708, 0.822];
 
         // More dynamic interpolation
         const blendFactor = (Math.sin(timeDiff) + 1) * 0.5;
@@ -585,8 +533,7 @@ const FluidCanvas = React.memo(() => {
         ];
 
         // Increased velocity intensity for more fluid movement
-        const intensityV =
-          Math.max(0.5, Math.min(1.2, Math.abs(dy) / 100)) * quality; // Increased intensity range
+        const intensityV = Math.max(0.5, Math.min(1.2, Math.abs(dy) / 100)) * quality; // Increased intensity range
         gl.uniform3f(
           programs.splat.uniforms.color,
           dx * 2.5 * rgbV[0] * intensityV, // Increased from 1.5 to 2.5
@@ -605,8 +552,7 @@ const FluidCanvas = React.memo(() => {
           copperRed[2] * wavePhase + skyBlue[2] * (1 - wavePhase),
         ];
 
-        const intensityD =
-          Math.max(0.6, Math.min(1.4, Math.abs(dy) / 80)) * quality; // Increased intensity
+        const intensityD = Math.max(0.6, Math.min(1.4, Math.abs(dy) / 80)) * quality; // Increased intensity
 
         gl.uniform1i(
           programs.splat.uniforms.uTarget,
@@ -616,7 +562,7 @@ const FluidCanvas = React.memo(() => {
           programs.splat.uniforms.color,
           finalRgb[0] * 4.5 * intensityD, // Increased from 3.0 to 4.5
           finalRgb[1] * 5.0 * intensityD, // Increased from 3.5 to 5.0
-          finalRgb[2] * 5.5 * intensityD // Increased from 4.0 to 5.5
+          finalRgb[2] * 5.5 * intensityD  // Increased from 4.0 to 5.5
         );
         gl.uniform1f(programs.splat.uniforms.radius, dynamicRadius * 5.0); // Increased from 3.5 to 5.0
         blit(framebuffers.density.second[1]);
@@ -654,40 +600,35 @@ const FluidCanvas = React.memo(() => {
           // Enhanced device-adaptive frame control
           const perf = performanceRef.current;
           const targetInterval = 1000 / perf.targetFps;
-
+          
           // Track frame history for better adaptation
           perf.frameHistory.push(deltaTime);
           if (perf.frameHistory.length > 10) {
             perf.frameHistory.shift();
           }
-
+          
           // Calculate average frame time
           if (perf.frameHistory.length > 5) {
-            perf.avgFrameTime =
-              perf.frameHistory.reduce((a, b) => a + b) /
-              perf.frameHistory.length;
+            perf.avgFrameTime = perf.frameHistory.reduce((a, b) => a + b) / perf.frameHistory.length;
           }
-
+          
           // Adaptive frame skipping based on performance tier and current performance
           let shouldSkip = false;
-
-          if (perf.performanceTier === "ultra-low") {
+          
+          if (perf.performanceTier === 'ultra-low') {
             // Ultra-low devices: strict frame limiting
-            shouldSkip =
-              deltaTime < targetInterval * 1.2 || perf.skipFrames > 0;
-          } else if (perf.performanceTier === "low") {
+            shouldSkip = deltaTime < targetInterval * 1.2 || perf.skipFrames > 0;
+          } else if (perf.performanceTier === 'low') {
             // Low devices: moderate frame limiting
             shouldSkip = deltaTime < targetInterval || perf.skipFrames > 0;
-          } else if (perf.performanceTier === "medium") {
+          } else if (perf.performanceTier === 'medium') {
             // Medium devices: light frame limiting
-            shouldSkip =
-              deltaTime < targetInterval * 0.8 || perf.skipFrames > 0;
-          } else if (perf.performanceTier === "high") {
+            shouldSkip = deltaTime < targetInterval * 0.8 || perf.skipFrames > 0;
+          } else if (perf.performanceTier === 'high') {
             // High devices: minimal frame limiting, prioritize smoothness
-            shouldSkip =
-              deltaTime < targetInterval * 0.5 || perf.skipFrames > 0;
+            shouldSkip = deltaTime < targetInterval * 0.5 || perf.skipFrames > 0;
           }
-
+          
           if (shouldSkip) {
             if (perf.skipFrames > 0) {
               perf.skipFrames--;
@@ -699,12 +640,8 @@ const FluidCanvas = React.memo(() => {
           frameCount++;
 
           // Device-adaptive performance monitoring frequency
-          const monitoringFrequency =
-            perf.performanceTier === "high"
-              ? 60
-              : perf.performanceTier === "medium"
-              ? 30
-              : 20;
+          const monitoringFrequency = perf.performanceTier === 'high' ? 60 : 
+                                     perf.performanceTier === 'medium' ? 30 : 20;
 
           if (frameCount % monitoringFrequency === 0) {
             const fps = 1000 / perf.avgFrameTime;
@@ -714,89 +651,41 @@ const FluidCanvas = React.memo(() => {
               const maxQuality = performanceRef.current.maxQuality;
 
               // Performance-tier specific FPS thresholds and adjustments
-              if (perf.performanceTier === "high") {
+              if (perf.performanceTier === 'high') {
                 // High-end devices: maintain high FPS, allow aggressive quality
                 if (fps < 45 && currentQuality > 0.6) {
-                  performanceRef.current.adaptiveQuality = Math.max(
-                    0.6,
-                    currentQuality - 0.1
-                  );
-                  performanceRef.current.skipFrames = Math.min(
-                    2,
-                    performanceRef.current.skipFrames + 1
-                  );
+                  performanceRef.current.adaptiveQuality = Math.max(0.6, currentQuality - 0.1);
+                  performanceRef.current.skipFrames = Math.min(2, performanceRef.current.skipFrames + 1);
                 } else if (fps > 55 && currentQuality < maxQuality) {
-                  performanceRef.current.adaptiveQuality = Math.min(
-                    maxQuality,
-                    currentQuality + 0.05
-                  );
-                  performanceRef.current.skipFrames = Math.max(
-                    0,
-                    performanceRef.current.skipFrames - 1
-                  );
+                  performanceRef.current.adaptiveQuality = Math.min(maxQuality, currentQuality + 0.05);
+                  performanceRef.current.skipFrames = Math.max(0, performanceRef.current.skipFrames - 1);
                 }
-              } else if (perf.performanceTier === "medium") {
+              } else if (perf.performanceTier === 'medium') {
                 // Medium devices: balance FPS and quality
                 if (fps < 35 && currentQuality > 0.4) {
-                  performanceRef.current.adaptiveQuality = Math.max(
-                    0.4,
-                    currentQuality - 0.15
-                  );
-                  performanceRef.current.skipFrames = Math.min(
-                    3,
-                    performanceRef.current.skipFrames + 1
-                  );
+                  performanceRef.current.adaptiveQuality = Math.max(0.4, currentQuality - 0.15);
+                  performanceRef.current.skipFrames = Math.min(3, performanceRef.current.skipFrames + 1);
                 } else if (fps > 40 && currentQuality < maxQuality) {
-                  performanceRef.current.adaptiveQuality = Math.min(
-                    maxQuality,
-                    currentQuality + 0.03
-                  );
-                  performanceRef.current.skipFrames = Math.max(
-                    0,
-                    performanceRef.current.skipFrames - 1
-                  );
+                  performanceRef.current.adaptiveQuality = Math.min(maxQuality, currentQuality + 0.03);
+                  performanceRef.current.skipFrames = Math.max(0, performanceRef.current.skipFrames - 1);
                 }
-              } else if (perf.performanceTier === "low") {
+              } else if (perf.performanceTier === 'low') {
                 // Low-end devices: prioritize stability over quality
                 if (fps < 20 && currentQuality > 0.3) {
-                  performanceRef.current.adaptiveQuality = Math.max(
-                    0.3,
-                    currentQuality - 0.15
-                  );
-                  performanceRef.current.skipFrames = Math.min(
-                    4,
-                    performanceRef.current.skipFrames + 2
-                  );
+                  performanceRef.current.adaptiveQuality = Math.max(0.3, currentQuality - 0.15);
+                  performanceRef.current.skipFrames = Math.min(4, performanceRef.current.skipFrames + 2);
                 } else if (fps > 28 && currentQuality < maxQuality) {
-                  performanceRef.current.adaptiveQuality = Math.min(
-                    maxQuality,
-                    currentQuality + 0.02
-                  );
-                  performanceRef.current.skipFrames = Math.max(
-                    0,
-                    performanceRef.current.skipFrames - 1
-                  );
+                  performanceRef.current.adaptiveQuality = Math.min(maxQuality, currentQuality + 0.02);
+                  performanceRef.current.skipFrames = Math.max(0, performanceRef.current.skipFrames - 1);
                 }
-              } else if (perf.performanceTier === "ultra-low") {
+              } else if (perf.performanceTier === 'ultra-low') {
                 // Ultra-low devices: minimize load, ensure basic functionality
                 if (fps < 12 && currentQuality > 0.2) {
-                  performanceRef.current.adaptiveQuality = Math.max(
-                    0.2,
-                    currentQuality - 0.1
-                  );
-                  performanceRef.current.skipFrames = Math.min(
-                    5,
-                    performanceRef.current.skipFrames + 2
-                  );
+                  performanceRef.current.adaptiveQuality = Math.max(0.2, currentQuality - 0.1);
+                  performanceRef.current.skipFrames = Math.min(5, performanceRef.current.skipFrames + 2);
                 } else if (fps > 18 && currentQuality < maxQuality) {
-                  performanceRef.current.adaptiveQuality = Math.min(
-                    maxQuality,
-                    currentQuality + 0.01
-                  );
-                  performanceRef.current.skipFrames = Math.max(
-                    1,
-                    performanceRef.current.skipFrames - 1
-                  );
+                  performanceRef.current.adaptiveQuality = Math.min(maxQuality, currentQuality + 0.01);
+                  performanceRef.current.skipFrames = Math.max(1, performanceRef.current.skipFrames - 1);
                 }
               }
 
@@ -809,8 +698,7 @@ const FluidCanvas = React.memo(() => {
           // Enhanced visibility check with much longer pause times for low-end devices
           if (canvasRef.current && typeof document !== "undefined") {
             const rect = canvasRef.current.getBoundingClientRect();
-            const isVisible =
-              rect.bottom >= 0 && rect.top <= window.innerHeight;
+            const isVisible = rect.bottom >= 0 && rect.top <= window.innerHeight;
 
             if (!isVisible) {
               // Much longer pause when not visible
@@ -946,8 +834,7 @@ const FluidCanvas = React.memo(() => {
           );
 
           // Reduced loop count for better performance
-          for (let i = 0; i < Math.min(pressureIterations, 50); i++) {
-            // Cap at 50 iterations
+          for (let i = 0; i < Math.min(pressureIterations, 50); i++) { // Cap at 50 iterations
             gl.uniform1i(
               programs.pressure.uniforms.uPressure,
               framebuffers.pressure.first[2]
@@ -1013,36 +900,35 @@ const FluidCanvas = React.memo(() => {
           return;
         }
 
-        const { gl, isWebGL2, halfFloat, support_linear_float, deviceInfo } =
-          webglContext;
-
+        const { gl, isWebGL2, halfFloat, support_linear_float, deviceInfo } = webglContext;
+        
         // Enhanced performance settings based on device capabilities and performance tier
         console.log(`Device Performance Tier: ${deviceInfo.performanceTier}`, {
           targetFps: deviceInfo.targetFps,
           maxQuality: deviceInfo.maxQuality,
           renderer: deviceInfo.deviceInfo?.renderer,
-          cores: deviceInfo.deviceInfo?.cores,
+          cores: deviceInfo.deviceInfo?.cores
         });
-
+        
         // Apply device-specific performance settings
         performanceRef.current.targetFps = deviceInfo.targetFps;
         performanceRef.current.maxQuality = deviceInfo.maxQuality;
         performanceRef.current.adaptiveQuality = deviceInfo.maxQuality * 0.8; // Start at 80% of max
         performanceRef.current.performanceTier = deviceInfo.performanceTier;
         performanceRef.current.isLowEndDevice = deviceInfo.isLowEnd;
-
+        
         // Set device-specific frame skipping limits
         switch (deviceInfo.performanceTier) {
-          case "high":
+          case 'high':
             performanceRef.current.maxSkipFrames = 1;
             break;
-          case "medium":
+          case 'medium':
             performanceRef.current.maxSkipFrames = 2;
             break;
-          case "low":
+          case 'low':
             performanceRef.current.maxSkipFrames = 4;
             break;
-          case "ultra-low":
+          case 'ultra-low':
             performanceRef.current.maxSkipFrames = 5;
             break;
         }
@@ -1075,26 +961,26 @@ const FluidCanvas = React.memo(() => {
         // Enhanced event handlers with performance-tier based sensitivity
         const handleMouseMove = (e) => {
           pointers[0].moved = pointers[0].down;
-
+          
           // Performance-tier specific sensitivity
           let sensitivity;
           switch (deviceInfo?.performanceTier) {
-            case "high":
+            case 'high':
               sensitivity = 18.0; // High sensitivity for smooth experience on high-end devices
               break;
-            case "medium":
+            case 'medium':
               sensitivity = 14.0; // Medium sensitivity for balanced performance
               break;
-            case "low":
+            case 'low':
               sensitivity = 10.0; // Lower sensitivity for low-end devices
               break;
-            case "ultra-low":
+            case 'ultra-low':
               sensitivity = 6.0; // Minimal sensitivity for ultra-low-end devices
               break;
             default:
               sensitivity = 12.0;
           }
-
+          
           pointers[0].dx = (e.offsetX - pointers[0].x) * sensitivity;
           pointers[0].dy = (e.offsetY - pointers[0].y) * sensitivity;
           pointers[0].x = e.offsetX;
@@ -1105,26 +991,26 @@ const FluidCanvas = React.memo(() => {
         const handleTouchMove = (e) => {
           e.preventDefault();
           const touches = e.targetTouches;
-
+          
           // Performance-tier specific touch sensitivity
           let sensitivity;
           switch (deviceInfo?.performanceTier) {
-            case "high":
+            case 'high':
               sensitivity = 16.0; // High sensitivity for responsive touch on high-end devices
               break;
-            case "medium":
+            case 'medium':
               sensitivity = 12.0; // Medium sensitivity for balanced touch performance
               break;
-            case "low":
+            case 'low':
               sensitivity = 8.0; // Lower sensitivity for low-end devices
               break;
-            case "ultra-low":
+            case 'ultra-low':
               sensitivity = 5.0; // Minimal sensitivity for ultra-low-end devices
               break;
             default:
               sensitivity = 10.0;
           }
-
+          
           for (let i = 0; i < touches.length; i++) {
             const pointer = pointers[i];
             if (pointer) {
@@ -1225,8 +1111,8 @@ const FluidCanvas = React.memo(() => {
   return (
     <canvas
       ref={canvasRef}
-      className="h-full w-full bg-white"
-      style={{ display: "block", backgroundColor: "white" }}
+      className="h-full w-full"
+      style={{ display: "block" }}
     />
   );
 });

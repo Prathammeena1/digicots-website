@@ -6,7 +6,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 z-[999999] bg-white dark:bg-black flex items-center justify-center will-change-auto">
+    <div className="fixed inset-0 z-[999999] bg-black flex items-center justify-center will-change-auto">
       <div className="text-center">
         {/* <div className="mb-4">
           <h1 className="text-2xl font-bold text-black dark:text-white tracking-wider" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -16,7 +16,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         {/* Circular progress bar */}
         <div className="w-24 h-24 mx-auto flex items-center justify-center relative scale-[1]">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[.9]">
-            <img src="/final-images/gif/Loader.gif" alt="" />
+            <img src="/final-images/gif/Loader.gif"  style={{filter:"invert(1)"}} alt="" />
           </div>
 
           <svg width="100" height="100" viewBox="0 0 100 100">
@@ -33,7 +33,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
               cy="48"
               r="42"
               fill="none"
-              stroke="#ED510C" // black
+              stroke="#ED510C" // orange
               strokeWidth="1"
               strokeDasharray={2 * Math.PI * 42}
               strokeDashoffset={
@@ -44,7 +44,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
           </svg>
         </div>
           <div className=" absolute w-24 h-24 flex items-center justify-center bottom-30 left-1/2 -translate-x-1/2 pointer-events-none">
-            <span className="text-[20vw] font-semibold text-black/5 dark:text-white">
+            <span className="text-[20vw] font-semibold text-white/5">
               {Math.round(loadingProgress)}%
             </span>
           </div>

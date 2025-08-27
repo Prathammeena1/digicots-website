@@ -9,7 +9,7 @@ const alignment = {
 const HomeFourthSectionCard = ({ align, content }) => {
   return (
     <div
-      className={`dark:text-white rounded-lg max-h-[100vh] flex flex-col justify-between ${alignment[align]}`}
+      className={`text-white rounded-lg max-h-[100vh] flex flex-col justify-between `}
     >
         {/* Top section with Pro-Development */}
       {/* <TextAnimP1>
@@ -20,34 +20,34 @@ const HomeFourthSectionCard = ({ align, content }) => {
 
       {/* <TextAnimP1> */}
       {/* Main heading */}
-      <h2
-        className="text-2xl font-semibold "
-        dangerouslySetInnerHTML={{ __html: content.dHead }}
-      />
 
         <div className="h-[60vh] w-full overflow-hidden">
           <img
             src={content.imgSrc}
             className="object-contain w-full"
             style={{
-              scale: align === "right" ? "1" : ".9",
+              scale: align === "right" ? ".8" : ".8",
             }}
             alt=""
           />
         </div>
+          <div className={`my-3 `}>
+            <span className="text-xs font-semibold text-gray-600 tracking-wider uppercase">
+              {content.h2}
+            </span>
+          </div>
+            <h2
+              className="text-2xl font-semibold "
+              dangerouslySetInnerHTML={{ __html: content.dHead }}
+            />
       {/* Bottom section with content */}
         <div className="space-y-4">
           {/* DEVELOPMENT label */}
-          {/* <div className={`my-3 ${alignment[align]}`}>
-            <span className="text-xs font-semibold dark:text-gray-400 text-zinc-800 tracking-wider uppercase">
-              {content.h2}
-            </span>
-          </div> */}
 
           
 
           {/* Description text */}
-          <p className="dark:text-gray-300 text-lg mt-7">
+          <p className="text-gray-300 text-lg mt-4">
             {content.dParagraph}
           </p>
         </div>
