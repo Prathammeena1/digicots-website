@@ -11,35 +11,38 @@ import HomeNinthSection from "../sections/HomeNinthSection.jsx";
 import HomeServiceSection from "../sections/HomeServiceSection.jsx";
 import ScrollMarKi from "../components/ScrollMarKi.jsx";
 import AboutStatSection from "../sections/AboutStatSection.jsx";
+import HomeServicesVerticalSection from "../sections/HomeServicesVerticalSection.jsx";
 
 const Home = () => {
   return (
     <>
       <div className="h-screen w-full fixed top-0 left-0">
-        <img
+        {/* <img
           className="h-full w-full object-cover"
           src="/final-images/bg/testing.webp"
           alt=""
-        />
+        /> */}
       </div>
       <div className="h-full w-full bg-transparent relative">
-        <HomeHeroSection />
-        <AboutStatSection />
+        {/* <HomeHeroSection /> */}
+        {/* <AboutStatSection /> */}
 
-        <HomeFourthSection />
+        {/* <HomeFourthSection /> */}
 
-        <div className="-space-y-22">
+        {/* <div className="-space-y-22">
           <ScrollMarKi> {"          "} Strategies meeting </ScrollMarKi>
           <ScrollMarKi direction={-1}>proven results</ScrollMarKi>
-        </div>
+        </div> */}
 
         {/* <HomeThirdSection /> */}
 
         {/* <HomeFifthSection /> */}
 
-        <div className="h-[50vh] w-full "></div>
+        {/* <div className="h-[50vh] w-full "></div> */}
 
-        <HomeServiceSection />
+        <HomeServicesVerticalSection/>
+
+        {/* <HomeServiceSection /> */}
 
         <HomeSixthSection />
 
