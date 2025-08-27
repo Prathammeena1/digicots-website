@@ -11,14 +11,14 @@ const content = [
     title: "Pro-Strategist ",
     // imgSrc:"/final-images/gif/1.gif",
     h2: "CORE-STRATEGY",
-    imgSrc: "/final-images/gif/1-black.gif",
+    imgSrc: "/final-images/gif/2-black.gif",
     dHead: `Strategies that <br />
     reflect who you are.`,
     dParagraph: `We design customised tech solutions and development strategies that optimise both technological and management processes within your company. Our approach empowers businesses to achieve efficiency, scalability, and sustainable growth.`,
   },
   {
     title: "Pro-Strategist ",
-    imgSrc: "/final-images/gif/2-black.gif",
+    imgSrc: "/final-images/gif/1-black.gif",
     h2: "DEVELOPMENT",
     dHead: `Solutions that <br /> deliver your future.`,
     dParagraph: `We craft innovative, data-driven digital solutions and performance marketing strategies that maximise visibility, reach, and ROI. From comprehensive SEO research to targeted campaigns, we help brands grow smarter, faster, and stronger.`,
