@@ -130,9 +130,9 @@ export default function Footer({ popActive, setPopActive }) {
   return (
     <footer
       ref={footerRef}
-      className=" pointer-events-none text-white py-16 px-30 relative z-10 overflow-hidden"
+      className=" pointer-events-none text-white py-16 px-30 relative z-30 overflow-hidden "
     >
-      <div className="container mx-auto max-w-[1600px]">
+      <div className="container mx-auto max-w-[1600px] relative z-30">
         <TextAnimP1>
           {/* Top Section - Join the Pack */}
           {showContactForm && (

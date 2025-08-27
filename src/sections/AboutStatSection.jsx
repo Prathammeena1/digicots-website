@@ -23,7 +23,7 @@ const AboutStatSection = () => {
   ];
 
   return (
-    <div className=" text-zinc-300 py-20  border-zinc-800 border-b">
+    <div className=" text-zinc-300 py-20  border-zinc-800 border-b pointer-events-none bg-transparent">
       <div className="px-30 mx-auto flex flex-col justify-center">
         {/* Statistics Row */}
         <div className="flex items-center justify-between gap-16 mb-10 px-20">

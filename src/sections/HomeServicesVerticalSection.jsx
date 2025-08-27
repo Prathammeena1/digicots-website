@@ -92,7 +92,7 @@ export default function HomeServicesVerticalSection() {
   const [lineX, setLineX] = useState(0);
 
   return (
-    <div className="h-screen text-white pt-50 overflow-hidden ">
+    <div className="h-screen text-white pt-50 overflow-hidden pointer-events-auto ">
       <div className=" mx-auto relative z-30 px-30 ">
         {/* Left Side - Content */}
         <div

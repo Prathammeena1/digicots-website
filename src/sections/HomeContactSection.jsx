@@ -3,9 +3,9 @@ import Button from '../components/Button';
 
 const HomeContactSection = () => {
     return (
-        <div className='flex px-30 items-center justify-between text-white py-20'>
-            <div className='h-[70vh] w-[40vw] '>
-                <img src="/final-images/gif/ai.gif" className='h-full w-full object-contain' alt="" />
+        <div className='flex px-30 items-center justify-center text-white py-20 pointer-events-auto'>
+            <div className='h-[70vh] w-[40vw] ml-10'>
+                <img src="/final-images/gif/AI.gif" className='h-full w-full object-contain' alt="" />
             </div>
 
             <div className='h-[40vh] w-[40vw] space-y-5 '>
@@ -17,7 +17,7 @@ const HomeContactSection = () => {
                     </h1>
                 </div>
                 <div className="">
-                    <p className="text-md text-zinc-200">We boost your online presence with digital marketing strategies that connect with your audience and maximise your engagement.</p>
+                    <p className="text-md text-zinc-200">We boost your online presence with digital marketing strategies that connect <br /> with your audience and maximise your engagement.</p>
                 </div>
                 <div>
                     <h2 className='text-md font-semibold'>Objectives Achieved</h2>

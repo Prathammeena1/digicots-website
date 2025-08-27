@@ -142,19 +142,16 @@ const App = () => {
         <div className="h-full w-full overflow-hidden fixed top-0 left-0 bg-black">
           <ErrorBoundary>
             <Suspense fallback={<div className="w-full h-full bg-white" />}>
-              {/* <FluidCanvas /> */}
-              {/* <WolfMaskSVG /> */}
+              <FluidCanvas />
+              <WolfMaskSVG />
 
-              <div className="h-full w-full absolute top-0 left-0 z-10 backdrop-blur pointer-events-none">
-
-              </div>
             </Suspense>
           </ErrorBoundary>
         </div>
 
         <div
           onClick={handleScrollToTop}
-          className={`fixed z-30 scroll-to-top dark:bg-amber-50 bg-zinc-800 h-[70px] w-[70px] right-10 bottom-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer ${
+          className={`fixed scroll-to-top dark:bg-amber-50 bg-zinc-800 h-[70px] w-[70px] right-10 bottom-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer z-[1000] ${
             showScrollTop
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-4 pointer-events-none"
@@ -165,17 +162,17 @@ const App = () => {
           </div>
         </div>
 
-        <main className="">
+        <main className=" pointer-events-none">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/approach/:id" element={<Approach />} />
+            {/* <Route path="/approach/:id" element={<Approach />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/:id" element={<ServicesDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/branding" element={<Branding />} />
             <Route path="/marketing" element={<Marketing />} />
-            <Route path="/web-digital" element={<WebAndDigital />} />
+            <Route path="/web-digital" element={<WebAndDigital />} /> */}
 
             <Route path="*" element={<NotFound />} />
           </Routes>

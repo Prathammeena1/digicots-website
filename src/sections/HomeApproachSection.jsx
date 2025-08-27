@@ -48,60 +48,60 @@ const HomeApproachSection = () => {
         // Animate cards with GSAP
         if (step === 0) {
             gsap.to(card1.current, { x: "-100%", duration: 0.6, ease: "power3.inOut" });
-            gsap.to(card2.current, { x: "0%", duration: 0.6, ease: "power3.inOut" });
+            gsap.to(card2.current, { x: "-50%", duration: 0.6, ease: "power3.inOut" });
             gsap.to(card3.current, { x: "0%", duration: 0.6, ease: "power3.inOut" });
         }
         if (step === 1) {
             gsap.to(card1.current, { x: "-150%", duration: 0.6, ease: "power3.inOut" });
-            gsap.to(card2.current, { x: "0%", duration: 0.6, ease: "power3.inOut" });
+            gsap.to(card2.current, { x: "-50%", duration: 0.6, ease: "power3.inOut" });
             gsap.to(card3.current, { x: "0%", duration: 0.6, ease: "power3.inOut" });
         }
         if (step === 2) {
             gsap.to(card1.current, { x: "-150%", duration: 0.6, ease: "power3.inOut" });
-            gsap.to(card2.current, { x: "-50%", duration: 0.6, ease: "power3.inOut" });
+            gsap.to(card2.current, { x: "-100%", duration: 0.6, ease: "power3.inOut" });
             gsap.to(card3.current, { x: "0%", duration: 0.6, ease: "power3.inOut" });
         }
     }
 
 
     return (
-        <div className='min-h-screen py-10 w-full flex px-30 '>
-            <div ref={card1} onClick={(e) => clickHandler(0, e)} className='absolute top-0 left-1/2 -translate-x-[100%] z-30 h-[100vh] w-1/3 bg-zinc-700'>
-                <div className=''>
+        <div className='min-h-screen py-10 w-full flex px-30 relative overflow-hidden pointer-events-auto'>
+            <div ref={card1} onClick={(e) => clickHandler(0, e)} className='absolute top-0 left-1/2 -translate-x-[100%] z-30 h-[100vh] w-[42.5%] bg-black shadow-white/6 shadow-[30px_0px_40px] text-white space-y-4 py-10 pr-6'>
+                <div className='text-zinc-600 font-semibold text-md '>
                     {approachSteps[0].stepNumber}
                 </div>
-                <div className=''>
+                <div className='font-bold text-4xl'>
                     {approachSteps[0].title}
                 </div>
-                <div className=''>
+                <div className='text-md w-[80%] opacity-60 mb-10'>
                     {approachSteps[0].description}
                 </div>
                 <div className='h-full w-full relative overflow-hidden'>
                     <img className='h-full w-full object-cover' src={approachSteps[0].image} alt="" />
                 </div>
             </div>
-            <div ref={card2} onClick={(e) => clickHandler(1, e)} className='absolute top-0 left-1/2 -translate-x-1/2 z-20 h-[100vh] w-1/3 bg-zinc-700'>
-                <div className=''>
+            <div ref={card2} onClick={(e) => clickHandler(1, e)} className='absolute top-0 left-1/2 -translate-x-1/2 z-20 h-[100vh] w-[42.5%] bg-black shadow-white/6 shadow-[30px_0px_40px] text-white space-y-4 py-10 pr-6'>
+                <div className='text-zinc-600 font-semibold text-md pl-10 '>
                     {approachSteps[1].stepNumber}
                 </div>
-                <div className=''>
+                <div className='font-bold text-4xl pl-10'>
                     {approachSteps[1].title}
                 </div>
-                <div className=''>
+                <div className='text-md w-[80%] opacity-60 mb-10 pl-10'>
                     {approachSteps[1].description}
                 </div>
                 <div className='h-full w-full relative overflow-hidden'>
                     <img className='h-full w-full object-cover' src={approachSteps[1].image} alt="" />
                 </div>
             </div>
-            <div ref={card3} onClick={(e) => clickHandler(2, e)} className='absolute top-0 left-1/2  z-10 h-[100vh] w-1/3 bg-zinc-700'>
-                <div className=''>
+            <div ref={card3} onClick={(e) => clickHandler(2, e)} className='absolute top-0 left-1/2  z-10 h-[100vh] w-[42.5%] bg-black  text-white space-y-4 py-10 pr-6'>
+                <div className='text-zinc-600 font-semibold text-md pl-10 '>
                     {approachSteps[2].stepNumber}
                 </div>
-                <div className=''>
+                <div className='font-bold text-4xl pl-10'>
                     {approachSteps[2].title}
                 </div>
-                <div className=''>
+                <div className='text-md w-[80%] opacity-60 mb-10 pl-10'>
                     {approachSteps[2].description}
                 </div>
                 <div className='h-full w-full relative overflow-hidden'>

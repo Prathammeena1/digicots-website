@@ -22,7 +22,7 @@ const WolfMaskSVG = React.memo(() => (
       </mask>
     </defs>
     <g mask="url(#wolf-mask)">
-      <rect width="100%" height="100%" fill="white" />
+      <rect width="100%" height="100%" fill="black" />
     </g>
   </svg>
 ));

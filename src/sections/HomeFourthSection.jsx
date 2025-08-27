@@ -27,7 +27,7 @@ const content = [
 
 const HomeFourthSection = () => {
   return (
-    <div className="">
+    <div className=" pointer-events-auto">
       <TextAnimP1>
         <div className="text-white relative z-20 pt-25 ">
           <div className="text-center">
