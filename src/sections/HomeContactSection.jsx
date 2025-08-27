@@ -5,7 +5,7 @@ const HomeContactSection = () => {
     return (
         <div className='flex px-30 items-center justify-between text-white py-20'>
             <div className='h-[70vh] w-[40vw] '>
-                <img src="/final-images/gif/2-black.gif" className='h-full w-full object-contain' alt="" />
+                <img src="/final-images/gif/ai.gif" className='h-full w-full object-contain' alt="" />
             </div>
 
             <div className='h-[40vh] w-[40vw] space-y-5 '>
