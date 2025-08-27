@@ -29,10 +29,10 @@ export const useLenis = () => {
   useEffect(() => {
     // Create natural smooth scroll
     const lenis = new Lenis({
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Premium easing curve
+      // easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Premium easing curve
       direction: 'vertical',
       smooth: true,
-      duration: 1.2
+      duration: .3
     })
 
     // Make Lenis globally accessible
