@@ -4,7 +4,7 @@ import HomeFourthSectionCanvas from "../components/HomeFourthSectionCanvas";
 import TextAnimH1 from "../components/TextAnimH1";
 import TextAnimP1 from "../components/TextAnimP1";
 import TextAnimation from "../components/TextAnimation";
-import ParticleEffect from "../components/svg_particle_effect";
+import ParticleEffect from "../components/Svg_particle_effect";
 
 const content = [
   {
